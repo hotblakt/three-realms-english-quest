@@ -1,13 +1,14 @@
 import Phaser from 'phaser';
+import { createGeno } from '../art/actorArtwork';
+import { createTrainingDummy, paintVillage, villageHeight, villageWidth } from '../art/villageArtwork';
+import { makeObjectiveMarker } from '../art/windEffects';
 import { Sword } from '../combat/Sword';
 import { Player } from '../entities/Player';
-import { drawActor } from '../entities/VillageActor';
 import { chineseFont, messages } from '../i18n';
 import { Controls } from '../input/Controls';
 import { TrainingProgress } from '../progression/TrainingProgress';
 import { loadTraining, saveTraining } from '../save/trainingSave';
 import { SpeakingPractice } from '../ui/SpeakingPractice';
-import { paintVillage, villageHeight, villageWidth } from './villageArt';
 
 export class VillageScene extends Phaser.Scene {
   private controls!: Controls;
@@ -23,6 +24,7 @@ export class VillageScene extends Phaser.Scene {
   private readonly health = document.querySelector<HTMLElement>('#health')!;
   private readonly objective = document.querySelector<HTMLElement>('#objective')!;
   private dummyArt!: Phaser.GameObjects.Graphics;
+  private objectiveMarker!: Phaser.GameObjects.Graphics;
 
   constructor() {
     super('village');
@@ -49,15 +51,12 @@ export class VillageScene extends Phaser.Scene {
     for (const x of [625, 705]) addObstacle(x, 384, 36, 52);
     this.physics.add.collider(this.player.body, pond);
     this.physics.add.collider(this.player.body, obstacles);
-    drawActor(this, this.geno.x, this.geno.y, true);
+    createGeno(this, this.geno.x, this.geno.y);
     this.add.text(this.geno.x, this.geno.y - 44, messages.elderGeno, {
       fontFamily: chineseFont, fontSize: '17px', fontStyle: 'bold', color: '#fff2c8', stroke: '#20392c', strokeThickness: 4,
     }).setOrigin(.5).setDepth(999);
-    this.dummyArt = this.add.graphics({ x: this.dummy.x, y: this.dummy.y }).setDepth(this.dummy.y);
-    this.dummyArt.fillStyle(0x364936, .6).fillEllipse(0, 5, 25, 10);
-    this.dummyArt.fillStyle(0x70513e).fillRect(-3, -18, 6, 24);
-    this.dummyArt.fillStyle(0xe4b66d).fillRoundedRect(-9, -29, 18, 22, 6);
-    this.dummyArt.lineStyle(3, 0x98654f).lineBetween(-8, -15, 8, -15);
+    this.dummyArt = createTrainingDummy(this, this.dummy.x, this.dummy.y);
+    this.objectiveMarker = makeObjectiveMarker(this);
     const thornArt = this.add.graphics().setDepth(-.5);
     thornArt.fillStyle(0x354d3c).fillRoundedRect(this.thorns.x, this.thorns.y, this.thorns.width, this.thorns.height, 12);
     for (let i = 0; i < 12; i++) {
@@ -66,7 +65,7 @@ export class VillageScene extends Phaser.Scene {
       thornArt.fillStyle(0xb96d65).fillTriangle(x - 5, y, x + 5, y, x + 1, y - 10);
     }
     const camera = this.cameras.main;
-    camera.setBounds(0, 0, villageWidth, villageHeight).startFollow(this.player.view, true, .16, .16);
+    camera.setBounds(0, 0, villageWidth, villageHeight).startFollow(this.player.view, true, .16, .16, 0, 72);
     for (const selector of ['#hud', '#controls', '#keyboard']) {
       document.querySelector<HTMLElement>(selector)!.hidden = false;
     }
@@ -110,10 +109,12 @@ export class VillageScene extends Phaser.Scene {
     const position = this.player.body.center;
     if (this.speaking.visible) {
       this.player.body.setVelocity(0);
+      this.player.idle();
       return;
     }
     if (!this.dialogue.hidden) {
       this.player.body.setVelocity(0);
+      this.player.idle();
       if (interact) this.dismissDialogue();
       return;
     }
@@ -148,6 +149,16 @@ export class VillageScene extends Phaser.Scene {
     const { health, maxHealth } = this.player;
     this.health.textContent = '♥'.repeat(health) + '♡'.repeat(maxHealth - health);
     this.health.setAttribute('aria-label', messages.healthStatus(health, maxHealth));
-    this.objective.textContent = this.progress.objective;
+    const findingGeno = this.progress.step === 'meet-geno';
+    const target = findingGeno ? this.geno : this.dummy;
+    const complete = this.progress.step === 'complete';
+    this.objectiveMarker.setPosition(target.x, target.y - (findingGeno ? 64 : 47)).setVisible(!complete);
+    const objective = this.progress.objective;
+    if (this.objective.textContent === objective) return;
+    this.objective.textContent = objective;
+    this.objective.classList.toggle('is-complete', complete);
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.objective.animate([{ backgroundColor: '#e6c68655' }, { backgroundColor: 'transparent' }], { duration: 900 });
+    }
   }
 }
