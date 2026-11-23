@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16251e">
+  <title>Three Realms: English Quest</title>
+</head>
+<body>
+  <main id="stage">
+    <div id="game"></div>
+    <section id="title">
+      <p class="eyebrow">CHAPTER ONE</p>
+      <h1>Three Realms<span>English Quest</span></h1>
+      <p>The Awakening of Wind</p>
+      <button id="begin" disabled>Enter the village</button>
+      <small>Best played in landscape</small>
+    </section>
+    <section id="hud" hidden aria-label="Game status">
+      <div class="eyebrow">HIDDEN BAMBOO VILLAGE</div>
+      <div id="health" aria-label="Health"></div>
+      <div id="objective"></div>
+    </section>
+    <aside id="dialogue" hidden aria-live="polite">
+      <strong>Elder Geno</strong>
+      <p id="line"></p>
+      <button id="close-dialogue">Continue</button>
+    </aside>
+    <div id="controls" hidden>
+      <div id="stick" aria-label="Movement joystick"><div id="knob"></div></div>
+      <div id="actions">
+        <button data-action="interact">Talk</button>
+        <button data-action="dodge">Dodge</button>
+        <button data-action="attack">Slash</button>
+      </div>
+    </div>
+    <div id="keyboard" hidden>WASD / Arrows · J Slash · Space Dodge · E Talk</div>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
