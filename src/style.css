@@ -6,26 +6,35 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body { margin: 0; overflow: hidden; }
+html, body { overflow: hidden; overscroll-behavior: none; }
+body { margin: 0; }
 [hidden] { display: none !important; }
 #stage {
   --edge-top: max(8px, env(safe-area-inset-top));
   --edge-left: max(14px, env(safe-area-inset-left));
   --edge-right: max(12px, env(safe-area-inset-right));
   --edge-bottom: max(12px, env(safe-area-inset-bottom));
-  --stick-size: clamp(72px, 24vh, 122px);
-  --stick-size: clamp(72px, 24dvh, 122px);
+  --stick-size: 122px;
+  --panel-top: 90px;
   --dialogue-bottom: calc(var(--edge-bottom) + 52px);
+  --game-bottom: env(safe-area-inset-bottom, 0px);
   position: relative;
   width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+  height: var(--visible-height, 100vh);
   overflow: hidden;
   isolation: isolate;
   touch-action: manipulation;
   user-select: none;
 }
-#game { position: absolute; inset: 0; touch-action: none; }
+@supports (height: 100dvh) {
+  #stage { height: var(--visible-height, 100dvh); }
+}
+#game {
+  position: absolute;
+  inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+    var(--game-bottom) env(safe-area-inset-left, 0px);
+  touch-action: none;
+}
 button {
   color: inherit;
   font: inherit;
@@ -44,9 +53,12 @@ button:focus-visible { outline: 3px solid #fff3c4; outline-offset: 3px; }
 #title {
   position: absolute;
   inset: 0;
-  padding: 1rem;
+  padding: var(--edge-top) var(--edge-right) var(--edge-bottom) var(--edge-left);
+  overflow: auto;
+  overscroll-behavior: contain;
   display: grid;
   align-content: center;
+  align-content: safe center;
   justify-items: center;
   text-align: center;
   background: radial-gradient(ellipse, #172f24ad, #101f1cdf);
@@ -62,6 +74,31 @@ h1 span { display: block; }
 h1 span + span { font-size: .55em; margin-top: .2em; }
 #title p { margin: .5rem 0; }
 #title small { font-size: .95rem; margin-top: .6rem; }
+#install-guide {
+  max-width: 30rem;
+  margin-top: .35rem;
+  font-size: .9rem;
+}
+#install-guide summary {
+  min-height: 44px;
+  padding: .7rem .4rem;
+  color: #ffe3a0;
+  cursor: pointer;
+}
+#install-guide p { margin: 0; }
+#rotate-device {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: .35rem;
+  text-align: center;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: #16251e;
+}
+#rotate-device h2, #rotate-device p { margin: 0; }
 #hud, #keyboard, .dialogue-panel {
   background: #152b25ed;
   border: 1px solid #b7a676;
@@ -89,7 +126,7 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
 #dialogue, #speaking {
   position: absolute;
   z-index: 2;
-  inset: calc(var(--edge-top) + 88px) var(--edge-right) var(--dialogue-bottom) var(--edge-left);
+  inset: calc(var(--edge-top) + var(--panel-top)) var(--edge-right) var(--dialogue-bottom) var(--edge-left);
   display: grid;
   grid-template-rows: minmax(0, 1fr);
   place-items: center;
@@ -102,7 +139,8 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
   padding: .65rem .85rem;
   font-size: 1.125rem;
   pointer-events: auto;
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior: contain;
 }
 .dialogue-panel p { margin: .25rem 0 .4rem; }
 #controls { display: none; position: absolute; inset: 0; pointer-events: none; }
@@ -131,7 +169,18 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
 #actions button { padding: 0 .55rem; }
 #actions [data-action="attack"] { min-height: 55px; background: #703b3d; }
 @media (any-pointer: coarse) {
-  #stage { --dialogue-bottom: calc(var(--edge-bottom) + var(--stick-size) + 8px); }
+  #stage {
+    --dialogue-bottom: calc(var(--edge-bottom) + var(--stick-size) + 8px);
+    --game-bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  }
+  #actions {
+    display: grid;
+    grid-template-columns: auto 68px;
+    grid-template-areas: "talk attack" "dodge attack";
+  }
+  #actions [data-action="interact"] { grid-area: talk; }
+  #actions [data-action="dodge"] { grid-area: dodge; }
+  #actions [data-action="attack"] { grid-area: attack; min-height: 0; align-self: stretch; }
   #controls { display: block; }
   #keyboard { display: none; }
 }
@@ -151,7 +200,6 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
   gap: .35rem;
 }
 .dialogue-actions button { padding-inline: .55rem; }
-#speaking { inset-block-start: calc(var(--edge-top) + 84px); }
 .speaking-panel {
   width: min(100%, 720px);
   display: grid;
@@ -198,4 +246,23 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
 }
 @media (max-width: 559px) {
   .speaking-panel { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Phones and short tablet windows use a low, single-row control layout. */
+@media (any-pointer: coarse) and (max-height: 500px) {
+  #stage {
+    --stick-size: clamp(66px, calc(var(--visible-height, 100vh) * .21), 94px);
+    --panel-top: 66px;
+    --game-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+  }
+  #hud {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    column-gap: .55rem;
+    padding-block: .3rem;
+  }
+  #objective { grid-column: 1 / -1; font-size: .925rem; }
+  #actions { display: flex; gap: .3rem; }
+  #actions [data-action="attack"] { min-height: 52px; }
 }

@@ -30,10 +30,7 @@ export class Controls {
         if (event.pointerId === this.pointer) this.clearStick();
       }, options);
     }
-    window.addEventListener('blur', () => {
-      this.clearStick();
-      this.actions.clear();
-    }, options);
+    window.addEventListener('blur', () => this.reset(), options);
     for (const button of document.querySelectorAll<HTMLButtonElement>('[data-action]')) {
       const action = button.dataset.action as Action;
       button.addEventListener('pointerdown', (event) => {
@@ -76,8 +73,16 @@ export class Controls {
     return this.actions.delete(action) || keyboard;
   }
 
+  reset(): void {
+    const pointer = this.pointer;
+    this.clearStick();
+    if (pointer !== null && this.stick.hasPointerCapture(pointer)) this.stick.releasePointerCapture(pointer);
+    this.actions.clear();
+    for (const key of Object.values(this.keys)) key.reset();
+  }
+
   destroy(): void {
     this.listeners.abort();
-    this.clearStick();
+    this.reset();
   }
 }

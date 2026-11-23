@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#16251e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="三界探險">
+  <link rel="manifest" href="%BASE_URL%manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="%BASE_URL%icons/app-180.png">
+  <link rel="icon" type="image/png" href="%BASE_URL%icons/app-192.png">
   <title data-text="gameName"></title>
 </head>
 <body>
@@ -15,6 +21,10 @@
       <p data-text="windAwakening"></p>
       <button id="begin" data-text="enterVillage" disabled></button>
       <small data-text="landscapeHint"></small>
+      <details id="install-guide">
+        <summary data-text="installTitle"></summary>
+        <p data-text="installSteps"></p>
+      </details>
     </section>
     <section id="hud" hidden data-label="gameStatus">
       <div class="eyebrow" data-text="hiddenBambooVillage"></div>
@@ -62,6 +72,10 @@
     </div>
     <div id="keyboard" hidden data-text="keyboardHelp"></div>
   </main>
+  <section id="rotate-device" hidden aria-labelledby="rotate-title">
+    <h2 id="rotate-title" data-text="rotateTitle" tabindex="-1"></h2>
+    <p data-text="rotateHint"></p>
+  </section>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

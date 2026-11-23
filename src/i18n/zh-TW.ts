@@ -6,6 +6,11 @@ export const zhTW = {
   windAwakening: '風之覺醒',
   enterVillage: '進村探險',
   landscapeHint: '橫著玩更好操作',
+  rotateTitle: '請把裝置轉橫',
+  rotateHint: '橫著拿，就能繼續玩。',
+  installTitle: '加入主畫面',
+  installSteps: '用 Safari 開啟遊戲，點「分享」→「加入主畫面」。若看到「以網頁 App 開啟」，請開啟後點「加入」。以後點主畫面的遊戲圖示就能玩。',
+
   gameStatus: '遊戲狀態',
   hiddenBambooVillage: '隱竹村',
   healthLabel: '生命值',
