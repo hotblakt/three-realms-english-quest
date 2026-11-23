@@ -44,3 +44,14 @@ The build type-checks the project and emits static files into `dist/`. Preview s
 - `src/quests`, `src/progression`, and `src/save` contain chapter metadata, training steps, and versioned local storage.
 - `src/speech` defines the speech recognition contract for a future implementation.
 - `src/i18n/zh-TW.ts` contains the Taiwanese Traditional Chinese game text. Use `data-text` and `data-label` for markup, and import `messages` for dynamic text. Keep save identifiers and intentional English-learning content independent of UI translations.
+
+## 英語跟讀練習
+
+在吉諾長老的對話選「英語跟讀」。點「聽長老說」或「重播英文」可聽瀏覽器朗讀。可用的聲音依裝置和瀏覽器而定，畫面也會顯示文字。
+
+1. 點「開始錄音」，允許麥克風，念出 **I can run.** 後點「停止錄音」。每次最多錄 15 秒。
+2. 點「聽我的錄音」確認有聲音，然後「回到對話」。錄音只在目前的練習畫面保留，離開時會清除。這個練習目前沒有辨識、評分或完成判定。
+3. 封鎖麥克風權限並重試，確認畫面顯示中文提示，仍可閱讀句子及返回。錄音需要 HTTPS 或 localhost。
+4. 在 iPad Safari 橫向開啟 GitHub Pages 網站，確認第一次授權、拒絕後重試、停止與回聽、離開時麥克風指示消失，以及中文與英文聲音是否可用。檢查瀏覽器工具列展開時的按鈕位置。
+
+在 Node.js 24 可執行 `node --test tests/audio-capture.test.mjs` 驗證擷取流程、拒絕權限與音軌清理。這些測試使用替代的媒體物件。

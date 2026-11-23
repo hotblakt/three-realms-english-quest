@@ -25,9 +25,33 @@
       <div class="dialogue-panel">
         <strong id="dialogue-speaker" data-text="elderGeno"></strong>
         <p id="line" data-text="genoTraining"></p>
-        <button id="close-dialogue" data-text="continue"></button>
+        <div class="dialogue-actions">
+          <button id="open-speaking" data-text="speakingPractice"></button>
+          <button id="close-dialogue" data-text="continue"></button>
+        </div>
       </div>
     </aside>
+    <section id="speaking" hidden role="dialog" aria-modal="true" aria-labelledby="speaking-title"
+      aria-describedby="speaking-guidance speaking-note">
+      <div class="dialogue-panel speaking-panel">
+        <div class="speaking-content">
+          <h2 id="speaking-title" data-text="speakingPractice" tabindex="-1"></h2>
+          <p id="speaking-guidance" data-text="speakingGuidance"></p>
+          <p class="speaking-example"><strong id="speaking-prompt"></strong>
+            <span data-text="runMeaning"></span>
+          </p>
+          <small id="speaking-note" data-text="practiceOnly"></small>
+        </div>
+        <div class="speaking-actions">
+          <button id="listen-guidance" data-text="listenGuidance"></button>
+          <button id="replay-english" data-text="replayEnglish"></button>
+          <button id="record-voice" data-text="startRecording"></button>
+          <button id="replay-recording" data-text="replayRecording" disabled></button>
+          <button id="close-speaking" data-text="backToGeno"></button>
+          <p id="speaking-status" role="status" aria-atomic="true"></p>
+        </div>
+      </div>
+    </section>
     <div id="controls" hidden>
       <div id="stick" data-label="movementJoystick"><div id="knob"></div></div>
       <div id="actions">
