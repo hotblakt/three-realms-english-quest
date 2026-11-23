@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>影空正面候選圖比較</title>
+  <style>
+    :root { color-scheme: dark; font: 1rem/1.5 system-ui, sans-serif; background: #14242b; color: #f3eedf; }
+    body { max-width: 920px; margin: auto; padding: 1.25rem; }
+    h1 { font-size: 1.8rem; margin: 0; }
+    .toolbar, .comparison { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .toolbar { align-items: center; margin-block: 1.25rem; }
+    select { padding: .4rem; font: inherit; }
+    figure { margin: 0; }
+    figcaption { margin-top: .45rem; }
+    canvas { display: block; width: 144px; height: 112px; border: 1px solid #948464; border-radius: 4px; box-sizing: content-box; }
+    .comparison.zoom canvas { width: min(288px, 80vw); height: auto; image-rendering: pixelated; }
+  </style>
+</head>
+<body>
+  <h1>影空正面候選圖比較</h1>
+  <p>兩張圖使用相同腳底基準。候選圖以正式規格的 2/3 倍顯示，左圖取自目前遊戲角色。</p>
+  <div class="toolbar">
+    <label>背景
+      <select id="background">
+        <option value="#385648">村莊竹綠</option>
+        <option value="#142728">深色邊緣檢查</option>
+        <option value="#e6decd">淺色邊緣檢查</option>
+      </select>
+    </label>
+    <label><input id="zoom" type="checkbox"> 放大檢查</label>
+    <label><input id="anchor" type="checkbox"> 顯示腳底定位線</label>
+  </div>
+  <div class="comparison">
+    <figure><canvas id="current" width="144" height="112" aria-label="遊戲目前使用的影空"></canvas><figcaption>目前遊戲角色</figcaption></figure>
+    <figure><canvas id="candidate" width="144" height="112" aria-label="正面待機候選圖"></canvas><figcaption>正面待機候選圖</figcaption></figure>
+  </div>
+  <p id="status" role="status">載入中…</p>
+  <div id="phaser-source" aria-hidden="true" hidden></div>
+  <script type="module" src="./preview.js"></script>
+</body>
+</html>
