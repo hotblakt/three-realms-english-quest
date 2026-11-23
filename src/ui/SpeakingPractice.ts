@@ -50,11 +50,7 @@ export class SpeakingPractice {
       if (event.key === 'Tab') this.keepFocusInPanel(event);
     }, options);
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden && this.visible) {
-        if (this.attempt) this.cancelCapture(messages.recordingCancelled);
-        this.speech.stop();
-        this.playback.stop();
-      }
+      if (document.hidden) this.suspend();
     }, options);
     window.addEventListener('pagehide', () => {
       if (this.visible) this.close();
@@ -163,6 +159,13 @@ export class SpeakingPractice {
     this.guidance.disabled = busy;
     this.example.disabled = busy;
     this.replay.disabled = busy || !this.hasRecording;
+  }
+
+  suspend(): void {
+    if (!this.visible) return;
+    if (this.attempt) this.cancelCapture(messages.recordingCancelled);
+    this.speech.stop();
+    this.playback.stop();
   }
 
   destroy(): void {

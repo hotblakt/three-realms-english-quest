@@ -86,7 +86,14 @@ export class VillageScene extends Phaser.Scene {
     startSpeaking.addEventListener('click', openSpeaking);
     const closeDialogue = () => this.dismissDialogue();
     this.close.addEventListener('click', closeDialogue);
+    const pauseForRotation = () => {
+      this.controls.reset();
+      this.player.body.setVelocity(0);
+      this.speaking.suspend();
+    };
+    this.game.events.on(Phaser.Core.Events.PAUSE, pauseForRotation);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.game.events.off(Phaser.Core.Events.PAUSE, pauseForRotation);
       this.controls.destroy();
       this.speaking.destroy();
       touchControls.inert = false;
