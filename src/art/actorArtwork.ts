@@ -32,7 +32,6 @@ function paintEiku(ctx: CanvasRenderingContext2D, direction: EikuDirection, fram
   const lift = frame % 2;
   const side = direction === 'east' || direction === 'west';
   const back = direction === 'north';
-  oval(ctx, '#111d2c85', 28, 48, 16, 5);
   if (direction === 'west') {
     ctx.translate(size, 0);
     ctx.scale(-1, 1);
