@@ -1,9 +1,8 @@
 import Phaser from 'phaser';
+import { eikuDirections, type EikuDirection } from './eikuAnimationConfig';
 
 const size = 56;
-const directions = ['south', 'west', 'east', 'north'] as const;
-type Direction = typeof directions[number];
-const sheet = 'eiku-wind';
+export const fallbackEikuSheet = 'eiku-wind';
 const elderTexture = 'geno-wind';
 
 function ink(ctx: CanvasRenderingContext2D, color: string, points: number[]): void {
@@ -27,7 +26,7 @@ const skin = '#e3a476';
 const cloth = '#263344';
 const indigo = '#43529a';
 
-function paintEiku(ctx: CanvasRenderingContext2D, direction: Direction, frame: number): void {
+function paintEiku(ctx: CanvasRenderingContext2D, direction: EikuDirection, frame: number): void {
   const walking = frame >= 2;
   const stride = walking ? [3, 0, -3, 0][frame - 2] : 0;
   const lift = frame % 2;
@@ -97,11 +96,11 @@ function paintGeno(ctx: CanvasRenderingContext2D): void {
   ink(ctx, '#364153', [29, 18, 33, 17, 33, 19, 30, 20]);
 }
 
-export function makeActorTextures(scene: Phaser.Scene): void {
-  if (scene.textures.exists(sheet)) return;
-  const texture = scene.textures.createCanvas(sheet, size * 6, size * directions.length)!;
+export function makeFallbackEikuTexture(scene: Phaser.Scene): void {
+  if (scene.textures.exists(fallbackEikuSheet)) return;
+  const texture = scene.textures.createCanvas(fallbackEikuSheet, size * 6, size * eikuDirections.length)!;
   const ctx = texture.context;
-  directions.forEach((direction, row) => {
+  eikuDirections.forEach((direction, row) => {
     for (let frame = 0; frame < 6; frame++) {
       ctx.save();
       ctx.translate(frame * size, row * size);
@@ -111,32 +110,13 @@ export function makeActorTextures(scene: Phaser.Scene): void {
     }
   });
   texture.refresh();
-  const elder = scene.textures.createCanvas(elderTexture, size, size)!;
-  paintGeno(elder.context);
-  elder.refresh();
-}
-
-export function createEiku(scene: Phaser.Scene, x: number, y: number): Phaser.GameObjects.Sprite {
-  makeActorTextures(scene);
-  directions.forEach(direction => {
-    for (const [motion, frames, frameRate] of [
-      ['idle', [0, 1], 2], ['walk', [2, 3, 4, 5], 10], ['dodge', [2, 4], 18],
-    ] as const) {
-      const key = `eiku-${direction}-${motion}`;
-      if (!scene.anims.exists(key)) {
-        scene.anims.create({ key, frames: frames.map(frame => ({ key: sheet, frame: `${direction}-${frame}` })), frameRate, repeat: -1 });
-      }
-    }
-  });
-  return scene.add.sprite(x, y, sheet, 'south-0').setOrigin(.5, .84).setDepth(y);
-}
-
-export function animateEiku(sprite: Phaser.GameObjects.Sprite, facing: Phaser.Math.Vector2, motion: 'idle' | 'walk' | 'dodge'): void {
-  const direction = facing.x ? (facing.x > 0 ? 'east' : 'west') : (facing.y > 0 ? 'south' : 'north');
-  sprite.play(`eiku-${direction}-${motion}`, true);
 }
 
 export function createGeno(scene: Phaser.Scene, x: number, y: number): Phaser.GameObjects.Image {
-  makeActorTextures(scene);
+  if (!scene.textures.exists(elderTexture)) {
+    const elder = scene.textures.createCanvas(elderTexture, size, size)!;
+    paintGeno(elder.context);
+    elder.refresh();
+  }
   return scene.add.image(x, y, elderTexture).setOrigin(.5, .84).setDepth(y);
 }

@@ -1,9 +1,14 @@
 import Phaser from 'phaser';
+import { preloadEikuAtlas } from '../art/eikuAtlas';
 import { paintVillage } from '../art/villageArtwork';
 
 export class TitleScene extends Phaser.Scene {
   constructor() {
     super('title');
+  }
+
+  preload(): void {
+    preloadEikuAtlas(this);
   }
 
   create(): void {

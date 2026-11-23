@@ -35,7 +35,7 @@ export class VillageScene extends Phaser.Scene {
     this.physics.world.setBounds(16, 73, villageWidth - 32, villageHeight - 133);
     this.player = new Player(this, 440, 366);
     this.controls = new Controls(this.input.keyboard!);
-    this.sword = new Sword(this);
+    this.sword = new Sword(this, () => this.player.animateAttack());
     this.progress = new TrainingProgress(loadTraining());
     const obstacles = this.physics.add.staticGroup();
     const addObstacle = (x: number, y: number, width: number, height: number) => {

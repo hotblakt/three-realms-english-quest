@@ -18,7 +18,7 @@ export function showDodge(scene: Phaser.Scene, sprite: Phaser.GameObjects.Sprite
   const ghosts = [0, 1].map(index => scene.add.image(
     sprite.x - direction.x * (8 + index * 10), sprite.y - direction.y * (8 + index * 10),
     sprite.texture.key, sprite.frame.name,
-  ).setDepth(sprite.depth - .1).setOrigin(sprite.originX, sprite.originY).setAlpha(.4 - index * .15).setTint(0x78d8bd));
+  ).setDepth(sprite.depth - .1).setOrigin(sprite.originX, sprite.originY).setScale(sprite.scaleX, sprite.scaleY).setAlpha(.4 - index * .15).setTint(0x78d8bd));
   const streaks = scene.add.graphics({ x: sprite.x, y: sprite.y }).setRotation(direction.angle()).setDepth(sprite.depth + .1);
   streaks.lineStyle(2, 0xb7ead2, .8).lineBetween(-29, -9, 1, -9).lineBetween(-22, 2, 5, 2);
   streaks.lineStyle(1, 0xe4c483, .7).lineBetween(-34, -3, -10, -3);

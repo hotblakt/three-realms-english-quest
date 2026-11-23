@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { animateEiku, createEiku } from '../art/actorArtwork';
+import { animateEiku, createEiku } from '../art/eikuSprite';
 import { showDodge } from '../art/windEffects';
 
 export class Player {
@@ -36,6 +36,10 @@ export class Player {
     this.body.setVelocity(velocity.x * speed, velocity.y * speed);
     animateEiku(this.view, this.facing, dodging ? 'dodge' : velocity.lengthSq() ? 'walk' : 'idle');
     this.view.alpha = dodging ? .75 : now < this.damageReady && Math.floor(now / 90) % 2 ? .45 : 1;
+  }
+
+  animateAttack(): void {
+    animateEiku(this.view, this.facing, 'attack');
   }
 
   idle(): void {
