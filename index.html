@@ -1,40 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#16251e">
-  <title>Three Realms: English Quest</title>
+  <title data-text="gameName"></title>
 </head>
 <body>
   <main id="stage">
     <div id="game"></div>
     <section id="title">
-      <p class="eyebrow">CHAPTER ONE</p>
-      <h1>Three Realms<span>English Quest</span></h1>
-      <p>The Awakening of Wind</p>
-      <button id="begin" disabled>Enter the village</button>
-      <small>Best played in landscape</small>
+      <p class="eyebrow" data-text="chapterOne"></p>
+      <h1><span data-text="title"></span><span data-text="subtitle"></span></h1>
+      <p data-text="windAwakening"></p>
+      <button id="begin" data-text="enterVillage" disabled></button>
+      <small data-text="landscapeHint"></small>
     </section>
-    <section id="hud" hidden aria-label="Game status">
-      <div class="eyebrow">HIDDEN BAMBOO VILLAGE</div>
-      <div id="health" aria-label="Health"></div>
+    <section id="hud" hidden data-label="gameStatus">
+      <div class="eyebrow" data-text="hiddenBambooVillage"></div>
+      <div id="health" data-label="healthLabel"></div>
       <div id="objective"></div>
     </section>
-    <aside id="dialogue" hidden aria-live="polite">
-      <strong>Elder Geno</strong>
-      <p id="line"></p>
-      <button id="close-dialogue">Continue</button>
+    <aside id="dialogue" hidden role="dialog" aria-labelledby="dialogue-speaker" aria-describedby="line">
+      <div class="dialogue-panel">
+        <strong id="dialogue-speaker" data-text="elderGeno"></strong>
+        <p id="line" data-text="genoTraining"></p>
+        <button id="close-dialogue" data-text="continue"></button>
+      </div>
     </aside>
     <div id="controls" hidden>
-      <div id="stick" aria-label="Movement joystick"><div id="knob"></div></div>
+      <div id="stick" data-label="movementJoystick"><div id="knob"></div></div>
       <div id="actions">
-        <button data-action="interact">Talk</button>
-        <button data-action="dodge">Dodge</button>
-        <button data-action="attack">Slash</button>
+        <button data-action="interact" data-text="talk"></button>
+        <button data-action="dodge" data-text="dodge"></button>
+        <button data-action="attack" data-text="slash"></button>
       </div>
     </div>
-    <div id="keyboard" hidden>WASD / Arrows · J Slash · Space Dodge · E Talk</div>
+    <div id="keyboard" hidden data-text="keyboardHelp"></div>
   </main>
   <script type="module" src="/src/main.ts"></script>
 </body>

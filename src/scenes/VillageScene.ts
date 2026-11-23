@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { Sword } from '../combat/Sword';
 import { Player } from '../entities/Player';
 import { drawActor } from '../entities/VillageActor';
+import { chineseFont, messages } from '../i18n';
 import { Controls } from '../input/Controls';
 import { TrainingProgress } from '../progression/TrainingProgress';
 import { loadTraining, saveTraining } from '../save/trainingSave';
@@ -47,8 +48,8 @@ export class VillageScene extends Phaser.Scene {
     this.physics.add.collider(this.player.body, pond);
     this.physics.add.collider(this.player.body, obstacles);
     drawActor(this, this.geno.x, this.geno.y, true);
-    this.add.text(this.geno.x, this.geno.y - 44, 'Elder Geno', {
-      fontFamily: 'system-ui', fontSize: '13px', color: '#fff2c8', stroke: '#20392c', strokeThickness: 4,
+    this.add.text(this.geno.x, this.geno.y - 44, messages.elderGeno, {
+      fontFamily: chineseFont, fontSize: '17px', fontStyle: 'bold', color: '#fff2c8', stroke: '#20392c', strokeThickness: 4,
     }).setOrigin(.5).setDepth(999);
     this.dummyArt = this.add.graphics({ x: this.dummy.x, y: this.dummy.y }).setDepth(this.dummy.y);
     this.dummyArt.fillStyle(0x364936, .6).fillEllipse(0, 5, 25, 10);
@@ -89,8 +90,6 @@ export class VillageScene extends Phaser.Scene {
     }
     if (interact && position.distance(this.geno) <= 58) {
       this.player.body.setVelocity(0);
-      document.querySelector<HTMLElement>('#line')!.textContent =
-        'Eiku, breathe with the wind. When you are ready, practice your slash on the straw dummy east of here.';
       this.dialogue.hidden = false;
       this.close.focus({ preventScroll: true });
       return;
@@ -119,7 +118,7 @@ export class VillageScene extends Phaser.Scene {
   private updateHud(): void {
     const { health, maxHealth } = this.player;
     this.health.textContent = '♥'.repeat(health) + '♡'.repeat(maxHealth - health);
-    this.health.setAttribute('aria-label', `Health ${health} of ${maxHealth}`);
+    this.health.setAttribute('aria-label', messages.healthStatus(health, maxHealth));
     this.objective.textContent = this.progress.objective;
   }
 }

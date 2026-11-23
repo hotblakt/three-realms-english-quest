@@ -1,8 +1,10 @@
+import { messages } from '../i18n';
+
 export const awakeningOfWind = {
   id: 'awakening-of-wind',
-  title: 'The Awakening of Wind',
-  location: 'Hidden Bamboo Village',
-  intro: 'Find Elder Geno by the lanterns.',
-  nextObjective: 'Practice your slash on the straw dummy.',
-  complete: 'Wind training complete.',
+  title: messages.windAwakening,
+  location: messages.hiddenBambooVillage,
+  intro: messages.meetGeno,
+  nextObjective: messages.strikeDummy,
+  complete: messages.trainingComplete,
 } as const;
