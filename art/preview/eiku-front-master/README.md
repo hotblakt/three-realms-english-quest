@@ -14,7 +14,7 @@
 
 ## 檢視方法
 
-執行 `npm run dev`，開啟 Vite 網址下的 `/art/preview/eiku-front-master/`。左圖取自實際 Phaser 角色的起始正面影格；右圖使用[透明候選格](eiku-front-idle-preview.png)，以正式比例 2/3 顯示。可切換竹綠、深色及淺色背景，並放大或顯示腳底定位線。這個頁面與候選格不會進入正式建置。
+執行 `npm run dev`，開啟 Vite 網址下的 `/art/preview/eiku-front-master/`。左圖取自實際 Phaser 角色的起始正面影格；右圖使用[透明候選格](eiku-front-idle-preview.png)，以正式比例 2/3 顯示。可切換竹綠、深色及淺色背景，並放大或顯示腳底定位線。正式建置中的[影空美術工作台](https://hotblakt.github.io/three-realms-english-quest/art-workbench/)也可檢視這張候選格。
 
 候選格使用 ImageGen 從原圖分離背景，裁出主體和留白，再等比例縮小並定位。自動分離可能重建少量輪廓像素，因此此格是衍生預覽，原檔仍作比對基準。
 

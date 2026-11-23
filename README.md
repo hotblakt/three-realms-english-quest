@@ -74,3 +74,7 @@ The build type-checks the project and emits static files into `dist/`. Preview s
 - 村莊地表、石板路、竹林、屋瓦、池塘和鳥居使用專案內的原創繪圖。地表與竹林在場景第一次建立時烘成兩張貼圖，後續只更新燈光和少量落葉。
 - `src/art/actorArtwork.ts` 繪製影空與玄翁長老的暫用貼圖。正式影空圖集的命名、四向動作與腳底對齊見[圖集規格](art/production/eiku/README.md)。遊戲可在正式圖集交付後載入，碰撞本體獨立於美術。
 - 影空與玄翁長老的角色圖、房屋與樹木細節、稻草人及風系特效為本里程碑暫用的原創遊戲內美術。正式角色圖集、逐格揮劍與閃避動作、長老對話立繪仍待製作。
+
+## 影空美術工作台
+
+GitHub Pages 路徑為 [影空美術工作台](https://hotblakt.github.io/three-realms-english-quest/art-workbench/)。本機開發時可在 `npm run dev` 的網址加上 `/art-workbench/`；正式預覽沿用 GitHub Pages 的專案子路徑。工作台使用遊戲的隱竹村場景素材與現用角色正面影格。100% 為遊戲世界倍率，候選格使用 2/3 倍。可切換原始圖、背景和取樣方式，調整候選格的位置，或展開僅供參考的四向待機動畫。工作台和遊戲是兩個獨立的建置入口。

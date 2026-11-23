@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#152521">
+  <title>影空美術工作台｜三界：英語探險</title>
+</head>
+<body>
+  <header>
+    <a class="back" href="%BASE_URL%">← 返回三界探險</a>
+    <h1>影空美術工作台</h1>
+    <p>把角色放進隱竹村，用同一個遊戲比例檢查輪廓與腳底。</p>
+  </header>
+
+  <main>
+    <div class="workspace">
+      <section aria-label="角色比較">
+        <div class="comparison">
+          <figure>
+            <div class="card-heading"><h2>現用影空</h2><span class="tag">遊戲使用中</span></div>
+            <canvas id="current" width="304" height="184" aria-label="現用影空與腳底對齊線"></canvas>
+            <figcaption id="current-info">正在讀取現用影格…</figcaption>
+          </figure>
+          <figure>
+            <div class="card-heading"><h2>正面候選</h2><span class="tag warning">尚未通過</span></div>
+            <canvas id="candidate" width="304" height="184" aria-label="影空正面候選與腳底對齊線"></canvas>
+            <figcaption id="candidate-info"></figcaption>
+          </figure>
+        </div>
+        <p class="note">100% 採用遊戲世界尺寸：現用角色原倍率，候選格 2/3 倍。畫布在窄視窗等比例縮小。</p>
+        <p class="alert" id="asset-warning">去背預覽有透明邊，比例、邊緣與小尺寸可讀性仍待修正。</p>
+        <p id="comparison-status" role="status">正在載入村莊與角色…</p>
+      </section>
+
+      <section class="settings" aria-labelledby="settings-title">
+        <div class="card-heading"><h2 id="settings-title">比較設定</h2><button id="reset" type="button">重設</button></div>
+        <div class="fields">
+          <label>角色倍率 <output id="scale-value" for="scale">100%</output>
+            <input id="scale" type="range" min="75" max="200" step="5" value="100">
+          </label>
+          <label>候選格水平偏移 <output id="offset-x-value" for="offset-x">0</output>
+            <input id="offset-x" type="range" min="-40" max="40" step="1" value="0">
+          </label>
+          <label>候選格垂直偏移 <output id="offset-y-value" for="offset-y">0</output>
+            <input id="offset-y" type="range" min="-28" max="28" step="1" value="0">
+          </label>
+          <label>背景
+            <select id="background">
+              <option value="village">隱竹村（遊戲場景）</option>
+              <option value="bamboo">竹綠</option>
+              <option value="dark">深色</option>
+              <option value="light">淺色</option>
+            </select>
+          </label>
+          <label>取樣
+            <select id="sampling">
+              <option value="smooth">平滑</option>
+              <option value="pixelated">像素銳利</option>
+            </select>
+          </label>
+          <label>右側圖像
+            <select id="source">
+              <option value="preview">去背候選格</option>
+              <option value="original">原始主視覺（含背景）</option>
+            </select>
+          </label>
+        </div>
+        <label class="check"><input id="guides" type="checkbox" checked> 顯示腳底基準與原點</label>
+      </section>
+    </div>
+
+    <details id="idle" class="idle">
+      <summary>四向待機 <span class="tag warning">僅供參考</span></summary>
+      <p>1774 × 887 RGB，四方向各 8 格。棋盤格已寫入像素，側面腳底有水平漂移，未通過正式驗收。</p>
+      <div class="playback">
+        <button type="button" id="idle-play" disabled>播放</button>
+        <button type="button" id="idle-step" disabled>下一格</button>
+        <output id="idle-frame"></output>
+      </div>
+      <p id="idle-status" role="status"></p>
+      <div class="directions">
+        <figure><canvas data-direction="south" width="222" height="222" aria-label="正面待機"></canvas><figcaption>南・正面</figcaption></figure>
+        <figure><canvas data-direction="north" width="222" height="222" aria-label="背面待機"></canvas><figcaption>北・背面</figcaption></figure>
+        <figure><canvas data-direction="west" width="222" height="222" aria-label="左側待機"></canvas><figcaption>西・左側</figcaption></figure>
+        <figure><canvas data-direction="east" width="222" height="222" aria-label="右側待機"></canvas><figcaption>東・右側</figcaption></figure>
+      </div>
+    </details>
+  </main>
+  <script type="module" src="./workbench.js"></script>
+</body>
+</html>
