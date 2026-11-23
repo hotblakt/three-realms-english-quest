@@ -2,6 +2,7 @@ import { productionFoot, productionScale } from '../src/art/eikuAnimationConfig'
 import frontPreviewUrl from '../art/preview/eiku-front-master/eiku-front-idle-preview.png?url';
 import frontOriginalUrl from '../art/reference/eiku-front-master-candidate.png?url';
 import southPreviewUrl from '../art/preview/eiku-v2-south/eiku-v2-south-idle-preview.png?url';
+import southOptimizedUrl from '../art/preview/eiku-v2-south/eiku-v2-south-optimized-preview.png?url';
 import southMasterUrl from '../art/reference/eiku-v2-south-master.png?url';
 
 export const defaultCandidate = 'south-v2';
@@ -12,6 +13,14 @@ export const candidates = {
     title: '影空 2.0・南向候選格',
     info: 'RGBA・透明・獨立角色格',
     warning: '已移除地面陰影；目前只有南向單格，尚未通過正式圖集驗收。',
+    ...productionFoot,
+    scale: productionScale,
+  },
+  'south-v2-optimized': {
+    url: southOptimizedUrl,
+    title: '影空 2.0・南向優化',
+    info: 'RGBA・透明・可讀性重繪預覽',
+    warning: '護額、眼部、圍巾與刀柄做了重繪。此格僅供比較，仍待正式圖集驗收。',
     ...productionFoot,
     scale: productionScale,
   },
