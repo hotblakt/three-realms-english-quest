@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { animateEiku, createEiku } from '../art/eikuSprite';
+import { addSoftShadow } from '../art/villageAtmosphere';
 import { showDodge } from '../art/windEffects';
 
 export class Player {
@@ -11,9 +12,11 @@ export class Player {
   private damageReady = 0;
   private readonly dodgeDirection = new Phaser.Math.Vector2();
   readonly view;
+  private readonly contactShadow;
   readonly body;
 
   constructor(private readonly scene: Phaser.Scene, readonly spawnX: number, readonly spawnY: number) {
+    this.contactShadow = addSoftShadow(scene, spawnX, spawnY + 2, 33, 12);
     this.view = createEiku(scene, spawnX, spawnY);
     this.body = scene.physics.add.existing(scene.add.zone(spawnX, spawnY, 18, 16)).body as Phaser.Physics.Arcade.Body;
     this.body.setCollideWorldBounds(true);
@@ -59,6 +62,7 @@ export class Player {
 
   syncView(): void {
     const { x, y } = this.body.center;
+    this.contactShadow.setPosition(x, y + 2);
     this.view.setPosition(x, y).setDepth(y);
   }
 }

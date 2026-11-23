@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { createGeno } from '../art/actorArtwork';
-import { createTrainingDummy, paintVillage, villageHeight, villageWidth } from '../art/villageArtwork';
+import { createTrainingDummy, paintVillage, updateRoofOcclusion, villageHeight, villageWidth, type Roof } from '../art/villageArtwork';
 import { makeObjectiveMarker } from '../art/windEffects';
 import { Sword } from '../combat/Sword';
 import { Player } from '../entities/Player';
@@ -24,6 +24,7 @@ export class VillageScene extends Phaser.Scene {
   private readonly health = document.querySelector<HTMLElement>('#health')!;
   private readonly objective = document.querySelector<HTMLElement>('#objective')!;
   private dummyArt!: Phaser.GameObjects.Graphics;
+  private roofs!: Roof[];
   private objectiveMarker!: Phaser.GameObjects.Graphics;
 
   constructor() {
@@ -31,7 +32,7 @@ export class VillageScene extends Phaser.Scene {
   }
 
   create(): void {
-    paintVillage(this);
+    this.roofs = paintVillage(this);
     this.physics.world.setBounds(16, 73, villageWidth - 32, villageHeight - 133);
     this.player = new Player(this, 440, 366);
     this.controls = new Controls(this.input.keyboard!);
@@ -101,8 +102,9 @@ export class VillageScene extends Phaser.Scene {
     });
   }
 
-  update(now: number): void {
+  update(now: number, delta: number): void {
     this.player.syncView();
+    updateRoofOcclusion(this.roofs, this.player.view.x, this.player.view.y, delta);
     const interact = this.controls.consume('interact');
     const attack = this.controls.consume('attack');
     const dodge = this.controls.consume('dodge');
