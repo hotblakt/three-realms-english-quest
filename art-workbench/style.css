@@ -63,3 +63,6 @@ button:disabled { opacity: .55; cursor: default; }
 @media (max-width: 520px) {
   .fields, .directions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+.scale-presets { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .55rem; }
+.scale-presets button { font-size: .875rem; }
+.scale-presets button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }

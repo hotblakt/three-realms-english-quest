@@ -35,6 +35,10 @@
 
       <section class="settings" aria-labelledby="settings-title">
         <div class="card-heading"><h2 id="settings-title">比較設定</h2><button id="reset" type="button">重設</button></div>
+        <div class="scale-presets" role="group" aria-label="倍率快選">
+          <button type="button" data-scale="100" aria-pressed="true">100%・遊戲尺度</button>
+          <button type="button" data-scale="120" aria-pressed="false">120%・細節檢視</button>
+        </div>
         <div class="fields">
           <label>角色倍率 <output id="scale-value" for="scale">100%</output>
             <input id="scale" type="range" min="75" max="200" step="5" value="100">
@@ -62,6 +66,7 @@
           <label>右側圖像
             <select id="source">
               <option value="south-v2" selected>影空 2.0・南向候選格</option>
+              <option value="south-v2-optimized">影空 2.0・南向優化</option>
               <option value="south-v2-master">影空 2.0・原始主圖</option>
               <option value="preview">舊版・去背候選格</option>
               <option value="original">舊版・原圖（含背景）</option>

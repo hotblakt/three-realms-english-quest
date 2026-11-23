@@ -7,6 +7,7 @@ const byId = id => document.getElementById(id);
 const currentCanvas = byId('current');
 const candidateCanvas = byId('candidate');
 const scaleInput = byId('scale');
+const scalePresets = document.querySelectorAll('[data-scale]');
 const xInput = byId('offset-x');
 const yInput = byId('offset-y');
 const background = byId('background');
@@ -71,6 +72,9 @@ async function start() {
 
   function render() {
     byId('scale-value').textContent = `${scaleInput.value}%`;
+    for (const button of scalePresets) {
+      button.setAttribute('aria-pressed', String(button.dataset.scale === scaleInput.value));
+    }
     byId('offset-x-value').textContent = xInput.value;
     byId('offset-y-value').textContent = yInput.value;
     const asset = candidates[selected];
@@ -102,6 +106,12 @@ async function start() {
 
   for (const control of [scaleInput, xInput, yInput, background, sampling, guides]) {
     control.addEventListener('input', render);
+  }
+  for (const button of scalePresets) {
+    button.addEventListener('click', () => {
+      scaleInput.value = button.dataset.scale;
+      render();
+    });
   }
   byId('reset').addEventListener('click', () => {
     scaleInput.value = '100';
