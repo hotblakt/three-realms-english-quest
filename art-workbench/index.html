@@ -23,13 +23,13 @@
             <figcaption id="current-info">正在讀取現用影格…</figcaption>
           </figure>
           <figure>
-            <div class="card-heading"><h2>正面候選</h2><span class="tag warning">尚未通過</span></div>
+            <div class="card-heading"><h2 id="candidate-title">影空 2.0・南向候選格</h2><span class="tag warning">尚未通過</span></div>
             <canvas id="candidate" width="304" height="184" aria-label="影空正面候選與腳底對齊線"></canvas>
             <figcaption id="candidate-info"></figcaption>
           </figure>
         </div>
         <p class="note">100% 採用遊戲世界尺寸：現用角色原倍率，候選格 2/3 倍。畫布在窄視窗等比例縮小。</p>
-        <p class="alert" id="asset-warning">去背預覽有透明邊，比例、邊緣與小尺寸可讀性仍待修正。</p>
+        <p class="alert" id="asset-warning">影空 2.0 南向候選格尚未通過正式圖集驗收。</p>
         <p id="comparison-status" role="status">正在載入村莊與角色…</p>
       </section>
 
@@ -61,8 +61,10 @@
           </label>
           <label>右側圖像
             <select id="source">
-              <option value="preview">去背候選格</option>
-              <option value="original">原始主視覺（含背景）</option>
+              <option value="south-v2" selected>影空 2.0・南向候選格</option>
+              <option value="south-v2-master">影空 2.0・原始主圖</option>
+              <option value="preview">舊版・去背候選格</option>
+              <option value="original">舊版・原圖（含背景）</option>
             </select>
           </label>
         </div>

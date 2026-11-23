@@ -1,7 +1,5 @@
 import './style.css';
-import { productionFoot, productionScale } from '../src/art/eikuAnimationConfig';
-import previewUrl from '../art/preview/eiku-front-master/eiku-front-idle-preview.png?url';
-import originalUrl from '../art/reference/eiku-front-master-candidate.png?url';
+import { candidates, defaultCandidate } from './candidates';
 import { feet, readGameArt, viewport } from './game-art';
 import { loadImage, mountIdlePreview } from './idle';
 
@@ -55,45 +53,51 @@ function draw(canvas, frame, village, offsetX, offsetY) {
 }
 
 async function start() {
-  const [{ current, village }, image] = await Promise.all([readGameArt(), loadImage(previewUrl)]);
-  const preview = { image, source: [0, 0, image.width, image.height], ...productionFoot, scale: productionScale };
-  let original;
-  let request;
+  const images = new Map();
+  function loadCandidate(key) {
+    if (!images.has(key)) {
+      images.set(key, loadImage(candidates[key].url).catch(error => {
+        images.delete(key);
+        throw error;
+      }));
+    }
+    return images.get(key);
+  }
+
+  const [{ current, village }, initial] = await Promise.all([readGameArt(), loadCandidate(defaultCandidate)]);
+  let selected = defaultCandidate;
+  let image = initial;
+  let requestId = 0;
 
   function render() {
     byId('scale-value').textContent = `${scaleInput.value}%`;
     byId('offset-x-value').textContent = xInput.value;
     byId('offset-y-value').textContent = yInput.value;
-    const raw = source.value === 'original' && original;
-    const frame = raw ? original : preview;
-    candidateInfo.textContent = raw
-      ? `${frame.image.width} × ${frame.image.height}・RGB・無 alpha（取主體區域等比顯示）`
-      : `${image.width} × ${image.height}・RGBA・去背衍生預覽`;
-    warning.textContent = raw
-      ? '原圖沒有 alpha。近白背景是原始像素，畫布保留這些像素。'
-      : '去背預覽有透明邊，比例、邊緣與小尺寸可讀性仍待修正。';
+    const asset = candidates[selected];
+    byId('candidate-title').textContent = asset.title;
+    candidateInfo.textContent = `${image.width} × ${image.height}・${asset.info}`;
+    warning.textContent = asset.warning;
+    const frame = { ...asset, image, source: asset.crop ?? [0, 0, image.width, image.height] };
     draw(currentCanvas, current, village, 0, 0);
     draw(candidateCanvas, frame, village, xInput.valueAsNumber, yInput.valueAsNumber);
   }
 
   source.addEventListener('change', async () => {
-    if (source.value === 'original' && !original) {
-      status.textContent = '正在載入原始主視覺…';
-      try {
-        request ??= loadImage(originalUrl);
-        const image = await request;
-        // Same 65 px target silhouette height as the packed candidate, before applying 2/3.
-        original = { image, source: [275, 0, 760, 1312], x: 325, y: 1258, scale: 65 / 1205 * productionScale };
-      } catch {
-        request = undefined;
-        source.value = 'preview';
-        status.textContent = '原始主視覺無法載入，已返回去背預覽。';
-        render();
-        return;
-      }
+    const key = source.value;
+    const request = ++requestId;
+    status.textContent = '正在載入候選圖…';
+    try {
+      const loaded = await loadCandidate(key);
+      if (request !== requestId) return;
+      image = loaded;
+      selected = key;
+      status.textContent = '';
+      render();
+    } catch {
+      if (request !== requestId) return;
+      source.value = selected;
+      status.textContent = '候選圖無法載入，已保留上一張。';
     }
-    status.textContent = '';
-    render();
   });
 
   for (const control of [scaleInput, xInput, yInput, background, sampling, guides]) {
@@ -104,7 +108,9 @@ async function start() {
     xInput.value = yInput.value = '0';
     background.value = 'village';
     sampling.value = 'smooth';
-    source.value = 'preview';
+    requestId++;
+    source.value = selected = defaultCandidate;
+    image = initial;
     guides.checked = true;
     status.textContent = '';
     render();
