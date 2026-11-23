@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>影空待機候選圖預覽</title>
+  <style>
+    :root { color-scheme: dark; font: 1rem/1.5 system-ui, sans-serif; background: #152329; color: #f5efe1; }
+    body { max-width: 980px; margin: auto; padding: 1.25rem; }
+    h1 { margin: 0; font-size: 1.75rem; }
+    p { margin: .6rem 0; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin-block: 1rem; }
+    button { min-height: 44px; padding: .45rem 1rem; font: inherit; }
+    figure { min-width: 0; margin: 0; }
+    figcaption { margin-top: .3rem; }
+    canvas { display: block; max-width: 100%; height: auto; background: #21343a; border-radius: 3px; }
+    #directions { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>影空待機候選圖預覽</h1>
+  <p>原圖裁切，四向同步以 6 FPS 播放。棋盤格是原圖像素。</p>
+  <div class="toolbar">
+    <button id="play" type="button" disabled>播放</button>
+    <button id="step" type="button" disabled>下一格</button>
+    <label><input id="guides" type="checkbox"> 顯示對齊線</label>
+    <output id="frame" aria-live="off"></output>
+  </div>
+  <p id="error" role="alert" hidden>無法讀取候選圖。請從儲存庫的本機伺服器開啟這頁。</p>
+  <div id="directions">
+    <figure><canvas data-direction="south" width="222" height="222" aria-label="正面待機動畫"></canvas><figcaption>正面・南</figcaption></figure>
+    <figure><canvas data-direction="north" width="222" height="222" aria-label="背面待機動畫"></canvas><figcaption>背面・北</figcaption></figure>
+    <figure><canvas data-direction="west" width="222" height="222" aria-label="左側待機動畫"></canvas><figcaption>左側・西</figcaption></figure>
+    <figure><canvas data-direction="east" width="222" height="222" aria-label="右側待機動畫"></canvas><figcaption>右側・東</figcaption></figure>
+  </div>
+  <script type="module" src="./preview.js"></script>
+</body>
+</html>
