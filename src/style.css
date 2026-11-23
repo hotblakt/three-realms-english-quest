@@ -86,7 +86,7 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
   text-align: center;
   font-size: .875rem;
 }
-#dialogue {
+#dialogue, #speaking {
   position: absolute;
   z-index: 2;
   inset: calc(var(--edge-top) + 88px) var(--edge-right) var(--dialogue-bottom) var(--edge-left);
@@ -142,5 +142,60 @@ h1 span + span { font-size: .55em; margin-top: .2em; }
     column-gap: .75rem;
   }
   .dialogue-panel p { grid-column: 1; margin-bottom: 0; }
-  #close-dialogue { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .dialogue-actions { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
+
+.dialogue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.dialogue-actions button { padding-inline: .55rem; }
+#speaking { inset-block-start: calc(var(--edge-top) + 84px); }
+.speaking-panel {
+  width: min(100%, 720px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: .75rem;
+  overscroll-behavior: contain;
+}
+.speaking-panel h2 { margin: 0; font-size: 1.15rem; color: #ffe3a0; }
+.speaking-panel small { display: block; font-size: .875rem; }
+.speaking-example {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .2em .65em;
+}
+.speaking-example strong { font-size: 1.35rem; color: #fff4d5; }
+.speaking-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .3rem;
+}
+.speaking-actions button { padding-inline: .3rem; font-size: .95rem; }
+.speaking-actions button:disabled, .speaking-actions [aria-disabled="true"] {
+  opacity: .6;
+  cursor: default;
+}
+#record-voice.is-recording { background: #703b3d; }
+#speaking-status {
+  grid-column: 1 / -1;
+  min-height: 1.35em;
+  margin: 0;
+  color: #ffe3a0;
+  font-size: .9rem;
+}
+@media (max-height: 440px) and (min-width: 560px) {
+  .speaking-panel {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    padding-block: .4rem;
+    font-size: 1rem;
+  }
+  .speaking-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .25rem; }
+  #speaking-status { line-height: 1.2; }
+}
+@media (max-width: 559px) {
+  .speaking-panel { grid-template-columns: minmax(0, 1fr); }
 }

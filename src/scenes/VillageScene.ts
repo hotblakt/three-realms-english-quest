@@ -6,6 +6,7 @@ import { chineseFont, messages } from '../i18n';
 import { Controls } from '../input/Controls';
 import { TrainingProgress } from '../progression/TrainingProgress';
 import { loadTraining, saveTraining } from '../save/trainingSave';
+import { SpeakingPractice } from '../ui/SpeakingPractice';
 import { paintVillage, villageHeight, villageWidth } from './villageArt';
 
 export class VillageScene extends Phaser.Scene {
@@ -13,6 +14,7 @@ export class VillageScene extends Phaser.Scene {
   private player!: Player;
   private sword!: Sword;
   private progress!: TrainingProgress;
+  private speaking!: SpeakingPractice;
   private readonly geno = new Phaser.Math.Vector2(440, 224);
   private readonly dummy = new Phaser.Math.Vector2(548, 270);
   private readonly thorns = new Phaser.Geom.Rectangle(313, 350, 62, 37);
@@ -69,10 +71,26 @@ export class VillageScene extends Phaser.Scene {
       document.querySelector<HTMLElement>(selector)!.hidden = false;
     }
     this.updateHud();
+    const startSpeaking = document.querySelector<HTMLButtonElement>('#open-speaking')!;
+    const touchControls = document.querySelector<HTMLElement>('#controls')!;
+    this.speaking = new SpeakingPractice(() => {
+      touchControls.inert = false;
+      this.dialogue.hidden = false;
+      startSpeaking.focus({ preventScroll: true });
+    });
+    const openSpeaking = () => {
+      this.dialogue.hidden = true;
+      touchControls.inert = true;
+      this.speaking.open();
+    };
+    startSpeaking.addEventListener('click', openSpeaking);
     const closeDialogue = () => this.dismissDialogue();
     this.close.addEventListener('click', closeDialogue);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.controls.destroy();
+      this.speaking.destroy();
+      touchControls.inert = false;
+      startSpeaking.removeEventListener('click', openSpeaking);
       this.close.removeEventListener('click', closeDialogue);
     });
   }
@@ -83,6 +101,10 @@ export class VillageScene extends Phaser.Scene {
     const attack = this.controls.consume('attack');
     const dodge = this.controls.consume('dodge');
     const position = this.player.body.center;
+    if (this.speaking.visible) {
+      this.player.body.setVelocity(0);
+      return;
+    }
     if (!this.dialogue.hidden) {
       this.player.body.setVelocity(0);
       if (interact) this.dismissDialogue();
