@@ -6,6 +6,7 @@
     "strict": true,
     "types": ["vite/client"],
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },

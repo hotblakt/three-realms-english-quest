@@ -13,6 +13,8 @@ export class SpeakingPractice {
   private readonly guidance = this.panel.querySelector<HTMLButtonElement>('#listen-guidance')!;
   private readonly example = this.panel.querySelector<HTMLButtonElement>('#replay-english')!;
   private readonly record = this.panel.querySelector<HTMLButtonElement>('#record-voice')!;
+  private readonly complete = this.panel.querySelector<HTMLButtonElement>('#complete-speaking')!;
+  private readonly note = this.panel.querySelector<HTMLElement>('#speaking-note')!;
   private readonly replay = this.panel.querySelector<HTMLButtonElement>('#replay-recording')!;
   private readonly status = this.panel.querySelector<HTMLElement>('#speaking-status')!;
   private readonly events = new AbortController();
@@ -25,7 +27,7 @@ export class SpeakingPractice {
   private state: RecordingState = 'idle';
   private hasRecording = false;
 
-  constructor(private readonly onClose: () => void) {
+  constructor(private readonly onClose: (completed: boolean) => void) {
     this.prompt.textContent = firstSpeakingQuest.prompt;
     this.prompt.lang = firstSpeakingQuest.locale;
     const options = { signal: this.events.signal };
@@ -43,6 +45,7 @@ export class SpeakingPractice {
         }
       });
     }, options);
+    this.complete.addEventListener('click', () => this.close(true), options);
     this.panel.querySelector('#close-speaking')!.addEventListener('click', () => this.close(), options);
     this.panel.addEventListener('keydown', event => {
       if (event.key === ' ') event.stopPropagation();
@@ -61,14 +64,17 @@ export class SpeakingPractice {
     return !this.panel.hidden;
   }
 
-  open(): void {
+  open(chapterPractice = false): void {
+    this.complete.hidden = !chapterPractice;
+    this.note.textContent = chapterPractice ? messages.practiceInstructions : messages.practiceOnly;
+    this.panel.querySelector<HTMLButtonElement>('#close-speaking')!.textContent = chapterPractice ? messages.returnToTrial : messages.backToGeno;
     this.panel.hidden = false;
     this.updateState('idle', this.capture.supported ? '' : messages.recordingUnsupported);
     this.panel.querySelector<HTMLElement>('#speaking-title')!.focus({ preventScroll: true });
   }
 
   private keepFocusInPanel(event: KeyboardEvent): void {
-    const buttons = this.panel.querySelectorAll<HTMLButtonElement>('button:not(:disabled)');
+    const buttons = this.panel.querySelectorAll<HTMLButtonElement>('button:not(:disabled):not([hidden])');
     const first = buttons[0];
     const last = buttons[buttons.length - 1];
     if (event.shiftKey && (document.activeElement === first || event.target === this.panel.querySelector('h2'))) {
@@ -80,9 +86,9 @@ export class SpeakingPractice {
     }
   }
 
-  private close(): void {
+  private close(completed = false): void {
     this.reset();
-    this.onClose();
+    this.onClose(completed);
   }
 
   private reset(): void {

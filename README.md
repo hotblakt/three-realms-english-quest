@@ -20,41 +20,41 @@ npm run preview
 
 The build type-checks the project and emits static files into `dist/`. Preview serves that production build. For a clean install from the committed lockfile, use `npm ci`.
 
-## Controls
+## 第一章「風之覺醒」
 
-| Action | Keyboard | Touch |
+| 操作 | 鍵盤 | 觸控 |
 | --- | --- | --- |
-| Move in four directions | WASD or arrow keys | Left joystick |
-| Sword slash in facing direction | J | 揮劍 |
-| Dodge in facing direction | Space | 閃避 |
-| Talk to Elder Geno / advance dialogue | E | 對話 / 繼續 |
+| 移動 | WASD 或方向鍵 | 左側搖桿 |
+| 面向目標揮劍 | J | 揮劍 |
+| 短距離閃避 | 空白鍵 | 閃避 |
+| 對話、啟動石陣或讀取風語石 | E | 互動 |
 
-## Test the playable route
+1. 點「進村探險」，往北找玄翁長老。面向稻草人揮劍，再練一次閃避。
+2. 到村莊左側「竹林試煉」入口互動，依金色標記到西南、西北及東北石陣。每處有兩波風靈。金色範圍亮起時移開，等風靈攻擊後反擊。
+3. 在東南收下風之碎片，回南側風語石跟念一次。錄音、回聽與朗讀皆可選，按「練習完成」即可繼續。
+4. 到北側石陣喚醒風之守衛。避開金圈和直線風痕，等守衛進入回復期再反擊。擊敗後解鎖風刃，同一個揮劍按鈕會打得更遠，石陣上的稻草人可用來試招。
+5. 失去所有生命會回到目前關卡的檢查點，回滿生命並保留已完成的石陣。重新載入也會接續目前關卡。開新遊戲可使用無痕視窗；清除本網站資料會移除既有進度。
 
-1. Open the title screen and select **進村探險**.
-2. Follow the path north. Press **E** or **對話** near Elder Geno. Close his dialogue and check that the objective changes to practicing on the straw dummy.
-3. Walk east to the straw dummy, face it, and slash within range. The dummy recoils and the HUD displays **風之訓練完成！**. Reload and enter again to check that the objective persists. Clear this site's local storage to restart the chapter objectives.
-4. Move against a hut to check collision. Walk onto the thorn patch southwest of the spawn to lose health. Check that a dodge moves Eiku faster, briefly protects him from damage, and has a cooldown. At zero health, Eiku respawns at the starting point with full health.
-5. Repeat on iPad and iPhone Safari in landscape. Check joystick release, pressing an action while holding the joystick, and visibility of the HUD, dialogue, and controls near the screen edges.
+Demo 的首次遊玩目標是約 10–15 分鐘。自動走流程用於驗證通關，遊玩時長還需要以目標年齡玩家的首次試玩評估。
 
 ## Code layout
 
 - `src/scenes` contains the title and village scenes and village artwork.
 - `src/entities`, `src/combat`, and `src/input` contain character state, sword behavior, and keyboard and touch input.
-- `src/quests`, `src/progression`, and `src/save` contain chapter metadata, training steps, and versioned local storage.
+- `src/quests`, `src/progression`, and `src/save` contain chapter metadata, checkpoints, and versioned local storage.
 - `src/speech` defines the speech recognition contract for a future implementation.
 - `src/i18n/zh-TW.ts` contains the Taiwanese Traditional Chinese game text. Use `data-text` and `data-label` for markup, and import `messages` for dynamic text. Keep save identifiers and intentional English-learning content independent of UI translations.
 
 ## 英語跟讀練習
 
-在玄翁長老的對話選「英語跟讀」。點「聽長老說」或「重播英文」可聽瀏覽器朗讀。可用的聲音依裝置和瀏覽器而定，畫面也會顯示文字。
+在玄翁長老的對話可先試「英語跟讀」，取得風之碎片後也會在風語石遇到這項挑戰。點「聽長老說」或「重播英文」可聽瀏覽器朗讀。可用的聲音依裝置和瀏覽器而定，畫面也會顯示文字。
 
 1. 點「開始錄音」，允許麥克風，念出 **I can run.** 後點「停止錄音」。每次最多錄 15 秒。
-2. 點「聽我的錄音」確認有聲音，然後「回到對話」。錄音只在目前的練習畫面保留，離開時會清除。這個練習目前沒有辨識、評分或完成判定。
-3. 封鎖麥克風權限並重試，確認畫面顯示中文提示，仍可閱讀句子及返回。錄音需要 HTTPS 或 localhost。
+2. 點「聽我的錄音」回聽。錄音只在目前的練習畫面保留，離開時會清除。在風語石由玩家自行確認「練習完成」，目前沒有語音辨識或評分。
+3. 封鎖麥克風權限並重試，確認畫面顯示中文提示，仍可閱讀句子、開口跟念並按「練習完成」。錄音需要 HTTPS 或 localhost。
 4. 在 iPad Safari 橫向開啟 GitHub Pages 網站，確認第一次授權、拒絕後重試、停止與回聽、離開時麥克風指示消失，以及中文與英文聲音是否可用。檢查瀏覽器工具列展開時的按鈕位置。
 
-在 Node.js 24 可執行 `node --test tests/audio-capture.test.mjs` 驗證擷取流程、拒絕權限與音軌清理。這些測試使用替代的媒體物件。
+在 Node.js 24 可執行 `node --test tests/*.test.mjs`，驗證音訊擷取、章節順序、舊存檔移轉、語音失敗時的進度，以及檢查點與攻擊範圍。
 
 ## 在 iPad 或 iPhone 從主畫面啟動
 

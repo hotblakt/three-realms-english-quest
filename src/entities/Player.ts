@@ -26,8 +26,10 @@ export class Player {
     if (direction.lengthSq() && now >= this.dodgeUntil) this.facing.copy(direction);
   }
 
-  move(direction: Phaser.Math.Vector2, now: number, dodge: boolean): void {
+  move(direction: Phaser.Math.Vector2, now: number, dodge: boolean): boolean {
+    let startedDodge = false;
     if (dodge && now >= this.dodgeReady) {
+      startedDodge = true;
       this.dodgeDirection.copy(this.facing);
       this.dodgeUntil = now + 160;
       this.dodgeReady = now + 550;
@@ -39,6 +41,7 @@ export class Player {
     this.body.setVelocity(velocity.x * speed, velocity.y * speed);
     animateEiku(this.view, this.facing, dodging ? 'dodge' : velocity.lengthSq() ? 'walk' : 'idle');
     this.view.alpha = dodging ? .75 : now < this.damageReady && Math.floor(now / 90) % 2 ? .45 : 1;
+    return startedDodge;
   }
 
   animateAttack(): void {
@@ -49,16 +52,20 @@ export class Player {
     animateEiku(this.view, this.facing, 'idle');
   }
 
-  damage(now: number): boolean {
+  damage(now: number): false | 'hit' | 'defeated' {
     if (now < this.damageReady || now < this.dodgeUntil) return false;
     this.health--;
     this.damageReady = now + 950;
     if (this.health === 0) {
       this.body.reset(this.spawnX, this.spawnY);
       this.health = this.maxHealth;
+      this.dodgeUntil = 0;
+      return 'defeated';
     }
-    return true;
+    return 'hit';
   }
+
+  heal(): void { this.health = this.maxHealth; }
 
   syncView(): void {
     const { x, y } = this.body.center;

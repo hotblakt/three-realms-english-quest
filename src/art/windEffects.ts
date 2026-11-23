@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-export function showSlash(scene: Phaser.Scene, origin: Phaser.Math.Vector2, angle: number): void {
+export function showSlash(scene: Phaser.Scene, origin: Phaser.Math.Vector2, angle: number, windBlade = false): void {
   const arc = scene.add.graphics({ x: origin.x, y: origin.y - 10 }).setRotation(angle).setDepth(2000);
   const sweep = [
     { x: 9, y: -28 }, { x: 29, y: -25 }, { x: 41, y: -13 }, { x: 46, y: 1 }, { x: 37, y: 18 },
@@ -10,7 +10,8 @@ export function showSlash(scene: Phaser.Scene, origin: Phaser.Math.Vector2, angl
   arc.lineStyle(4, 0xa9eee0, .9).beginPath().arc(0, 0, 41, -.72, .72).strokePath();
   arc.lineStyle(2, 0xffe5a4, .95).beginPath().arc(0, 0, 43, -.49, .29).strokePath();
   arc.fillStyle(0xfff1bb).fillTriangle(44, -8, 48, -4, 42, -2);
-  scene.tweens.add({ targets: arc, rotation: angle + .22, scale: 1.2, alpha: 0,
+  if (windBlade) arc.setScale(1.45);
+  scene.tweens.add({ targets: arc, rotation: angle + .22, scale: windBlade ? 1.85 : 1.2, alpha: 0,
     duration: 200, ease: 'Quad.out', onComplete: () => arc.destroy() });
 }
 
