@@ -16,4 +16,4 @@
 
 ## 本機檢視
 
-在儲存庫執行 `npm run dev`，開啟 Vite 網址下的 `/art/preview/eiku-idle/`。預覽圖集描述檔共用原始 PNG，避免複製圖檔；每格以原像素比例裁切，可暫停、單步與開啟格中央和參考腳底線。此目錄不在正式 Vite 入口或 GitHub Pages 的建置輸出中。
+在儲存庫執行 `npm run dev`，開啟 Vite 網址下的 `/art/preview/eiku-idle/`。預覽圖集描述檔共用原始 PNG，避免複製圖檔；每格以原像素比例裁切，可暫停、單步與開啟格中央和參考腳底線。正式建置中的[影空美術工作台](https://hotblakt.github.io/three-realms-english-quest/art-workbench/)也提供這組四向待機參考。
