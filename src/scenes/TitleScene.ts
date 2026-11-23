@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { paintVillage } from './villageArt';
+import { paintVillage } from '../art/villageArtwork';
 
 export class TitleScene extends Phaser.Scene {
   constructor() {

@@ -1,6 +1,6 @@
 # Three Realms: English Quest
 
-A browser-based top-down action RPG built with Phaser 3, TypeScript, and Vite. In **Chapter 1 — The Awakening of Wind**, teenage ninja Eiku trains in Hidden Bamboo Village. The village and characters use original placeholder artwork drawn in Phaser.
+A browser-based top-down action RPG built with Phaser 3, TypeScript, and Vite. In **Chapter 1 — The Awakening of Wind**, teenage ninja Eiku trains in Hidden Bamboo Village. The village and characters use original provisional game artwork.
 
 ## Run locally
 
@@ -47,7 +47,7 @@ The build type-checks the project and emits static files into `dist/`. Preview s
 
 ## 英語跟讀練習
 
-在吉諾長老的對話選「英語跟讀」。點「聽長老說」或「重播英文」可聽瀏覽器朗讀。可用的聲音依裝置和瀏覽器而定，畫面也會顯示文字。
+在玄翁長老的對話選「英語跟讀」。點「聽長老說」或「重播英文」可聽瀏覽器朗讀。可用的聲音依裝置和瀏覽器而定，畫面也會顯示文字。
 
 1. 點「開始錄音」，允許麥克風，念出 **I can run.** 後點「停止錄音」。每次最多錄 15 秒。
 2. 點「聽我的錄音」確認有聲音，然後「回到對話」。錄音只在目前的練習畫面保留，離開時會清除。這個練習目前沒有辨識、評分或完成判定。
@@ -68,3 +68,9 @@ The build type-checks the project and emits static files into `dist/`. Preview s
 - **工具列及安全區**：用 Safari 分頁開啟，測試顯示或收合工具列、左右兩個橫向方向、iPhone 瀏海和主畫面指示條是否遮住按鈕。iPad 也可試分割畫面。
 - **方向與操作**：在村莊與跟讀畫面轉直向再轉回。確認提示出現、遊戲停住、錄音取消，轉回後能繼續。測試雙指移動加攻擊、對話捲動與 VoiceOver 的按鈕標籤。
 - **音訊與存檔**：在 Safari 與主畫面版本各自測試麥克風允許及拒絕、錄音回聽和中英文朗讀。完成訓練後從同一入口重新開啟，確認進度保留。
+
+## Milestone 5A 美術
+
+- 村莊地表、石板路、竹林、屋瓦、池塘和鳥居使用專案內的原創繪圖。地表與竹林在場景第一次建立時烘成兩張貼圖，後續只更新燈光和少量落葉。
+- `src/art/actorArtwork.ts` 定義影空的四向角色圖、走路與待機影格及玄翁長老的貼圖。要換正式角色圖，可改用同尺寸、同腳底原點的外部圖集，並保留動畫名稱與影格對照。碰撞本體獨立於美術。
+- 影空與玄翁長老的角色圖、房屋與樹木細節、稻草人及風系特效為本里程碑暫用的原創遊戲內美術。正式角色圖集、逐格揮劍與閃避動作、長老對話立繪仍待製作。

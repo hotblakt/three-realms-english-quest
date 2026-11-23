@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import { drawActor } from './VillageActor';
+import { animateEiku, createEiku } from '../art/actorArtwork';
+import { showDodge } from '../art/windEffects';
 
 export class Player {
   readonly maxHealth = 5;
@@ -12,8 +13,8 @@ export class Player {
   readonly view;
   readonly body;
 
-  constructor(scene: Phaser.Scene, readonly spawnX: number, readonly spawnY: number) {
-    this.view = drawActor(scene, spawnX, spawnY);
+  constructor(private readonly scene: Phaser.Scene, readonly spawnX: number, readonly spawnY: number) {
+    this.view = createEiku(scene, spawnX, spawnY);
     this.body = scene.physics.add.existing(scene.add.zone(spawnX, spawnY, 18, 16)).body as Phaser.Physics.Arcade.Body;
     this.body.setCollideWorldBounds(true);
   }
@@ -27,12 +28,18 @@ export class Player {
       this.dodgeDirection.copy(this.facing);
       this.dodgeUntil = now + 160;
       this.dodgeReady = now + 550;
+      showDodge(this.scene, this.view, this.dodgeDirection);
     }
     const dodging = now < this.dodgeUntil;
     const velocity = dodging ? this.dodgeDirection : direction;
     const speed = dodging ? 310 : 123;
     this.body.setVelocity(velocity.x * speed, velocity.y * speed);
-    this.view.alpha = dodging ? .55 : now < this.damageReady && Math.floor(now / 90) % 2 ? .45 : 1;
+    animateEiku(this.view, this.facing, dodging ? 'dodge' : velocity.lengthSq() ? 'walk' : 'idle');
+    this.view.alpha = dodging ? .75 : now < this.damageReady && Math.floor(now / 90) % 2 ? .45 : 1;
+  }
+
+  idle(): void {
+    animateEiku(this.view, this.facing, 'idle');
   }
 
   damage(now: number): boolean {
