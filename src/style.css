@@ -317,3 +317,10 @@ h1 span + span { font-size: .49em; color: #bfe4ce; margin-top: .25em; }
   #actions { display: flex; gap: .3rem; }
   #actions [data-action="attack"] { min-height: 52px; }
 }
+
+.speaking-heading { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem .65rem; }
+#recognize-voice { padding-inline: .55rem; font-size: .95rem; }
+#recognition-privacy { color: #d1d9c8; }
+#recognition-result { color: #ffe1a1; font-size: .9rem; }
+#recognition-result p { margin: .15rem 0; }
+#recognized-transcript { overflow-wrap: anywhere; }
