@@ -1,0 +1,342 @@
+{
+  "sourceCommit": "6eca2db606f936c2bdadb4aa4fed9a464db2f936",
+  "archiveSha256": "21891f577989d4e51661f6b801b983240362d881ede0c6bb08135e429b69cc92",
+  "textures": {
+    "dense": {
+      "source": "bamboo-dense.png",
+      "sourceDimensions": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "dc96e8e84f57d110703bbfed908f12e0b574c891ff99a286ddcd0f2e23eee58f",
+      "runtimeDimensions": [
+        260,
+        269
+      ],
+      "runtimeSha256": "b2228a26b39a7a60711b73bed6aabb954565e4faf8929b1a170a435ada4ad4ea",
+      "bytes": 118790,
+      "origin": [
+        0.5,
+        0.91
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "sparse": {
+      "source": "bamboo-sparse.png",
+      "sourceDimensions": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "20b608bad87b0ed52e500f6ed931124a157024af6692bd90a1074698f06207b0",
+      "runtimeDimensions": [
+        182,
+        208
+      ],
+      "runtimeSha256": "b97570fcbfed88ba481c04cb101c463ede5e07f45fb373203bd4da06d367417e",
+      "bytes": 67444,
+      "origin": [
+        0.5,
+        0.91
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "underbrush": {
+      "source": "underbrush.png",
+      "sourceDimensions": [
+        1774,
+        887
+      ],
+      "sourceSha256": "9b250f6f4ab6d403c6479d9cd8ead194bf2143970dc8ce00ecd98fc40c5106a9",
+      "runtimeDimensions": [
+        174,
+        86
+      ],
+      "runtimeSha256": "de99bf913cd83d316c3fa4efaf37f0807d60ea4fab8da9b55f7376f2919e199f",
+      "bytes": 28736,
+      "origin": [
+        0.5,
+        0.89
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "stone": {
+      "source": "stone-path.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "1d9733c1f7d82ef244581194aaf57ccefac5dc3112a61b1c51b52968075f84cd",
+      "runtimeDimensions": [
+        286,
+        197
+      ],
+      "runtimeSha256": "06ba6664bb333e95b49de857d5d7bff713eda1e1cec2a0ba2048815a1fc23e16",
+      "bytes": 76774,
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "rock-large": {
+      "source": "mossy-rocks.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "590d319be1f1b5b8abc0a636b438f775e6752022855c825c54dd2d6497c7f67f",
+      "runtimeDimensions": [
+        163,
+        87
+      ],
+      "runtimeSha256": "1301bd8c0890733f74b6979e163715784827521872ef16d03d8f1ea382fc13ac",
+      "bytes": 25060,
+      "origin": [
+        0.5,
+        0.87
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        0.59
+      ]
+    },
+    "rock-small": {
+      "source": "mossy-rocks.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "590d319be1f1b5b8abc0a636b438f775e6752022855c825c54dd2d6497c7f67f",
+      "runtimeDimensions": [
+        86,
+        54
+      ],
+      "runtimeSha256": "43c506c8e5a00cc9a51abd5b05a84d84a1a82ba1b38ce4db58351f3e95d2ecd9",
+      "bytes": 9006,
+      "origin": [
+        0.5,
+        0.87
+      ],
+      "sourceCrop": [
+        0.64,
+        0.61,
+        1,
+        1
+      ]
+    },
+    "mist": {
+      "source": "mist-light.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "2c05331b20610b35ca0989627ccd4f60d2970c02feb70435356cb6e278e56166",
+      "runtimeDimensions": [
+        296,
+        73
+      ],
+      "runtimeSha256": "9138f9e82ce80caf99e18ddcb3c1ec25784f79640fc31dc13f45921b9d981163",
+      "bytes": 25028,
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "sourceCrop": [
+        0,
+        0.64,
+        1,
+        1
+      ]
+    },
+    "spirit-mist": {
+      "source": "mist-light.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "2c05331b20610b35ca0989627ccd4f60d2970c02feb70435356cb6e278e56166",
+      "runtimeDimensions": [
+        160,
+        116
+      ],
+      "runtimeSha256": "060d4415bd91de09b7ac508fdf5187b4b9fca303068b959cbe0e38eb4e30a0e0",
+      "bytes": 19696,
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        0.54,
+        0.59
+      ]
+    },
+    "bridge": {
+      "source": "bridge-stream.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "6ea8e8f865609ecfd568e64b806f950ddb62bdc2d04a46e4801b9c7e93bd2758",
+      "runtimeDimensions": [
+        400,
+        267
+      ],
+      "runtimeSha256": "5ba8e0bd0f8393ce9504d6cd89ffed58c023b411a526c58396464d683e5c0de7",
+      "bytes": 147978,
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "torii": {
+      "source": "torii-lanterns.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "5ac4ca1b06498beca901bcfbcd5f1618e4bbe04389276b5f1d0a639489490119",
+      "runtimeDimensions": [
+        290,
+        211
+      ],
+      "runtimeSha256": "2d0944b40ecd5eee60aa58c065449a2a8c5fe894d9f7a2622433ba2c3e34b071",
+      "bytes": 78168,
+      "origin": [
+        0.5,
+        0.9
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "chest-closed": {
+      "source": "treasure-chest.png",
+      "sourceDimensions": [
+        1774,
+        887
+      ],
+      "sourceSha256": "0fc99fd7f21408be399f64c4c1ad0ed3f5db88436fce3595fbcd3acacbc42428",
+      "runtimeDimensions": [
+        86,
+        70
+      ],
+      "runtimeSha256": "8a23e46ddbf21b4f440f8dd6bdbcf611988f422728e3646b2eb3d9d0ecd6260c",
+      "bytes": 13182,
+      "origin": [
+        0.5,
+        1
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        0.49,
+        1
+      ]
+    },
+    "chest-open": {
+      "source": "treasure-chest.png",
+      "sourceDimensions": [
+        1774,
+        887
+      ],
+      "sourceSha256": "0fc99fd7f21408be399f64c4c1ad0ed3f5db88436fce3595fbcd3acacbc42428",
+      "runtimeDimensions": [
+        86,
+        84
+      ],
+      "runtimeSha256": "48f38c2213ddf8ec057c5250e7c44705dcfacf13a173c4af1cf55ead98c3aa86",
+      "bytes": 14720,
+      "origin": [
+        0.5,
+        1
+      ],
+      "sourceCrop": [
+        0.5,
+        0,
+        1,
+        1
+      ]
+    },
+    "water": {
+      "source": "bridge-stream.png",
+      "sourceDimensions": [
+        1536,
+        1024
+      ],
+      "sourceSha256": "6ea8e8f865609ecfd568e64b806f950ddb62bdc2d04a46e4801b9c7e93bd2758",
+      "runtimeDimensions": [
+        128,
+        128
+      ],
+      "runtimeSha256": "05ae3b8ef70129fac48aec8ab7d3dcb67cf8d667b8e34357b7a1a5657b046133",
+      "bytes": 25092,
+      "origin": [
+        0,
+        0
+      ],
+      "sourceCrop": [
+        0.45,
+        0.73,
+        0.62,
+        0.836
+      ]
+    },
+    "ground": {
+      "source": "forest-ground.png",
+      "sourceDimensions": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "e203270c5f566f1ba8b8ed8a7bd23344274bd0be5068d68fab29cfb5cbb0b985",
+      "runtimeDimensions": [
+        384,
+        384
+      ],
+      "runtimeSha256": "19cdca3a40e365377453bd57de7608c0a4337fbe0a20d9e99f0a205603a5ffd8",
+      "bytes": 260062,
+      "origin": [
+        0,
+        0
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  }
+}
