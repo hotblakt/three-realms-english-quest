@@ -324,3 +324,17 @@ h1 span + span { font-size: .49em; color: #bfe4ce; margin-top: .25em; }
 #recognition-result { color: #ffe1a1; font-size: .9rem; }
 #recognition-result p { margin: .15rem 0; }
 #recognized-transcript { overflow-wrap: anywhere; }
+
+#learning-lesson, #learning-tools summary { min-height: 44px; font: inherit; }
+#learning-lesson { width: 100%; background: #274139; color: #fff1d6; border: 1px solid #849d89; border-radius: 6px; }
+#learning-tools summary { display: flex; align-items: center; cursor: pointer; color: #ffe1a1; }
+#learning-tools summary::before { content: '▸'; margin-inline-end: .3rem; }
+#learning-tools[open] { grid-column: 1 / -1; }
+#learning-tools[open] summary::before { content: '▾'; }
+.learning-tools-actions { display: flex; flex-wrap: wrap; gap: .25rem; }
+#learning-exp { color: #bae9cb; }
+#recognition-result.is-matched { color: #baf0ce; }
+@media (prefers-reduced-motion: no-preference) {
+  #recognition-result.is-matched { animation: learning-wind 650ms ease-out; }
+  @keyframes learning-wind { from { background: #76d8b86b; } to { background: transparent; } }
+}

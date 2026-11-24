@@ -111,3 +111,14 @@ test('a silent or hung recognizer times out, aborts, and allows retry', async t 
   instances[1].emit('end');
   assert.deepEqual(await next, { transcript: 'I can run.' });
 });
+
+
+test('native alternatives are forwarded without flattening unrelated segments', async () => {
+  const { service, instances } = browser();
+  const pending = service.recognize('en-US', new AbortController().signal);
+  const native = instances[0];
+  native.emit('result', { results: [{ isFinal: true, length: 3,
+    0: { transcript: 'um' }, 1: { transcript: 'I can run' }, 2: { transcript: 'I can jump' } }] });
+  native.emit('end');
+  assert.deepEqual(await pending, { transcript: 'um', alternatives: ['I can run', 'I can jump'] });
+});

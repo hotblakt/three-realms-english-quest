@@ -1,3 +1,6 @@
+import { recommendLesson } from '../learning/lessons';
+import { LearningProgress } from '../learning/LearningProgress';
+import { loadLearning } from '../save/learningSave';
 import Phaser from 'phaser';
 import { createGeno } from '../art/actorArtwork';
 import { createTrainingDummy, paintVillage, updateRoofOcclusion, villageHeight, villageWidth, type Roof } from '../art/villageArtwork';
@@ -23,6 +26,7 @@ export class VillageScene extends Phaser.Scene {
   private sword!: Sword;
   private progress?: ChapterProgress;
   private speaking!: SpeakingPractice;
+  private learning?: LearningProgress;
   private fight?: TrialEncounter;
   private relic?: Phaser.GameObjects.Graphics;
   private dummyArt?: Phaser.GameObjects.Graphics;
@@ -44,6 +48,7 @@ export class VillageScene extends Phaser.Scene {
   private get chapter(): ChapterProgress { return this.progress!; }
 
   create(): void {
+    this.learning ??= new LearningProgress(loadLearning());
     this.progress ??= new ChapterProgress(loadChapter());
     this.fight = undefined;
     this.relic = undefined;
@@ -123,7 +128,7 @@ export class VillageScene extends Phaser.Scene {
   }
 
   private mountDialogue(): void {
-    this.speaking = new SpeakingPractice(completed => {
+    this.speaking = new SpeakingPractice(this.learning!, completed => {
       this.touch.inert = false;
       if (this.speakingAtStone) {
         if (completed) this.advance('confirm-practice');
@@ -157,7 +162,9 @@ export class VillageScene extends Phaser.Scene {
     this.dialogue.hidden = true;
     this.touch.inert = true;
     this.player.body.setVelocity(0);
-    this.speaking.open(atStone);
+    const required = atStone && this.chapter.step === 'speaking' ? 'can-run' : undefined;
+    const recommended = required ?? recommendLesson(atStone ? 'stone' : 'elder', id => this.learning!.status(id) !== 'new');
+    this.speaking.open(recommended, { required, returnLabel: atStone ? messages.returnToTrial : messages.backToGeno });
   }
 
   private showDialogue(line: string, advancesTraining = false, allowSpeech = false): void {
@@ -240,7 +247,7 @@ export class VillageScene extends Phaser.Scene {
       }
       return false;
     }
-    if (step === 'speaking' && this.near(position, voiceStone)) {
+    if (!this.fight && (step === 'speaking' || step === 'guardian' || step === 'complete') && this.near(position, voiceStone)) {
       this.openSpeech(true);
       return true;
     }
