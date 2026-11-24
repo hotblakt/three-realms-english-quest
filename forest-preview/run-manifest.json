@@ -1,0 +1,29 @@
+{
+  "id": "eiku-east-run",
+  "action": "run",
+  "direction": "east",
+  "frameCount": 6,
+  "fps": 8,
+  "referenceSpeed": 123,
+  "standingHeightInFrame": 0.8229166666666666,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "textures": {
+    "256": {
+      "url": "east-run-256.webp",
+      "bytes": 175824,
+      "sha256": "b27692aa68736f3ef156e81d1cee0e93440a1e7dfb02b119fd9ddc552d08b5ab",
+      "width": 768,
+      "height": 512
+    },
+    "384": {
+      "url": "east-run-384.webp",
+      "bytes": 334342,
+      "sha256": "fff946a1d95ae133de64e33d9081b6fd25a935eb73400985013d40a7d7f005a5",
+      "width": 1152,
+      "height": 768
+    }
+  }
+}

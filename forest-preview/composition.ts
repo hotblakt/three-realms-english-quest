@@ -12,6 +12,10 @@ export function compositionPanel() {
   return {
     panel,
     read: () => ({
+      motion: value('motion'),
+      speed: Number(value('speed')),
+      paused: checked('paused'),
+      frame: Number(value('frame')) - 1,
       candidate: value('character') === 'candidate',
       size: Number(value('size')),
       resolution: Number(value('resolution')),
@@ -50,7 +54,7 @@ export function showCandidate(
   }
   if (image.texture.key !== key) image.setTexture(key);
   const displaySize = standingHeight * settings.size / 100 * 384 / 316;
-  image.setDisplaySize(displaySize, displaySize);
+  image.setOrigin(.5, 338 / 384).setDisplaySize(displaySize, displaySize);
 }
 
 // Change the logical width to match the safe-area parent while keeping height and world units stable.
