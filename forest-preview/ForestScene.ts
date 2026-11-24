@@ -6,6 +6,7 @@ import { Sword } from '../src/combat/Sword';
 import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
 import assetCatalog from '../docs/misty-forest-runtime-assets.json';
+import { compositionPanel, preloadComposition, showCandidate } from './composition';
 import { bridge, chest, entrance, height, props, routes, shortcut, spirit, streamCenter, waterWalls, width } from './layout';
 
 type ForestTexture = keyof typeof assetCatalog.textures;
@@ -15,6 +16,11 @@ const intro = '沿石路走到溪邊，找木橋過溪。';
 
 export class ForestScene extends Phaser.Scene {
   private player!: Player;
+  private readonly composition = compositionPanel();
+  private settings = this.composition.read();
+  private candidate!: Phaser.GameObjects.Image;
+  private originalScale = 1;
+  private environmentLights: Phaser.GameObjects.Image[] = [];
   private controls!: Controls;
   private sword!: Sword;
   private obstacles!: Phaser.Physics.Arcade.StaticGroup;
@@ -29,6 +35,7 @@ export class ForestScene extends Phaser.Scene {
 
   preload(): void {
     preloadEikuAtlas(this);
+    preloadComposition(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -37,17 +44,31 @@ export class ForestScene extends Phaser.Scene {
   create(): void {
     this.physics.world.setBounds(24, 30, width - 48, height - 56);
     this.player = new Player(this, entrance.x, entrance.y);
+    this.originalScale = this.player.view.scaleX;
+    this.candidate = this.add.image(entrance.x, entrance.y, 'eiku-concept-south-384').setOrigin(.5, 338 / 384);
     this.obstacles = this.physics.add.staticGroup();
     this.physics.add.collider(this.player.body, this.obstacles);
     this.controls = new Controls(this.input.keyboard!);
     this.sword = new Sword(this, () => this.player.animateAttack());
-    this.cameras.main.setBounds(0, 0, width, height)
-      .startFollow(this.player.view, true, .13, .13, 0, 18);
+    this.cameras.main.setBounds(0, 0, width, height);
+    this.cameras.main.startFollow(this.player.view, false, .13, .13, 0, -18);
     this.drawGround();
     this.drawStream();
     this.drawProps();
     this.addLandmarks();
     this.addAtmosphere();
+    this.environmentLights.push(...addLanternLight(this, 617, 471), ...addLanternLight(this, 737, 452));
+    const applyComposition = () => {
+      this.settings = this.composition.read();
+      const smooth = this.settings.smoothing && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.cameras.main.setZoom(this.settings.zoom).setLerp(smooth ? .13 : 1);
+      this.player.view.setVisible(!this.settings.candidate).setScale(this.originalScale * this.settings.size / 100);
+      this.candidate.setVisible(this.settings.candidate);
+      this.player.setContactShadowVisible(this.settings.shadow);
+      this.environmentLights.forEach(light => light.setVisible(this.settings.light));
+    };
+    this.composition.panel.addEventListener('change', applyComposition);
+    applyComposition();
     const onPause = () => {
       this.controls.reset();
       this.player.body.stop();
@@ -56,6 +77,7 @@ export class ForestScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.game.events.off(Phaser.Core.Events.PAUSE, onPause);
       this.controls.destroy();
+      this.composition.panel.removeEventListener('change', applyComposition);
     });
   }
 
@@ -77,17 +99,17 @@ export class ForestScene extends Phaser.Scene {
       const points = route.map(([x, y]) => ({ x, y }));
       const wide = index === 0 ? 83 : 57;
       paths.lineStyle(wide, 0x314733, .45).strokePoints(points);
-      paths.lineStyle(wide - 17, 0x757454, .33).strokePoints(points);
+      paths.lineStyle(wide - 17, 0x807953, .43).strokePoints(points);
       paths.lineStyle(wide - 34, 0xa1946c, .19).strokePoints(points);
     }
     const stonePatches = [
       [477, 759, .55, -24], [502, 653, .57, -16], [546, 552, .61, 1],
-      [593, 488, .49, 5], [789, 406, .52, -7], [839, 321, .55, -4],
+      [593, 488, .53, 5], [606, 464, .39, -22], [748, 444, .42, -24], [789, 406, .52, -7], [839, 321, .55, -4],
       [878, 226, .61, -9], [914, 155, .45, 0], [405, 556, .44, 46],
       [286, 500, .46, 45], [222, 439, .42, 48], [1008, 287, .48, 10],
     ];
     for (const [x, y, scale, angle] of stonePatches) {
-      this.image('stone', x, y, scale, -8).setAngle(angle).setAlpha(.83).setTint(0xb6b6a1);
+      this.image('stone', x, y, scale, -8).setAngle(angle).setAlpha(.94).setTint(0xc8c5ab);
     }
   }
 
@@ -197,7 +219,7 @@ export class ForestScene extends Phaser.Scene {
       const postX = gateX + side * 40;
       this.block(postX, gateY - 1, 17, 19);
       this.block(gateX + side * 78, gateY + 3, 22, 20);
-      addLanternLight(this, gateX + side * 78, gateY - 23);
+      this.environmentLights.push(...addLanternLight(this, gateX + side * 78, gateY - 23));
     }
     const sign = this.add.text(shortcut.x, shortcut.y - 17, '回入口', {
       fontFamily: font, fontSize: '14px', color: '#ffe9b4', backgroundColor: '#1b362d',
@@ -227,13 +249,19 @@ export class ForestScene extends Phaser.Scene {
     this.player.move(direction, now, this.controls.consume('dodge'));
     this.player.syncView();
     const { x, y } = this.player.body.center;
+    if (this.settings.candidate) {
+      showCandidate(this, this.candidate, this.player.facing, this.settings);
+    }
+    this.candidate.setPosition(x, y).setDepth(y).setAlpha(this.player.view.alpha);
     if (this.controls.consume('attack')) {
       this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center);
     }
     for (const canopy of this.canopy) {
-      const behind = y < canopy.y - 7 && y > canopy.y - canopy.displayHeight * .65
-        && Math.abs(x - canopy.x) < canopy.displayWidth * .32;
-      canopy.setAlpha(behind ? .50 : 1);
+      const visibilityRadius = canopy.displayWidth * .42;
+      const overlap = Math.abs(x - canopy.x);
+      const behind = y < canopy.y && y > canopy.y - canopy.displayHeight * canopy.originY;
+      const fade = behind ? Math.max(0, Math.min(1, (visibilityRadius - overlap) / 31)) : 0;
+      canopy.setAlpha(1 - fade * .75);
     }
     const interact = this.controls.consume('interact');
     const near = (point: { x: number; y: number }) => Phaser.Math.Distance.Between(x, y, point.x, point.y) < 53;

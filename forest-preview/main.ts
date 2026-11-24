@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import '../src/style.css';
 import './preview.css';
 import { useLandscapeLayout } from '../src/ui/landscapeLayout';
+import { useCompositionViewport } from './composition';
 import { ForestScene } from './ForestScene';
 
 new Phaser.Game({
@@ -13,5 +14,8 @@ new Phaser.Game({
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   physics: { default: 'arcade', arcade: { gravity: { x: 0, y: 0 } } },
   scene: [ForestScene],
-  callbacks: { postBoot: useLandscapeLayout },
+  callbacks: { postBoot: game => {
+    useLandscapeLayout(game);
+    useCompositionViewport(game);
+  } },
 });
