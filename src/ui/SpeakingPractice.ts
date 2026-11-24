@@ -1,8 +1,10 @@
 import { messages } from '../i18n';
-import { firstSpeakingQuest } from '../quests/firstSpeakingQuest';
+import { englishLocale, lessons, type Lesson, type LessonId } from '../learning/lessons';
+import { type Completion, type LearningProgress } from '../learning/LearningProgress';
+import { saveLearning } from '../save/learningSave';
 import { BrowserAudioCapture } from '../speech/AudioCapture';
 import { SpeechRecognitionService, RecognitionFailure, type RecognitionPhase } from '../speech/SpeechRecognitionService';
-import { matchesSpokenText } from '../speech/matchSpokenText';
+import { selectSpokenMatch } from '../speech/matchSpokenText';
 import type { AudioRecording } from '../speech/AudioCapture';
 import { BrowserSpeechPlayback, RecordingPlayback } from '../speech/AudioPlayback';
 
@@ -12,6 +14,14 @@ const maxRecordingMs = 15_000;
 export class SpeakingPractice {
   private readonly panel = document.querySelector<HTMLElement>('#speaking')!;
   private readonly prompt = this.panel.querySelector<HTMLElement>('#speaking-prompt')!;
+  private readonly select = this.panel.querySelector<HTMLSelectElement>('#learning-lesson')!;
+  private readonly meaning = this.panel.querySelector<HTMLElement>('#speaking-meaning')!;
+  private readonly exp = this.panel.querySelector<HTMLElement>('#learning-exp')!;
+  private readonly slow = this.panel.querySelector<HTMLButtonElement>('#slow-english')!;
+  private readonly tools = this.panel.querySelector<HTMLDetailsElement>('#learning-tools')!;
+  private lesson: Lesson = lessons[0];
+  private required?: LessonId;
+  private unsuccessful = 0;
   private readonly guidance = this.panel.querySelector<HTMLButtonElement>('#listen-guidance')!;
   private readonly example = this.panel.querySelector<HTMLButtonElement>('#replay-english')!;
   private readonly record = this.panel.querySelector<HTMLButtonElement>('#record-voice')!;
@@ -20,7 +30,6 @@ export class SpeakingPractice {
   private readonly replay = this.panel.querySelector<HTMLButtonElement>('#replay-recording')!;
   private readonly recognition = new SpeechRecognitionService();
   private readonly recognizeButton = this.panel.querySelector<HTMLButtonElement>('#recognize-voice')!;
-  private readonly recognitionPrivacy = this.panel.querySelector<HTMLElement>('#recognition-privacy')!;
   private readonly recognitionResult = this.panel.querySelector<HTMLElement>('#recognition-result')!;
   private readonly recognitionStatus = this.panel.querySelector<HTMLElement>('#recognition-status')!;
   private readonly recognizedText = this.panel.querySelector<HTMLElement>('#recognized-text')!;
@@ -38,12 +47,18 @@ export class SpeakingPractice {
   private state: RecordingState = 'idle';
   private hasRecording = false;
 
-  constructor(private readonly onClose: (completed: boolean) => void) {
-    this.prompt.textContent = firstSpeakingQuest.prompt;
-    this.prompt.lang = firstSpeakingQuest.locale;
+  constructor(private readonly learning: LearningProgress, private readonly onClose: (completed: boolean) => void) {
+    this.prompt.lang = englishLocale;
+    this.select.replaceChildren();
+    for (const lesson of lessons) this.select.add(new Option(lesson.meaning, lesson.id));
     const options = { signal: this.events.signal };
-    this.guidance.addEventListener('click', () => this.speak(messages.speakingGuidance, 'zh-TW'), options);
-    this.example.addEventListener('click', () => this.speak(firstSpeakingQuest.prompt, firstSpeakingQuest.locale), options);
+    this.select.addEventListener('change', () => {
+      const lesson = lessons.find(candidate => candidate.id === this.select.value);
+      if (lesson) this.showLesson(lesson);
+    }, options);
+    this.guidance.addEventListener('click', () => this.speak(this.lesson.hint, 'zh-TW'), options);
+    this.example.addEventListener('click', () => this.speak(this.lesson.target, englishLocale, 1), options);
+    this.slow.addEventListener('click', () => this.speak(this.lesson.target, englishLocale, .7), options);
     this.record.addEventListener('click', () => {
       if (this.state === 'idle' && !this.attempt && !this.recognitionAttempt) void this.startRecording();
       else if (this.state === 'recording') this.stopRecording();
@@ -60,10 +75,20 @@ export class SpeakingPractice {
         }
       });
     }, options);
-    this.complete.addEventListener('click', () => this.close(true), options);
+    this.complete.addEventListener('click', () => {
+      this.cancelRecognition();
+      this.cancelCapture('');
+      this.speech.stop();
+      this.playback.stop();
+      if (this.learning.status(this.lesson.id) !== 'recognized') {
+        this.award('assisted');
+        this.showRecognition(messages.assistedDone);
+      }
+      if (this.lesson.id === this.required) this.close(true);
+    }, options);
     this.panel.querySelector('#close-speaking')!.addEventListener('click', () => this.close(), options);
     this.panel.addEventListener('keydown', event => {
-      if (event.key === ' ') event.stopPropagation();
+      if (event.key === ' ' || event.target === this.select) event.stopPropagation();
       if (event.key === 'Escape') this.close();
       if (event.key === 'Tab') this.keepFocusInPanel(event);
     }, options);
@@ -79,21 +104,55 @@ export class SpeakingPractice {
     return !this.panel.hidden;
   }
 
-  open(chapterPractice = false): void {
-    this.complete.hidden = !chapterPractice;
-    this.recognizeButton.hidden = !chapterPractice;
-    this.recognitionPrivacy.hidden = !chapterPractice;
-    this.recognitionResult.hidden = !chapterPractice;
-    this.showRecognition(this.recognition.supported ? messages.recognitionReady : messages.recognitionUnsupported);
-    this.note.textContent = chapterPractice ? messages.practiceInstructions : messages.practiceOnly;
-    this.panel.querySelector<HTMLButtonElement>('#close-speaking')!.textContent = chapterPractice ? messages.returnToTrial : messages.backToGeno;
+  open(recommended: LessonId, { required, returnLabel = messages.backToGeno }: {
+    required?: LessonId; returnLabel?: string;
+  } = {}): void {
+    this.required = required;
+    this.tools.open = false;
+    this.panel.querySelector<HTMLButtonElement>('#close-speaking')!.textContent = returnLabel;
     this.panel.hidden = false;
-    this.updateState('idle', this.capture.supported ? '' : messages.recordingUnsupported);
+    this.showLesson(lessons.find(lesson => lesson.id === recommended) ?? lessons[0]);
     this.panel.querySelector<HTMLElement>('#speaking-title')!.focus({ preventScroll: true });
   }
 
+  private showLesson(lesson: Lesson): void {
+    this.speech.stop();
+    this.playback.clear();
+    this.hasRecording = false;
+    this.unsuccessful = 0;
+    this.lesson = lesson;
+    this.select.value = lesson.id;
+    this.prompt.textContent = lesson.target;
+    this.meaning.textContent = lesson.meaning;
+    this.updateProgress();
+    this.showRecognition(this.recognition.supported ? messages.recognitionReady : messages.recognitionUnsupported);
+    this.updateState('idle', this.capture.supported ? '' : messages.recordingUnsupported);
+  }
+
+  private updateProgress(earned = 0): void {
+    for (const option of this.select.options) {
+      const lesson = lessons.find(item => item.id === option.value);
+      if (lesson) option.textContent = `${lesson.meaning}・${messages.lessonStatus[this.learning.status(lesson.id)]}`;
+    }
+    this.exp.textContent = messages.learningScore(this.learning.exp, earned);
+    const required = this.lesson.id === this.required;
+    const recognized = this.learning.status(this.lesson.id) === 'recognized';
+    this.complete.hidden = !required && recognized;
+    this.complete.textContent = required && recognized ? messages.continueTrial : messages.assistedPractice;
+    const requiredLesson = lessons.find(lesson => lesson.id === this.required);
+    this.note.textContent = requiredLesson && !required
+      ? messages.lessonRequirement(requiredLesson.meaning) : this.unsuccessful >= 2 ? messages.assistedOffer : this.lesson.hint;
+  }
+
+  private award(status: Completion): void {
+    const earned = this.learning.complete(this.lesson, status);
+    saveLearning(this.learning.snapshot());
+    this.updateProgress(earned);
+  }
+
   private keepFocusInPanel(event: KeyboardEvent): void {
-    const buttons = this.panel.querySelectorAll<HTMLButtonElement>('button:not(:disabled):not([hidden])');
+    const buttons = [...this.panel.querySelectorAll<HTMLElement>('button:not(:disabled):not([hidden]), select:not(:disabled), summary')]
+      .filter(control => control.getClientRects().length);
     const first = buttons[0];
     const last = buttons[buttons.length - 1];
     if (event.shiftKey && (document.activeElement === first || event.target === this.panel.querySelector('h2'))) {
@@ -120,7 +179,8 @@ export class SpeakingPractice {
     this.showRecognition('');
   }
 
-  private showRecognition(text: string, transcript = ''): void {
+  private showRecognition(text: string, transcript = '', matched = false): void {
+    this.recognitionResult.classList.toggle('is-matched', matched);
     this.recognitionStatus.textContent = text;
     this.recognizedTranscript.textContent = transcript;
     this.recognizedText.hidden = !transcript;
@@ -133,7 +193,7 @@ export class SpeakingPractice {
     this.recognitionAttempt = attempt;
     this.updateAudioControls();
     try {
-      const { transcript } = await this.recognition.recognize(firstSpeakingQuest.locale, attempt.signal, phase => {
+      const result = await this.recognition.recognize(englishLocale, attempt.signal, phase => {
         this.recognitionPhase = phase;
         this.showRecognition({
           starting: messages.recognitionStarting,
@@ -143,8 +203,16 @@ export class SpeakingPractice {
         this.updateAudioControls();
       });
       if (attempt.signal.aborted) return;
-      const matched = matchesSpokenText(transcript, firstSpeakingQuest.prompt);
-      this.showRecognition(matched ? messages.recognitionMatched : messages.recognitionRetry, transcript);
+      const match = selectSpokenMatch(result, this.lesson.target);
+      if (match !== undefined) {
+        this.unsuccessful = 0;
+        this.award('recognized');
+        this.showRecognition(messages.recognitionMatched, match, true);
+      } else {
+        this.unsuccessful++;
+        this.updateProgress();
+        this.showRecognition(messages.recognitionRetry, result.transcript);
+      }
     } catch (error) {
       if (attempt.signal.aborted) return;
       const reason = error instanceof RecognitionFailure ? error.reason : 'error';
@@ -155,6 +223,8 @@ export class SpeakingPractice {
         busy: messages.recognitionError,
         error: messages.recognitionError,
       };
+      this.unsuccessful++;
+      this.updateProgress();
       this.showRecognition(feedback[reason]);
     } finally {
       this.recognitionPhase = undefined;
@@ -168,12 +238,12 @@ export class SpeakingPractice {
     this.recognitionPhase = undefined;
   }
 
-  private speak(text: string, locale: string): void {
+  private speak(text: string, locale: string, rate = 1): void {
     this.playback.stop();
     this.status.textContent = this.capture.supported ? '' : messages.recordingUnsupported;
     this.speech.speak(text, locale, () => {
-      this.status.textContent = messages.voiceUnavailable;
-    });
+      this.showRecognition(messages.voiceUnavailable);
+    }, rate);
   }
 
   private async startRecording(): Promise<void> {
@@ -245,6 +315,8 @@ export class SpeakingPractice {
     this.record.classList.toggle('is-recording', state === 'recording');
     this.guidance.disabled = busy;
     this.example.disabled = busy;
+    this.slow.disabled = busy;
+    this.select.disabled = busy;
     this.replay.disabled = busy || !this.hasRecording;
   }
 

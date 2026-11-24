@@ -47,29 +47,37 @@
         <div class="speaking-content">
           <div class="speaking-heading">
             <h2 id="speaking-title" data-text="speakingPractice" tabindex="-1"></h2>
-            <button id="recognize-voice" hidden data-text="recognizeVoice" aria-describedby="recognition-privacy"></button>
+            <button id="recognize-voice" data-text="recognizeVoice" aria-describedby="recognition-privacy"></button>
           </div>
-          <p id="speaking-guidance" data-text="speakingGuidance"></p>
+          <label id="speaking-guidance" for="learning-lesson" data-text="lessonSelect"></label>
+          <select id="learning-lesson"></select>
           <p class="speaking-example"><strong id="speaking-prompt"></strong>
-            <span data-text="runMeaning"></span>
+            <span id="speaking-meaning"></span>
           </p>
-          <small id="speaking-note" data-text="practiceOnly"></small>
-          <small id="recognition-privacy" hidden data-text="recognitionPrivacy"></small>
-          <div id="recognition-result" hidden>
+          <div id="recognition-result">
             <p id="recognition-status" role="status"></p>
             <p id="recognized-text" aria-live="polite" hidden>
               <span data-text="recognizedText"></span> <span id="recognized-transcript" lang="en-US"></span>
             </p>
           </div>
+          <small id="speaking-note"></small>
+          <small id="learning-exp" role="status"></small>
+          <small id="recognition-privacy" data-text="recognitionPrivacy"></small>
         </div>
         <div class="speaking-actions">
-          <button id="listen-guidance" data-text="listenGuidance"></button>
-          <button id="replay-english" data-text="replayEnglish"></button>
-          <button id="record-voice" data-text="startRecording"></button>
-          <button id="replay-recording" data-text="replayRecording" disabled></button>
-          <button id="complete-speaking" data-text="practiceDone" hidden></button>
+          <button id="replay-english" data-text="normalEnglish"></button>
+          <button id="slow-english" data-text="slowEnglish"></button>
+          <button id="complete-speaking" data-text="assistedPractice"></button>
           <button id="close-speaking" data-text="backToGeno"></button>
-          <p id="speaking-status" role="status" aria-atomic="true"></p>
+          <details id="learning-tools">
+            <summary data-text="learningTools"></summary>
+            <div class="learning-tools-actions">
+              <button id="listen-guidance" data-text="listenGuidance"></button>
+              <button id="record-voice" data-text="startRecording"></button>
+              <button id="replay-recording" data-text="replayRecording" disabled></button>
+            </div>
+            <p id="speaking-status" role="status" aria-atomic="true"></p>
+          </details>
         </div>
       </div>
     </section>

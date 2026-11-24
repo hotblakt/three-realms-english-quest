@@ -1,6 +1,6 @@
 export interface SpeechPlayback {
   readonly supported: boolean;
-  speak(text: string, locale: string, onError: () => void): void;
+  speak(text: string, locale: string, onError: () => void, rate?: number): void;
   stop(): void;
 }
 
@@ -11,7 +11,7 @@ export class BrowserSpeechPlayback implements SpeechPlayback {
     return Boolean(window.speechSynthesis && typeof SpeechSynthesisUtterance === 'function');
   }
 
-  speak(text: string, locale: string, onError: () => void): void {
+  speak(text: string, locale: string, onError: () => void, rate = .85): void {
     this.stop();
     if (!this.supported) {
       onError();
@@ -19,7 +19,7 @@ export class BrowserSpeechPlayback implements SpeechPlayback {
     }
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = locale;
-    utterance.rate = .85;
+    utterance.rate = rate;
     this.active = utterance;
     utterance.onend = () => {
       if (this.active === utterance) this.active = undefined;

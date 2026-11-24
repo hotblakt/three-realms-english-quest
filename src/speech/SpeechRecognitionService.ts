@@ -16,6 +16,7 @@ type NativeRecognition = EventTarget & {
   lang: string;
   continuous: boolean;
   interimResults: boolean;
+  maxAlternatives?: number;
   start(): void;
   stop(): void;
   abort(): void;
@@ -27,7 +28,7 @@ type RecognitionHost = {
 };
 
 type ResultEvent = Event & {
-  results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }>;
+  results: ArrayLike<{ isFinal: boolean; 0: { transcript: string }; length?: number; [index: number]: { transcript: string } }>;
 };
 
 export class SpeechRecognitionService implements SpeechService {
@@ -44,7 +45,7 @@ export class SpeechRecognitionService implements SpeechService {
     locale: string,
     signal: AbortSignal,
     onPhase?: (phase: RecognitionPhase) => void,
-  ): Promise<{ transcript: string }> {
+  ): ReturnType<SpeechService['recognize']> {
     if (signal.aborted) return Promise.reject(signal.reason);
     if (this.active) return Promise.reject(new RecognitionFailure('busy'));
     const Recognition = this.host.SpeechRecognition ?? this.host.webkitSpeechRecognition;
@@ -55,7 +56,11 @@ export class SpeechRecognitionService implements SpeechService {
       recognition.lang = locale;
       recognition.continuous = false;
       recognition.interimResults = false;
+      if ('maxAlternatives' in recognition) {
+        try { recognition.maxAlternatives = 3; } catch { /* Some browsers expose one result only. */ }
+      }
       let transcript = '';
+      let alternatives: string[] = [];
       let settled = false;
       let processing = false;
       const listeners = new AbortController();
@@ -70,7 +75,7 @@ export class SpeechRecognitionService implements SpeechService {
           try { recognition.abort(); } catch { /* The browser may have already stopped. */ }
         }
         this.active = undefined;
-        if (error === undefined) resolve({ transcript });
+        if (error === undefined) resolve(alternatives.length ? { transcript, alternatives } : { transcript });
         else reject(error);
       };
       const cancel = () => settle(signal.reason ?? new DOMException('Aborted', 'AbortError'), true);
@@ -87,14 +92,14 @@ export class SpeechRecognitionService implements SpeechService {
       recognition.addEventListener('speechend', endedSpeech, options);
       recognition.addEventListener('audioend', endedSpeech, options);
       recognition.addEventListener('result', event => {
-        const final = Array.from((event as ResultEvent).results)
-          .filter(result => result.isFinal)
-          .map(result => result[0].transcript)
-          .join(' ').trim();
-        if (final) {
-          transcript = final;
-          endedSpeech();
-        }
+        const finals = Array.from((event as ResultEvent).results).filter(result => result.isFinal);
+        if (finals.length === 0) return;
+        transcript = finals.map(result => result[0]?.transcript ?? '').join(' ').trim();
+        // Alternatives describe a single utterance. Avoid combining guesses from multiple segments.
+        const single = finals.length === 1 ? finals[0] : undefined;
+        alternatives = single ? Array.from({ length: Math.min(3, single.length ?? 1) - 1 },
+          (_, index) => single[index + 1]?.transcript.trim() ?? '').filter(Boolean) : [];
+        endedSpeech();
       }, options);
       recognition.addEventListener('error', event => {
         const { error } = event as Event & { error: string };
@@ -102,7 +107,7 @@ export class SpeechRecognitionService implements SpeechService {
         settle(new RecognitionFailure(denied ? 'denied' : error === 'no-speech' ? 'retry' : 'error'), true);
       }, options);
       recognition.addEventListener('end', () => {
-        settle(transcript ? undefined : new RecognitionFailure('retry'));
+        settle(transcript || alternatives.length ? undefined : new RecognitionFailure('retry'));
       }, options);
 
       const deadline = setTimeout(() => settle(new RecognitionFailure('retry'), true), 18_000);
