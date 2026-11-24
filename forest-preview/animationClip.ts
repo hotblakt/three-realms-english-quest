@@ -42,7 +42,7 @@ export class AnimationClip {
   draw(image: Phaser.GameObjects.Image, size: number, frame: number, standHeight: number): void {
     const texture = this.key(size);
     if (image.texture.key !== texture) image.setTexture(texture, frame);
-    else if (image.frame.name !== frame) image.setFrame(frame);
+    else if (Number(image.frame.name) !== frame) image.setFrame(frame);
     const [x, y] = this.manifest.origin;
     const displaySize = standHeight / this.manifest.standingHeightInFrame;
     image.setOrigin(x, y).setDisplaySize(displaySize, displaySize);
