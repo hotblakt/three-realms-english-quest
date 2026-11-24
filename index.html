@@ -45,12 +45,22 @@
       aria-describedby="speaking-guidance speaking-note">
       <div class="dialogue-panel speaking-panel">
         <div class="speaking-content">
-          <h2 id="speaking-title" data-text="speakingPractice" tabindex="-1"></h2>
+          <div class="speaking-heading">
+            <h2 id="speaking-title" data-text="speakingPractice" tabindex="-1"></h2>
+            <button id="recognize-voice" hidden data-text="recognizeVoice" aria-describedby="recognition-privacy"></button>
+          </div>
           <p id="speaking-guidance" data-text="speakingGuidance"></p>
           <p class="speaking-example"><strong id="speaking-prompt"></strong>
             <span data-text="runMeaning"></span>
           </p>
           <small id="speaking-note" data-text="practiceOnly"></small>
+          <small id="recognition-privacy" hidden data-text="recognitionPrivacy"></small>
+          <div id="recognition-result" hidden>
+            <p id="recognition-status" role="status"></p>
+            <p id="recognized-text" aria-live="polite" hidden>
+              <span data-text="recognizedText"></span> <span id="recognized-transcript" lang="en-US"></span>
+            </p>
+          </div>
         </div>
         <div class="speaking-actions">
           <button id="listen-guidance" data-text="listenGuidance"></button>
