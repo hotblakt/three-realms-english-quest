@@ -1,0 +1,253 @@
+{
+  "commit": "bad6126235a26147a2ec7b88bd58199174d6babb",
+  "zipSha256": "a0e859d3a03ca6d472bb2f375312ba79f00cf14c3271be0091e9013a1f9e4ffd",
+  "originals": [
+    {
+      "file": "characters/eiku/eiku-front-reference-v001.png",
+      "sha256": "7ff2ad0cba1fa9d560097af37da46de6f150daf91bea2714c493573b0cd41127",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent": 983499,
+      "partial": 589365,
+      "opaque": 0,
+      "observation": "正面全身與身份基準；護額有第三方旋渦符號，腳間有薄影。"
+    },
+    {
+      "file": "characters/eiku/eiku-back-reference-v001.png",
+      "sha256": "1064c27a45fac8ad85c91e21622b4e3bdda40b28cb7c92c6c2c14616937c3928",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent": 1019177,
+      "partial": 553687,
+      "opaque": 0,
+      "observation": "背面正交；腰包、刀鞘與束帶細節和其他方向有出入，腳間薄影。"
+    },
+    {
+      "file": "characters/eiku/eiku-left-reference-v001.png",
+      "sha256": "685a80d4c69831b3f7d627127ad4b4cf186dad0c6e9dfe3dcfac279f6486de00",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent": 1164283,
+      "partial": 408581,
+      "opaque": 0,
+      "observation": "左側正交；護額有第三方符號，佩刀與另一側持刀位置觀感不一致。"
+    },
+    {
+      "file": "characters/eiku/eiku-right-reference-v001.png",
+      "sha256": "7d485e6834fa3e3b87e1f7044129e10549f49082aef08bf27555a0580b7eab28",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent": 1097743,
+      "partial": 475121,
+      "opaque": 0,
+      "observation": "右側正交；護額有第三方符號，靴後有明顯淺色投影。"
+    },
+    {
+      "file": "characters/eiku/eiku-expressions-reference-v001.png",
+      "sha256": "72065325c29eeaf8fe7aa537a1d2f4123899b2c81630acfbebb87dfe378ca945",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "transparent": 211824,
+      "partial": 1361040,
+      "opaque": 0,
+      "observation": "六格表情裁切，部分髮型、護額與臉部角度變化；不可當連續格。"
+    },
+    {
+      "file": "characters/eiku/eiku-front-left-candidate-v001.png",
+      "sha256": "2e55c42a12ede056381070fc1221957981f0b653a0c8ec870aeefee94e645c06",
+      "size": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "transparent": 926815,
+      "partial": 646130,
+      "opaque": 143,
+      "observation": "左前斜向；刀柄露出且附游離風環，步姿拉開。"
+    },
+    {
+      "file": "characters/eiku/eiku-front-right-candidate-v001.png",
+      "sha256": "ccc0e8fcaa448c1fbeed42c2d828a27d9589cc7f54c5c1afba3c8e14c4e2da59",
+      "size": [
+        1292,
+        1218
+      ],
+      "mode": "RGBA",
+      "transparent": 912293,
+      "partial": 660776,
+      "opaque": 587,
+      "observation": "右前斜向；出鞘發光刀、風環與張步姿勢連在角色上。"
+    },
+    {
+      "file": "characters/eiku/eiku-back-left-candidate-v001.png",
+      "sha256": "a7782af7334df0526e31cc9dab9f76117a97c58cb537287775e1cf194b85f02c",
+      "size": [
+        1199,
+        1312
+      ],
+      "mode": "RGBA",
+      "transparent": 1097443,
+      "partial": 475140,
+      "opaque": 505,
+      "observation": "左後斜向；露出發光刀身，圍巾與靴子姿態不適合作待機對位。"
+    },
+    {
+      "file": "characters/eiku/eiku-back-right-candidate-v001.png",
+      "sha256": "fb63f5acc3289b44d74579fafc3fd5ecaed3ddf1c974902400f0684581fdd8eb",
+      "size": [
+        1211,
+        1299
+      ],
+      "mode": "RGBA",
+      "transparent": 1158235,
+      "partial": 414309,
+      "opaque": 545,
+      "observation": "右後斜向；腰側佩刀、垂手、重心與左後不同。"
+    },
+    {
+      "file": "characters/eiku/eiku-gameplay-reference-v001.png",
+      "sha256": "64b3b07571fce05e8c9c207a4c1da4c0c9b2767e42597d45d6805bf5e4a55dcc",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGBA",
+      "transparent": 0,
+      "partial": 1573352,
+      "opaque": 0,
+      "observation": "構圖方向參考；角色、靈伴、控制與風景已合成。"
+    },
+    {
+      "file": "characters/eiku/eiku-hero-reference-v001.png",
+      "sha256": "c9e4f96a1052f520de89c1fb9973f5a8c3b048fa3ad1b9664fc260dfd27f01b9",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "transparent": 173,
+      "partial": 1572691,
+      "opaque": 0,
+      "observation": "英雄概念圖；全身戲劇透視，武器、靈伴與風特效合成。正交正面作造型配對依據。"
+    },
+    {
+      "file": "weapons/wind-katana-reference-v001.png",
+      "sha256": "75516d8f7d7997505c0b7dd9b22e402dca070692ea846eed63139d5a858e0b98",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "transparent": 932402,
+      "partial": 640462,
+      "opaque": 0,
+      "observation": "風刀設計參考；刀、石台、植物和光效合成。"
+    },
+    {
+      "file": "creatures/hayate-reference-v001.png",
+      "sha256": "cc264c8cd45681b29f64bec86ff10b0d3500cc6e2d0f9d024c22a329ed0eb3c4",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "transparent": 825273,
+      "partial": 747591,
+      "opaque": 0,
+      "observation": "靈伴設計參考；靈伴毛髮外緣與風效合成。"
+    }
+  ],
+  "runtime": {
+    "south": {
+      "original": "eiku-front-reference-v001.png",
+      "sourceFoot": [
+        493,
+        1507
+      ],
+      "sourceStandingTop": 9,
+      "output": [
+        384,
+        384
+      ],
+      "foot": [
+        192,
+        338
+      ],
+      "standingHeight": 316,
+      "sha256": "6b49b16f310677bdbefdcfb0019a01af33deb3689f44c3202ae71009da11d7b0",
+      "bytes": 58622
+    },
+    "north": {
+      "original": "eiku-back-reference-v001.png",
+      "sourceFoot": [
+        510,
+        1509
+      ],
+      "sourceStandingTop": 11,
+      "output": [
+        384,
+        384
+      ],
+      "foot": [
+        192,
+        338
+      ],
+      "standingHeight": 316,
+      "sha256": "bc9cda2f33075eb30617bcfb9117505d46b3ebaa8e08a08f8ef8230a458b5045",
+      "bytes": 52426
+    },
+    "west": {
+      "original": "eiku-left-reference-v001.png",
+      "sourceFoot": [
+        440,
+        1510
+      ],
+      "sourceStandingTop": 7,
+      "output": [
+        384,
+        384
+      ],
+      "foot": [
+        192,
+        338
+      ],
+      "standingHeight": 316,
+      "sha256": "a7bef66451fcbb56fa5fa699c1e858df6593486537d3753f75b6541ff76f641c",
+      "bytes": 40818
+    },
+    "east": {
+      "original": "eiku-right-reference-v001.png",
+      "sourceFoot": [
+        504,
+        1510
+      ],
+      "sourceStandingTop": 4,
+      "output": [
+        384,
+        384
+      ],
+      "foot": [
+        192,
+        338
+      ],
+      "standingHeight": 316,
+      "sha256": "a83167a7168a1b32323ee3f8c92241a8b7924fab74ef9c2144adc6220e3742f8",
+      "bytes": 46474
+    }
+  }
+}

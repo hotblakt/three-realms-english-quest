@@ -33,7 +33,7 @@ export class Player {
       this.dodgeDirection.copy(this.facing);
       this.dodgeUntil = now + 160;
       this.dodgeReady = now + 550;
-      showDodge(this.scene, this.view, this.dodgeDirection);
+      if (this.view.visible) showDodge(this.scene, this.view, this.dodgeDirection);
     }
     const dodging = now < this.dodgeUntil;
     const velocity = dodging ? this.dodgeDirection : direction;
@@ -66,6 +66,10 @@ export class Player {
   }
 
   heal(): void { this.health = this.maxHealth; }
+
+  setContactShadowVisible(visible: boolean): void {
+    this.contactShadow.setVisible(visible);
+  }
 
   syncView(): void {
     const { x, y } = this.body.center;

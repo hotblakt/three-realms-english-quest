@@ -23,7 +23,7 @@ export function addSoftShadow(scene: Phaser.Scene, x: number, y: number, width: 
   return scene.add.image(x, y, shadow).setDisplaySize(width, height).setDepth(-1.8).setAlpha(alpha);
 }
 
-export function addLanternLight(scene: Phaser.Scene, x: number, y: number): void {
+export function addLanternLight(scene: Phaser.Scene, x: number, y: number): Phaser.GameObjects.Image[] {
   gradient(scene, gold, '255, 193, 106', .4);
   const pool = scene.add.image(x, y + 1, gold).setDisplaySize(61, 27).setDepth(-1.6);
   const halo = scene.add.image(x, y - 15, gold).setDisplaySize(51, 51).setDepth(-1.55).setAlpha(.69);
@@ -32,6 +32,7 @@ export function addLanternLight(scene: Phaser.Scene, x: number, y: number): void
       targets: [pool, halo], alpha: .54, duration: 1950 + x % 400, yoyo: true, repeat: -1, ease: 'Sine.inOut',
     });
   }
+  return [pool, halo];
 }
 
 export function addBreeze(scene: Phaser.Scene): void {
