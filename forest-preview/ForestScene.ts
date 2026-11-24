@@ -6,7 +6,9 @@ import { Sword } from '../src/combat/Sword';
 import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
 import assetCatalog from '../docs/misty-forest-runtime-assets.json';
-import { compositionPanel, preloadComposition, showCandidate } from './composition';
+import { AnimationClip } from './animationClip';
+import runManifest from './run-manifest.json';
+import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { bridge, chest, entrance, height, props, routes, shortcut, spirit, streamCenter, waterWalls, width } from './layout';
 
 type ForestTexture = keyof typeof assetCatalog.textures;
@@ -18,6 +20,11 @@ export class ForestScene extends Phaser.Scene {
   private player!: Player;
   private readonly composition = compositionPanel();
   private settings = this.composition.read();
+  private readonly run = new AnimationClip(runManifest, 'eiku-run');
+  private previousX = entrance.x;
+  private dodgeEnd = 0;
+  private running = false;
+  private displayedRunFrame = 0;
   private candidate!: Phaser.GameObjects.Image;
   private originalScale = 1;
   private environmentLights: Phaser.GameObjects.Image[] = [];
@@ -36,6 +43,7 @@ export class ForestScene extends Phaser.Scene {
   preload(): void {
     preloadEikuAtlas(this);
     preloadComposition(this);
+    this.run.preload(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -58,8 +66,18 @@ export class ForestScene extends Phaser.Scene {
     this.addLandmarks();
     this.addAtmosphere();
     this.environmentLights.push(...addLanternLight(this, 617, 471), ...addLanternLight(this, 737, 452));
-    const applyComposition = () => {
+    const reviewFrame = this.composition.panel.querySelector<HTMLSelectElement>('[name="frame"]')!;
+    const applyComposition = (event?: Event) => {
+      if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && !this.settings.paused) {
+        reviewFrame.value = String(this.displayedRunFrame + 1);
+      }
       this.settings = this.composition.read();
+      const { resolution, speed, paused, motion, candidate } = this.settings;
+      reviewFrame.disabled = !paused || !candidate || motion === 'still';
+      const asset = runManifest.textures[resolution as 256 | 384];
+      const fps = paused || !candidate || motion === 'still' ? 0 : runManifest.fps * speed;
+      document.querySelector('#run-info')!.textContent =
+        `右向跑步 ${runManifest.frameCount} 格・${fps} 格／秒（設定）・${(asset.bytes / 1024).toFixed(1)} KiB`;
       const smooth = this.settings.smoothing && !matchMedia('(prefers-reduced-motion: reduce)').matches;
       this.cameras.main.setZoom(this.settings.zoom).setLerp(smooth ? .13 : 1);
       this.player.view.setVisible(!this.settings.candidate).setScale(this.originalScale * this.settings.size / 100);
@@ -243,15 +261,32 @@ export class ForestScene extends Phaser.Scene {
     addBreeze(this);
   }
 
-  update(now: number): void {
+  update(now: number, delta: number): void {
     const direction = this.controls.direction();
     this.player.look(direction, now);
-    this.player.move(direction, now, this.controls.consume('dodge'));
+    if (this.player.move(direction, now, this.controls.consume('dodge'))) this.dodgeEnd = now + 160;
     this.player.syncView();
     const { x, y } = this.player.body.center;
     if (this.settings.candidate) {
-      showCandidate(this, this.candidate, this.player.facing, this.settings);
+      const distance = x - this.previousX;
+      const movingEast = this.player.facing.x > 0 && direction.x > 0 && distance > 0 && now >= this.dodgeEnd;
+      const { motion, paused, speed, frame, resolution, size } = this.settings;
+      const running = motion !== 'still' && (paused || motion === 'review' || movingEast);
+      if (running) {
+        if (!this.running) this.run.reset(motion === 'review' ? 0 : 1);
+        // Use distance travelled so contact with a wall naturally stops the run loop.
+        const seconds = motion === 'review' ? delta / 1000 : distance / runManifest.referenceSpeed;
+        const index = paused ? frame : this.run.advance(Math.max(0, Math.min(seconds, .05)), speed);
+        this.displayedRunFrame = index;
+        this.run.draw(this.candidate, resolution, index, standingHeight * size / 100);
+      } else {
+        showCandidate(this, this.candidate, this.player.facing, this.settings);
+      }
+      this.running = running;
+    } else {
+      this.running = false;
     }
+    this.previousX = x;
     this.candidate.setPosition(x, y).setDepth(y).setAlpha(this.player.view.alpha);
     if (this.controls.consume('attack')) {
       this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center);
