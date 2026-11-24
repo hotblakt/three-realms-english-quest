@@ -80,3 +80,9 @@ iPad 與 iPhone 驗收請分別於 Safari 分頁和主畫面版，在長老和�
 ## 影空美術工作台
 
 GitHub Pages 路徑為 [影空美術工作台](https://hotblakt.github.io/three-realms-english-quest/art-workbench/)。本機開發時可在 `npm run dev` 的網址加上 `/art-workbench/`；正式預覽沿用 GitHub Pages 的專案子路徑。工作台使用遊戲的隱竹村場景素材與現用角色正面影格。100% 為遊戲世界倍率，候選格使用 2/3 倍。可切換原始圖、背景和取樣方式，調整候選格的位置，或展開僅供參考的四向待機動畫。工作台和遊戲是兩個獨立的建置入口。
+
+## 6D 世界與美術規劃
+
+- [美術指引與現況稽核](docs/art-direction.md)
+- [製作規格、6D-2／6D-3 順序及首件生成提示](docs/asset-production-guide.md)
+- [三界架構與霧竹林路線](docs/world-design.md)
