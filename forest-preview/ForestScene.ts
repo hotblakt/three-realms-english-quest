@@ -23,6 +23,8 @@ export class ForestScene extends Phaser.Scene {
   private readonly runs = {
     framesprite: new AnimationClip(runSources.framesprite, 'eiku-run'),
     chatgpt: new AnimationClip(runSources.chatgpt, 'eiku-run'),
+    'fal-first': new AnimationClip(runSources['fal-first'], 'eiku-run'),
+    'fal-second': new AnimationClip(runSources['fal-second'], 'eiku-run'),
   };
   private previousX = entrance.x;
   private dodgeEnd = 0;
@@ -70,20 +72,38 @@ export class ForestScene extends Phaser.Scene {
     this.addAtmosphere();
     this.environmentLights.push(...addLanternLight(this, 617, 471), ...addLanternLight(this, 737, 452));
     const reviewFrame = this.composition.panel.querySelector<HTMLSelectElement>('[name="frame"]')!;
+    const replay = document.querySelector<HTMLButtonElement>('#replay-diagnostic')!;
+    const replayDiagnostic = () => {
+      const mode = this.composition.panel.querySelector<HTMLSelectElement>('[name="motion"]')!;
+      const paused = this.composition.panel.querySelector<HTMLInputElement>('[name="paused"]')!;
+      paused.checked = false;
+      mode.value = 'review';
+      this.running = false;
+      mode.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+    replay.addEventListener('click', replayDiagnostic);
     const applyComposition = (event?: Event) => {
-      if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && !this.settings.paused) {
-        reviewFrame.value = String(this.displayedRunFrame + 1);
-      }
       const next = this.composition.read();
-      if (next.source !== this.settings.source) this.running = false;
-      this.settings = next;
       const { resolution, speed, paused, source, candidate } = next;
       const clip = candidate && source !== 'static' ? this.runs[source] : undefined;
+      const sourceChanged = source !== this.settings.source || candidate !== this.settings.candidate;
+      if (sourceChanged || next.motion !== this.settings.motion) this.running = false;
+      const count = clip?.manifest.frameCount ?? 0;
+      if (reviewFrame.length !== count) {
+        reviewFrame.replaceChildren(...Array.from({ length: count }, (_, i) => new Option(String(i + 1))));
+      }
+      if (sourceChanged) reviewFrame.selectedIndex = 0;
+      else if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && paused) {
+        reviewFrame.selectedIndex = Math.min(count - 1, this.displayedRunFrame);
+      }
+      this.settings = this.composition.read();
       reviewFrame.disabled = !paused || !clip;
+      replay.hidden = !clip?.manifest.diagnostic;
       const info = document.querySelector('#run-info')!;
       if (clip) {
         const asset = clip.manifest.textures[String(resolution)];
-        const warning = source === 'chatgpt' ? '・候選循環未通過步態驗收' : '';
+        const warning = clip.manifest.diagnostic ? '・僅診斷，單次播放'
+          : source === 'chatgpt' ? '・候選循環未通過步態驗收' : '';
         info.textContent = `${clip.manifest.frameCount} 格・${paused ? 0 : clip.manifest.fps * speed} 格／秒（設定）・${asset.width}×${asset.height}・${asset.bytes.toLocaleString('zh-TW')} bytes${warning}`;
       } else {
         info.textContent = '站姿模式・無跑步圖集';
@@ -105,6 +125,7 @@ export class ForestScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.game.events.off(Phaser.Core.Events.PAUSE, onPause);
       this.controls.destroy();
+      replay.removeEventListener('click', replayDiagnostic);
       this.composition.panel.removeEventListener('change', applyComposition);
     });
   }
@@ -283,12 +304,16 @@ export class ForestScene extends Phaser.Scene {
       const { motion, paused, speed, frame, resolution, size, source } = this.settings;
       const clip = source !== 'static' && (paused || motion === 'review' || movingEast) ? this.runs[source] : undefined;
       if (clip) {
-        if (!this.running) clip.reset(motion === 'review' || source === 'chatgpt' ? 0 : 1);
+        if (!this.running) clip.reset(motion === 'review' || source !== 'framesprite' ? 0 : 1);
         // Use distance travelled so contact with a wall naturally stops the run loop.
         const seconds = motion === 'review' ? delta / 1000 : distance / clip.manifest.referenceSpeed;
         const index = paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
-        clip.draw(this.candidate, resolution, index, standingHeight * size / 100);
+        if (clip.finished && !paused && motion !== 'review') {
+          showCandidate(this, this.candidate, this.player.facing, this.settings);
+        } else {
+          clip.draw(this.candidate, resolution, index, standingHeight * size / 100);
+        }
       } else {
         showCandidate(this, this.candidate, this.player.facing, this.settings);
       }

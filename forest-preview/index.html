@@ -17,6 +17,23 @@
       <details id="composition">
         <summary>構圖設定</summary>
         <div class="composition-options">
+          <label>動作來源 <select name="run-source">
+            <option value="static">影空 2.0 站姿</option>
+            <option value="framesprite" selected>FrameSprite 跑步</option>
+            <option value="fal-first">fal.ai 第一次・診斷</option>
+            <option value="fal-second">fal.ai 第二次・診斷</option>
+            <option value="chatgpt">ChatGPT 試播候選</option>
+          </select></label>
+          <label>跑步預覽 <select name="motion">
+            <option value="walk">隨移動播放</option><option value="review">原地試播</option>
+          </select></label>
+          <label>播放速度 <select name="speed"><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select></label>
+          <div class="composition-toggles">
+            <label><input type="checkbox" name="paused">暫停動畫</label>
+            <label>檢閱格 <select name="frame" disabled></select></label>
+          </div>
+          <button id="replay-diagnostic" type="button" hidden>重播診斷片段</button>
+          <p id="run-info"></p>
           <label>角色 <select name="character"><option value="original">現用影空</option><option value="candidate" selected>影空 2.0</option></select></label>
           <label>角色高度 <select name="size"><option>100</option><option>140</option><option>160</option><option>180</option><option selected>207</option></select><span>%</span></label>
           <label>2.0 貼圖邊長 <select name="resolution"><option selected>256</option><option>384</option></select></label>
@@ -27,20 +44,6 @@
             <label><input type="checkbox" name="shadow" checked>接地陰影</label>
             <label><input type="checkbox" name="light" checked>環境光</label>
           </div>
-          <label>動作來源 <select name="run-source">
-            <option value="static">影空 2.0 站姿</option>
-            <option value="framesprite" selected>FrameSprite 跑步</option>
-            <option value="chatgpt">ChatGPT 試播候選</option>
-          </select></label>
-          <label>跑步預覽 <select name="motion">
-            <option value="walk">隨移動播放</option><option value="review">原地試播</option>
-          </select></label>
-          <label>播放速度 <select name="speed"><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select></label>
-          <div class="composition-toggles">
-            <label><input type="checkbox" name="paused">暫停動畫</label>
-            <label>檢閱格 <select name="frame" disabled><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
-          </div>
-          <p id="run-info"></p>
           <p>向右移動可看跑步。其他方向使用站姿。</p>
         </div>
       </details>

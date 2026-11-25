@@ -11,6 +11,7 @@ interface ClipManifest {
   id: string;
   frameCount: number;
   fps: number;
+  diagnostic?: boolean;
   referenceSpeed: number;
   standingHeightInFrame: number;
   origin: number[];
@@ -36,9 +37,14 @@ export class AnimationClip {
 
   reset(frame = 0): void { this.phase = frame; }
 
+  get finished(): boolean {
+    return Boolean(this.manifest.diagnostic) && this.phase >= this.manifest.frameCount;
+  }
+
   advance(seconds: number, speed: number): number {
-    this.phase = (this.phase + seconds * speed * this.manifest.fps) % this.manifest.frameCount;
-    return Math.floor(this.phase);
+    this.phase += seconds * speed * this.manifest.fps;
+    if (!this.manifest.diagnostic) this.phase %= this.manifest.frameCount;
+    return Math.min(Math.floor(this.phase), this.manifest.frameCount - 1);
   }
 
   draw(image: Phaser.GameObjects.Image, size: number, frame: number, standHeight: number): void {

@@ -1,0 +1,28 @@
+{
+  "id": "fal-first-diagnostic",
+  "frameCount": 2,
+  "fps": 8,
+  "referenceSpeed": 123,
+  "standingHeightInFrame": 0.88,
+  "origin": [
+    0.5,
+    0.92
+  ],
+  "diagnostic": true,
+  "textures": {
+    "256": {
+      "url": "fal-first-diagnostic-256.webp",
+      "bytes": 63818,
+      "sha256": "ddf61362ef4a189914bd5b2ecebcffc64c5dac80d78a66318851c37502771edd",
+      "width": 512,
+      "height": 256
+    },
+    "384": {
+      "url": "fal-first-diagnostic-384.webp",
+      "bytes": 128074,
+      "sha256": "ba53182901ce4e642940816ea953163ac257304b28333f5fa3eebdc3d59f5cfe",
+      "width": 768,
+      "height": 384
+    }
+  }
+}
