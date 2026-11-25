@@ -7,7 +7,7 @@ import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
 import assetCatalog from '../docs/misty-forest-runtime-assets.json';
 import { AnimationClip } from './animationClip';
-import runManifest from './run-manifest.json';
+import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { bridge, chest, entrance, height, props, routes, shortcut, spirit, streamCenter, waterWalls, width } from './layout';
 
@@ -20,7 +20,10 @@ export class ForestScene extends Phaser.Scene {
   private player!: Player;
   private readonly composition = compositionPanel();
   private settings = this.composition.read();
-  private readonly run = new AnimationClip(runManifest, 'eiku-run');
+  private readonly runs = {
+    framesprite: new AnimationClip(runSources.framesprite, 'eiku-run'),
+    chatgpt: new AnimationClip(runSources.chatgpt, 'eiku-run'),
+  };
   private previousX = entrance.x;
   private dodgeEnd = 0;
   private running = false;
@@ -43,7 +46,7 @@ export class ForestScene extends Phaser.Scene {
   preload(): void {
     preloadEikuAtlas(this);
     preloadComposition(this);
-    this.run.preload(this);
+    for (const clip of Object.values(this.runs)) clip.preload(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -71,13 +74,20 @@ export class ForestScene extends Phaser.Scene {
       if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && !this.settings.paused) {
         reviewFrame.value = String(this.displayedRunFrame + 1);
       }
-      this.settings = this.composition.read();
-      const { resolution, speed, paused, motion, candidate } = this.settings;
-      reviewFrame.disabled = !paused || !candidate || motion === 'still';
-      const asset = runManifest.textures[resolution as 256 | 384];
-      const fps = paused || !candidate || motion === 'still' ? 0 : runManifest.fps * speed;
-      document.querySelector('#run-info')!.textContent =
-        `右向跑步 ${runManifest.frameCount} 格・${fps} 格／秒（設定）・${(asset.bytes / 1024).toFixed(1)} KiB`;
+      const next = this.composition.read();
+      if (next.source !== this.settings.source) this.running = false;
+      this.settings = next;
+      const { resolution, speed, paused, source, candidate } = next;
+      const clip = candidate && source !== 'static' ? this.runs[source] : undefined;
+      reviewFrame.disabled = !paused || !clip;
+      const info = document.querySelector('#run-info')!;
+      if (clip) {
+        const asset = clip.manifest.textures[String(resolution)];
+        const warning = source === 'chatgpt' ? '・候選循環未通過步態驗收' : '';
+        info.textContent = `${clip.manifest.frameCount} 格・${paused ? 0 : clip.manifest.fps * speed} 格／秒（設定）・${asset.width}×${asset.height}・${asset.bytes.toLocaleString('zh-TW')} bytes${warning}`;
+      } else {
+        info.textContent = '站姿模式・無跑步圖集';
+      }
       const smooth = this.settings.smoothing && !matchMedia('(prefers-reduced-motion: reduce)').matches;
       this.cameras.main.setZoom(this.settings.zoom).setLerp(smooth ? .13 : 1);
       this.player.view.setVisible(!this.settings.candidate).setScale(this.originalScale * this.settings.size / 100);
@@ -270,19 +280,19 @@ export class ForestScene extends Phaser.Scene {
     if (this.settings.candidate) {
       const distance = x - this.previousX;
       const movingEast = this.player.facing.x > 0 && direction.x > 0 && distance > 0 && now >= this.dodgeEnd;
-      const { motion, paused, speed, frame, resolution, size } = this.settings;
-      const running = motion !== 'still' && (paused || motion === 'review' || movingEast);
-      if (running) {
-        if (!this.running) this.run.reset(motion === 'review' ? 0 : 1);
+      const { motion, paused, speed, frame, resolution, size, source } = this.settings;
+      const clip = source !== 'static' && (paused || motion === 'review' || movingEast) ? this.runs[source] : undefined;
+      if (clip) {
+        if (!this.running) clip.reset(motion === 'review' || source === 'chatgpt' ? 0 : 1);
         // Use distance travelled so contact with a wall naturally stops the run loop.
-        const seconds = motion === 'review' ? delta / 1000 : distance / runManifest.referenceSpeed;
-        const index = paused ? frame : this.run.advance(Math.max(0, Math.min(seconds, .05)), speed);
+        const seconds = motion === 'review' ? delta / 1000 : distance / clip.manifest.referenceSpeed;
+        const index = paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
-        this.run.draw(this.candidate, resolution, index, standingHeight * size / 100);
+        clip.draw(this.candidate, resolution, index, standingHeight * size / 100);
       } else {
         showCandidate(this, this.candidate, this.player.facing, this.settings);
       }
-      this.running = running;
+      this.running = Boolean(clip);
     } else {
       this.running = false;
     }

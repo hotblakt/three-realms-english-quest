@@ -1,0 +1,27 @@
+{
+  "id": "eiku-chatgpt-run-review",
+  "frameCount": 6,
+  "fps": 8,
+  "referenceSpeed": 123,
+  "standingHeightInFrame": 0.8229166666666666,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "textures": {
+    "256": {
+      "url": "chatgpt-run-256.webp",
+      "bytes": 176700,
+      "width": 768,
+      "height": 512,
+      "sha256": "411a56c3aab8c288f385a0d69035131d72f989af0d8bb7ce8f521356cfabe2d6"
+    },
+    "384": {
+      "url": "chatgpt-run-384.webp",
+      "bytes": 336810,
+      "width": 1152,
+      "height": 768,
+      "sha256": "37d8ffa0edb9276a0192f3b67a0122e9fe9c57bcc2dd66dc2abff0c282fbfd67"
+    }
+  }
+}

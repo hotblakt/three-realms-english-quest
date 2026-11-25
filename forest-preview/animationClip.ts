@@ -3,6 +3,8 @@ import type Phaser from 'phaser';
 interface TextureVariant {
   url: string;
   bytes: number;
+  width: number;
+  height: number;
 }
 
 interface ClipManifest {
