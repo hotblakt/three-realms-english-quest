@@ -27,8 +27,13 @@
             <label><input type="checkbox" name="shadow" checked>接地陰影</label>
             <label><input type="checkbox" name="light" checked>環境光</label>
           </div>
+          <label>動作來源 <select name="run-source">
+            <option value="static">影空 2.0 站姿</option>
+            <option value="framesprite" selected>FrameSprite 跑步</option>
+            <option value="chatgpt">ChatGPT 試播候選</option>
+          </select></label>
           <label>跑步預覽 <select name="motion">
-            <option value="walk">隨移動播放</option><option value="still">固定站姿</option><option value="review">原地試播</option>
+            <option value="walk">隨移動播放</option><option value="review">原地試播</option>
           </select></label>
           <label>播放速度 <select name="speed"><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select></label>
           <div class="composition-toggles">

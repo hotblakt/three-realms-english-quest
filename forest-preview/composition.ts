@@ -1,6 +1,8 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
 
+import { parseRunSource } from './runSources';
+
 const base = import.meta.env.BASE_URL;
 const directions = ['south', 'north', 'west', 'east'] as const;
 export const standingHeight = 44;
@@ -12,6 +14,7 @@ export function compositionPanel() {
   return {
     panel,
     read: () => ({
+      source: parseRunSource(value('run-source')),
       motion: value('motion'),
       speed: Number(value('speed')),
       paused: checked('paused'),

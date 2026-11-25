@@ -1,0 +1,83 @@
+{
+  "commit": "050d912832abd120b8dcebf8feb040de963a0682",
+  "zipSha256": "2cd9fc636e9b376e7295d61a7ac367a570d0c97b8547200fec7d26bc85b867f8",
+  "member": "characters/eiku/eiku-run-right-chatgpt-candidate-v001.png",
+  "pngSha256": "25fa32cd49087c71dc13ea0a708a227419a17b78ac0c4ce1e7fe576d419658ba",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "mode": "RGBA",
+  "alphaZero": 5,
+  "alphaPartial": 1572494,
+  "alphaOpaque": 29,
+  "poseBounds": [
+    [
+      11,
+      122,
+      406,
+      595
+    ],
+    [
+      412,
+      120,
+      763,
+      593
+    ],
+    [
+      745,
+      117,
+      1133,
+      581
+    ],
+    [
+      1144,
+      120,
+      1495,
+      594
+    ],
+    [
+      1493,
+      120,
+      1833,
+      593
+    ],
+    [
+      1822,
+      120,
+      2171,
+      593
+    ]
+  ],
+  "recipe": {
+    "commit": "050d912832abd120b8dcebf8feb040de963a0682",
+    "alphaCutoff": 100,
+    "scale": 0.62,
+    "anchors": [
+      [
+        222,
+        595
+      ],
+      [
+        580,
+        595
+      ],
+      [
+        931,
+        595
+      ],
+      [
+        1320,
+        595
+      ],
+      [
+        1651,
+        595
+      ],
+      [
+        1990,
+        595
+      ]
+    ]
+  }
+}
