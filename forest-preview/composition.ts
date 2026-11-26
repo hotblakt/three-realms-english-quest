@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
 
+import { calibratedSize } from './scalePanel';
 import { parseRunSource } from './runSources';
 
 const base = import.meta.env.BASE_URL;
@@ -56,7 +57,8 @@ export function showCandidate(
     variant.refresh();
   }
   if (image.texture.key !== key) image.setTexture(key);
-  const displaySize = standingHeight * settings.size / 100 * 384 / 316;
+  const nominal = standingHeight * settings.size / 100 * 384 / 316;
+  const displaySize = calibratedSize(image, nominal, direction, 'stance');
   image.setOrigin(.5, 338 / 384).setDisplaySize(displaySize, displaySize);
 }
 

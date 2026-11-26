@@ -1,4 +1,6 @@
 import type Phaser from 'phaser';
+import { clipCalibration } from './directionalScale';
+import { calibratedSize, clearScaleTransition } from './scalePanel';
 
 interface TextureVariant {
   url: string;
@@ -60,7 +62,10 @@ export class AnimationClip {
     if (image.texture.key !== texture) image.setTexture(texture, frame);
     else if (Number(image.frame.name) !== frame) image.setFrame(frame);
     const [x, y] = this.manifest.origin;
-    const displaySize = standHeight / this.manifest.standingHeightInFrame;
+    const nominal = standHeight / this.manifest.standingHeightInFrame;
+    const art = clipCalibration(this.manifest.id);
+    if (!art) clearScaleTransition(image);
+    const displaySize = art ? calibratedSize(image, nominal, art.direction, art.action) : nominal;
     image.setOrigin(x, y).setDisplaySize(displaySize, displaySize);
   }
 }
