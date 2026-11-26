@@ -23,9 +23,9 @@ def read_frames(archive):
                     or entry.file_size > 32 * 1024**2):
                 raise ValueError(f'Unsafe ZIP entry: {entry.filename}')
             files[path.name] = entry
-        layout = json.loads(source.read(files['layout.json']))
+        layout = json.loads(source.read(files['layout.json'])) if 'layout.json' in files else None
         timing = json.loads(source.read(files['timing.json']))
-        count = layout['frameCount']
+        count = timing['frameCount'] if layout is None else layout['frameCount']
         samples, delays = timing['sampleTimesMs'], timing['frameDelaysMs']
         if not (count == timing['frameCount'] == len(samples) == len(delays) <= 240
                 and all(math.isfinite(t) for t in samples)
@@ -34,6 +34,8 @@ def read_frames(archive):
                 and math.isclose(sum(delays), timing['durationMs'], abs_tol=.001)
                 and math.isclose(count / timing['durationMs'] * 1000, timing['fps'], abs_tol=.001)):
             raise ValueError('Invalid frame timing')
+        if layout is None:
+            return read_sequence(source, files, timing)
         w, h = layout['frameWidth'], layout['frameHeight']
         if not (0 < w <= 2048 and 0 < h <= 2048 and 0 < count and count * w * h <= 150_000_000):
             raise ValueError('Unsupported source canvas or frame budget')
@@ -65,3 +67,31 @@ def read_frames(archive):
             raise ValueError('Archive entries do not match layout')
         metadata = {name: sha(source.read(files[name])) for name in ('layout.json', 'timing.json')}
         return frames, pages, timing, metadata
+
+
+def read_sequence(source, files, timing):
+    count = timing['frameCount']
+    names = [f'frame_{index:03}.png' for index in range(count)]
+    expected = set(names) | {'timing.json', 'README.txt'}
+    if not count or set(files) != expected:
+        raise ValueError('Unexpected numbered sequence members')
+    readme = source.read(files['README.txt'])
+    if not readme.decode('utf-8').strip():
+        raise ValueError('Missing sequence notes')
+    frames, metadata = [], []
+    for name in names:
+        raw = source.read(files[name])
+        with Image.open(io.BytesIO(raw)) as image:
+            w, h = image.size
+            if (image.format != 'PNG' or image.mode != 'RGBA' or max(w, h) > 2048
+                    or w*h*count > 150_000_000 or (frames and image.size != frames[0].size)):
+                raise ValueError(f'Invalid sequence frame {name}')
+            image.verify()
+        image = Image.open(io.BytesIO(raw))
+        if image.getchannel('A').getextrema() != (0, 255):
+            raise ValueError(f'Unexpected alpha in {name}')
+        frames.append(image)
+        metadata.append({'name':name,'size':image.size,'mode':image.mode,'sha256':sha(raw)})
+    return frames, metadata, {'frameWidth':w, 'frameHeight':h, **timing}, {
+        name:sha(source.read(files[name])) for name in ('README.txt','timing.json')
+    }

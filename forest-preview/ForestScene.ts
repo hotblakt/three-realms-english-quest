@@ -6,6 +6,7 @@ import { Sword } from '../src/combat/Sword';
 import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
 import assetCatalog from '../docs/misty-forest-runtime-assets.json';
+import { EastActions } from './eastActions';
 import { AnimationClip } from './animationClip';
 import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
@@ -20,7 +21,14 @@ export class ForestScene extends Phaser.Scene {
   private player!: Player;
   private readonly composition = compositionPanel();
   private settings = this.composition.read();
+  private readonly eastActions = new EastActions();
+  private castRequested = false;
+  private castKey!: Phaser.Input.Keyboard.Key;
+  private footMarker!: Phaser.GameObjects.Graphics;
+  private readonly anchorSetting = document.querySelector<HTMLInputElement>('#ground-anchor')!;
   private readonly runs = {
+    'east-idle': new AnimationClip(runSources['east-idle'], 'eiku-run'),
+    'east-cast': new AnimationClip(runSources['east-cast'], 'eiku-run'),
     framesprite: new AnimationClip(runSources.framesprite, 'eiku-run'),
     'south-run': new AnimationClip(runSources['south-run'], 'eiku-run'),
     chatgpt: new AnimationClip(runSources.chatgpt, 'eiku-run'),
@@ -50,7 +58,6 @@ export class ForestScene extends Phaser.Scene {
   preload(): void {
     preloadEikuAtlas(this);
     preloadComposition(this);
-    for (const clip of Object.values(this.runs)) clip.preload(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -64,6 +71,12 @@ export class ForestScene extends Phaser.Scene {
     this.obstacles = this.physics.add.staticGroup();
     this.physics.add.collider(this.player.body, this.obstacles);
     this.controls = new Controls(this.input.keyboard!);
+    this.castKey = this.input.keyboard!.addKey('K');
+    const castButton = document.querySelector<HTMLButtonElement>('#east-cast-button')!;
+    const requestCast = () => { this.castRequested = true; };
+    castButton.addEventListener('click', requestCast);
+    this.footMarker = this.add.graphics().setDepth(2050).lineStyle(2, 0xffdf7f)
+      .strokeCircle(0, 0, 5).lineBetween(-9, 0, 9, 0).lineBetween(0, -9, 0, 9);
     this.sword = new Sword(this, () => this.player.animateAttack());
     this.cameras.main.setBounds(0, 0, width, height);
     this.cameras.main.startFollow(this.player.view, false, .13, .13, 0, -18);
@@ -100,9 +113,10 @@ export class ForestScene extends Phaser.Scene {
       }
       this.settings = this.composition.read();
       reviewFrame.disabled = !paused || !clip;
-      replay.hidden = !clip?.manifest.diagnostic;
+      replay.hidden = !(clip?.manifest.diagnostic || clip?.manifest.oneShot);
       const info = document.querySelector('#run-info')!;
       if (clip) {
+        clip.ensure(this, resolution);
         const asset = clip.manifest.textures[String(resolution)];
         const warning = clip.manifest.diagnostic ? '・僅診斷，單次播放'
           : source === 'chatgpt' ? '・候選循環未通過步態驗收' : '';
@@ -121,12 +135,15 @@ export class ForestScene extends Phaser.Scene {
     applyComposition();
     const onPause = () => {
       this.controls.reset();
+      this.eastActions.clear();
+      this.castRequested = false;
       this.player.body.stop();
     };
     this.game.events.on(Phaser.Core.Events.PAUSE, onPause);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.game.events.off(Phaser.Core.Events.PAUSE, onPause);
       this.controls.destroy();
+      castButton.removeEventListener('click', requestCast);
       replay.removeEventListener('click', replayDiagnostic);
       this.composition.panel.removeEventListener('change', applyComposition);
     });
@@ -297,9 +314,33 @@ export class ForestScene extends Phaser.Scene {
   update(now: number, delta: number): void {
     const direction = this.controls.direction();
     this.player.look(direction, now);
-    if (this.player.move(direction, now, this.controls.consume('dodge'))) this.dodgeEnd = now + 160;
+    if (this.player.move(direction, now, this.controls.consume('dodge'))) {
+      this.dodgeEnd = now + 160;
+      this.eastActions.start('dash', now);
+    }
     this.player.syncView();
     const { x, y } = this.player.body.center;
+    if (this.controls.consume('attack')
+      && this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center)) {
+      this.eastActions.start('attack', now);
+    }
+    const autoEast = this.settings.candidate && this.settings.source === 'framesprite'
+      && this.settings.motion !== 'review' && !this.settings.paused && this.player.facing.x > 0;
+    const castKeyPressed = Phaser.Input.Keyboard.JustDown(this.castKey);
+    this.castRequested ||= castKeyPressed;
+    if (!autoEast || direction.lengthSq()) {
+      this.castRequested = false;
+      if (this.eastActions.current(now)?.name === 'cast') this.eastActions.clear();
+    }
+    if (this.castRequested && this.runs['east-cast'].ensure(this, this.settings.resolution)) {
+      this.eastActions.start('cast', now);
+      this.castRequested = false;
+    }
+    if (autoEast && this.eastActions.releaseCast(now)) {
+      const spark = this.add.circle(x + 31, y - 43, 6, 0x9cebd6, .7).setDepth(y + 1);
+      this.tweens.add({ targets: spark, x: x + 63, scale: 2, alpha: 0, duration: 240,
+        onComplete: () => spark.destroy() });
+    }
     if (this.settings.candidate) {
       const eastDistance = x - this.previousX;
       const southDistance = y - this.previousY;
@@ -307,15 +348,21 @@ export class ForestScene extends Phaser.Scene {
       const { motion, paused, speed, frame, resolution, size, source } = this.settings;
       const movingSouth = this.player.facing.y > 0 && direction.y > 0 && southDistance > 0 && now >= this.dodgeEnd;
       const automaticSouth = source === 'framesprite' && motion !== 'review' && !paused && movingSouth;
-      const active = automaticSouth ? 'south-run' : source;
+      const action = this.eastActions.current(now);
+      const eastCast = autoEast && action?.name === 'cast' ? action : undefined;
+      const eastIdle = autoEast && !action && !movingEast && !direction.lengthSq();
+      const active = eastCast ? 'east-cast' : eastIdle ? 'east-idle' : automaticSouth ? 'south-run' : source;
       const moving = active === 'south-run' ? movingSouth : movingEast;
-      const clip = active !== 'static' && (paused || motion === 'review' || moving) ? this.runs[active] : undefined;
+      const requestedClip = active !== 'static' && (paused || motion === 'review' || moving || eastIdle || eastCast)
+        ? this.runs[active] : undefined;
+      const clip = requestedClip?.ensure(this, resolution) ? requestedClip : undefined;
       if (clip) {
         if (clip !== this.activeRun) clip.reset(motion === 'review' || active !== 'framesprite' ? 0 : 1);
         // Use distance travelled so contact with a wall naturally stops the run loop.
         const distance = active === 'south-run' ? southDistance : eastDistance;
-        const seconds = motion === 'review' ? delta / 1000 : distance / clip.manifest.referenceSpeed;
-        const index = paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
+        const seconds = motion === 'review' || eastIdle ? delta / 1000 : distance / clip.manifest.referenceSpeed;
+        const index = eastCast ? Math.min(clip.manifest.frameCount - 1, Math.floor((now - eastCast.start) * .01))
+          : paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
         if (clip.finished && !paused && motion !== 'review') {
           showCandidate(this, this.candidate, this.player.facing, this.settings);
@@ -332,9 +379,7 @@ export class ForestScene extends Phaser.Scene {
     this.previousX = x;
     this.previousY = y;
     this.candidate.setPosition(x, y).setDepth(y).setAlpha(this.player.view.alpha);
-    if (this.controls.consume('attack')) {
-      this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center);
-    }
+    this.footMarker.setPosition(x, y).setVisible(this.anchorSetting.checked);
     for (const canopy of this.canopy) {
       const visibilityRadius = canopy.displayWidth * .42;
       const overlap = Math.abs(x - canopy.x);

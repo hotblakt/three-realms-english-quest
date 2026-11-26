@@ -95,3 +95,12 @@
   .forest-preview #actions { grid-template-columns: auto auto; align-items: end; }
   .forest-preview #actions [data-action="attack"] { align-self: center; }
 }
+.forest-preview #east-cast-button { pointer-events: auto; touch-action: none; }
+@media (any-pointer: coarse) {
+  .forest-preview #actions {
+    grid-template-areas: "talk attack" "dodge cast";
+  }
+  .forest-preview #east-cast-button { grid-area: cast; }
+}
+#east-review-images img { display: block; width: 100%; }
+#east-review-images figure { margin: .5rem 0; }

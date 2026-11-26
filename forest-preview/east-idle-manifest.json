@@ -1,0 +1,27 @@
+{
+  "id": "eiku-east-idle",
+  "frameCount": 16,
+  "fps": 7,
+  "referenceSpeed": 123,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "standingHeightInFrame": 0.8229166666666666,
+  "textures": {
+    "256": {
+      "url": "eiku-east-idle-256.webp",
+      "bytes": 407646,
+      "sha256": "20a8a5f4f8dacbcf59244513b17e268a1597d12a086841ba71ea57731c8470a7",
+      "width": 1024,
+      "height": 1024
+    },
+    "384": {
+      "url": "eiku-east-idle-384.webp",
+      "bytes": 789640,
+      "sha256": "3766e9f93bd4524fb3571423a1820aa3e192c959b589b71444440a6ce0ac581a",
+      "width": 1536,
+      "height": 1536
+    }
+  }
+}

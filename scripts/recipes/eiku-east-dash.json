@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "8fe3635aa793c1a46b903cc5df64985105079e41",
+  "id": "eiku-east",
+  "anchor": [
+    380,
+    1090
+  ],
+  "scale": 0.43,
+  "shadowCut": [
+    280,
+    984
+  ],
+  "actions": [
+    {
+      "action": "dash",
+      "range": [
+        8,
+        55
+      ],
+      "approved": false
+    }
+  ]
+}

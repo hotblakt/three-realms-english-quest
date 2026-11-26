@@ -41,11 +41,14 @@ def contact(frames, path):
     board.save(path, quality=86)
 
 
-def normalize(frame, anchor, scale):
+def normalize(frame, anchor, scale, shadow=None):
     rgba = np.array(frame)
     r, g, b, a = [rgba[:, :, i].astype(np.int16) for i in range(4)]
     excess = g - np.maximum(r, b)
     a[(a <= 5) | ((a < 230) & (excess > 60))] = 0
+    if shadow:
+        x, y = shadow
+        a[y:, :x] = 0
     rgba[:, :, 3] = a
     rgba[:, :, 1] = g - np.where((a < 245) & (excess > 15), excess - 10, 0)
     image = Image.fromarray(rgba)
@@ -67,11 +70,18 @@ def export(action, frames, timing, recipe, runtime):
     start, end = action['range']
     if not 0 <= start < end <= len(frames) or end-start < 2:
         raise ValueError('Invalid manually reviewed range')
-    poses = [normalize(f, recipe['anchor'], recipe['scale']) for f in frames[start:end]]
+    indices = action.get('indices', list(range(start, end)))
+    if len(indices) < 2 or sorted(set(indices)) != indices or indices[0] < start or indices[-1] >= end:
+        raise ValueError('Invalid selected indices')
+    poses = [normalize(frames[i], recipe['anchor'], recipe['scale'], recipe.get('shadowCut')) for i in indices]
     name = recipe['id'] + '-' + action['action']
-    fps = round(len(poses)*1000/sum(timing['frameDelaysMs'][start:end]), 2)
+    fps = action.get('fps', round(len(poses)*1000/sum(timing['frameDelaysMs'][start:end]), 2))
+    if not math.isfinite(fps) or not 0 < fps <= 60:
+        raise ValueError('Invalid playback FPS')
     manifest = {'id':name, 'frameCount':len(poses), 'fps':fps, 'referenceSpeed':123,
                 'origin':[.5,338/384], 'standingHeightInFrame':316/384, 'textures':{}}
+    if action.get('oneShot'):
+        manifest['oneShot'] = True
     for size in (256,384):
         cols = math.ceil(math.sqrt(len(poses)))
         rows = math.ceil(len(poses)/cols)
@@ -103,7 +113,7 @@ def main():
     for action in actions:
         (args.output/f"{action['id']}.json").write_text(json.dumps(action,indent=2)+'\n')
     report = {'archiveSha256':sha(args.archive.read_bytes()), 'pages':pages, 'timing':timing,
-              'metadataSha256':metadata,'motionSpans':spans,'motionScores':scores,'recipe':recipe}
+              'metadataSha256':metadata,'motionSpans':spans,'motionScores':scores,'recipe':recipe,'runtime':actions}
     (args.output/'provenance.json').write_text(json.dumps(report,indent=2)+'\n')
     print(spans)
 
