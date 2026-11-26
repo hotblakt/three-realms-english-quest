@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
-import { calibrationFor, recommendedScale, sanitizeScales, smoothBodyHeight, type ArtAction } from './directionalScale';
+import { recommendedScale, sanitizeScales, smoothVisualSize } from './directionalScale';
 
 const key = 'three-realms:forest-directional-calibration:v1';
 let scales = sanitizeScales();
@@ -51,15 +51,14 @@ export function setupScalePanel(): void {
 const previous = new WeakMap<Phaser.GameObjects.Image, { height: number; time: number }>();
 
 export function calibratedSize(
-  image: Phaser.GameObjects.Image, nominalSize: number, direction: EikuDirection, action: ArtAction,
+  image: Phaser.GameObjects.Image, nominalSize: number, direction: EikuDirection,
 ): number {
-  const { target, artwork } = calibrationFor(direction, action, scales);
   const now = image.scene.time.now;
   const old = previous.get(image);
-  const desired = nominalSize * target / 256;
-  const height = old ? smoothBodyHeight(old.height, desired, now - old.time) : desired;
+  const desired = nominalSize * scales[direction] / 100;
+  const height = old ? smoothVisualSize(old.height, desired, now - old.time) : desired;
   previous.set(image, { height, time: now });
-  return height * 256 / artwork;
+  return height;
 }
 
 export function clearScaleTransition(image: Phaser.GameObjects.Image): void {
