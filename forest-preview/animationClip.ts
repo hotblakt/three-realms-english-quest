@@ -12,6 +12,7 @@ interface ClipManifest {
   frameCount: number;
   fps: number;
   diagnostic?: boolean;
+  oneShot?: boolean;
   referenceSpeed: number;
   standingHeightInFrame: number;
   origin: number[];
@@ -20,6 +21,7 @@ interface ClipManifest {
 
 export class AnimationClip {
   private phase = 0;
+  private readonly requested = new Set<number>();
 
   constructor(readonly manifest: ClipManifest, private readonly directory: string) {}
 
@@ -27,23 +29,29 @@ export class AnimationClip {
     return `${this.manifest.id}-${size}`;
   }
 
-  preload(scene: Phaser.Scene): void {
-    for (const [size, variant] of Object.entries(this.manifest.textures)) {
-      scene.load.spritesheet(this.key(Number(size)), `${import.meta.env.BASE_URL}${this.directory}/${variant.url}`, {
-        frameWidth: Number(size), frameHeight: Number(size), endFrame: this.manifest.frameCount - 1,
-      });
-    }
+  ensure(scene: Phaser.Scene, size: number): boolean {
+    const key = this.key(size);
+    if (scene.textures.exists(key)) return true;
+    if (this.requested.has(size)) return false;
+    const variant = this.manifest.textures[String(size)];
+    if (!variant) return false;
+    this.requested.add(size);
+    scene.load.spritesheet(key, `${import.meta.env.BASE_URL}${this.directory}/${variant.url}`, {
+      frameWidth: size, frameHeight: size, endFrame: this.manifest.frameCount - 1,
+    });
+    if (!scene.load.isLoading()) scene.load.start();
+    return false;
   }
 
   reset(frame = 0): void { this.phase = frame; }
 
   get finished(): boolean {
-    return Boolean(this.manifest.diagnostic) && this.phase >= this.manifest.frameCount;
+    return Boolean(this.manifest.diagnostic || this.manifest.oneShot) && this.phase >= this.manifest.frameCount;
   }
 
   advance(seconds: number, speed: number): number {
     this.phase += seconds * speed * this.manifest.fps;
-    if (!this.manifest.diagnostic) this.phase %= this.manifest.frameCount;
+    if (!this.manifest.diagnostic && !this.manifest.oneShot) this.phase %= this.manifest.frameCount;
     return Math.min(Math.floor(this.phase), this.manifest.frameCount - 1);
   }
 

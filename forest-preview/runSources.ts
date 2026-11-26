@@ -6,7 +6,10 @@ import falSecond from './fal-second-manifest.json' with { type: 'json' };
 
 import south from './south-run-manifest.json' with { type: 'json' };
 
-export const runSources = { framesprite: frameSprite, chatgpt, 'fal-first': falFirst, 'fal-second': falSecond, 'south-run': south };
+import eastIdle from './east-idle-manifest.json' with { type: 'json' };
+import eastCast from './east-cast-manifest.json' with { type: 'json' };
+
+export const runSources = { framesprite: frameSprite, chatgpt, 'fal-first': falFirst, 'fal-second': falSecond, 'south-run': south, 'east-idle': eastIdle, 'east-cast': eastCast };
 
 export function parseRunSource(value: string): keyof typeof runSources | 'static' {
   if (value === 'static') return value;

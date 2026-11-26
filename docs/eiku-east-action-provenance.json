@@ -1,0 +1,3229 @@
+{
+  "idle": {
+    "archiveSha256": "144a0ceda6237313d204caf2a424f4ada9dbfdff54b322f11d81bf3d6b8af069",
+    "pages": [
+      {
+        "name": "frame_000.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "da424f91bb36ec86ef697026291afae759bb4f6a784db0e6cb1b42018850881c"
+      },
+      {
+        "name": "frame_001.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "92308f8f14dbf1d22687e1ae503dec2c2a8f83b1fded09fc135adf6ad97d7d5c"
+      },
+      {
+        "name": "frame_002.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a241cd1e7fc3fbf8852073dd84bcce1e9f045303415bfdd65b55f533c063a4a4"
+      },
+      {
+        "name": "frame_003.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "80442f5009790c487b9925bb135c98439e21b52daf1157ac854c1139b46353b6"
+      },
+      {
+        "name": "frame_004.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "459f4323045714c26a6367fa2ad0ef24af6b8dcd1a30637a7fad035388abbbd7"
+      },
+      {
+        "name": "frame_005.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "6c4b5083b87e5edb2f44deb73dc84cdac10fbaadddef17e2d1f30e7fd22eda2c"
+      },
+      {
+        "name": "frame_006.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "53387f1e16c96a61fa32269a27d0688423d74c0f79b6f74a005d8f8870ad017c"
+      },
+      {
+        "name": "frame_007.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b6cc69898488159831d66df28c06774a5f059b20b1e3679e20c7dfd70cebb2d6"
+      },
+      {
+        "name": "frame_008.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "fec2de11896d6094411407a264ce37078af98efdb0de0156ed2f71b7bbfc8091"
+      },
+      {
+        "name": "frame_009.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "05fb8a123b7f369e7a00f636c7f9ed4b09d60542164aab1837e245e3db3744e4"
+      },
+      {
+        "name": "frame_010.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "87292e4d48934133ff8bdef62d3e20e959ca4af5b663ff2ba469b54e8f52e545"
+      },
+      {
+        "name": "frame_011.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a14b55f7a3ddfc276a638dc76fe070f644fd9fc5dee77518a308275daf0484d6"
+      },
+      {
+        "name": "frame_012.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f8d532334beea8d3c89d5739a8d9c38b310d380c166db08bb18d7f9c3d8c9b6b"
+      },
+      {
+        "name": "frame_013.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ce5ec923b04099d41eaf27cad13d22df1015e233e051e28706854c948dc38535"
+      },
+      {
+        "name": "frame_014.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b04fb7a69891f4a079390747e561b29a6b33a8de992b2ed532c30d67dea5e879"
+      },
+      {
+        "name": "frame_015.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "c1485104fd6c5b821868a690953b7a8bbc6dea84afbba5b0a992930d7aba8544"
+      },
+      {
+        "name": "frame_016.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b259da423371463bb865f49af59c3b8e697a6e90e7aaecaaa3a7390baf66dcf0"
+      },
+      {
+        "name": "frame_017.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "fcc4cc2fda79bbf6857537470362b25e5f18990cb381d0a1aa7f177a6113f8a9"
+      },
+      {
+        "name": "frame_018.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "0d1bad5ce3be7594ee1d3b420ba59b71fd58ccfd9aada74eeb74425d0d9ac92d"
+      },
+      {
+        "name": "frame_019.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9b012df960312aaf67bf12955c17768f7c32313f32926c08f59d93d779515230"
+      },
+      {
+        "name": "frame_020.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "79522ce2a4c2c0104a0d8109fa2b9ff2320a5984fe7c1c644993b2fa62c2ba81"
+      },
+      {
+        "name": "frame_021.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "3f0fccaf7aebc2f606473184a70eb42822f8e69d8723304e8102e28a149416ee"
+      },
+      {
+        "name": "frame_022.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "617ac4c6fcb7cc866d96bb086af20618caf30e89cf12ed9366b483910553d9b4"
+      },
+      {
+        "name": "frame_023.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "129d641d540218727a2bdb1ae3a98b6fbe952293850ea023b60f66cffa325075"
+      },
+      {
+        "name": "frame_024.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ee47c7ad3dbf05e4092fa07740f71b88b00a4380ff9b7486ff1b50013074e584"
+      },
+      {
+        "name": "frame_025.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9e0913aaccea987181f1446528bd8813126fdb5faebe91cc24115d943d48cb8b"
+      },
+      {
+        "name": "frame_026.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "0a18f7d6ea53e5242226bfbd05e86a7a3c526110530be9339706467a085bdec9"
+      },
+      {
+        "name": "frame_027.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9e9df312b30d603faecde063745804cda29d2344bfdc9e6a8290f95332e1f320"
+      },
+      {
+        "name": "frame_028.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e8161f4d3ca552b515d2c29ca8e66474e9aca5379090378a5a6637c43cf2e64e"
+      },
+      {
+        "name": "frame_029.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "83935057858fb08609b7b041bacbf741fec5d55eea34ee68cb358ae2acdaa5f0"
+      },
+      {
+        "name": "frame_030.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9b9ee2407ec6f860046fdf3b04a27bc7aed498157c06e0f68d99cd8a5146c3b5"
+      },
+      {
+        "name": "frame_031.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9ceb5c9227336fa3161742382034cfc3f5f8dcd18543d674897cf359eecb631b"
+      },
+      {
+        "name": "frame_032.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "bd6335eff179c5a94ef5cb6b9befb6eee00f153491b9ad7423a24c77cdbeabb6"
+      },
+      {
+        "name": "frame_033.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "37758cc5b7547109990c887ea7b3a5a5f99efee753bb018817b9081dd6a765b1"
+      },
+      {
+        "name": "frame_034.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f64b27b573760f77cc025e2a400c89eda5fd732537b9898a4b7672459aacafda"
+      },
+      {
+        "name": "frame_035.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "67deca4b6f2341e6ea08f8969a5786991911a627dae8c6f6194dcf83205f58af"
+      },
+      {
+        "name": "frame_036.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "dd90d65ba9c20d90affaf2ff0b8bd30121a1948309ea4d7f199e9b11097d13ba"
+      },
+      {
+        "name": "frame_037.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "02a10a3ae588bb9b4753202931c0e17abb02e42641de3f271208be72faed1a44"
+      },
+      {
+        "name": "frame_038.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "25665591ddfdb4ca9dae8f186821b1c72f1da8871abfc6b441c846547fd1fced"
+      },
+      {
+        "name": "frame_039.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "7e68419ad4be1aab1dcf8df6b8f330d112db1cae83795e870f9a30bbe8723114"
+      },
+      {
+        "name": "frame_040.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "dd30af28f899e627c72b691603eac151b8f0217373fdca51a9084d717f64d7d1"
+      },
+      {
+        "name": "frame_041.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "44d128d634867113ecd2cf190b0b7a023748d8a9775c6f54ee414d508e0bd79b"
+      },
+      {
+        "name": "frame_042.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "d912e56ea1a7011bd249245578745dfae77d640f4d6bdf7b3d06217702446de8"
+      },
+      {
+        "name": "frame_043.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "4f8c07f72d9328bae4a285c497d4b528b0b1588b254eb8de89d70ca4cbc76bec"
+      },
+      {
+        "name": "frame_044.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "7ffbe65d7ede03d415d2a721d858afb19c04545610b620b7724dace5551cbd21"
+      },
+      {
+        "name": "frame_045.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "6fa998c4899d4e652478877b92f7fe106cb66aac400da3fce19f99944325a9d4"
+      },
+      {
+        "name": "frame_046.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e56a6d84dfd74a10b0aee10ed1aa5c118d3c3bea69f0c21479cbafe5ac196444"
+      },
+      {
+        "name": "frame_047.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "391bbae9968a18bdee8f82ed0ec1f60634a25357f4d1c7422db8cf08962fda23"
+      },
+      {
+        "name": "frame_048.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "deabceb271dff1b882f0b4b2eaac62eb6093376c9979983865daf0a4032e0138"
+      },
+      {
+        "name": "frame_049.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e4fb61efae8c36be3656a0b69aaf4fc01f0f346cb4512770bf5280295f0fcfd7"
+      },
+      {
+        "name": "frame_050.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "8319a021c9cae83a8819813e3ad1df153756192c645ede9b7830e347ffd550bd"
+      },
+      {
+        "name": "frame_051.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "6c4fb249b0c46c1c18cd01759565587787fd730c97636c8bb2e1ec3dc50d6102"
+      },
+      {
+        "name": "frame_052.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "4cace627f9294bda5e928c48108afe6956c10fefdb19cdbd45e3ed39141f42d1"
+      },
+      {
+        "name": "frame_053.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "33401974f719617997770f4a13ad8760b2c525cc498c5a53c1ca396e128b220a"
+      },
+      {
+        "name": "frame_054.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "980f1717a5753dcd26558ecedb0305ded7c4d0bb4b3a5bc03aad3204d4f620d4"
+      },
+      {
+        "name": "frame_055.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f2771f8624bf9f013c3beecbb5c24589e7262ef29e788b441dc03e43b281c6d2"
+      },
+      {
+        "name": "frame_056.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "3a6fa5ed3da7eca3addc2da66bff531168e9ddab4bf2b17eaa75591e9c008472"
+      },
+      {
+        "name": "frame_057.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "2821fa37c5d457870b73d3bd5bd9d23d50a8930df8cbb28858ec198a50f1c7e9"
+      },
+      {
+        "name": "frame_058.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "db984b8e7b4c640e8eead648a87196a508481aa882d652488a0e5fe717044fc0"
+      },
+      {
+        "name": "frame_059.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "3c66d2cc58e3da559a7332a38c375af0e7ec624f77736100c697be460ee86c53"
+      }
+    ],
+    "timing": {
+      "frameWidth": 768,
+      "frameHeight": 1152,
+      "version": 1,
+      "sourceDurationMs": 4458.333,
+      "startMs": 0,
+      "endMs": 4458.333,
+      "durationMs": 4458.333,
+      "frameCount": 60,
+      "fps": 13.457944931435136,
+      "sampleTimesMs": [
+        10,
+        52,
+        135,
+        218,
+        302,
+        343,
+        427,
+        510,
+        593,
+        677,
+        718,
+        802,
+        885,
+        968,
+        1010,
+        1093,
+        1177,
+        1260,
+        1343,
+        1385,
+        1468,
+        1552,
+        1635,
+        1718,
+        1760,
+        1843,
+        1927,
+        2010,
+        2052,
+        2135,
+        2218,
+        2302,
+        2385,
+        2427,
+        2510,
+        2593,
+        2677,
+        2718,
+        2802,
+        2885,
+        2968,
+        3052,
+        3093,
+        3177,
+        3260,
+        3343,
+        3427,
+        3468,
+        3552,
+        3635,
+        3718,
+        3760,
+        3843,
+        3927,
+        4010,
+        4093,
+        4135,
+        4218,
+        4302,
+        4385
+      ],
+      "frameDelaysMs": [
+        42,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        42,
+        83,
+        83,
+        84,
+        83,
+        42,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83.33299999999963
+      ]
+    },
+    "metadataSha256": {
+      "README.txt": "090f3cd5dbafc70d2c5b7110e3f4b7c591289c229d909b5b40f0ca8cc1acad32",
+      "timing.json": "22fb7c80434d4309849033c901c026a6b6a3e8229a90106d8c8e57fc2d4be4e6"
+    },
+    "motionSpans": [
+      {
+        "action": "idle",
+        "start": 0,
+        "endExclusive": 60
+      }
+    ],
+    "motionScores": [
+      0.0,
+      0.0029,
+      0.0029,
+      0.0044,
+      0.0059,
+      0.0059,
+      0.0044,
+      0.0059,
+      0.0073,
+      0.0102,
+      0.0102,
+      0.0175,
+      0.016,
+      0.0246,
+      0.026,
+      0.0303,
+      0.026,
+      0.0345,
+      0.0556,
+      0.073,
+      0.0866,
+      0.1183,
+      0.1508,
+      0.1804,
+      0.2,
+      0.2345,
+      0.2391,
+      0.2455,
+      0.2465,
+      0.2359,
+      0.2228,
+      0.2058,
+      0.1958,
+      0.1847,
+      0.1336,
+      0.1247,
+      0.1826,
+      0.2082,
+      0.2429,
+      0.2599,
+      0.2551,
+      0.2398,
+      0.2273,
+      0.1822,
+      0.1388,
+      0.0827,
+      0.0415,
+      0.0345,
+      0.0374,
+      0.0459,
+      0.0403,
+      0.0458,
+      0.0403,
+      0.029,
+      0.0175,
+      0.0088,
+      0.0088,
+      0.0073,
+      0.0088,
+      0.0073
+    ],
+    "recipe": {
+      "sourceCommit": "8fe3635aa793c1a46b903cc5df64985105079e41",
+      "id": "eiku-east",
+      "anchor": [
+        328,
+        1012
+      ],
+      "scale": 0.43,
+      "shadowCut": [
+        280,
+        984
+      ],
+      "actions": [
+        {
+          "action": "idle",
+          "range": [
+            0,
+            33
+          ],
+          "approved": true,
+          "indices": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "fps": 7,
+          "oneShot": false
+        }
+      ]
+    },
+    "runtime": [
+      {
+        "id": "eiku-east-idle",
+        "frameCount": 16,
+        "fps": 7,
+        "referenceSpeed": 123,
+        "origin": [
+          0.5,
+          0.8802083333333334
+        ],
+        "standingHeightInFrame": 0.8229166666666666,
+        "textures": {
+          "256": {
+            "url": "eiku-east-idle-256.webp",
+            "bytes": 407646,
+            "sha256": "20a8a5f4f8dacbcf59244513b17e268a1597d12a086841ba71ea57731c8470a7",
+            "width": 1024,
+            "height": 1024
+          },
+          "384": {
+            "url": "eiku-east-idle-384.webp",
+            "bytes": 789640,
+            "sha256": "3766e9f93bd4524fb3571423a1820aa3e192c959b589b71444440a6ce0ac581a",
+            "width": 1536,
+            "height": 1536
+          }
+        }
+      }
+    ],
+    "archive": "eiku-right-reference-v001-Idle_9311.zip"
+  },
+  "attack": {
+    "archiveSha256": "c8caaa3a1a33496e835a1cea41e1a6e94f197fce5e0e912be8656c62624d5711",
+    "pages": [
+      {
+        "name": "frame_000.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "28d0f198b13ba463ab1bd27a108ae7cc51b49e757275da1cefbd1e2af5d47c6b"
+      },
+      {
+        "name": "frame_001.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "f74d6bed0b63732d471067e6768329f5559e286a32d54a2290ba0b051cdebe17"
+      },
+      {
+        "name": "frame_002.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "869db1e7363060253eebbd1dd25de1df3564f9b611329efea711727473609d7e"
+      },
+      {
+        "name": "frame_003.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "9f6bd9cff2c8a67168603313244a8de599e5f6e950313b8fb7de18410adf3429"
+      },
+      {
+        "name": "frame_004.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "50f19ed9866ab0ef62215619d6b5242f51cf5077b11e2411046fd2ef4d8ea706"
+      },
+      {
+        "name": "frame_005.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "391e2d4ec32b891036bc1520399d902a901eaf7dbd54618a5fc0eebb348e6132"
+      },
+      {
+        "name": "frame_006.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "3b1a8b39b05b3c80a8d274751715c0aa6d1abc143d7441264bce31966a6d6fd1"
+      },
+      {
+        "name": "frame_007.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "5a681eaa6884c904e67640a94610d3e8f8c1434a033adc5e6715f128b8b1825a"
+      },
+      {
+        "name": "frame_008.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b9cb8c4b2aafcb67a5646e93d415b47326f24f9e764a3d5bd5331d8c54745d74"
+      },
+      {
+        "name": "frame_009.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "313d38ca9e1042e9d6be6fcae15c248527408f40e5e04f04cd0ea250e0ab8540"
+      },
+      {
+        "name": "frame_010.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "fc979c7029fa1f565d15c2fea336ff21dd92c6c86735f718292deccf51868357"
+      },
+      {
+        "name": "frame_011.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "bbf2004f4481b177abf35f659a8b7b6bb6acc319c5ce31601b0361a8ae49f098"
+      },
+      {
+        "name": "frame_012.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "5df8a98c0c0c3ff6123e8a23811149ed7d37cf8ab540c58b6e3c184c324aae08"
+      },
+      {
+        "name": "frame_013.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "89c72da6e1c84a9199ec05988aa3f77e54be4eb76a638a1ea7a8f659b1eb4597"
+      },
+      {
+        "name": "frame_014.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "f018219683695d02bb5700ab5ff1ca4a2a81c3b280cf6f88dd26f3fd7cf3cf1d"
+      },
+      {
+        "name": "frame_015.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "aa4352ff1c7077351922291939eb51a945493f7b1ed54146d922ce5958f3deb3"
+      },
+      {
+        "name": "frame_016.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "6b5de4720ce004b5fb26c33e7e90877e0befc3f8dd078d373b413fe305f89d87"
+      },
+      {
+        "name": "frame_017.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "0d8af0e2c5453eb45b3ef557bbac26552711563e21a71f4e8a858e6677e4982f"
+      },
+      {
+        "name": "frame_018.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "0e42f382bd3e7d18c6d840128d42b487af91a8d4098b5ca47463546589a30266"
+      },
+      {
+        "name": "frame_019.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b9d0ae82ac1461576d4d762dfa61fdb669c51857a6699d4ac9bc42a052d6c8f5"
+      },
+      {
+        "name": "frame_020.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "97f25468cb3c3888d562b8d217e62b7a704c843402bf625e7ec9ce37f0ca735c"
+      },
+      {
+        "name": "frame_021.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "7cc7c61e3d9f2d4600d9eb45de7a97141e06d49ddab3d8ec28ce21bba5663db1"
+      },
+      {
+        "name": "frame_022.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "ffba8f025ac43a6093664d7b3c3d32dd229b950c447cbb4827b9e5254fa6331b"
+      },
+      {
+        "name": "frame_023.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "3094f2f41d6630dd876f7f1e171cc683113e116cb4d253ac8dddd8b85569b673"
+      },
+      {
+        "name": "frame_024.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "89871f321df50d8c5090b891bb306aeb9d5f6c41c1a0861135555883730bb17f"
+      },
+      {
+        "name": "frame_025.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "70aa04d5fe03c339969dee0d6fcbb4536ef3c3c496a610c661ca01f39b5a4820"
+      },
+      {
+        "name": "frame_026.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "923fdefe5ecb699d35293b7f579b534927c14673a6ff4bef19f5d493ce7259bd"
+      },
+      {
+        "name": "frame_027.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "33b3b374d7a92568a8631622d7f63f4826056b6a201c6f5892d38c24f242c916"
+      },
+      {
+        "name": "frame_028.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b73011bea7d86faa569c76efa33ca59ede61c8c42c8e5b9a25537a41e2ba275b"
+      },
+      {
+        "name": "frame_029.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "1ba17c7bcc6155939dfdbbefcac9645e2f664960d00d22b3699b001760778456"
+      },
+      {
+        "name": "frame_030.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "82e7a857855bce42f6750201a8c54a988706ec1c096b2bc0e12e3dfe498021e9"
+      },
+      {
+        "name": "frame_031.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "c2e4080fa685cd1d3155c13d08de497c2163bd61dca0849a4370ef5e64c9993a"
+      },
+      {
+        "name": "frame_032.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "21ee22bcc8acf7359ea3aa0fe41504fb63255314cd25922c7acdbbf889aa1db3"
+      },
+      {
+        "name": "frame_033.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "5f63756deac9d1b55e8a96834fd599279241c9a033d13d45aebd222d63d5e170"
+      },
+      {
+        "name": "frame_034.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "21be3ee2f588e68e706b0cb08870e50e2e8c26c1c2de4d91ce885926085db5fb"
+      },
+      {
+        "name": "frame_035.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "944e0d3f5c8632db22c2b80f4beaf2bf624cd25d3e19cea797344ca132f565d5"
+      },
+      {
+        "name": "frame_036.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "29412e89adbf6700f4107608bc56cec2a44e3701ec727bb583ac573aab660d34"
+      },
+      {
+        "name": "frame_037.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "cb3ae7ea406155f0f178cf6e4fc1a79ffe4c238c3efb221012f5bd547dbd4fc4"
+      },
+      {
+        "name": "frame_038.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "6f2762cc46b2cd747c2b747e1dc241dc2abc756569353cf82ae861bf1dffae6b"
+      },
+      {
+        "name": "frame_039.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "573dbfe92add437af24cb8baf800450a5f4ea5d6520c907ee486e636707191d0"
+      },
+      {
+        "name": "frame_040.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "d540696a6b79f737a8f061265a09a98196cae5606b1d0a931de3249d647a1eb0"
+      },
+      {
+        "name": "frame_041.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "357ebd59ecd4b93eef23a6314e4a6e063279a947065ce4143037b5d6b90b236e"
+      },
+      {
+        "name": "frame_042.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "a766e0b1fe871652433175e32ed54ed5bebf55ecf1d7649a424305b349c3825c"
+      },
+      {
+        "name": "frame_043.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "22726199399bdb7170693a50a63e3fe8d104bf69afa19de46bff0fec0def634e"
+      },
+      {
+        "name": "frame_044.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b148348db1b75434180c7fa9e56e65e11c8a1bf5671adfcbd2bd9a31b4a3473e"
+      },
+      {
+        "name": "frame_045.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "7c5b6a88555a1a06ff3f1aad93d85b382f5ec3df926fb81774c0c3726f38bc90"
+      },
+      {
+        "name": "frame_046.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "c39505f785f920a23114a008d2808996c8227e59f1e04769d45c6c13923bc1a9"
+      },
+      {
+        "name": "frame_047.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "06cc035810526130d5d64361dd4606d3aefa1d6377a36be3c727a3c7bc0cddcc"
+      },
+      {
+        "name": "frame_048.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "bd1b485b4ec0c7b8256bf3df37d696e0115269a2817366c66d68834502d17910"
+      },
+      {
+        "name": "frame_049.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "4d7814c8d644d67ef236a28a4b55947bb6072069291b63489c108ac56871c70b"
+      },
+      {
+        "name": "frame_050.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b133825ee2ead5dd37a7f22016ae330fa4d815a537c101ac2f478fc3f11892ad"
+      },
+      {
+        "name": "frame_051.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "870af5a8b029c3896bb5c0fcb7b731fb65eafb0817a4484cf129acc763ccfd5f"
+      },
+      {
+        "name": "frame_052.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "83bfa18b0df8bd25b2b4c7078875fa60f721776c66625bbbd41a8ae2b1ba7f37"
+      },
+      {
+        "name": "frame_053.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "2acbe07b3d0e8b935bfb7006155e56967e6a80b00fcd91696ac354914e98989d"
+      },
+      {
+        "name": "frame_054.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "6ff26a62e0ffbdbdb342b4599123fa8047e9ece104d4c3b9ae8c185df05d67a3"
+      },
+      {
+        "name": "frame_055.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "b75a13bcb606a09064301865dfa519256c67579cb5b8abacfa193837338be7cb"
+      },
+      {
+        "name": "frame_056.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "751c43073ed83faf67a79c5317f439ac76240e260cdb6959f4bca81aa66177c1"
+      },
+      {
+        "name": "frame_057.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "f116bfc09eefc84e353d6ee88ec8192717be7f66f024e5925d60f2a0597c0922"
+      },
+      {
+        "name": "frame_058.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "ae771a168789ebb3e9059e824e81a0a071cb59e3ee5efbe6ffa82ce432da3768"
+      },
+      {
+        "name": "frame_059.png",
+        "size": [
+          766,
+          1150
+        ],
+        "mode": "RGBA",
+        "sha256": "42811082daa2b8d5b0fb054911cf5e96b04d0962bc785cbdd6236681d7c66368"
+      }
+    ],
+    "timing": {
+      "frameWidth": 766,
+      "frameHeight": 1150,
+      "version": 1,
+      "sourceDurationMs": 4458.333,
+      "startMs": 0,
+      "endMs": 4458.333,
+      "durationMs": 4458.333,
+      "frameCount": 60,
+      "fps": 13.457944931435136,
+      "sampleTimesMs": [
+        10,
+        93,
+        177,
+        218,
+        302,
+        385,
+        468,
+        552,
+        593,
+        677,
+        760,
+        843,
+        927,
+        968,
+        1052,
+        1135,
+        1218,
+        1302,
+        1343,
+        1427,
+        1510,
+        1593,
+        1677,
+        1718,
+        1802,
+        1885,
+        1968,
+        2052,
+        2093,
+        2177,
+        2260,
+        2343,
+        2385,
+        2468,
+        2552,
+        2635,
+        2718,
+        2760,
+        2843,
+        2927,
+        3010,
+        3093,
+        3135,
+        3218,
+        3302,
+        3385,
+        3468,
+        3510,
+        3593,
+        3677,
+        3760,
+        3843,
+        3885,
+        3968,
+        4052,
+        4135,
+        4218,
+        4260,
+        4343,
+        4427
+      ],
+      "frameDelaysMs": [
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        41.33299999999963
+      ]
+    },
+    "metadataSha256": {
+      "README.txt": "090f3cd5dbafc70d2c5b7110e3f4b7c591289c229d909b5b40f0ca8cc1acad32",
+      "timing.json": "0a4b9f6b934e164da71c9bf4c892838b2d7e5482c9d6412cc6ffa759e3de56b0"
+    },
+    "motionSpans": [
+      {
+        "action": "idle",
+        "start": 0,
+        "endExclusive": 11
+      },
+      {
+        "action": "run",
+        "start": 11,
+        "endExclusive": 36
+      },
+      {
+        "action": "idle",
+        "start": 36,
+        "endExclusive": 60
+      }
+    ],
+    "motionScores": [
+      0.0,
+      0.0026,
+      0.0026,
+      0.0052,
+      0.0156,
+      0.0536,
+      0.0803,
+      0.1038,
+      0.1132,
+      0.1494,
+      0.3042,
+      0.4326,
+      0.5533,
+      0.64,
+      0.8008,
+      0.8282,
+      0.7842,
+      0.7395,
+      0.7246,
+      0.7308,
+      0.7401,
+      0.7253,
+      0.7174,
+      0.7247,
+      0.7382,
+      0.7394,
+      0.7277,
+      0.7229,
+      0.7182,
+      0.7235,
+      0.7299,
+      0.7328,
+      0.7311,
+      0.6613,
+      0.5155,
+      0.4146,
+      0.3835,
+      0.3458,
+      0.3247,
+      0.3562,
+      0.36,
+      0.3518,
+      0.3508,
+      0.3394,
+      0.3261,
+      0.3118,
+      0.3066,
+      0.312,
+      0.3033,
+      0.2985,
+      0.2856,
+      0.2767,
+      0.2757,
+      0.265,
+      0.2705,
+      0.2761,
+      0.28,
+      0.2832,
+      0.2918,
+      0.3074
+    ],
+    "recipe": {
+      "sourceCommit": "8fe3635aa793c1a46b903cc5df64985105079e41",
+      "id": "eiku-east",
+      "anchor": [
+        328,
+        1089
+      ],
+      "scale": 0.43,
+      "shadowCut": [
+        280,
+        984
+      ],
+      "actions": [
+        {
+          "action": "attack",
+          "range": [
+            10,
+            37
+          ],
+          "approved": false
+        }
+      ]
+    },
+    "runtime": [],
+    "archive": "eiku-right-reference-v001-Attack_9312.zip"
+  },
+  "dash": {
+    "archiveSha256": "52cfeabf40ee78494c5f167236c0fe028939278940e838add0996c9bb921234b",
+    "pages": [
+      {
+        "name": "frame_000.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "577d71b6604f6bd2529ac14fbe16a52922619509d0a494c09e2a2d438be93b80"
+      },
+      {
+        "name": "frame_001.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a8fbc3a1118cf02e65d8ad5ff8a9476af122820dac2da256c6fc2de6f3ef4a06"
+      },
+      {
+        "name": "frame_002.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "0470b55062ed91d1dae6f030c03140bf2a044bf975bf9c32fe45ce8c69cbd1aa"
+      },
+      {
+        "name": "frame_003.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "78f0920807fb0d5bddd5ea048276cbeb95e6347decd1287c6fd610806d926916"
+      },
+      {
+        "name": "frame_004.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f32d3d522ccd0816868b7d17d2304c44d4a18972c4582748e40daa95bb0286f8"
+      },
+      {
+        "name": "frame_005.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "83ab33f6b33330a60a2631677d27fd81f280e491a5478cc289c0fdbc000668f1"
+      },
+      {
+        "name": "frame_006.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cccd6eae584c6ab31527f3849f2ce17d9a64503d36537a3f007ea2182f0b688b"
+      },
+      {
+        "name": "frame_007.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "939df6f5987d83a49c840ee846760d9a235df1c44a3cfa016a9a99903e5fc5e0"
+      },
+      {
+        "name": "frame_008.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "8231aedb3bcf248b41e7b8410b2d3be9158b7ddea92754d6c190535617e5c062"
+      },
+      {
+        "name": "frame_009.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "6475baacf7a1368d491b72b8f7b6ac191b438c21cf4e6c5bd3bb2a4e049a19f1"
+      },
+      {
+        "name": "frame_010.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "370bfd094d49c042d1f531d31a7648d8bb40c8deb7f380f308a25ae2719b74f8"
+      },
+      {
+        "name": "frame_011.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "06f94d7cfbebaab8b286af853e3ddb421b7022aea1584a0d80edde9a42f2df53"
+      },
+      {
+        "name": "frame_012.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cca23aa4dfebb4d2d54ef55308273fc428fd4ef2f1f6ef8c9291cf4201a966af"
+      },
+      {
+        "name": "frame_013.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "fa9f4be417ca6a23145924f4eadeb48f9383910a734f850a9a56f33f3e25b6eb"
+      },
+      {
+        "name": "frame_014.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "db5ae503575662b1f34a27a79f40fdb48228e48d63a701a25d319027ed7d9d4f"
+      },
+      {
+        "name": "frame_015.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9907d7e1c103050bcfac0f9fc2d3989507790c6ced911a979e86d0d99b64db43"
+      },
+      {
+        "name": "frame_016.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "57369df7d0501e7d748156ed5e4015bbf616ad7473926196a23df122c2e5c32e"
+      },
+      {
+        "name": "frame_017.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "6f93e03b2d9e04ef3e8bad96b4e32f98447d384b6da7f881a844ae0588a41192"
+      },
+      {
+        "name": "frame_018.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "108ac4da5088d66ba26ad2ab2be5395998d1893745c91838bbd6362117af1651"
+      },
+      {
+        "name": "frame_019.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "1debbcf35db9018e738a6e842f9b58ab43496131362999db58b0146aef2da78f"
+      },
+      {
+        "name": "frame_020.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "8a535d702ee0017a5f494ef6a29bcb95d7cbc83d044e5baf651a7d2297b22641"
+      },
+      {
+        "name": "frame_021.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "75ad67991ac1c2acc94f9538e6b5bb25cdaab586f3b966de26ce6f99eb73283a"
+      },
+      {
+        "name": "frame_022.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e0ffffe9592662379a62ac034df80162235e6efe38310e47b324523140d4284d"
+      },
+      {
+        "name": "frame_023.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "884c0c1763a8c0b05d2e0f6da6c9bf820c6819ab79498e7f087044d3de3f4b45"
+      },
+      {
+        "name": "frame_024.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b8a567e0129a19f9661b8a41661b66445867c80d80cbd489f83250457ed333f2"
+      },
+      {
+        "name": "frame_025.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "7dfd9c541d547f5c246b7a999e0700d6cfce10e3b8ae4550f5b05c0ab5043f06"
+      },
+      {
+        "name": "frame_026.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a2582fed133cff82908f3f9e1dd5c5740bda8d667a6769a5ad1031dae2d2dfda"
+      },
+      {
+        "name": "frame_027.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f2e3d14eeac7825880e45acb1987a74398f033f4940fa72e2f10a16ec5a31d65"
+      },
+      {
+        "name": "frame_028.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "af946ab44c92f4b7011e836d1e459db5bfd085381cc629c48608827513b15cec"
+      },
+      {
+        "name": "frame_029.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "c054d5d5727b0f8829669ad32c94eda97a640a81db107363d61e85cba816266a"
+      },
+      {
+        "name": "frame_030.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "1b0771a73f60dbce30878c27fff79becc94f24122ea72c840d5cb8cac5a20a8c"
+      },
+      {
+        "name": "frame_031.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "be8d1495c4d3d310c670c2a8b9cc2a5339a4cfa8352c95c84759ce9ad80fef34"
+      },
+      {
+        "name": "frame_032.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "0f2db8d56134f53c323d882e1b996084603d59c721e137f84c89e6bac910ad4d"
+      },
+      {
+        "name": "frame_033.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "5bb2dc357001a8f96e48d60c38f5aec026b8740083b062809bb7fd36d04af5eb"
+      },
+      {
+        "name": "frame_034.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e5907bc93f87e029e2057e7952d1471acadf91ec1f03aae0f102a2a187aee648"
+      },
+      {
+        "name": "frame_035.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "08bad08e290def7b5565480636e64d0a9dd8fe038098ac6ccd8cce57779f1723"
+      },
+      {
+        "name": "frame_036.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "32ba749d34c58263f4ece8b8c5b6b41467eb17a344e0570687982f303e258514"
+      },
+      {
+        "name": "frame_037.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e4609fbe26cb0e0a8d7459d46731772cef6b1e5839761cdf6aa57b518f7c1b2f"
+      },
+      {
+        "name": "frame_038.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f2316e9ba66d01e07b8b8a1498b2b4f073ae212ebdbbc8f2227365dd5f1759c5"
+      },
+      {
+        "name": "frame_039.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "1da13dfda37f080657b10b8616aca41874f5577c4e466876341bb56c2f715438"
+      },
+      {
+        "name": "frame_040.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f8734b3a6607856e83192ef7afaa131369ffc22bbc46a61ceacd0d0f96120f2b"
+      },
+      {
+        "name": "frame_041.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9a9cd6f15c65a100ef60c9911329873f9f6b66d53a2b8bbe2606a4e9b04e4625"
+      },
+      {
+        "name": "frame_042.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "02033cb3d3ce5eea3ba16d431e76915ce55906f017f1eec947dc972b68ec8197"
+      },
+      {
+        "name": "frame_043.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "63ca7366bc0b4dc1ef3682adccc4083e15e9a9f33eba8a78f9bc850921c853bd"
+      },
+      {
+        "name": "frame_044.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ef2bdb2160f2933e25a6bf1cff6e38ba4f722f4bd1aefd7633f970ad15026ed4"
+      },
+      {
+        "name": "frame_045.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "dbff8de326611c70821eede813c4d75bfc984620a4c925d0ba4a3361207ebb10"
+      },
+      {
+        "name": "frame_046.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e967cf7c7cbc2e88ccf832cc93660aa70d3759b11497a8fd62fe5d266802a0da"
+      },
+      {
+        "name": "frame_047.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f5dd015e04059f4d194efaca208ea221ab2b70cdf337d58265153afb67b1d6e4"
+      },
+      {
+        "name": "frame_048.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "92b0ef57e29b42233f475b02f50958702a68c5a16ac6ffce3bd95e77eb1d9101"
+      },
+      {
+        "name": "frame_049.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "7af2939c91ef639ad0a816b16d610e35867a5be5e3a23630e19685c84fd16f14"
+      },
+      {
+        "name": "frame_050.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "24e3ad122cf4753943a9c8e326b8725eb54ec346f0972126d3e48de4f7bc421b"
+      },
+      {
+        "name": "frame_051.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "66f83b0f4280bd7d0e9333bca0570ee5c6deda0d156736f8c15ec64683751024"
+      },
+      {
+        "name": "frame_052.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a5fa35bcec89056a18851015a71646966c86429c8cec7f53c00c1ebea4172c14"
+      },
+      {
+        "name": "frame_053.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "67bfb5cf9b4cf82b67864eee2e184ca47419584d6397c2221dc3841b7639ca82"
+      },
+      {
+        "name": "frame_054.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f0443f0f875960c25e7dea0a83e203138bfa18f7cde67bbab378d22b899818e6"
+      },
+      {
+        "name": "frame_055.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "d5f63edf62986900a53c164ad4702d5afb90c0ae44d3280f9467b24672c9051b"
+      },
+      {
+        "name": "frame_056.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "2d7a54ab64c19c91af331e65725c18696f3a7cb61b584b14bc46946663174030"
+      },
+      {
+        "name": "frame_057.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "783d3e165c7b5d2016dfd913b42cc063fa0d424cf98a1d22d7f8127c581ace60"
+      },
+      {
+        "name": "frame_058.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "c591631a4c28fd837ce35bd851f29dd170016e81766b510d418d42b8a828dc35"
+      },
+      {
+        "name": "frame_059.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b1fef2f9422ea80cc5e74eb3ce044b93d1ec9dfe441c30c7c65e99ac95bb33c1"
+      }
+    ],
+    "timing": {
+      "frameWidth": 768,
+      "frameHeight": 1152,
+      "version": 1,
+      "sourceDurationMs": 4458.333,
+      "startMs": 0,
+      "endMs": 4458.333,
+      "durationMs": 4458.333,
+      "frameCount": 60,
+      "fps": 13.457944931435136,
+      "sampleTimesMs": [
+        10,
+        52,
+        135,
+        218,
+        302,
+        343,
+        427,
+        510,
+        593,
+        677,
+        718,
+        802,
+        885,
+        968,
+        1010,
+        1093,
+        1177,
+        1260,
+        1343,
+        1385,
+        1468,
+        1552,
+        1635,
+        1718,
+        1760,
+        1843,
+        1927,
+        2010,
+        2052,
+        2135,
+        2218,
+        2302,
+        2385,
+        2427,
+        2510,
+        2593,
+        2677,
+        2718,
+        2802,
+        2885,
+        2968,
+        3052,
+        3093,
+        3177,
+        3260,
+        3343,
+        3427,
+        3468,
+        3552,
+        3635,
+        3718,
+        3760,
+        3843,
+        3927,
+        4010,
+        4093,
+        4135,
+        4218,
+        4302,
+        4385
+      ],
+      "frameDelaysMs": [
+        42,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        42,
+        83,
+        83,
+        84,
+        83,
+        42,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83.33299999999963
+      ]
+    },
+    "metadataSha256": {
+      "README.txt": "090f3cd5dbafc70d2c5b7110e3f4b7c591289c229d909b5b40f0ca8cc1acad32",
+      "timing.json": "22fb7c80434d4309849033c901c026a6b6a3e8229a90106d8c8e57fc2d4be4e6"
+    },
+    "motionSpans": [
+      {
+        "action": "idle",
+        "start": 0,
+        "endExclusive": 11
+      },
+      {
+        "action": "run",
+        "start": 11,
+        "endExclusive": 53
+      },
+      {
+        "action": "idle",
+        "start": 53,
+        "endExclusive": 60
+      }
+    ],
+    "motionScores": [
+      0.0,
+      0.0036,
+      0.0211,
+      0.0361,
+      0.0532,
+      0.0554,
+      0.0556,
+      0.1069,
+      0.231,
+      0.3281,
+      0.3541,
+      0.419,
+      0.431,
+      0.4588,
+      0.4608,
+      0.4536,
+      0.4632,
+      0.4644,
+      0.6143,
+      0.6439,
+      0.6229,
+      0.5745,
+      0.5357,
+      0.6278,
+      0.6462,
+      0.5339,
+      0.5102,
+      0.6355,
+      0.6368,
+      0.5803,
+      0.5177,
+      0.6505,
+      0.5453,
+      0.5356,
+      0.5888,
+      0.6273,
+      0.5861,
+      0.587,
+      0.6398,
+      0.6289,
+      0.5449,
+      0.508,
+      0.6381,
+      0.6362,
+      0.5663,
+      0.5089,
+      0.6399,
+      0.6121,
+      0.5453,
+      0.4926,
+      0.4305,
+      0.4559,
+      0.4266,
+      0.2602,
+      0.2019,
+      0.1762,
+      0.1688,
+      0.1345,
+      0.0695,
+      0.036
+    ],
+    "recipe": {
+      "sourceCommit": "8fe3635aa793c1a46b903cc5df64985105079e41",
+      "id": "eiku-east",
+      "anchor": [
+        380,
+        1090
+      ],
+      "scale": 0.43,
+      "shadowCut": [
+        280,
+        984
+      ],
+      "actions": [
+        {
+          "action": "dash",
+          "range": [
+            8,
+            55
+          ],
+          "approved": false
+        }
+      ]
+    },
+    "runtime": [],
+    "archive": "eiku-right-reference-v001-Dash_9314.zip"
+  },
+  "cast": {
+    "archiveSha256": "a684263b38874518ac96269d58105919a68698e9f4ce3499824849bcaaef7541",
+    "pages": [
+      {
+        "name": "frame_000.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "774b4fe92a85018826f4e9c107e69e79036f9be5d82892816d9f8433506a4e09"
+      },
+      {
+        "name": "frame_001.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "89fb9caef7591d90f3e59847590fc24a76cf5700a1eaba4c508ef1ecff87da28"
+      },
+      {
+        "name": "frame_002.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "c7eb091e10814177779039326b553d5d98deb9cf00279c47b6ed80348d440627"
+      },
+      {
+        "name": "frame_003.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9cdd221581620034e15f4b7052745a4804799913d0d7cb82910b3b5338b9ea29"
+      },
+      {
+        "name": "frame_004.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "1dc71fd901b9101ae92c511b0ee7ac8a9845d76eaae2f750366de8896af0c023"
+      },
+      {
+        "name": "frame_005.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "22a959ceccd808ef5af7995baff2c5912b3906ef8e9c24ec4a5f805e0effdf17"
+      },
+      {
+        "name": "frame_006.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cc14a468c57502aa53ec48bf8408c61f6a8ffaac2892a716136c292dff682ce6"
+      },
+      {
+        "name": "frame_007.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cc7cdc677b7647fb233a0a0a787ec00ab0eb527eca2282fc9493c19d4c1fcc93"
+      },
+      {
+        "name": "frame_008.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "34eb82e46815e2728856c676280bd88f6a340be9f2d0f606f3ed803d8044815d"
+      },
+      {
+        "name": "frame_009.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "109cf6a013580a776ae628b23b9c4abc3e1c48f266a611c9604eb479d56fb53d"
+      },
+      {
+        "name": "frame_010.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "56311e83091c1e0b89bc30eaf1d8eb4b9c1d20bdf4eba14866fb0b711fcadb97"
+      },
+      {
+        "name": "frame_011.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "efee3f7c821dcdfc942a3b8ee33f314b03890758f66ece6437f6686315af1df2"
+      },
+      {
+        "name": "frame_012.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "dabc82d45042afabfc997c19b1fb6be95bef3b297c54fa752caddb9fde9856ea"
+      },
+      {
+        "name": "frame_013.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ae47d935bdf8fc9d26138e74f3c633c882f79a0ccb384d19e5cc4e2bb416764d"
+      },
+      {
+        "name": "frame_014.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "eff7e973ba3421d3eac1e16a1e2df2a065677346336335346dea359cf5fc38fa"
+      },
+      {
+        "name": "frame_015.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "fc9a3cbdfb6132b571e69fecc9a1aceda34ad55978eb396f2f1aa736651b1fea"
+      },
+      {
+        "name": "frame_016.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "e02f7f84ef92dbe319c37b9dbb9a96317e91399ad6f4592f57b638fe32ce62db"
+      },
+      {
+        "name": "frame_017.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "7bc9b4731347ac33a8cade0292109036fbc52d60199448fc4147036c939cc6cb"
+      },
+      {
+        "name": "frame_018.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "b28e6343f0b74581c85ea43dd1331436e911f4174796c9b71a18f73500ef312e"
+      },
+      {
+        "name": "frame_019.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "5d58830a1ba78921c08caa4018c7f494d09f891737a781a0e995d07a699c5879"
+      },
+      {
+        "name": "frame_020.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "823acf706000476dbd80e1addc3c973f673c28cd0f475f7df415e1d95bdacf40"
+      },
+      {
+        "name": "frame_021.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "bd7056163345c6db77977b4080e4accccd8618a7b92e684d578d86c3525c16a8"
+      },
+      {
+        "name": "frame_022.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "8df94a74a8272424090bca7c4e9067846a5ecc03977197f2076f28f2f66cfec8"
+      },
+      {
+        "name": "frame_023.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9c3216e37b301581824909ab2a6d51ff95989f71a00521e3f0b12d5b11bc1655"
+      },
+      {
+        "name": "frame_024.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ad4bdfe9567130b11c440e55f374827ee2b78f0535dca76222f7f86587894bc2"
+      },
+      {
+        "name": "frame_025.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "67ef582474870b05f6d82a9d87af3dafc7b9a77e9d62ccef0768eed340837428"
+      },
+      {
+        "name": "frame_026.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "a26e0f84fe3d5843e1a349056327166c23e3a862012c65cd2cff7e8804aea4c5"
+      },
+      {
+        "name": "frame_027.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ef9ee3ba6781e60f7f129f8ed03e2c813586c04f82885b9a800fcfae7d828eae"
+      },
+      {
+        "name": "frame_028.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "707d3ef0786811087951f09ac6cb232c18c0659f424e14a0685364d0ad2cafec"
+      },
+      {
+        "name": "frame_029.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "077f005e68460c3b90d1a46e1d6e441fd5b2048a86e04b12c9827050958713f8"
+      },
+      {
+        "name": "frame_030.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "bf264907795e8414f95d2b5fc85f8d7e652088525a857b3ea98745435f954f35"
+      },
+      {
+        "name": "frame_031.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f1c8db1512e64d654e7488b71239ecf2d2bc9ce1b18eb6458f116a8aec79ecaa"
+      },
+      {
+        "name": "frame_032.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "af0b41d4efc9a69a33b98728832486a7a12767436aef88d2a5ce4ef1c394bf37"
+      },
+      {
+        "name": "frame_033.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "29d14a4f358eff679cec6507ffff7a68bcb85083214e0765b058046687be53ac"
+      },
+      {
+        "name": "frame_034.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cb23b4b6ebd975f0ebc794601feb370f23bfc9026e521d9c3abb2a5a7ba622b5"
+      },
+      {
+        "name": "frame_035.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "f42399ee4b73b23e98dd6543a7b90f3afdbc6e743187bb1978f8a8fc7c75d8c4"
+      },
+      {
+        "name": "frame_036.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "84f3ed5fafbc9e531e1005b2344f8f13604a9190568e9263fbd5bb8ac6207359"
+      },
+      {
+        "name": "frame_037.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "85eb47adfa0261b555c4ac0a7ade71c5947ef66e55127ae8c33b70094f264088"
+      },
+      {
+        "name": "frame_038.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "dfa77629e1444f628b036b41f42b8e1c1c61b1487f8040ab2634c38dec9c929b"
+      },
+      {
+        "name": "frame_039.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "2656bc8187f0b9675cc7c065fa0c8c277f92b25c087ec224b3bead41c6098307"
+      },
+      {
+        "name": "frame_040.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "4d979130e395011add6b839ab97fd979e3d7fae4d0e1f457743c3fe47b9cd2a2"
+      },
+      {
+        "name": "frame_041.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "fc937a2e8ad5dbdbb87f3c4a49171bff021293c3c37b17e8b3ac1f54049bc1e1"
+      },
+      {
+        "name": "frame_042.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "3ad830c4a0fd4611b1f6f53c2720db35e5214e888a8260732d05ae5e5cb3c1db"
+      },
+      {
+        "name": "frame_043.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "c588068ec04421a19f143c1329b9df8a9399ea64281d7673a08ec0fbe44d094f"
+      },
+      {
+        "name": "frame_044.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "173f8114c6200955558944f0dc765b9daec249e28094f511aa990367106e7739"
+      },
+      {
+        "name": "frame_045.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "ab28e0ad6fca8efce08430ad811f6b7e178ccd5334c6185d98175018aee5a042"
+      },
+      {
+        "name": "frame_046.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "16e0c321aabda4062d70e683d15c54dae8cb296b89972ebd2ae9197cb387618f"
+      },
+      {
+        "name": "frame_047.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "58b6ccaa8c36f211e47407affe6600a26bce4aaf71dededb7ca91285058ce5e1"
+      },
+      {
+        "name": "frame_048.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "1583457f1eab467664ed6bf472a154b67940af1d37122ad75267bf46041bd1e9"
+      },
+      {
+        "name": "frame_049.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "45674481185081e1724f354a122015b86f24fd98f2f80f63b9124daa5e50978e"
+      },
+      {
+        "name": "frame_050.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "16ead749fa20127fe1380d65620218243df3be02bc517bbcfa209270f57ccff3"
+      },
+      {
+        "name": "frame_051.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "cbad4220eac55792f69def69d9cfeeefe44843f66cb03007864b9c68a98ef947"
+      },
+      {
+        "name": "frame_052.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9421cd9dd918049ee15ebf108a3622a145e2bf76dca4c261ae2f0d06622cef7d"
+      },
+      {
+        "name": "frame_053.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "aee71b9b424961f49cbba8a5bb6eaf3473042c7643dbca246057e71818b48ef7"
+      },
+      {
+        "name": "frame_054.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "9a24ad8ed0f168ab89ae1b0a21d907d8aa394ab7ad2475cb1dfe99c20fa67677"
+      },
+      {
+        "name": "frame_055.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "60e26d26394d997e8b041f5f7aaeb74a70d6ccefc909b7367b79753f920c27b8"
+      },
+      {
+        "name": "frame_056.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "500ab19d49b5e0372d943ea623e47ff9dda31d255301afb41470ba33edbfd3a7"
+      },
+      {
+        "name": "frame_057.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "4305576bb497fc335254c39e7b3aad87466a123068fbee302aec21c3ab76d3dd"
+      },
+      {
+        "name": "frame_058.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "3749ea2064c01ff6188030c2a6d4eac6b1faf56a6e9d0d59550c0b93cf7019dc"
+      },
+      {
+        "name": "frame_059.png",
+        "size": [
+          768,
+          1152
+        ],
+        "mode": "RGBA",
+        "sha256": "88a1f2b0e2229aefe5ad24cb40a4a31794428bbbd248068834a2e3ebafc2685e"
+      }
+    ],
+    "timing": {
+      "frameWidth": 768,
+      "frameHeight": 1152,
+      "version": 1,
+      "sourceDurationMs": 4458.333,
+      "startMs": 0,
+      "endMs": 4458.333,
+      "durationMs": 4458.333,
+      "frameCount": 60,
+      "fps": 13.457944931435136,
+      "sampleTimesMs": [
+        10,
+        93,
+        177,
+        218,
+        302,
+        385,
+        468,
+        552,
+        593,
+        677,
+        760,
+        843,
+        927,
+        968,
+        1052,
+        1135,
+        1218,
+        1302,
+        1343,
+        1427,
+        1510,
+        1593,
+        1677,
+        1718,
+        1802,
+        1885,
+        1968,
+        2052,
+        2093,
+        2177,
+        2260,
+        2343,
+        2385,
+        2468,
+        2552,
+        2635,
+        2718,
+        2760,
+        2843,
+        2927,
+        3010,
+        3093,
+        3135,
+        3218,
+        3302,
+        3385,
+        3468,
+        3510,
+        3593,
+        3677,
+        3760,
+        3843,
+        3885,
+        3968,
+        4052,
+        4135,
+        4218,
+        4260,
+        4343,
+        4427
+      ],
+      "frameDelaysMs": [
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        84,
+        41,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        83,
+        83,
+        42,
+        83,
+        84,
+        41.33299999999963
+      ]
+    },
+    "metadataSha256": {
+      "README.txt": "090f3cd5dbafc70d2c5b7110e3f4b7c591289c229d909b5b40f0ca8cc1acad32",
+      "timing.json": "0a4b9f6b934e164da71c9bf4c892838b2d7e5482c9d6412cc6ffa759e3de56b0"
+    },
+    "motionSpans": [
+      {
+        "action": "idle",
+        "start": 0,
+        "endExclusive": 60
+      }
+    ],
+    "motionScores": [
+      0.0,
+      0.0029,
+      0.0088,
+      0.016,
+      0.019,
+      0.0548,
+      0.1003,
+      0.1417,
+      0.1442,
+      0.1719,
+      0.204,
+      0.2257,
+      0.2373,
+      0.2396,
+      0.2364,
+      0.2387,
+      0.2322,
+      0.2199,
+      0.2152,
+      0.2063,
+      0.1847,
+      0.1743,
+      0.1698,
+      0.1752,
+      0.1691,
+      0.161,
+      0.1505,
+      0.1481,
+      0.1137,
+      0.0975,
+      0.0628,
+      0.0711,
+      0.0742,
+      0.0741,
+      0.0757,
+      0.0878,
+      0.0864,
+      0.0833,
+      0.0737,
+      0.0571,
+      0.0471,
+      0.0401,
+      0.0331,
+      0.0331,
+      0.046,
+      0.0389,
+      0.0362,
+      0.0348,
+      0.0364,
+      0.038,
+      0.0293,
+      0.0307,
+      0.0321,
+      0.0291,
+      0.026,
+      0.0174,
+      0.0131,
+      0.0131,
+      0.0102,
+      0.0059
+    ],
+    "recipe": {
+      "sourceCommit": "8fe3635aa793c1a46b903cc5df64985105079e41",
+      "id": "eiku-east",
+      "anchor": [
+        328,
+        1012
+      ],
+      "scale": 0.43,
+      "shadowCut": [
+        280,
+        984
+      ],
+      "actions": [
+        {
+          "action": "cast",
+          "range": [
+            6,
+            33
+          ],
+          "approved": true,
+          "indices": [
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32
+          ],
+          "fps": 10,
+          "oneShot": true
+        }
+      ]
+    },
+    "runtime": [
+      {
+        "id": "eiku-east-cast",
+        "frameCount": 14,
+        "fps": 10,
+        "referenceSpeed": 123,
+        "origin": [
+          0.5,
+          0.8802083333333334
+        ],
+        "standingHeightInFrame": 0.8229166666666666,
+        "textures": {
+          "256": {
+            "url": "eiku-east-cast-256.webp",
+            "bytes": 380908,
+            "sha256": "cc9b9c03ebfc1d39e19a25f4f68eb6357affec364087269ed781b34f3853a1ed",
+            "width": 1024,
+            "height": 1024
+          },
+          "384": {
+            "url": "eiku-east-cast-384.webp",
+            "bytes": 738032,
+            "sha256": "90785d80c867810466c37e416161494a4c5c32550884d4797817954779745c76",
+            "width": 1536,
+            "height": 1536
+          }
+        },
+        "oneShot": true
+      }
+    ],
+    "archive": "eiku-right-reference-v001-Cast_9313.zip"
+  }
+}
