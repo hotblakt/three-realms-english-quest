@@ -104,3 +104,11 @@
 }
 #east-review-images img { display: block; width: 100%; }
 #east-review-images figure { margin: .5rem 0; }
+#directional-scale label {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: .55rem;
+}
+#directional-scale input[type="range"] { flex: 1; min-width: 0; height: 44px; accent-color: #e9c981; }
+#directional-scale output { min-width: 3.1rem; text-align: right; font-variant-numeric: tabular-nums; }
