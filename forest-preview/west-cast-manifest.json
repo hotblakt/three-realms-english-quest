@@ -1,0 +1,28 @@
+{
+  "id": "eiku-west-cast",
+  "frameCount": 14,
+  "fps": 10,
+  "referenceSpeed": 123,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "standingHeightInFrame": 0.8229166666666666,
+  "textures": {
+    "256": {
+      "url": "eiku-west-cast-256.webp",
+      "bytes": 350958,
+      "sha256": "be02f0a0a74762b5d7f9461af4459b69cfc0977474ebd7f69704f6709b68376e",
+      "width": 1024,
+      "height": 1024
+    },
+    "384": {
+      "url": "eiku-west-cast-384.webp",
+      "bytes": 677708,
+      "sha256": "5194030f33321f25e35cf038432f274f8e85029cc2a6de81dcdebfee46c8de36",
+      "width": 1536,
+      "height": 1536
+    }
+  },
+  "oneShot": true
+}

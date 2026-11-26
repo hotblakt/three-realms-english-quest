@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "0d62e83f0045d3707bcec2f2bd4a3f10b681649b",
+  "id": "eiku-west",
+  "anchor": [
+    446,
+    1012
+  ],
+  "scale": 0.43,
+  "actions": [
+    {
+      "action": "cast",
+      "range": [
+        6,
+        48
+      ],
+      "approved": true,
+      "indices": [
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45
+      ],
+      "fps": 10,
+      "oneShot": true
+    }
+  ],
+  "shadowCut": [
+    0,
+    1020
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "eiku-south-cast",
+  "frameCount": 14,
+  "fps": 10,
+  "referenceSpeed": 123,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "standingHeightInFrame": 0.8229166666666666,
+  "textures": {
+    "256": {
+      "url": "eiku-south-cast-256.webp",
+      "bytes": 431716,
+      "sha256": "eacbd850ba3b437d0999ff456b90b91a71f6fa36f7edcbdbbf6bf6079a29d528",
+      "width": 1024,
+      "height": 1024
+    },
+    "384": {
+      "url": "eiku-south-cast-384.webp",
+      "bytes": 839112,
+      "sha256": "a4428ca18927ceb3f860bb651f904ec1ee33127f17f74d295a91a8a8b1a54fed",
+      "width": 1536,
+      "height": 1536
+    }
+  },
+  "oneShot": true
+}

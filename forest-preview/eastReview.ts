@@ -1,4 +1,4 @@
-const images = import.meta.glob<string>('../art/preview/east-actions/*.webp', {
+const images = import.meta.glob<string>(['../art/preview/east-actions/*.webp', '../art/preview/multidirection-actions/*.webp'], {
   eager: true, import: 'default', query: '?url',
 });
 const statuses = {
@@ -12,14 +12,23 @@ const statuses = {
 export function setupEastReview(): void {
   const panel = document.querySelector<HTMLDetailsElement>('#east-review')!;
   const selector = document.querySelector<HTMLSelectElement>('#east-review-action')!;
+  const directionSelector = document.querySelector<HTMLSelectElement>('#review-direction')!;
   const slots = document.querySelector('#east-review-images')!;
   const render = () => {
     if (!panel.open) return;
     const action = selector.value as keyof typeof statuses;
-    document.querySelector('#east-quality')!.textContent = statuses[action];
-    const names = [[action, '來源逐格'], [`${action}-processed`, '處理後圖集']];
+    const direction = directionSelector.value;
+    const east = direction === 'east';
+    const rejected = direction === 'north' && action === 'cast';
+    const fallback = action === 'attack' || action === 'dash';
+    document.querySelector('#east-quality')!.textContent = east ? statuses[action]
+      : rejected ? '未採用。抬手後轉向西側，無法辨認為北向施法。'
+        : fallback ? '使用原有動作與碰撞。'
+          : '已通過霧竹林預覽驗收。可從動作來源選取並逐格檢閱。';
+    const names = east ? [[action, '來源逐格'], [`${action}-processed`, '處理後圖集']]
+      : [[`${direction}-${action}`, '來源逐格']];
     slots.replaceChildren(...names.flatMap(([name, label]) => {
-      const url = images[`../art/preview/east-actions/${name}.webp`];
+      const url = images[`../art/preview/${east ? 'east-actions' : 'multidirection-actions'}/${name}.webp`];
       if (!url) return [];
       const figure = document.createElement('figure');
       const caption = document.createElement('figcaption');
@@ -31,6 +40,7 @@ export function setupEastReview(): void {
       return [figure];
     }));
   };
+  directionSelector.addEventListener('change', render);
   selector.addEventListener('change', render);
   panel.addEventListener('toggle', render);
 }
