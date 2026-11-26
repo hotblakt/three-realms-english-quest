@@ -22,13 +22,15 @@ export class ForestScene extends Phaser.Scene {
   private settings = this.composition.read();
   private readonly runs = {
     framesprite: new AnimationClip(runSources.framesprite, 'eiku-run'),
+    'south-run': new AnimationClip(runSources['south-run'], 'eiku-run'),
     chatgpt: new AnimationClip(runSources.chatgpt, 'eiku-run'),
     'fal-first': new AnimationClip(runSources['fal-first'], 'eiku-run'),
     'fal-second': new AnimationClip(runSources['fal-second'], 'eiku-run'),
   };
   private previousX = entrance.x;
+  private previousY = entrance.y;
   private dodgeEnd = 0;
-  private running = false;
+  private activeRun?: AnimationClip;
   private displayedRunFrame = 0;
   private candidate!: Phaser.GameObjects.Image;
   private originalScale = 1;
@@ -78,7 +80,7 @@ export class ForestScene extends Phaser.Scene {
       const paused = this.composition.panel.querySelector<HTMLInputElement>('[name="paused"]')!;
       paused.checked = false;
       mode.value = 'review';
-      this.running = false;
+      this.activeRun = undefined;
       mode.dispatchEvent(new Event('change', { bubbles: true }));
     };
     replay.addEventListener('click', replayDiagnostic);
@@ -87,7 +89,7 @@ export class ForestScene extends Phaser.Scene {
       const { resolution, speed, paused, source, candidate } = next;
       const clip = candidate && source !== 'static' ? this.runs[source] : undefined;
       const sourceChanged = source !== this.settings.source || candidate !== this.settings.candidate;
-      if (sourceChanged || next.motion !== this.settings.motion) this.running = false;
+      if (sourceChanged || next.motion !== this.settings.motion) this.activeRun = undefined;
       const count = clip?.manifest.frameCount ?? 0;
       if (reviewFrame.length !== count) {
         reviewFrame.replaceChildren(...Array.from({ length: count }, (_, i) => new Option(String(i + 1))));
@@ -299,13 +301,19 @@ export class ForestScene extends Phaser.Scene {
     this.player.syncView();
     const { x, y } = this.player.body.center;
     if (this.settings.candidate) {
-      const distance = x - this.previousX;
-      const movingEast = this.player.facing.x > 0 && direction.x > 0 && distance > 0 && now >= this.dodgeEnd;
+      const eastDistance = x - this.previousX;
+      const southDistance = y - this.previousY;
+      const movingEast = this.player.facing.x > 0 && direction.x > 0 && eastDistance > 0 && now >= this.dodgeEnd;
       const { motion, paused, speed, frame, resolution, size, source } = this.settings;
-      const clip = source !== 'static' && (paused || motion === 'review' || movingEast) ? this.runs[source] : undefined;
+      const movingSouth = this.player.facing.y > 0 && direction.y > 0 && southDistance > 0 && now >= this.dodgeEnd;
+      const automaticSouth = source === 'framesprite' && motion !== 'review' && !paused && movingSouth;
+      const active = automaticSouth ? 'south-run' : source;
+      const moving = active === 'south-run' ? movingSouth : movingEast;
+      const clip = active !== 'static' && (paused || motion === 'review' || moving) ? this.runs[active] : undefined;
       if (clip) {
-        if (!this.running) clip.reset(motion === 'review' || source !== 'framesprite' ? 0 : 1);
+        if (clip !== this.activeRun) clip.reset(motion === 'review' || active !== 'framesprite' ? 0 : 1);
         // Use distance travelled so contact with a wall naturally stops the run loop.
+        const distance = active === 'south-run' ? southDistance : eastDistance;
         const seconds = motion === 'review' ? delta / 1000 : distance / clip.manifest.referenceSpeed;
         const index = paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
@@ -317,11 +325,12 @@ export class ForestScene extends Phaser.Scene {
       } else {
         showCandidate(this, this.candidate, this.player.facing, this.settings);
       }
-      this.running = Boolean(clip);
+      this.activeRun = clip;
     } else {
-      this.running = false;
+      this.activeRun = undefined;
     }
     this.previousX = x;
+    this.previousY = y;
     this.candidate.setPosition(x, y).setDepth(y).setAlpha(this.player.view.alpha);
     if (this.controls.consume('attack')) {
       this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center);

@@ -1,0 +1,27 @@
+{
+  "id": "eiku-south-run",
+  "frameCount": 9,
+  "fps": 13.49,
+  "referenceSpeed": 123,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "standingHeightInFrame": 0.8229166666666666,
+  "textures": {
+    "256": {
+      "url": "eiku-south-run-256.webp",
+      "bytes": 234516,
+      "sha256": "1bfc1afc67e465426734aaee716e7d2cc2095b4b2f30ac70be2a6dac822f7708",
+      "width": 768,
+      "height": 768
+    },
+    "384": {
+      "url": "eiku-south-run-384.webp",
+      "bytes": 450740,
+      "sha256": "63028b44ceea91c9b0d878615e13a342cc8b23728602048e53f6274b545d825c",
+      "width": 1152,
+      "height": 1152
+    }
+  }
+}

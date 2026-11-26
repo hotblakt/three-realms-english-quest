@@ -19,7 +19,8 @@
         <div class="composition-options">
           <label>動作來源 <select name="run-source">
             <option value="static">影空 2.0 站姿</option>
-            <option value="framesprite" selected>FrameSprite 跑步</option>
+            <option value="framesprite" selected>FrameSprite 自動方向</option>
+            <option value="south-run">FrameSprite 南向跑步檢閱</option>
             <option value="fal-first">fal.ai 第一次・診斷</option>
             <option value="fal-second">fal.ai 第二次・診斷</option>
             <option value="chatgpt">ChatGPT 試播候選</option>
@@ -44,7 +45,7 @@
             <label><input type="checkbox" name="shadow" checked>接地陰影</label>
             <label><input type="checkbox" name="light" checked>環境光</label>
           </div>
-          <p>向右移動可看跑步。其他方向使用站姿。</p>
+          <p>自動方向支援向右和向南跑步。南向待機使用站姿。</p>
         </div>
       </details>
       <a class="forest-back" href="%BASE_URL%art-workbench/">返回工作台</a>

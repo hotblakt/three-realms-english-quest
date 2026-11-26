@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "dca9116f79ac29571a5dce826c93493f5dc6a38f",
+  "id": "eiku-south",
+  "anchor": [376, 938],
+  "scale": 0.435,
+  "motionThreshold": 0.42,
+  "actions": [
+    {"action": "run", "range": [17, 26], "approved": true},
+    {"action": "idle", "range": [57, 60], "approved": false}
+  ]
+}
