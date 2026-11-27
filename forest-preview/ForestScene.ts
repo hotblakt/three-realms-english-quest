@@ -15,7 +15,8 @@ import { compositionPanel, preloadComposition, showCandidate, standingHeight } f
 import { chest, entrance, height, shortcut, spirit, width } from './layout';
 import { drawTerrain } from './environment/terrain';
 import { canopyOpacity } from './environment/canopy';
-import { preloadEcology } from './environment/ecology';
+import { registerEcology, requestEcology } from './environment/ecology';
+import { failForestStartup } from './startup';
 import { preloadCreekArt } from './environment/creekArt';
 import { drawCreek } from './environment/creek';
 import { drawAtmosphere, drawVegetation } from './environment/vegetation';
@@ -38,6 +39,8 @@ export class ForestScene extends Phaser.Scene {
     Object.entries(runSources).map(([key, manifest]) => [key, new AnimationClip(manifest, 'eiku-run')]),
   ) as Record<keyof typeof runSources, AnimationClip>;
   private controlsReady = false;
+  private ecology!: ReturnType<typeof requestEcology>;
+  private startupFailures: string[] = [];
   private movementResolution = this.settings.resolution;
   private previousX = entrance.x;
   private previousY = entrance.y;
@@ -61,11 +64,13 @@ export class ForestScene extends Phaser.Scene {
 
   preload(): void {
     this.controlsReady = false;
+    this.startupFailures = [];
+    this.load.on(Phaser.Loader.Events.FILE_LOAD_ERROR, this.trackStartupFailure, this);
+    this.ecology = requestEcology();
     this.queueMovement(this.movementResolution);
     preloadEikuAtlas(this);
     preloadComposition(this);
     preloadCreekArt(this);
-    preloadEcology(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -84,15 +89,42 @@ export class ForestScene extends Phaser.Scene {
     return movementAtlasesReady(key => this.runs[key].ready(this, size));
   }
 
-  create(): void {
+  private trackStartupFailure(file: Phaser.Loader.File): void {
+    this.startupFailures.push(file.key);
+    console.warn('[forest-startup] asset request failed', file.key);
+  }
+
+  async create(): Promise<void> {
     const loading = document.querySelector<HTMLElement>('#forest-loading')!;
+    this.load.off(Phaser.Loader.Events.FILE_LOAD_ERROR, this.trackStartupFailure, this);
+    if (loading.dataset.failed) return;
     if (!this.movementReady(this.movementResolution)) {
-      loading.querySelector('p')!.textContent = '四向動作載入失敗，請重新載入霧竹林。';
-      const retry = loading.querySelector('button')!;
-      retry.hidden = false;
-      retry.onclick = () => location.reload();
+      const missing = movementAtlasKeys.filter(key => !this.runs[key].ready(this, this.movementResolution));
+      failForestStartup(loading, '四向動作載入失敗，請重新載入霧竹林。',
+        { phase: 'movement', missing, failedRequests: this.startupFailures });
       return;
     }
+    loading.dataset.phase = 'ecology/setup';
+    try {
+      const ecology = await this.ecology;
+      if (loading.dataset.failed) return;
+      if (ecology.status === 'loaded') {
+        try {
+          registerEcology(this, ecology.image);
+        } catch (error) {
+          console.warn('[forest-startup] optional bamboo atlas registration failed', error);
+          this.textures.remove('forest-batch-b');
+        }
+      } else {
+        console.warn('[forest-startup] optional bamboo atlas unavailable', ecology.status);
+      }
+      this.createPlayableScene(loading);
+    } catch (error) {
+      failForestStartup(loading, '霧竹林啟動失敗，請重新載入。', { phase: 'setup', error });
+    }
+  }
+
+  private createPlayableScene(loading: HTMLElement): void {
     this.physics.world.setBounds(24, 30, width - 48, height - 56);
     this.player = new Player(this, entrance.x, entrance.y);
     this.originalScale = this.player.view.scaleX;
@@ -167,8 +199,7 @@ export class ForestScene extends Phaser.Scene {
     };
     this.composition.panel.addEventListener('change', applyComposition);
     applyComposition();
-    this.controlsReady = true;
-    loading.hidden = true;
+
     this.events.once(Phaser.Scenes.Events.POST_UPDATE, () => this.queueCasts(this.movementResolution));
     const onPause = () => {
       this.controls.reset();
@@ -184,6 +215,8 @@ export class ForestScene extends Phaser.Scene {
       replay.removeEventListener('click', replayDiagnostic);
       this.composition.panel.removeEventListener('change', applyComposition);
     });
+    this.controlsReady = true;
+    loading.hidden = true;
   }
 
   private block(x: number, y: number, w: number, h: number): void {

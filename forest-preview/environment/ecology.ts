@@ -1,5 +1,6 @@
 import type Phaser from 'phaser';
 import provenance from '../../docs/forest-batch-b-provenance.json';
+import { loadOptionalImage } from '../startup';
 
 const atlas = 'forest-batch-b';
 type Frame = keyof typeof provenance.frames;
@@ -35,9 +36,14 @@ const floor: readonly (readonly [Frame, number, number, number, number])[] = [
   ['moss-01', 960, 169, .65, 14],
 ];
 
-export function preloadEcology(scene: Phaser.Scene): void {
-  scene.load.atlas(atlas, `${import.meta.env.BASE_URL}forest-batch-b/${provenance.meta.image}`,
-    { frames: provenance.frames });
+export function requestEcology() {
+  const { image, size, sha256 } = provenance.meta;
+  return loadOptionalImage(`${import.meta.env.BASE_URL}forest-batch-b/${image}?v=${sha256.slice(0, 16)}`,
+    size.w, size.h);
+}
+
+export function registerEcology(scene: Phaser.Scene, image: HTMLImageElement): void {
+  if (!scene.textures.exists(atlas)) scene.textures.addAtlas(atlas, image, { frames: provenance.frames });
 }
 
 export function drawEcologyFloor(scene: Phaser.Scene): void {
