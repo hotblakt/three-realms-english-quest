@@ -1,0 +1,536 @@
+{
+  "sourceCommit": "7d83f3fec5fb68ec177d789270b800ce34495e04",
+  "archiveBytes": 13612263,
+  "archiveSha256": "280d449caa340c1e9ac56176dd017cb51474e37250586f3423973fc2ac394fe9",
+  "sourceChecksums": {
+    "README.md": "8a68608420dc46d141bfc0fc4978bdc059f24a35e5f8e36378f8550e637bb239",
+    "manifest.json": "42f7dcccd4ec8f983625271f53a03031c3be8450f5dd60bf657bd16b093e474b",
+    "originals/a_clean_png_asset_sheet_on_a_transparent_checkerbo.png": "8e2c7cc232a24bca5dc62b98122c340bb089dc6c3b2c403909ef7011e4a5151c",
+    "originals/a_clean_png_sprite_sheet_on_transparent_checkerboa.png": "d349645b774867ad85f8e934f75fb2090fa83614c3ce369aa7b305987b643e43",
+    "originals/a_clean_transparent_background_png_sheet_of_detail.png": "59fb374528c2d260fbc4b9cac8424e9b4e573c660fad077a5dde55b7adff2329",
+    "originals/top_down_isometric_illustration_style_game_asset_s.png": "08f63f0c8363807ec8edbcb4efc389f67b9541c4bded04b44d24488302a6fd9a",
+    "preview.jpg": "72e578b488edc46bbfe256f1068d2ccc4e16bf987092e73a88be42fbe60549a0",
+    "runtime/b1-candidate.webp": "175c388294cda3f10c5302431a2f31c348175a5039b45c141a78b0b0554969ae",
+    "runtime/b2-candidate.webp": "67c187fd196e0e47027b5b646752e9502f1ce8d6314959ab84d90f0c5e06b554",
+    "sprites/bamboo-01.png": "b375536a99cc486f8acf6da20e82c7ef8697ca30df0f8857f5a1ca76019ec9e0",
+    "sprites/bamboo-02.png": "bcc57120e66f6066401f6e61231eb122776fdeb607c5b6d8990a4c53625758cd",
+    "sprites/bamboo-03.png": "64a5b78d02d291d22efe0db448126c5be95faf3aab4efb8bed3a9252c2781f3b",
+    "sprites/canopy-01.png": "f08424e3383f97d23dd5204b4fe37d6bc6e37f0bf677a91be766818e035ec460",
+    "sprites/canopy-02.png": "35e37a6fa7a06831ee1892752a2052b857c212fa064ca992c840192c4f454d08",
+    "sprites/canopy-03.png": "63b84387fc0be176409ef33a4fecda06a2d71f216564825ccd3966b3f821b461",
+    "sprites/leaf-litter-01.png": "84e19a638bd5b03ac9069c5f67a78fa9ac014be7b77f4a4b3c09826b6b8fd4d0",
+    "sprites/leaf-litter-02.png": "230580ffcace2005e3bfb62b458420906a27de6643eee5dd9b5a191a6b0be394",
+    "sprites/leaf-litter-03.png": "0bb1e1ecfcecbc59e01c950960b3f2eba1fa0dca2096a29a3339630f8600d4f9",
+    "sprites/moss-01.png": "09a15ab37bdc00712eb7739b29fb22d305bc5b7aa1a8ded22506451b9a74a3c7",
+    "sprites/root-01.png": "b3532f58f84272bc77b858ccb881fd7b7d381378498776cbbb81dfdc4fc2cfce",
+    "sprites/root-02.png": "cc3d1d1f75be1d75472ae9af3ac9f2791b4cfc069415b9bbe88e87125e4056fd",
+    "sprites/root-03.png": "2d343c0938fc332cf4897cf7f997979e7aecc2a19ee17ba192400c6d2bae1174",
+    "sprites/root-04.png": "ef25944d8f2077e4af994b6e70f9845d7281dc8d616171a7321ff22c718d8bf5",
+    "sprites/wet-ground-01.png": "e7d66b2788fbfae9e9592ae1518214497f81f53603b33dbfce853b8839eb4a0e",
+    "sprites/wet-ground-02.png": "d4eebec35fc827d0e41f15526d37fbe5ae80b81cb718db2c307cf169ede9eb22"
+  },
+  "sourceManifest": [
+    {
+      "name": "canopy-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        6,
+        0,
+        398,
+        252
+      ],
+      "sprite_size": [
+        383,
+        244
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 6,
+        "y": 67,
+        "w": 192,
+        "h": 122
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "canopy-02",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        400,
+        0,
+        830,
+        252
+      ],
+      "sprite_size": [
+        428,
+        234
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 210,
+        "y": 75,
+        "w": 192,
+        "h": 105
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "canopy-03",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        840,
+        0,
+        1100,
+        252
+      ],
+      "sprite_size": [
+        248,
+        233
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 414,
+        "y": 38,
+        "w": 192,
+        "h": 180
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "bamboo-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        10,
+        254,
+        332,
+        606
+      ],
+      "sprite_size": [
+        315,
+        348
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 618,
+        "y": 22,
+        "w": 192,
+        "h": 212
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "bamboo-02",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        342,
+        254,
+        620,
+        606
+      ],
+      "sprite_size": [
+        278,
+        342
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 822,
+        "y": 10,
+        "w": 192,
+        "h": 236
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "bamboo-03",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        624,
+        254,
+        878,
+        606
+      ],
+      "sprite_size": [
+        254,
+        340
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 11,
+        "y": 262,
+        "w": 182,
+        "h": 244
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "root-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        16,
+        612,
+        302,
+        762
+      ],
+      "sprite_size": [
+        269,
+        137
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 210,
+        "y": 335,
+        "w": 192,
+        "h": 98
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "root-02",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        318,
+        612,
+        584,
+        762
+      ],
+      "sprite_size": [
+        250,
+        136
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 414,
+        "y": 332,
+        "w": 192,
+        "h": 104
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "root-03",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        600,
+        610,
+        884,
+        762
+      ],
+      "sprite_size": [
+        265,
+        147
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 618,
+        "y": 330,
+        "w": 192,
+        "h": 107
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "root-04",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        892,
+        606,
+        1102,
+        758
+      ],
+      "sprite_size": [
+        184,
+        134
+      ],
+      "atlas": 0,
+      "frame": {
+        "x": 826,
+        "y": 317,
+        "w": 184,
+        "h": 134
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "leaf-litter-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        6,
+        768,
+        278,
+        898
+      ],
+      "sprite_size": [
+        261,
+        107
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 6,
+        "y": 40,
+        "w": 116,
+        "h": 48
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        253
+      ]
+    },
+    {
+      "name": "leaf-litter-02",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        524,
+        768,
+        784,
+        900
+      ],
+      "sprite_size": [
+        260,
+        131
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 134,
+        "y": 35,
+        "w": 116,
+        "h": 58
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "leaf-litter-03",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        1040,
+        764,
+        1332,
+        884
+      ],
+      "sprite_size": [
+        287,
+        120
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 262,
+        "y": 39,
+        "w": 116,
+        "h": 49
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        252
+      ]
+    },
+    {
+      "name": "moss-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        280,
+        770,
+        520,
+        896
+      ],
+      "sprite_size": [
+        230,
+        109
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 390,
+        "y": 36,
+        "w": 116,
+        "h": 55
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "name": "wet-ground-01",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        1028,
+        886,
+        1310,
+        1022
+      ],
+      "sprite_size": [
+        272,
+        123
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 6,
+        "y": 166,
+        "w": 116,
+        "h": 52
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "name": "wet-ground-02",
+      "source": "top_down_isometric_illustration_style_game_asset_s.png",
+      "source_crop": [
+        794,
+        910,
+        1024,
+        1020
+      ],
+      "sprite_size": [
+        218,
+        82
+      ],
+      "atlas": 1,
+      "frame": {
+        "x": 134,
+        "y": 170,
+        "w": 116,
+        "h": 44
+      },
+      "anchor_status": "provisional; determine world anchors in engine",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    }
+  ],
+  "frames": {
+    "canopy-01": {
+      "frame": {
+        "x": 8,
+        "y": 8,
+        "w": 192,
+        "h": 122
+      }
+    },
+    "canopy-02": {
+      "frame": {
+        "x": 216,
+        "y": 8,
+        "w": 192,
+        "h": 105
+      }
+    },
+    "canopy-03": {
+      "frame": {
+        "x": 424,
+        "y": 8,
+        "w": 152,
+        "h": 143
+      }
+    },
+    "bamboo-01": {
+      "frame": {
+        "x": 592,
+        "y": 8,
+        "w": 156,
+        "h": 172
+      }
+    },
+    "bamboo-02": {
+      "frame": {
+        "x": 8,
+        "y": 196,
+        "w": 140,
+        "h": 172
+      }
+    },
+    "root-04": {
+      "frame": {
+        "x": 164,
+        "y": 196,
+        "w": 108,
+        "h": 79
+      }
+    },
+    "leaf-litter-01": {
+      "frame": {
+        "x": 288,
+        "y": 196,
+        "w": 108,
+        "h": 44
+      }
+    },
+    "moss-01": {
+      "frame": {
+        "x": 412,
+        "y": 196,
+        "w": 108,
+        "h": 51
+      }
+    },
+    "wet-ground-02": {
+      "frame": {
+        "x": 536,
+        "y": 196,
+        "w": 108,
+        "h": 41
+      }
+    }
+  },
+  "meta": {
+    "image": "forest-batch-b.webp",
+    "size": {
+      "w": 768,
+      "h": 384
+    },
+    "extrusionPx": 4,
+    "gutterPxPerFrameSide": 4,
+    "bytes": 228190,
+    "rgbaBytes": 1179648,
+    "sha256": "8b11aaad52d4f52daffa69bed77f7b589f74a61eacc9b0df6daacc0810c9405e"
+  }
+}
