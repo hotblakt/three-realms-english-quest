@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
-import { recommendedScale, sanitizeScales, smoothVisualSize } from './directionalScale';
+import { recommendedScale, sanitizeScales } from './directionalScale';
+import { transitionVisualScale, type VisualScaleState } from './scaleTransition';
 
 const key = 'three-realms:forest-directional-calibration:v1';
 let scales = sanitizeScales();
@@ -48,19 +49,13 @@ export function setupScalePanel(): void {
   render();
 }
 
-const previous = new WeakMap<Phaser.GameObjects.Image, { height: number; time: number }>();
+const previous = new WeakMap<Phaser.GameObjects.Image, VisualScaleState>();
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
-export function calibratedSize(
-  image: Phaser.GameObjects.Image, nominalSize: number, direction: EikuDirection,
-): number {
-  const now = image.scene.time.now;
-  const old = previous.get(image);
-  const desired = nominalSize * scales[direction] / 100;
-  const height = old ? smoothVisualSize(old.height, desired, now - old.time) : desired;
-  previous.set(image, { height, time: now });
-  return height;
-}
-
-export function clearScaleTransition(image: Phaser.GameObjects.Image): void {
-  previous.delete(image);
+export function renderVisualSize(image: Phaser.GameObjects.Image, nominal: number,
+  group: VisualScaleState['group'], direction?: EikuDirection): number {
+  const target = direction ? nominal * scales[direction] / 100 : nominal;
+  const state = transitionVisualScale(previous.get(image), group, target, image.scene.time.now, reducedMotion.matches);
+  previous.set(image, state);
+  return state.value;
 }

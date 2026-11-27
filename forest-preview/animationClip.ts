@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
 import { runDirection } from './directionalScale';
-import { calibratedSize, clearScaleTransition } from './scalePanel';
+import { renderVisualSize } from './scalePanel';
 
 interface TextureVariant {
   url: string;
@@ -31,9 +31,14 @@ export class AnimationClip {
     return `${this.manifest.id}-${size}`;
   }
 
-  ensure(scene: Phaser.Scene, size: number): boolean {
+  ready(scene: Phaser.Scene, size: number): boolean {
     const key = this.key(size);
-    if (scene.textures.exists(key)) return true;
+    return scene.textures.exists(key) && scene.textures.get(key).has(String(this.manifest.frameCount - 1));
+  }
+
+  ensure(scene: Phaser.Scene, size: number, start = true): boolean {
+    const key = this.key(size);
+    if (this.ready(scene, size)) return true;
     if (this.requested.has(size)) return false;
     const variant = this.manifest.textures[String(size)];
     if (!variant) return false;
@@ -41,7 +46,7 @@ export class AnimationClip {
     scene.load.spritesheet(key, `${import.meta.env.BASE_URL}${this.directory}/${variant.url}`, {
       frameWidth: size, frameHeight: size, endFrame: this.manifest.frameCount - 1,
     });
-    if (!scene.load.isLoading()) scene.load.start();
+    if (start && !scene.load.isLoading()) scene.load.start();
     return false;
   }
 
@@ -64,8 +69,8 @@ export class AnimationClip {
     const [x, y] = this.manifest.origin;
     const nominal = standHeight / this.manifest.standingHeightInFrame;
     const direction = runDirection(this.manifest.id);
-    if (!direction) clearScaleTransition(image);
-    const displaySize = direction ? calibratedSize(image, nominal, direction) : nominal;
+    const group = direction ? 'run' : this.manifest.id.endsWith('-idle') ? 'idle' : 'other';
+    const displaySize = renderVisualSize(image, nominal, group, direction);
     image.setOrigin(x, y).setDisplaySize(displaySize, displaySize);
   }
 }

@@ -17,8 +17,3 @@ export function runDirection(id: string): EikuDirection | undefined {
   const match = /^eiku-(east|west|north|south)-run$/.exec(id);
   return match?.[1] as EikuDirection | undefined;
 }
-
-export function smoothVisualSize(previous: number, target: number, elapsed: number): number {
-  if (Math.abs(previous - target) < .02 || elapsed >= 200) return target;
-  return target + (previous - target) * Math.exp(-Math.max(0, elapsed) / 45);
-}

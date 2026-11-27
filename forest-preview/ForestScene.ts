@@ -9,6 +9,7 @@ import assetCatalog from '../docs/misty-forest-runtime-assets.json';
 import { chooseCastTiming, facingDirection, forwardDistance, selectDirectionalAction } from './directionalActions';
 import { EastActions } from './eastActions';
 import { AnimationClip } from './animationClip';
+import { canStartRun, castAtlasKeys, movementAtlasKeys, movementAtlasesReady } from './movementReadiness';
 import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { bridge, chest, entrance, height, props, routes, shortcut, spirit, streamCenter, waterWalls, width } from './layout';
@@ -30,6 +31,8 @@ export class ForestScene extends Phaser.Scene {
   private readonly runs = Object.fromEntries(
     Object.entries(runSources).map(([key, manifest]) => [key, new AnimationClip(manifest, 'eiku-run')]),
   ) as Record<keyof typeof runSources, AnimationClip>;
+  private controlsReady = false;
+  private movementResolution = this.settings.resolution;
   private previousX = entrance.x;
   private previousY = entrance.y;
   private dodgeEnd = 0;
@@ -51,6 +54,8 @@ export class ForestScene extends Phaser.Scene {
   constructor() { super('misty-forest'); }
 
   preload(): void {
+    this.controlsReady = false;
+    this.queueMovement(this.movementResolution);
     preloadEikuAtlas(this);
     preloadComposition(this);
     for (const key of Object.keys(assetCatalog.textures)) {
@@ -58,7 +63,28 @@ export class ForestScene extends Phaser.Scene {
     }
   }
 
+  private queueMovement(size: number): void {
+    for (const key of movementAtlasKeys) this.runs[key].ensure(this, size, false);
+  }
+
+  private queueCasts(size: number): void {
+    for (const key of castAtlasKeys) this.runs[key].ensure(this, size, false);
+    if (!this.load.isLoading()) this.load.start();
+  }
+
+  private movementReady(size: number): boolean {
+    return movementAtlasesReady(key => this.runs[key].ready(this, size));
+  }
+
   create(): void {
+    const loading = document.querySelector<HTMLElement>('#forest-loading')!;
+    if (!this.movementReady(this.movementResolution)) {
+      loading.querySelector('p')!.textContent = '四向動作載入失敗，請重新載入霧竹林。';
+      const retry = loading.querySelector('button')!;
+      retry.hidden = false;
+      retry.onclick = () => location.reload();
+      return;
+    }
     this.physics.world.setBounds(24, 30, width - 48, height - 56);
     this.player = new Player(this, entrance.x, entrance.y);
     this.originalScale = this.player.view.scaleX;
@@ -106,6 +132,10 @@ export class ForestScene extends Phaser.Scene {
       else if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && paused) {
         reviewFrame.selectedIndex = Math.min(count - 1, this.displayedRunFrame);
       }
+      if (resolution !== this.settings.resolution) {
+        this.queueMovement(resolution);
+        if (!this.load.isLoading()) this.load.start();
+      }
       this.settings = this.composition.read();
       reviewFrame.disabled = !paused || !clip;
       replay.hidden = !(clip?.manifest.diagnostic || clip?.manifest.oneShot);
@@ -128,6 +158,9 @@ export class ForestScene extends Phaser.Scene {
     };
     this.composition.panel.addEventListener('change', applyComposition);
     applyComposition();
+    this.controlsReady = true;
+    loading.hidden = true;
+    this.events.once(Phaser.Scenes.Events.POST_UPDATE, () => this.queueCasts(this.movementResolution));
     const onPause = () => {
       this.controls.reset();
       this.eastActions.clear();
@@ -307,6 +340,11 @@ export class ForestScene extends Phaser.Scene {
   }
 
   update(now: number, delta: number): void {
+    if (!this.controlsReady) return;
+    if (this.settings.resolution !== this.movementResolution && this.movementReady(this.settings.resolution)) {
+      this.movementResolution = this.settings.resolution;
+      this.queueCasts(this.movementResolution);
+    }
     const direction = this.controls.direction();
     this.player.look(direction, now);
     if (this.player.move(direction, now, this.controls.consume('dodge'))) {
@@ -321,8 +359,9 @@ export class ForestScene extends Phaser.Scene {
     }
     const facing = this.player.facing;
     const facingKey = facingDirection(facing);
-    const { motion, paused, speed, frame, resolution, size, source, candidate } = this.settings;
+    const { motion, paused, speed, frame, size, source, candidate } = this.settings;
     const automatic = candidate && source === 'framesprite' && motion !== 'review' && !paused;
+    const resolution = automatic ? this.movementResolution : this.settings.resolution;
     const hasInput = Boolean(direction.lengthSq());
     const cast = automatic ? selectDirectionalAction(this.runs, facingKey, {
       casting: true, busy: false, moving: false, hasInput,
@@ -343,11 +382,12 @@ export class ForestScene extends Phaser.Scene {
     }
     if (candidate) {
       const distance = forwardDistance(facing, direction, { x: x - this.previousX, y: y - this.previousY });
+      const moving = now >= this.dodgeEnd && (distance > 0 || canStartRun(direction, this.player.body.blocked));
       const action = this.eastActions.current(now);
       const casting = automatic && action?.name === 'cast' ? action : undefined;
       const requestedClip = automatic
         ? selectDirectionalAction(this.runs, facingKey, {
-          casting: Boolean(casting), busy: Boolean(action), moving: distance > 0 && now >= this.dodgeEnd,
+          casting: Boolean(casting), busy: Boolean(action), moving,
           hasInput,
         })
         : source !== 'static' && (paused || motion === 'review' || (distance > 0 && now >= this.dodgeEnd
@@ -362,12 +402,12 @@ export class ForestScene extends Phaser.Scene {
           : paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
         if (clip.finished && !paused && motion !== 'review') {
-          showCandidate(this, this.candidate, this.player.facing, this.settings);
+          showCandidate(this, this.candidate, this.player.facing, { ...this.settings, resolution });
         } else {
           clip.draw(this.candidate, resolution, index, standingHeight * size / 100);
         }
       } else {
-        showCandidate(this, this.candidate, this.player.facing, this.settings);
+        showCandidate(this, this.candidate, this.player.facing, { ...this.settings, resolution });
       }
       this.activeRun = clip;
     } else {
