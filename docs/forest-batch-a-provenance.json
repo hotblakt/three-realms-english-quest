@@ -1,0 +1,209 @@
+{
+  "sourceCommit": "67cde5beb89d2cf5888e8f8484445cd1dee91397",
+  "archiveSize": 17560997,
+  "archiveSha256": "7a41d5329d0d6531ee9d5cf2041e2e0eeb83f21cdfe9dcc85435864c1a039d55",
+  "sourceManifestSha256": "0ac57b79e795e61f145f02161f9e44389c4dc508c6e89bb2c7af7e88031b78ed",
+  "sourceManifest": {
+    "status": "candidate_only",
+    "source_spec": "docs/misty-bamboo-forest-v2-production-spec.md",
+    "source_spec_ref": "a78288789892ea766f95ded93aacca77fc8cd490",
+    "originals": [
+      {
+        "path": "originals/creek-water-source.png",
+        "sha256": "405eb74dd1e81d22ff55a2f44adb43eebc527090d0f47c72dc3cea8a1b441e4a",
+        "size": [
+          1774,
+          887
+        ],
+        "mode": "RGBA",
+        "alpha_range": [
+          199,
+          244
+        ]
+      },
+      {
+        "path": "originals/bank-waterfall-source.png",
+        "sha256": "4c13a1970943f3dd6f5b59e2c9b0a971f6f09c491dd5437efdf2fb91a815ccc0",
+        "size": [
+          1774,
+          887
+        ],
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ]
+      },
+      {
+        "path": "originals/creek-composite-source.png",
+        "sha256": "d2a54d8eecec60b8c793aff8fd2296c5eb214da8539bf292bddfe544c958b2d3",
+        "size": [
+          1774,
+          887
+        ],
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ]
+      },
+      {
+        "path": "originals/wet-bank-source.png",
+        "sha256": "09f4e5a8ebece98fa1434c80bfeede60282dad443fe0775f8ba524f26ca70c4f",
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          253
+        ]
+      },
+      {
+        "path": "originals/creek-concept-source.png",
+        "sha256": "9b36de9e9fe75c84e62aef2519462b000856b8e1a0b2d9132c1ecae172e55279",
+        "size": [
+          1774,
+          887
+        ],
+        "mode": "RGB",
+        "alpha_range": null
+      },
+      {
+        "path": "originals/asset-board-source.png",
+        "sha256": "87b347bfb798247b1a19d09f11479cda520fbcd0e5cad0839e1640ec24ae8c3a",
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_range": [
+          2,
+          252
+        ]
+      }
+    ],
+    "derivatives": [
+      {
+        "path": "candidates/creek-wet-banks-v001.webp",
+        "size": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "bytes": 248016,
+        "sha256": "747830be208e19017988022e9b93f393c2a4e1410c57ffb98973c7f1563d3bed",
+        "rgba_bytes": 1048576
+      },
+      {
+        "path": "candidates/creek-waterfall-v001.webp",
+        "size": [
+          512,
+          256
+        ],
+        "mode": "RGBA",
+        "bytes": 88202,
+        "sha256": "8a8d17d923020a7e945f69bae3c745d086bf638a28371ff882ecfb32321455ea",
+        "rgba_bytes": 524288
+      },
+      {
+        "path": "candidates/creek-water-v001.webp",
+        "size": [
+          512,
+          256
+        ],
+        "mode": "RGB",
+        "bytes": 202696,
+        "sha256": "8b241ac3a31659af6ffc54a6eb04ecc699663568e79a6c2a8303cfe9fae96790",
+        "rgba_bytes": 524288
+      }
+    ],
+    "water_edge_mae_rgb": {
+      "before": [
+        13.608,
+        8.874
+      ],
+      "after": [
+        0.0,
+        0.0
+      ],
+      "note": "Edge equality only; visual tiling and flow still require review."
+    },
+    "limitations": [
+      "Wet bank is one composite, not modular left/right/inner/outer bends.",
+      "Waterfall is a static composite crop, not separated lip, falling water, foam or spray; possible cropped edge.",
+      "No PSD/KRA, anchor coordinates, atlas extrusion or game validation.",
+      "Do not replace existing assets until Codex verifies fit and acceptance."
+    ]
+  },
+  "runtime": {
+    "batch-water": {
+      "url": "batch-water.webp",
+      "source": "candidates/creek-water-v001.webp",
+      "sourceSha256": "8b241ac3a31659af6ffc54a6eb04ecc699663568e79a6c2a8303cfe9fae96790",
+      "region": null,
+      "size": [
+        512,
+        256
+      ],
+      "bytes": 180064,
+      "rgbaBytes": 524288,
+      "sha256": "d72e7df1b55b1202e0fd0bac5970147ef96ee3afaac1633496de5b400a19bad8"
+    },
+    "batch-bank": {
+      "url": "batch-bank.webp",
+      "source": "originals/wet-bank-source.png",
+      "sourceSha256": "09f4e5a8ebece98fa1434c80bfeede60282dad443fe0775f8ba524f26ca70c4f",
+      "region": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "size": [
+        320,
+        208
+      ],
+      "bytes": 108860,
+      "rgbaBytes": 266240,
+      "sha256": "70b0401e1857eb0c18804413b72b6646edfffc2e5eaac0e1745db75559020ba3"
+    },
+    "batch-shoal": {
+      "url": "batch-shoal.webp",
+      "source": "originals/bank-waterfall-source.png",
+      "sourceSha256": "4c13a1970943f3dd6f5b59e2c9b0a971f6f09c491dd5437efdf2fb91a815ccc0",
+      "region": [
+        15,
+        141,
+        923,
+        826
+      ],
+      "size": [
+        224,
+        161
+      ],
+      "bytes": 67852,
+      "rgbaBytes": 144256,
+      "sha256": "ed6df24dbef0ac05faad5b3d48fbdff62b5607c9499e65efe56ba8f4b3fb1417"
+    },
+    "batch-falls": {
+      "url": "batch-falls.webp",
+      "source": "originals/bank-waterfall-source.png",
+      "sourceSha256": "4c13a1970943f3dd6f5b59e2c9b0a971f6f09c491dd5437efdf2fb91a815ccc0",
+      "region": [
+        925,
+        45,
+        1772,
+        836
+      ],
+      "size": [
+        288,
+        264
+      ],
+      "bytes": 127374,
+      "rgbaBytes": 304128,
+      "sha256": "236bc389a2e9743999b923ab08a8bf158038c9aa6c7913a8fafa1926e4a0bccc"
+    }
+  }
+}
