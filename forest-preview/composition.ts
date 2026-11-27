@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
 
+import { stanceSilhouette } from './locomotionSilhouette';
 import { renderVisualSize } from './scalePanel';
 import { parseRunSource } from './runSources';
 
@@ -58,7 +59,7 @@ export function showCandidate(
   }
   if (image.texture.key !== key) image.setTexture(key);
   const nominal = standingHeight * settings.size / 100 * 384 / 316;
-  const displaySize = renderVisualSize(image, nominal, 'idle');
+  const displaySize = renderVisualSize(image, nominal, 'idle', undefined, stanceSilhouette(direction));
   image.setOrigin(.5, 338 / 384).setDisplaySize(displaySize, displaySize);
 }
 
