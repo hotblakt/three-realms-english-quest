@@ -6,8 +6,10 @@ import { Sword } from '../src/combat/Sword';
 import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
 import assetCatalog from '../docs/misty-forest-runtime-assets.json';
+import { chooseCastTiming, facingDirection, forwardDistance, selectDirectionalAction } from './directionalActions';
 import { EastActions } from './eastActions';
 import { AnimationClip } from './animationClip';
+import { canStartRun, castAtlasKeys, movementAtlasKeys, movementAtlasesReady } from './movementReadiness';
 import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { chest, entrance, height, shortcut, spirit, width } from './layout';
@@ -29,15 +31,11 @@ export class ForestScene extends Phaser.Scene {
   private castKey!: Phaser.Input.Keyboard.Key;
   private footMarker!: Phaser.GameObjects.Graphics;
   private readonly anchorSetting = document.querySelector<HTMLInputElement>('#ground-anchor')!;
-  private readonly runs = {
-    'east-idle': new AnimationClip(runSources['east-idle'], 'eiku-run'),
-    'east-cast': new AnimationClip(runSources['east-cast'], 'eiku-run'),
-    framesprite: new AnimationClip(runSources.framesprite, 'eiku-run'),
-    'south-run': new AnimationClip(runSources['south-run'], 'eiku-run'),
-    chatgpt: new AnimationClip(runSources.chatgpt, 'eiku-run'),
-    'fal-first': new AnimationClip(runSources['fal-first'], 'eiku-run'),
-    'fal-second': new AnimationClip(runSources['fal-second'], 'eiku-run'),
-  };
+  private readonly runs = Object.fromEntries(
+    Object.entries(runSources).map(([key, manifest]) => [key, new AnimationClip(manifest, 'eiku-run')]),
+  ) as Record<keyof typeof runSources, AnimationClip>;
+  private controlsReady = false;
+  private movementResolution = this.settings.resolution;
   private previousX = entrance.x;
   private previousY = entrance.y;
   private dodgeEnd = 0;
@@ -59,6 +57,8 @@ export class ForestScene extends Phaser.Scene {
   constructor() { super('misty-forest'); }
 
   preload(): void {
+    this.controlsReady = false;
+    this.queueMovement(this.movementResolution);
     preloadEikuAtlas(this);
     preloadComposition(this);
     for (const key of Object.keys(assetCatalog.textures)) {
@@ -66,7 +66,28 @@ export class ForestScene extends Phaser.Scene {
     }
   }
 
+  private queueMovement(size: number): void {
+    for (const key of movementAtlasKeys) this.runs[key].ensure(this, size, false);
+  }
+
+  private queueCasts(size: number): void {
+    for (const key of castAtlasKeys) this.runs[key].ensure(this, size, false);
+    if (!this.load.isLoading()) this.load.start();
+  }
+
+  private movementReady(size: number): boolean {
+    return movementAtlasesReady(key => this.runs[key].ready(this, size));
+  }
+
   create(): void {
+    const loading = document.querySelector<HTMLElement>('#forest-loading')!;
+    if (!this.movementReady(this.movementResolution)) {
+      loading.querySelector('p')!.textContent = '四向動作載入失敗，請重新載入霧竹林。';
+      const retry = loading.querySelector('button')!;
+      retry.hidden = false;
+      retry.onclick = () => location.reload();
+      return;
+    }
     this.physics.world.setBounds(24, 30, width - 48, height - 56);
     this.player = new Player(this, entrance.x, entrance.y);
     this.originalScale = this.player.view.scaleX;
@@ -115,6 +136,10 @@ export class ForestScene extends Phaser.Scene {
       else if ((event?.target as HTMLInputElement | undefined)?.name === 'paused' && paused) {
         reviewFrame.selectedIndex = Math.min(count - 1, this.displayedRunFrame);
       }
+      if (resolution !== this.settings.resolution) {
+        this.queueMovement(resolution);
+        if (!this.load.isLoading()) this.load.start();
+      }
       this.settings = this.composition.read();
       reviewFrame.disabled = !paused || !clip;
       replay.hidden = !(clip?.manifest.diagnostic || clip?.manifest.oneShot);
@@ -137,6 +162,9 @@ export class ForestScene extends Phaser.Scene {
     };
     this.composition.panel.addEventListener('change', applyComposition);
     applyComposition();
+    this.controlsReady = true;
+    loading.hidden = true;
+    this.events.once(Phaser.Scenes.Events.POST_UPDATE, () => this.queueCasts(this.movementResolution));
     const onPause = () => {
       this.controls.reset();
       this.eastActions.clear();
@@ -184,6 +212,11 @@ export class ForestScene extends Phaser.Scene {
   }
 
   update(now: number, delta: number): void {
+    if (!this.controlsReady) return;
+    if (this.settings.resolution !== this.movementResolution && this.movementReady(this.settings.resolution)) {
+      this.movementResolution = this.settings.resolution;
+      this.queueCasts(this.movementResolution);
+    }
     const direction = this.controls.direction();
     this.player.look(direction, now);
     if (this.player.move(direction, now, this.controls.consume('dodge'))) {
@@ -196,53 +229,57 @@ export class ForestScene extends Phaser.Scene {
       && this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center)) {
       this.eastActions.start('attack', now);
     }
-    const autoEast = this.settings.candidate && this.settings.source === 'framesprite'
-      && this.settings.motion !== 'review' && !this.settings.paused && this.player.facing.x > 0;
-    const castKeyPressed = Phaser.Input.Keyboard.JustDown(this.castKey);
-    this.castRequested ||= castKeyPressed;
-    if (!autoEast || direction.lengthSq()) {
+    const facing = this.player.facing;
+    const facingKey = facingDirection(facing);
+    const { motion, paused, speed, frame, size, source, candidate } = this.settings;
+    const automatic = candidate && source === 'framesprite' && motion !== 'review' && !paused;
+    const resolution = automatic ? this.movementResolution : this.settings.resolution;
+    const hasInput = Boolean(direction.lengthSq());
+    const cast = automatic ? selectDirectionalAction(this.runs, facingKey, {
+      casting: true, busy: false, moving: false, hasInput,
+    }) : undefined;
+    this.castRequested ||= Phaser.Input.Keyboard.JustDown(this.castKey);
+    if (!cast || hasInput) {
       this.castRequested = false;
       if (this.eastActions.current(now)?.name === 'cast') this.eastActions.clear();
     }
-    if (this.castRequested && this.runs['east-cast'].ensure(this, this.settings.resolution)) {
-      this.eastActions.start('cast', now);
+    if (cast && this.castRequested && cast.ensure(this, resolution)) {
+      this.eastActions.start('cast', now, chooseCastTiming(facingKey, cast.manifest.fps, cast.manifest.frameCount));
       this.castRequested = false;
     }
-    if (autoEast && this.eastActions.releaseCast(now)) {
-      const spark = this.add.circle(x + 31, y - 43, 6, 0x9cebd6, .7).setDepth(y + 1);
-      this.tweens.add({ targets: spark, x: x + 63, scale: 2, alpha: 0, duration: 240,
-        onComplete: () => spark.destroy() });
+    if (cast && this.eastActions.releaseCast(now)) {
+      const spark = this.add.circle(x + 31 * facing.x, y - 43 + 21 * facing.y, 6, 0x9cebd6, .7).setDepth(y + 1);
+      this.tweens.add({ targets: spark, x: spark.x + 32 * facing.x, y: spark.y + 32 * facing.y,
+        scale: 2, alpha: 0, duration: 240, onComplete: () => spark.destroy() });
     }
-    if (this.settings.candidate) {
-      const eastDistance = x - this.previousX;
-      const southDistance = y - this.previousY;
-      const movingEast = this.player.facing.x > 0 && direction.x > 0 && eastDistance > 0 && now >= this.dodgeEnd;
-      const { motion, paused, speed, frame, resolution, size, source } = this.settings;
-      const movingSouth = this.player.facing.y > 0 && direction.y > 0 && southDistance > 0 && now >= this.dodgeEnd;
-      const automaticSouth = source === 'framesprite' && motion !== 'review' && !paused && movingSouth;
+    if (candidate) {
+      const distance = forwardDistance(facing, direction, { x: x - this.previousX, y: y - this.previousY });
+      const moving = now >= this.dodgeEnd && (distance > 0 || canStartRun(direction, this.player.body.blocked));
       const action = this.eastActions.current(now);
-      const eastCast = autoEast && action?.name === 'cast' ? action : undefined;
-      const eastIdle = autoEast && !action && !movingEast && !direction.lengthSq();
-      const active = eastCast ? 'east-cast' : eastIdle ? 'east-idle' : automaticSouth ? 'south-run' : source;
-      const moving = active === 'south-run' ? movingSouth : movingEast;
-      const requestedClip = active !== 'static' && (paused || motion === 'review' || moving || eastIdle || eastCast)
-        ? this.runs[active] : undefined;
+      const casting = automatic && action?.name === 'cast' ? action : undefined;
+      const requestedClip = automatic
+        ? selectDirectionalAction(this.runs, facingKey, {
+          casting: Boolean(casting), busy: Boolean(action), moving,
+          hasInput,
+        })
+        : source !== 'static' && (paused || motion === 'review' || (distance > 0 && now >= this.dodgeEnd
+          && (source.endsWith('-run') ? source === `${facingKey}-run` : facingKey === 'east' && !source.startsWith('east-'))))
+          ? this.runs[source] : undefined;
       const clip = requestedClip?.ensure(this, resolution) ? requestedClip : undefined;
       if (clip) {
-        if (clip !== this.activeRun) clip.reset(motion === 'review' || active !== 'framesprite' ? 0 : 1);
+        if (clip !== this.activeRun) clip.reset(motion === 'review' || clip !== this.runs.framesprite ? 0 : 1);
         // Use distance travelled so contact with a wall naturally stops the run loop.
-        const distance = active === 'south-run' ? southDistance : eastDistance;
-        const seconds = motion === 'review' || eastIdle ? delta / 1000 : distance / clip.manifest.referenceSpeed;
-        const index = eastCast ? Math.min(clip.manifest.frameCount - 1, Math.floor((now - eastCast.start) * .01))
+        const seconds = motion === 'review' || !hasInput ? delta / 1000 : distance / clip.manifest.referenceSpeed;
+        const index = casting ? Math.min(clip.manifest.frameCount - 1, Math.floor((now - casting.start) * clip.manifest.fps / 1000))
           : paused ? frame : clip.advance(Math.max(0, Math.min(seconds, .05)), speed);
         this.displayedRunFrame = index;
         if (clip.finished && !paused && motion !== 'review') {
-          showCandidate(this, this.candidate, this.player.facing, this.settings);
+          showCandidate(this, this.candidate, this.player.facing, { ...this.settings, resolution });
         } else {
           clip.draw(this.candidate, resolution, index, standingHeight * size / 100);
         }
       } else {
-        showCandidate(this, this.candidate, this.player.facing, this.settings);
+        showCandidate(this, this.candidate, this.player.facing, { ...this.settings, resolution });
       }
       this.activeRun = clip;
     } else {

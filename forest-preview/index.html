@@ -9,6 +9,10 @@
 <body class="forest-preview">
   <main id="stage">
     <div id="game" aria-label="霧竹林可步行場景"></div>
+    <section id="forest-loading">
+      <p role="status">正在準備四向動作…</p>
+      <button type="button" hidden>重新載入</button>
+    </section>
     <header class="forest-hud">
       <h1>霧竹林</h1>
       <p id="forest-message" role="status">沿石路走到溪邊，找木橋過溪。</p>
@@ -20,14 +24,21 @@
           <label>動作來源 <select name="run-source">
             <option value="static">影空 2.0 站姿</option>
             <option value="framesprite" selected>FrameSprite 自動方向</option>
-            <option value="east-idle">東向待機檢閱</option>
+            <optgroup label="已驗收動作"><option value="east-idle">東向待機檢閱</option>
             <option value="east-cast">東向施法檢閱</option>
             <option value="south-run">FrameSprite 南向跑步檢閱</option>
-            <option value="fal-first">fal.ai 第一次・診斷</option>
+            <option value="north-run">北向跑步檢閱</option>
+            <option value="west-run">西向跑步檢閱</option>
+            <option value="north-idle">北向待機檢閱</option>
+            <option value="west-idle">西向待機檢閱</option>
+            <option value="south-idle">南向待機檢閱</option>
+            <option value="west-cast">西向施法檢閱</option>
+            <option value="south-cast">南向施法檢閱</option></optgroup>
+            <optgroup label="診斷素材"><option value="fal-first">fal.ai 第一次・診斷</option>
             <option value="fal-second">fal.ai 第二次・診斷</option>
-            <option value="chatgpt">ChatGPT 試播候選</option>
+            <option value="chatgpt">ChatGPT 試播候選</option></optgroup>
           </select></label>
-          <label>跑步預覽 <select name="motion">
+          <label>播放方式 <select name="motion">
             <option value="walk">隨移動播放</option><option value="review">原地試播</option>
           </select></label>
           <label>播放速度 <select name="speed"><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select></label>
@@ -37,8 +48,18 @@
           </div>
           <button id="replay-diagnostic" type="button" hidden>重播單次片段</button>
           <p id="run-info"></p>
+          <details id="directional-scale">
+            <summary>四向跑步比例</summary>
+            <label for="scale-east">東向 <input id="scale-east" name="east" type="range" min="80" max="120" step="1" value="100"><output for="scale-east">100%</output></label>
+            <label for="scale-west">西向 <input id="scale-west" name="west" type="range" min="80" max="120" step="1" value="100"><output for="scale-west">100%</output></label>
+            <label for="scale-north">北向 <input id="scale-north" name="north" type="range" min="80" max="120" step="1" value="114"><output for="scale-north">114%</output></label>
+            <label for="scale-south">南向 <input id="scale-south" name="south" type="range" min="80" max="120" step="1" value="95"><output for="scale-south">95%</output></label>
+            <label><input type="checkbox" id="remember-directional-scale">記住本機比例</label>
+            <button type="button" id="reset-directional-scale">恢復建議比例</button>
+          </details>
           <label><input type="checkbox" id="ground-anchor">顯示腳底原點</label>
-          <details id="east-review"><summary>東向動作品質與原稿</summary>
+          <details id="east-review"><summary>四向動作品質與原稿</summary>
+            <label>方向 <select id="review-direction"><option value="east">東</option><option value="north">北</option><option value="west">西</option><option value="south">南</option></select></label>
             <label>動作 <select id="east-review-action">
               <option value="idle">待機</option><option value="run">跑步</option><option value="attack">揮劍</option>
               <option value="dash">衝刺</option><option value="cast">施法</option>
@@ -55,7 +76,7 @@
             <label><input type="checkbox" name="shadow" checked>接地陰影</label>
             <label><input type="checkbox" name="light" checked>環境光</label>
           </div>
-          <p>自動方向支援向右和向南跑步。南向待機使用站姿。</p>
+          <p>自動方向支援四向跑步與待機。停止移動後可面向東、西、南施法。</p>
         </div>
       </details>
       <a class="forest-back" href="%BASE_URL%art-workbench/">返回工作台</a>
@@ -69,7 +90,7 @@
         <button id="east-cast-button" type="button">施法</button>
       </div>
     </div>
-    <p id="keyboard">方向鍵／WASD 移動　J 揮劍　空白鍵閃避　E 互動　K 東向施法</p>
+    <p id="keyboard">方向鍵／WASD 移動　J 揮劍　空白鍵閃避　E 互動　K 施法</p>
   </main>
   <section id="rotate-device" hidden aria-labelledby="rotate-title">
     <h2 id="rotate-title" tabindex="-1">請將裝置轉為橫向</h2>

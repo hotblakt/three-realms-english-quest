@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "0d62e83f0045d3707bcec2f2bd4a3f10b681649b",
+  "id": "eiku-north",
+  "anchor": [
+    384,
+    1012
+  ],
+  "scale": 0.53,
+  "actions": [
+    {
+      "action": "idle",
+      "range": [
+        0,
+        56
+      ],
+      "approved": true,
+      "indices": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52
+      ],
+      "fps": 4
+    }
+  ]
+}

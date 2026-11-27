@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "0d62e83f0045d3707bcec2f2bd4a3f10b681649b",
+  "id": "eiku-west",
+  "anchor": [
+    446,
+    1008
+  ],
+  "scale": 0.43,
+  "actions": [
+    {
+      "action": "run",
+      "range": [
+        23,
+        33
+      ],
+      "approved": true,
+      "indices": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    }
+  ],
+  "shadowCut": [
+    0,
+    1020
+  ]
+}

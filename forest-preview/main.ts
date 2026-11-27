@@ -3,10 +3,12 @@ import '../src/style.css';
 import './preview.css';
 import { useLandscapeLayout } from '../src/ui/landscapeLayout';
 import { useCompositionViewport } from './composition';
+import { setupScalePanel } from './scalePanel';
 import { setupEastReview } from './eastReview';
 import { ForestScene } from './ForestScene';
 
 setupEastReview();
+setupScalePanel();
 
 new Phaser.Game({
   type: Phaser.AUTO,

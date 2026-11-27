@@ -1,0 +1,27 @@
+{
+  "id": "eiku-west-run",
+  "frameCount": 10,
+  "fps": 14.1,
+  "referenceSpeed": 123,
+  "origin": [
+    0.5,
+    0.8802083333333334
+  ],
+  "standingHeightInFrame": 0.8229166666666666,
+  "textures": {
+    "256": {
+      "url": "eiku-west-run-256.webp",
+      "bytes": 281700,
+      "sha256": "23be5479733d208190f257c2de5c127b8addb2dbdf66d98a5adba4a808e96352",
+      "width": 1024,
+      "height": 768
+    },
+    "384": {
+      "url": "eiku-west-run-384.webp",
+      "bytes": 539604,
+      "sha256": "b55b0ab37709f5454b68a27d4dc9a4c9666d14f148d1bd915e00d9d6312bf789",
+      "width": 1536,
+      "height": 1152
+    }
+  }
+}
