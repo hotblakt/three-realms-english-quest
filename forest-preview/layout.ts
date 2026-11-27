@@ -44,3 +44,28 @@ export const props: readonly Prop[] = [
   [982, 69, .85, 'dense'], [1165, 760, 1.2, 'dense'], [1005, 783, 1.05, 'dense'],
   [836, 743, .8, 'sparse'], [38, 754, 1.2, 'dense'], [47, 127, 1.1, 'dense'],
 ];
+
+export function bankSamples() {
+  return Array.from({ length: Math.ceil(height / 8) + 1 }, (_, i) => {
+    const y = i * 8;
+    const bankEase = Math.min(1, Math.abs(y - bridge.y) / 98);
+    const x = streamCenter(y) + bankEase * (5 * Math.sin(y / 41) + 3 * Math.sin(y / 16));
+    return {
+      y, x,
+      west: 42 + bankEase * (5 * Math.sin(y / 32) + 4 * Math.cos(y / 13)),
+      east: 42 + bankEase * (6 * Math.cos(y / 40) + 4 * Math.sin(y / 22)),
+    };
+  });
+}
+
+export function creekColliders() {
+  return waterWalls.flatMap(({ from, to }) => {
+    const result: { x: number; y: number; width: number; height: number }[] = [];
+    for (let top = from; top < to; top += 22) {
+      const segment = Math.min(22, to - top);
+      const y = top + segment / 2;
+      result.push({ x: streamCenter(y), y, width: 75, height: segment + 1 });
+    }
+    return result;
+  });
+}
