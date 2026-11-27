@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>霧竹林啟動診斷</title>
+  <link rel="stylesheet" href="./diagnostics.css">
+</head>
+<body class="forest-preview">
+  <aside id="diagnostics" aria-label="啟動診斷">
+    <details open>
+      <summary>霧竹林啟動診斷</summary>
+      <form method="get">
+        <label>隔離組
+          <select name="mode">
+            <option value="A">A｜PR #31 基準</option>
+            <option value="B">B｜只下載竹林圖集</option>
+            <option value="C">C｜加入圖集解碼</option>
+            <option value="D">D｜加入紋理註冊</option>
+            <option value="E">E｜完整竹林生態</option>
+          </select>
+        </label>
+        <label>渲染
+          <select name="renderer">
+            <option value="auto">自動</option>
+            <option value="canvas">Canvas</option>
+            <option value="webgl">WebGL</option>
+          </select>
+        </label>
+        <button>重新執行</button>
+      </form>
+      <p id="diagnostic-state" role="status">等待入口模組</p>
+      <label>可選取並複製的日誌
+        <textarea id="diagnostic-log" readonly rows="7" spellcheck="false"></textarea>
+      </label>
+    </details>
+  </aside>
+  <script>
+    (() => {
+      const state = document.querySelector('#diagnostic-state');
+      const log = document.querySelector('#diagnostic-log');
+      const started = performance.now();
+      const write = (message, stage = true) => {
+        const time = ((performance.now() - started) / 1000).toFixed(2);
+        log.value += time + ' 秒｜' + message + '\n';
+        log.scrollTop = log.scrollHeight;
+        if (stage) state.textContent = time + ' 秒｜' + message;
+      };
+      write('HTML 已載入，等待入口模組');
+      window.addEventListener('error', event => {
+        const source = event.target?.getAttribute?.('src');
+        if (event.message || source) write('錯誤：' + (event.message || source.split('/').pop()));
+      }, true);
+      window.addEventListener('unhandledrejection', event => {
+        write('非預期的非同步錯誤：' + (event.reason?.message || '無錯誤訊息'));
+      });
+      const timer = setTimeout(() => {
+        write('啟動逾時。最後階段：' + state.textContent);
+        window.dispatchEvent(new Event('forest-diagnostic-timeout'));
+      }, 20000);
+      window.forestDiagnostic = { write, finish: () => clearTimeout(timer) };
+    })();
+  </script>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

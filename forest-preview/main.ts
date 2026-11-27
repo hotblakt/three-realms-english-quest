@@ -7,7 +7,6 @@ import { setupScalePanel } from './scalePanel';
 import { setupEastReview } from './eastReview';
 import { ForestScene } from './ForestScene';
 
-document.querySelector<HTMLElement>('#forest-loading')!.dataset.phase = 'phaser/preload';
 setupEastReview();
 setupScalePanel();
 
