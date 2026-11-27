@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
-import { bridge, height, streamCenter, waterWalls } from '../layout';
-import { bankSamples, falls, landmarks, place } from './placement';
+import { bankSamples, bridge, creekColliders, height, streamCenter } from '../layout';
+import { falls, landmarks, place } from './placement';
 
 type Block = (x: number, y: number, width: number, height: number) => void;
 
@@ -60,11 +60,8 @@ export function drawCreek(scene: Phaser.Scene, block: Block): void {
   scene.add.image(left, 0, bed.key).setOrigin(0).setDisplaySize(right - left, height).setDepth(-5);
 
   // Use the original collider centerline and bridge opening. The visual bank is independent.
-  for (const { from, to } of waterWalls) {
-    for (let y = from; y < to; y += 22) {
-      const h = Math.min(22, to - y);
-      block(streamCenter(y + h / 2), y + h / 2, 75, h + 1);
-    }
+  for (const { x, y, width, height } of creekColliders()) {
+    block(x, y, width, height);
   }
   for (const [i, y] of [72, 117, 186, 232, 294, 355, 570, 624, 694, 748, 818, 865].entries()) {
     const x = streamCenter(y) + (i % 2 ? 1 : -1) * (40 + i % 3 * 5);

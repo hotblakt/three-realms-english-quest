@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
 import assetCatalog from '../../docs/misty-forest-runtime-assets.json';
-import { bridge, chest, height, spirit, streamCenter, width } from '../layout';
+import { bridge, chest, spirit, width } from '../layout';
 
 export type ForestTexture = keyof typeof assetCatalog.textures;
 export type Stratum = 'background' | 'ground' | 'water' | 'deck' | 'mist' | 'foot';
@@ -63,16 +63,3 @@ export const falls: readonly Waterfall[] = [
   { lip: { x: bridge.x + 105, y: bridge.y - 67 }, width: 25, length: 17 },
   { lip: { x: bridge.x + 13, y: bridge.y + 44 }, width: 20, length: 13 },
 ];
-
-export function bankSamples() {
-  return Array.from({ length: Math.ceil(height / 8) + 1 }, (_, i) => {
-    const y = i * 8;
-    const bankEase = Math.min(1, Math.abs(y - bridge.y) / 98);
-    const x = streamCenter(y) + bankEase * (5 * Math.sin(y / 41) + 3 * Math.sin(y / 16));
-    return {
-      y, x,
-      west: 42 + bankEase * (5 * Math.sin(y / 32) + 4 * Math.cos(y / 13)),
-      east: 42 + bankEase * (6 * Math.cos(y / 40) + 4 * Math.sin(y / 22)),
-    };
-  });
-}
