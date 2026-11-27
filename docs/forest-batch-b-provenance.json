@@ -532,5 +532,22 @@
     "bytes": 228190,
     "rgbaBytes": 1179648,
     "sha256": "8b11aaad52d4f52daffa69bed77f7b589f74a61eacc9b0df6daacc0810c9405e"
+  },
+  "forestPreviewIntegration": {
+    "baselineCommit": "d59072175a3856223805cc21fb2c48a8f99468b5",
+    "preparedCommit": "a7352ad6de9e52576ddf06410667cef227d967f4",
+    "atlasPath": "public/forest-batch-b/forest-batch-b.webp",
+    "acceptedFrames": [
+      "canopy-01",
+      "canopy-02",
+      "canopy-03",
+      "bamboo-01",
+      "bamboo-02",
+      "root-04",
+      "leaf-litter-01",
+      "moss-01",
+      "wet-ground-02"
+    ],
+    "reusedPreparedWebpByteForByte": true
   }
 }
