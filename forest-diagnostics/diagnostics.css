@@ -1,0 +1,22 @@
+#diagnostics {
+  position: fixed;
+  z-index: 10000;
+  top: max(8px, env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  width: min(420px, 88vw);
+  max-height: 85dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  color: #fff2d2;
+  background: #142d28;
+  border: 1px solid #95895f;
+  border-radius: 8px;
+  padding: 8px;
+  font: 15px/1.35 system-ui, sans-serif;
+}
+#diagnostics form { display: flex; flex-wrap: wrap; gap: 6px; align-items: end; }
+#diagnostics summary { min-height: 30px; cursor: pointer; }
+#diagnostics label { display: block; }
+#diagnostics select, #diagnostics button { min-height: 44px; font-size: 16px; }
+#diagnostics textarea { display: block; width: 100%; font-size: 14px; touch-action: pan-y; }
