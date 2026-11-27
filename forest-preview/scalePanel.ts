@@ -1,7 +1,7 @@
 import type Phaser from 'phaser';
 import type { EikuDirection } from '../src/art/eikuAnimationConfig';
 import { recommendedScale, sanitizeScales } from './directionalScale';
-import { transitionVisualScale, type VisualScaleState } from './scaleTransition';
+import { transitionVisualScale, type Silhouette, type VisualScaleState } from './scaleTransition';
 
 const key = 'three-realms:forest-directional-calibration:v1';
 let scales = sanitizeScales();
@@ -53,9 +53,9 @@ const previous = new WeakMap<Phaser.GameObjects.Image, VisualScaleState>();
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 export function renderVisualSize(image: Phaser.GameObjects.Image, nominal: number,
-  group: VisualScaleState['group'], direction?: EikuDirection): number {
+  group: VisualScaleState['group'], direction?: EikuDirection, silhouette?: Silhouette): number {
   const target = direction ? nominal * scales[direction] / 100 : nominal;
-  const state = transitionVisualScale(previous.get(image), group, target, image.scene.time.now, reducedMotion.matches);
+  const state = transitionVisualScale(previous.get(image), group, target, image.scene.time.now, reducedMotion.matches, silhouette);
   previous.set(image, state);
   return state.value;
 }

@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import { locomotionSilhouette } from './locomotionSilhouette';
 import { runDirection } from './directionalScale';
 import { renderVisualSize } from './scalePanel';
 
@@ -69,8 +70,9 @@ export class AnimationClip {
     const [x, y] = this.manifest.origin;
     const nominal = standHeight / this.manifest.standingHeightInFrame;
     const direction = runDirection(this.manifest.id);
+    const silhouette = locomotionSilhouette(this.manifest.id, Number(image.frame.name));
     const group = direction ? 'run' : this.manifest.id.endsWith('-idle') ? 'idle' : 'other';
-    const displaySize = renderVisualSize(image, nominal, group, direction);
+    const displaySize = renderVisualSize(image, nominal, group, direction, silhouette);
     image.setOrigin(x, y).setDisplaySize(displaySize, displaySize);
   }
 }
