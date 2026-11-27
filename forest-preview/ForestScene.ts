@@ -14,6 +14,8 @@ import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { chest, entrance, height, shortcut, spirit, width } from './layout';
 import { drawTerrain } from './environment/terrain';
+import { canopyOpacity } from './environment/canopy';
+import { preloadEcology } from './environment/ecology';
 import { preloadCreekArt } from './environment/creekArt';
 import { drawCreek } from './environment/creek';
 import { drawAtmosphere, drawVegetation } from './environment/vegetation';
@@ -63,6 +65,7 @@ export class ForestScene extends Phaser.Scene {
     preloadEikuAtlas(this);
     preloadComposition(this);
     preloadCreekArt(this);
+    preloadEcology(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
@@ -292,11 +295,7 @@ export class ForestScene extends Phaser.Scene {
     this.candidate.setPosition(x, y).setDepth(y).setAlpha(this.player.view.alpha);
     this.footMarker.setPosition(x, y).setVisible(this.anchorSetting.checked);
     for (const canopy of this.canopy) {
-      const visibilityRadius = canopy.displayWidth * .42;
-      const overlap = Math.abs(x - canopy.x);
-      const behind = y < canopy.y && y > canopy.y - canopy.displayHeight * canopy.originY;
-      const fade = behind ? Math.max(0, Math.min(1, (visibilityRadius - overlap) / 31)) : 0;
-      canopy.setAlpha(1 - fade * .75);
+      canopy.setAlpha(canopyOpacity(canopy, x, y, standingHeight * size / 100));
     }
     const interact = this.controls.consume('interact');
     const near = (point: { x: number; y: number }) => Phaser.Math.Distance.Between(x, y, point.x, point.y) < 53;
