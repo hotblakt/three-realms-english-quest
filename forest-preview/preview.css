@@ -112,3 +112,18 @@
 }
 #directional-scale input[type="range"] { flex: 1; min-width: 0; height: 44px; accent-color: #e9c981; }
 #directional-scale output { min-width: 3.1rem; text-align: right; font-variant-numeric: tabular-nums; }
+#forest-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 24px;
+  color: #fff2d2;
+  background: #162e29;
+}
+#forest-loading p { margin: 0 0 12px; }
+#forest-loading:not([hidden]) ~ #controls { visibility: hidden; }
+#forest-loading:not([hidden]) ~ .forest-tools { z-index: 4; }
+#forest-loading:not([hidden]) ~ .forest-tools #composition { visibility: hidden; }
