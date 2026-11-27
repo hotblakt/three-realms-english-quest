@@ -30,3 +30,15 @@
 本工作流程使用 `checkout@v6`、`setup-node@v6` 和 `setup-python@v6`，其上游 action metadata 均宣告 Node.js 24。Node.js 專案版本與 Action 自身執行階段各自設定。既有 Pages 建置已用 Node.js 24。Pages 的 `upload-pages-artifact@v4` 為 composite action，內部 artifact 上傳仍為 v4。現行 `deploy-pages@v4` 的內部執行階段為 Node.js 20。上游已有 Node.js 24 的 `deploy-pages@v5` 及新版上傳 Action，本次保留現有發布組合，升級留待可驗證實際部署的變更。npm 鎖檔與遊戲執行依賴維持原樣。
 
 [發布協定](release-management.md) · [開發指標](development-metrics.md)
+
+## Pipeline 3.1｜素材交付
+
+**ChatGPT Images → ChatGPT Library → Work Asset Manager → Private GitHub → Codex → Work Release Manager**
+
+1. ChatGPT Images 完成候選稿後，Work 使用已登入且獲授權的瀏覽器工作階段，從 ChatGPT Library 取得原檔。Work Asset Manager 保留原始位元組，將來源、候選狀態、尺寸、alpha 與 SHA-256 列入交付清單。
+2. Work 將原始檔與候選衍生圖打包至私有 GitHub 分支，交接固定提交、路徑、ZIP 大小及 SHA-256。Codex 使用獲授權的唯讀 Git 取得同一份 ZIP，核對總大小與雜湊，安全解壓並核對 CRC 與逐項清單。
+3. Codex 驗收畫面，將必要的最佳化執行圖與來源追溯資料提交至遊戲 PR。Work Release Manager 使用既有發版流程檢查 PR、CI 與部署，並依授權進行下一步。
+
+批次 A 的交付紀錄為 **158 秒、人工介入 0 秒、17,560,997 bytes**。固定提交取得的 ZIP 與交付大小、SHA-256 完全一致，通過逐位元組等同性驗證。這組數字只涵蓋該次素材傳輸。來源與執行檔雜湊見 [批次 A 來源清單](forest-batch-a-provenance.json)。
+
+瀏覽器登入與私有庫讀寫權限分屬不同階段。既有瀏覽器工作階段失效時，由具權限的人重新登入服務，交接紀錄只傳遞提交、路徑與雜湊。這次驗證的交付大小不能用來推定 ChatGPT Library 或 Work 的檔案大小上限。GitHub 網頁上傳單檔上限為 25 MiB，普通 Git 推送上限為 100 MiB。若後續交付超過已驗證的管道限制，可按批次拆包，逐包標記大小和雜湊，仍交接到固定提交。[GitHub 檔案大小限制](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)

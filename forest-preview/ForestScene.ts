@@ -14,6 +14,7 @@ import { runSources } from './runSources';
 import { compositionPanel, preloadComposition, showCandidate, standingHeight } from './composition';
 import { chest, entrance, height, shortcut, spirit, width } from './layout';
 import { drawTerrain } from './environment/terrain';
+import { preloadCreekArt } from './environment/creekArt';
 import { drawCreek } from './environment/creek';
 import { drawAtmosphere, drawVegetation } from './environment/vegetation';
 import { landmarks, place } from './environment/placement';
@@ -61,6 +62,7 @@ export class ForestScene extends Phaser.Scene {
     this.queueMovement(this.movementResolution);
     preloadEikuAtlas(this);
     preloadComposition(this);
+    preloadCreekArt(this);
     for (const key of Object.keys(assetCatalog.textures)) {
       this.load.image(key, `${base}forest-preview-textures/${key}.webp`);
     }
