@@ -9,6 +9,7 @@ export default defineConfig(({ command, isPreview }) => ({
         game: fileURLToPath(new URL('./index.html', import.meta.url)),
         workbench: fileURLToPath(new URL('./art-workbench/index.html', import.meta.url)),
         forestDiagnostics: fileURLToPath(new URL('./forest-diagnostics/index.html', import.meta.url)),
+        forestBatchBPreview: fileURLToPath(new URL('./forest-batch-b-preview/index.html', import.meta.url)),
         forestPreview: fileURLToPath(new URL('./forest-preview/index.html', import.meta.url)),
       },
     },

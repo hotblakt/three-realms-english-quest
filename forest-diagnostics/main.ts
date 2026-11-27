@@ -37,7 +37,7 @@ async function run(): Promise<void> {
 
   const useBatchB = mode === 'E';
   const batchB = useBatchB ? await Promise.all([
-    import('./batchBVegetation'), import('../forest-preview/environment/canopy'),
+    import('../forest-preview/environment/batchBVegetation'), import('../forest-preview/environment/canopy'),
   ]) : undefined;
   const signal = new AbortController();
   window.addEventListener('forest-diagnostic-timeout', () => signal.abort(), { once: true });

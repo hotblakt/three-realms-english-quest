@@ -1,8 +1,8 @@
 import type Phaser from 'phaser';
-import { addSoftShadow } from '../src/art/villageAtmosphere';
-import { props } from '../forest-preview/layout';
-import { drawEcologyFloor, drawGrove } from '../forest-preview/environment/ecology';
-import { backdrop, clearings, place } from '../forest-preview/environment/placement';
+import { addSoftShadow } from '../../src/art/villageAtmosphere';
+import { props } from '../layout';
+import { drawEcologyFloor, drawGrove } from './ecology';
+import { backdrop, clearings, place } from './placement';
 
 type Block = (x: number, y: number, width: number, height: number) => void;
 
