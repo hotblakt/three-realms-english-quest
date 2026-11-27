@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import { bankSamples, bridge, creekColliders, height, streamCenter } from '../layout';
 import { falls, landmarks, place } from './placement';
+import { placeCreekArt, shoreline, upstreamFall } from './creekArt';
 
 type Block = (x: number, y: number, width: number, height: number) => void;
 
@@ -35,13 +36,17 @@ export function drawCreek(scene: Phaser.Scene, block: Block): void {
     ctx.fill(channel(inset));
   }
   ctx.filter = 'none';
-  const water = scene.textures.get('water').getSourceImage() as HTMLImageElement;
+  const premium = scene.textures.exists('batch-water');
+  const water = scene.textures.get(premium ? 'batch-water' : 'water').getSourceImage() as HTMLImageElement;
   const layer = document.createElement('canvas');
   layer.width = bed.width;
   layer.height = bed.height;
   const waterCtx = layer.getContext('2d')!;
   const pattern = waterCtx.createPattern(water, 'repeat');
   if (pattern) {
+    if (premium && typeof pattern.setTransform === 'function') {
+      pattern.setTransform(new DOMMatrix().rotate(-14).scale(.73));
+    }
     waterCtx.scale(.75, .75);
     waterCtx.fillStyle = pattern;
     waterCtx.fillRect(0, 0, right - left, height);
@@ -52,7 +57,7 @@ export function drawCreek(scene: Phaser.Scene, block: Block): void {
     waterCtx.fill(channel(6));
     ctx.save();
     ctx.resetTransform();
-    ctx.globalAlpha = .72;
+    ctx.globalAlpha = premium ? .88 : .72;
     ctx.drawImage(layer, 0, 0);
     ctx.restore();
   }
@@ -68,6 +73,8 @@ export function drawCreek(scene: Phaser.Scene, block: Block): void {
     place(scene, { key: i % 3 ? 'rock-small' : 'underbrush', x, y, layer: 'water',
       scale: .23 + i % 4 * .063, tint: 0xa6b78e, alpha: .86, flip: Boolean(i % 2) });
   }
+  shoreline.forEach(item => placeCreekArt(scene, item, -3.8));
+  placeCreekArt(scene, upstreamFall.face, -3.65);
   place(scene, landmarks.bridge);
   flow(scene);
 }
@@ -82,7 +89,7 @@ function flow(scene: Phaser.Scene): void {
   art.destroy();
   const stride = touch ? 87 : 55;
   for (let y = 16; y < height - 35; y += stride) {
-    if (Math.abs(y - bridge.y) < 107) continue;
+    if (Math.abs(y - bridge.y) < 107 || Math.abs(y - upstreamFall.face.y) < 48) continue;
     const offset = (y % 31) - 15;
     const x = streamCenter(y) + offset;
     const line = scene.add.image(x, y, 'forest-flow').setDepth(-4).setAlpha(.34).setAngle(5);
@@ -91,7 +98,12 @@ function flow(scene: Phaser.Scene): void {
         alpha: 0, delay: y % 460, duration: 2200 + y % 670, repeat: -1, repeatDelay: 250 });
     }
   }
-  for (const { lip, width, length, face } of falls) {
+  const premium = scene.textures.exists(upstreamFall.face.key);
+  const sprays = premium
+    ? [...falls, { lip: upstreamFall.spray, width: upstreamFall.spray.width,
+        length: upstreamFall.spray.length, face: undefined }]
+    : falls;
+  for (const { lip, width, length, face } of sprays) {
     if (face) place(scene, face);
     const droplets = touch ? 2 : 3;
     for (let i = 0; i < droplets; i++) {
@@ -102,5 +114,11 @@ function flow(scene: Phaser.Scene): void {
         delay: i * 130, duration: 610 + i * 70, repeat: -1,
       });
     }
+  }
+  if (premium) {
+    const foam = scene.add.ellipse(upstreamFall.pool.x, upstreamFall.pool.y, 32, 9, 0xa4ded6, .16)
+      .setDepth(-3.61).setAngle(-11);
+    if (!reduce) scene.tweens.add({ targets: foam, alpha: .03, scaleX: 1.24, scaleY: 1.18,
+      duration: 1700, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
   }
 }
