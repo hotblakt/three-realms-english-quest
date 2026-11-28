@@ -1,0 +1,126 @@
+{
+  "workstreams": {
+    "A": {
+      "commit": "bae638347cbc9a73e754980a828da69d27d87c12",
+      "scope": "src/forest-v3/world"
+    },
+    "B": {
+      "commit": "bffbc8a8781698ae419fdc7d0b89a75b2bf9e4e7",
+      "scope": "art/production/forest-v3"
+    },
+    "C": {
+      "commit": "acd0bbf98093721ec5cfb96b605187dd450e017e",
+      "scope": "src/forest-v3/domain"
+    },
+    "QA": {
+      "commit": "62e494e60a937368c7eb315171fb4b6cbb6bc0cd",
+      "scope": "tests/forest-v3"
+    }
+  },
+  "baseline": "9721c466691c33de53a03d653b1673b50ed002c4",
+  "hayate": {
+    "sourceCommit": "fd81f03a5cf6ecaa3cbbafb1476df408686f4d2c",
+    "verifiedArchiveBytes": 2257793,
+    "verifiedArchiveSha256": "17ccd2cc25becff64c1dcc48abcc5530f85ac01717d1f5bfcf7c66f92158d5fa",
+    "approvedSheetSha256": "bd088f2c1116065a78661ebb194fed87c9aa60a9f2f283d9be1a7821a9af4840",
+    "processing": "Pillow Lanczos, 1024\u00b2 to 256\u00b2 at uniform scale, lossless WebP method 6. Runtime paws measured independently from source provisional anchor, no shadow baked.",
+    "assets": [
+      {
+        "direction": "east",
+        "sourceDimensions": [
+          1024,
+          1024
+        ],
+        "sourceSha256": "bb4e01347a287e63d2759e69cd29e2c4b22b10b9b5510f34cbd30fe598ae9cd8",
+        "sourceAnchor": [
+          512,
+          800
+        ],
+        "runtimeAnchor": [
+          128,
+          213
+        ],
+        "runtimeDimensions": [
+          256,
+          256
+        ],
+        "runtimeBytes": 21162,
+        "decodedRgbaBytes": 262144,
+        "estimatedBodyHeightPx": 113,
+        "runtimeSha256": "7c9a68e0f464ff2b76ecaae4f8500627c5460cfc2c0902f9bce7c34a2ba4642a"
+      },
+      {
+        "direction": "north",
+        "sourceDimensions": [
+          1024,
+          1024
+        ],
+        "sourceSha256": "07ffb13a87f552e3b873710928294dedc2a08fe50f34d38f43435f22549feacd",
+        "sourceAnchor": [
+          512,
+          800
+        ],
+        "runtimeAnchor": [
+          128,
+          213
+        ],
+        "runtimeDimensions": [
+          256,
+          256
+        ],
+        "runtimeBytes": 15248,
+        "decodedRgbaBytes": 262144,
+        "estimatedBodyHeightPx": 132,
+        "runtimeSha256": "2f77c764064eca21a495a81d036683aaf1959fd54b7753be195d0fdac932c1e5"
+      },
+      {
+        "direction": "south",
+        "sourceDimensions": [
+          1024,
+          1024
+        ],
+        "sourceSha256": "86a0dd55522ab8939be33ad643cce84052c7654e46a7b1c2b6d28829a44a0540",
+        "sourceAnchor": [
+          512,
+          800
+        ],
+        "runtimeAnchor": [
+          128,
+          213
+        ],
+        "runtimeDimensions": [
+          256,
+          256
+        ],
+        "runtimeBytes": 18188,
+        "decodedRgbaBytes": 262144,
+        "estimatedBodyHeightPx": 115,
+        "runtimeSha256": "33fd8c453c716f943ba09b533cbd2ba595e769e30a3c9f87816107f66750b785"
+      },
+      {
+        "direction": "west",
+        "sourceDimensions": [
+          1024,
+          1024
+        ],
+        "sourceSha256": "36edf6c14700ac1a31cb160cca6af742a8f13c8e81b8b2ee02d2ccc656618653",
+        "sourceAnchor": [
+          512,
+          800
+        ],
+        "runtimeAnchor": [
+          128,
+          213
+        ],
+        "runtimeDimensions": [
+          256,
+          256
+        ],
+        "runtimeBytes": 21208,
+        "decodedRgbaBytes": 262144,
+        "estimatedBodyHeightPx": 112,
+        "runtimeSha256": "bbd90b007a69e6f541a173af4b2eae6cb6c3d6ab64c1bf1d0c46b9d5d9e2eb94"
+      }
+    ]
+  }
+}

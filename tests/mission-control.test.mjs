@@ -73,7 +73,10 @@ test('closeout removes obsolete prompts and exposes the next eligible producer h
   const data = validateRegistry(registry());
   const closed = data.tasks.filter(task => task.id.startsWith('mission-control-'));
   assert.ok(closed.every(task => task.status === 'completed' && task.nextAction === null));
-  assert.equal(nextProducerAction(data.tasks).id, 'batch001-producer-review');
+  assert.equal(nextProducerAction(data.tasks).id, 'forest-v3-scene-integration');
+  const contract = data.tasks.find(task => task.id === 'batch001-producer-review');
+  assert.equal(contract.status, 'completed');
+  assert.equal(contract.nextAction, null);
   const invalid = { ...data.tasks.find(t => t.id === 'mission-control-foundation'),
     nextAction: { role: 'Producer', label: 'Obsolete review', prompt: 'Old review' } };
   assert.equal(nextProducerAction([invalid]), null);
@@ -91,6 +94,10 @@ test('Batch 001 is delivered with pinned sources, and the next batch is gated be
   assert.deepEqual(tasks.get('production-integration-gate').dependencies, [...delivered, 'batch001-producer-review']);
   assert.deepEqual(tasks.get('forest-v3-scene-integration').dependencies, batch);
   assert.deepEqual(parallelReady(data.tasks), []);
+  assert.equal(batch.every(id => tasks.get(id).status === 'completed'
+    && /^[a-f0-9]{40}$/.test(tasks.get(id).sourceCommit)), true);
+  tasks.get('production-integration-gate').status = 'pending';
+  tasks.get('demo-implementation-authorization').status = 'pending';
   for (const id of batch) tasks.get(id).status = 'ready';
   assert.deepEqual(parallelReady(data.tasks), []);
   tasks.get('production-integration-gate').status = 'completed';

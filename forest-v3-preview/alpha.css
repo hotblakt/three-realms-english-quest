@@ -1,0 +1,18 @@
+body.forest-alpha .forest-preview-panel, body.forest-alpha .forest-controls-panel { display: none; }
+#alpha-hud {
+  position: fixed; z-index: 5; top: max(.4rem, env(safe-area-inset-top)); right: max(.5rem, env(safe-area-inset-right));
+  max-width: min(52vw, 24rem); display: grid; grid-template-columns: auto auto; align-items: center;
+  gap: .25rem .4rem; color: #fff6db; font-size: clamp(.82rem, 2vw, 1.05rem); pointer-events: none;
+}
+#alpha-hud output { background: #152c27ef; padding: .45rem .6rem; border-radius: .5rem; grid-column: 1/-1; text-align: right; }
+#alpha-hud button, #alpha-practice button { pointer-events: auto; min-height: 44px; padding: .4rem .55rem; }
+#alpha-hud [hidden] { display: none; }
+#alpha-practice { max-width: min(92vw, 30rem); max-height: 85dvh; overflow-y: auto; background: #183831; color: #fffae8;
+  border: 1px solid #bca576; border-radius: 1rem; padding: 1rem; }
+#alpha-practice::backdrop { background: #0a1d17c9; }
+#alpha-practice h2, #alpha-practice p { margin: 0 0 .55rem; }
+#alpha-practice button { margin: .15rem; }
+body.forest-alpha .forest-panel:not([open]) { display: none; }
+body.forest-alpha .forest-tools { display: none; }
+body.forest-alpha:not(:has(#startup-retry:not([hidden]))) #diagnostics { display: none; }
+body.forest-alpha .forest-hud { max-width: min(50vw, 32rem); }

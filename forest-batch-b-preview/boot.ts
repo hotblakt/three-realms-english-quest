@@ -23,7 +23,10 @@ export type ObserveForest = (scene: PhaserType.Scene, avatar: ForestAvatar) => v
 export type PrepareForestDecoration = (signal: AbortSignal, log: typeof note) =>
   Promise<(scene: PhaserType.Scene) => ForestDecoration | undefined>;
 
-async function start(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest): Promise<void> {
+type ForestClass = typeof import('../forest-preview/ForestScene').ForestScene;
+type ExtendForest = (base: ForestClass) => ForestClass;
+
+async function start(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest, extend?: ExtendForest): Promise<void> {
   note('載入 Phaser 與霧竹林模組');
   const parsed = new DOMParser().parseFromString(template, 'text/html');
   parsed.body.querySelectorAll('script').forEach(script => script.remove());
@@ -171,7 +174,7 @@ async function start(prepareDecoration?: PrepareForestDecoration, observe?: Obse
     backgroundColor: '#182d24',
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     physics: { default: 'arcade', arcade: { gravity: { x: 0, y: 0 } } },
-    scene: [CandidateScene],
+    scene: [extend?.(CandidateScene) ?? CandidateScene],
     callbacks: { postBoot: game => {
       note(`Phaser 已初始化｜${game.renderer.type === Phaser.WEBGL ? 'WebGL' : 'Canvas'}`, false);
       game.events.on(Phaser.Core.Events.CONTEXT_LOST, () => fail('WebGL context 遺失'));
@@ -180,6 +183,6 @@ async function start(prepareDecoration?: PrepareForestDecoration, observe?: Obse
     } },
   });
 }
-export function launchForest(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest): void {
-  start(prepareDecoration, observe).catch(error => fail(`模組或渲染器初始化失敗｜${errorDescription(error)}`));
+export function launchForest(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest, extend?: ExtendForest): void {
+  start(prepareDecoration, observe, extend).catch(error => fail(`模組或渲染器初始化失敗｜${errorDescription(error)}`));
 }
