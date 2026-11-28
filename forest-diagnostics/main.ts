@@ -1,5 +1,5 @@
 import type PhaserType from 'phaser';
-import forestTemplate from '../forest-preview/index.html?raw';
+import forestTemplate from '../forest-preview/game-shell.html?raw';
 import '../src/style.css';
 import '../forest-preview/preview.css';
 

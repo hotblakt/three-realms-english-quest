@@ -16,54 +16,7 @@
       <a href="../forest-preview/">返回穩定版</a>
     </details>
   </aside>
-  <script>
-    (() => {
-      const state = document.querySelector('#startup-state');
-      const log = document.querySelector('#startup-log');
-      const retry = document.querySelector('#startup-retry');
-      const begin = performance.now();
-      let stateName = '入口模組';
-      let failed = false;
-      const note = (message, phase = true) => {
-        const line = ((performance.now() - begin) / 1000).toFixed(2) + ' 秒｜' + message;
-        log.value += line + '\n';
-        log.scrollTop = log.scrollHeight;
-        if (phase && !failed) {
-          stateName = message;
-          state.textContent = line;
-        }
-      };
-      const fail = message => {
-        if (failed) return;
-        note(message);
-        failed = true;
-        retry.hidden = false;
-        document.querySelector('#diagnostics details').open = true;
-        window.dispatchEvent(new Event('forest-candidate-failed'));
-        clearTimeout(timer);
-      };
-      const timer = setTimeout(() => fail('啟動逾時｜' + stateName), 20000);
-      retry.onclick = () => {
-        const url = new URL(location.href);
-        url.searchParams.set('retry', Date.now());
-        location.replace(url.href);
-      };
-      window.addEventListener('error', event => {
-        const source = event.target?.getAttribute?.('src');
-        if (event.message || source) note('瀏覽器錯誤｜' + (event.message || source.split('/').pop()), false);
-      }, true);
-      note('等待入口模組');
-      window.forestCandidate = {
-        note, fail, failed: () => failed,
-        complete: message => {
-          if (failed) return;
-          note(message);
-          clearTimeout(timer);
-          document.querySelector('#diagnostics details').open = false;
-        },
-      };
-    })();
-  </script>
+  <!-- forest-startup -->
   <script type="module" src="./main.ts"></script>
 </body>
 </html>
