@@ -20,6 +20,11 @@ for(const [name, viewport, renderer, mobile] of [
    window.webkitSpeechRecognition=window.SpeechRecognition;
  });
  const errors=[];
+ const screenshotErrors=[];
+ const capture=async label=>{
+   try { await page.screenshot({path:evidence+'/'+name+'-'+label+'.png',timeout:8000}); }
+   catch(error) { screenshotErrors.push(error.message); }
+ };
  page.on('pageerror',e=>{errors.push(e.message);console.error(name,e);});
  await page.route('**/forest-batch-b-preview/boot.ts*',async route=>{
    const response=await route.fetch();
@@ -78,7 +83,7 @@ for(const [name, viewport, renderer, mobile] of [
  await dialog.waitFor({state:'hidden'});
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').progress.companion.collected);
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').companion?.visible);
- await page.screenshot({path:evidence+'/'+name+'-shrine.png'});
+ await capture('shrine');
  await set(812,470);
  await page.keyboard.press('e',{delay:90});
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').active==='east-wind-pair');
@@ -93,7 +98,7 @@ for(const [name, viewport, renderer, mobile] of [
  }
  const combat=await state();
  assert(combat.enemies[0].health<3,JSON.stringify(combat));
- await page.screenshot({path:evidence+'/'+name+'-combat.png'});
+ await capture('combat');
  await page.getByRole('button',{name:'安全撤退'}).click();
  await page.waitForFunction(()=>!window.__alphaTestGame.scene.getScene('misty-forest').active);
  await set(1085,260);
@@ -113,7 +118,7 @@ for(const [name, viewport, renderer, mobile] of [
  assert.equal(save.checkpoint,'south-entry');
  assert.equal(save.progress.rewardReceipts.filter(r=>r.rewardId==='recruit').length,1);
  assert.equal(errors.length,0);
- cases.push({name,renderer,base,alpha,warm,combat,treasure:save.progress.treasures,recruitment:save.english});
+ cases.push({name,renderer,base,alpha,warm,combat,screenshotErrors,treasure:save.progress.treasures,recruitment:save.english});
  await context.close();
 }
 console.log(JSON.stringify(cases,null,2));

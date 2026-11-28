@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repository": "hotblakt/three-realms-english-quest",
-  "updatedAt": "2026-11-28T06:14:20.886Z",
+  "updatedAt": "2026-11-28T06:22:17.281Z",
   "stable": {
     "label": "霧竹林 2.0",
     "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
@@ -953,7 +953,7 @@
     },
     {
       "milestone": "7D-1",
-      "sourceCommit": null,
+      "sourceCommit": "823c2f281262268e3b20dd16a29464406313e440",
       "pr": null,
       "deployment": null,
       "evidence": [
@@ -961,6 +961,11 @@
           "kind": "repository",
           "ref": "docs/forest-v3-production-plan.md",
           "label": "已整合 Alpha，測試範圍與限制見交接紀錄"
+        },
+        {
+          "kind": "repository",
+          "ref": "commit:823c2f281262268e3b20dd16a29464406313e440",
+          "label": "Alpha 遊戲邏輯與存檔介接提交，等待實機驗收"
         }
       ],
       "blockers": [],
