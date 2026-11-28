@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>霧竹林｜風靈地標候選版</title>
+  <link rel="stylesheet" href="../forest-diagnostics/diagnostics.css">
+</head>
+<body class="forest-preview">
+  <aside id="diagnostics" aria-label="候選版啟動狀態">
+    <details open>
+      <summary>風靈地標候選版・啟動紀錄</summary>
+      <p id="startup-state" role="status"></p>
+      <textarea id="startup-log" aria-label="可複製的啟動紀錄" readonly rows="4" spellcheck="false"></textarea>
+      <button type="button" id="startup-retry" hidden>重新載入</button>
+      <a href="../forest-preview/">返回穩定版</a>
+    </details>
+  </aside>
+  <!-- forest-startup -->
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

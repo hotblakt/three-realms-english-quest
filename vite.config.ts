@@ -22,6 +22,7 @@ export default defineConfig(({ command, isPreview }) => ({
         workbench: fileURLToPath(new URL('./art-workbench/index.html', import.meta.url)),
         forestDiagnostics: fileURLToPath(new URL('./forest-diagnostics/index.html', import.meta.url)),
         forestBatchBPreview: fileURLToPath(new URL('./forest-batch-b-preview/index.html', import.meta.url)),
+        forestBatchCPreview: fileURLToPath(new URL('./forest-batch-c-preview/index.html', import.meta.url)),
         forestPreview: fileURLToPath(new URL('./forest-preview/index.html', import.meta.url)),
       },
     },

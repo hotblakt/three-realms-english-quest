@@ -81,6 +81,10 @@ export class ForestScene extends Phaser.Scene {
     return movementAtlasesReady(key => this.runs[key].ready(this, size));
   }
 
+  protected drawForestDecoration(): Phaser.GameObjects.Image[] {
+    return [];
+  }
+
   protected drawForestVegetation(block: (x: number, y: number, w: number, h: number) => void) {
     return drawVegetation(this, block);
   }
@@ -125,6 +129,7 @@ export class ForestScene extends Phaser.Scene {
     this.addLandmarks();
     this.environmentLights.push(...drawAtmosphere(this));
     this.environmentLights.push(...addLanternLight(this, 617, 471), ...addLanternLight(this, 737, 452));
+    this.environmentLights.push(...this.drawForestDecoration());
     const reviewFrame = this.composition.panel.querySelector<HTMLSelectElement>('[name="frame"]')!;
     const replay = document.querySelector<HTMLButtonElement>('#replay-diagnostic')!;
     const replayDiagnostic = () => {

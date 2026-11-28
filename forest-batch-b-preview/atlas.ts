@@ -6,14 +6,14 @@ export function errorDescription(error: unknown): string {
 
 /** Bound the entire optional operation, including a decoder that never settles. */
 export async function optionalAtlas<T>(prepare: (signal: AbortSignal) => Promise<T>,
-  deadline: number): Promise<AtlasResult<T>> {
+  deadline: number, timeoutMessage = '竹林圖集逾時'): Promise<AtlasResult<T>> {
   const controller = new AbortController();
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const value = await Promise.race([
       new Promise<never>((_, reject) => {
         timer = setTimeout(() => {
-          reject(new Error('竹林圖集逾時'));
+          reject(new Error(timeoutMessage));
           controller.abort();
         }, deadline);
       }),
