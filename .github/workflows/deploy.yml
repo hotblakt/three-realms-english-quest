@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v6
         with:
@@ -27,6 +29,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Collect read-only Mission Control snapshot
+        run: node scripts/sync-mission-control.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

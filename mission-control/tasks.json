@@ -1,0 +1,367 @@
+{
+  "version": 1,
+  "repository": "hotblakt/three-realms-english-quest",
+  "updatedAt": "2026-11-28T02:57:02.569Z",
+  "stable": {
+    "label": "霧竹林 2.0",
+    "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
+    "pr": 39,
+    "demoDate": "2026-12-22",
+    "systems": [
+      "影空移動 1.1",
+      "森林水系 1.0",
+      "森林生態 1.0",
+      "森林地標與風靈 1.0"
+    ],
+    "evidence": [
+      {
+        "kind": "repository",
+        "ref": "commit:62e590f665781822ac48bf691e6507f920bf6b68",
+        "label": "遠端 main 的 PR #39 合併提交已用 Git 核對"
+      },
+      {
+        "kind": "reported",
+        "ref": "pr:39",
+        "label": "製作人 Safari 實機 5/5 通過"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "dependencies": [],
+      "stream": "release_qa",
+      "sourceBranch": null,
+      "sourceCommit": null,
+      "pr": 24,
+      "deployment": "deployed",
+      "evidence": [
+        {
+          "kind": "reported",
+          "ref": "docs/development-metrics.md",
+          "label": "製作人提供的 PR #24 發布驗證紀錄"
+        }
+      ],
+      "limitations": [
+        "只有已合併版本的觀察資料"
+      ],
+      "blockers": [],
+      "nextAction": null,
+      "writeScopes": [],
+      "id": "pr24-release-verification",
+      "milestone": "6D-3B-6A",
+      "title": "PR #24 發布驗證基準",
+      "role": "Work",
+      "priority": 90,
+      "status": "completed",
+      "acceptance": [
+        "記錄已合併版本的驗證與部署耗時"
+      ],
+      "history": [
+        {
+          "status": "completed",
+          "at": "2026-11-28T02:57:02.569Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/development-metrics.md",
+            "label": "製作人提供的 PR #24 發布驗證紀錄"
+          }
+        }
+      ]
+    },
+    {
+      "dependencies": [],
+      "stream": "production",
+      "sourceBranch": null,
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [
+        {
+          "kind": "reported",
+          "ref": "docs/ai-development-pipeline.md",
+          "label": "Batch A 素材傳輸實測紀錄"
+        }
+      ],
+      "limitations": [
+        "耗時涵蓋素材傳輸，不涵蓋場景製作"
+      ],
+      "blockers": [],
+      "nextAction": null,
+      "writeScopes": [],
+      "id": "forest-batch-a-handoff",
+      "milestone": "6D-3C-2A-2",
+      "title": "Batch A 素材交接",
+      "role": "Work",
+      "priority": 90,
+      "status": "completed",
+      "acceptance": [
+        "記錄一份已驗證的素材交接"
+      ],
+      "history": [
+        {
+          "status": "completed",
+          "at": "2026-11-28T02:57:02.569Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/ai-development-pipeline.md",
+            "label": "Batch A 素材傳輸實測紀錄"
+          }
+        }
+      ]
+    },
+    {
+      "dependencies": [],
+      "stream": "production",
+      "sourceBranch": null,
+      "sourceCommit": null,
+      "pr": 39,
+      "deployment": "deployed",
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "commit:62e590f665781822ac48bf691e6507f920bf6b68",
+          "label": "遠端 main 的 PR #39 合併提交已用 Git 核對"
+        },
+        {
+          "kind": "reported",
+          "ref": "pr:39",
+          "label": "製作人 Safari 實機 5/5 通過"
+        }
+      ],
+      "limitations": [
+        "原始 Safari 啟動故障根因尚未完全確定"
+      ],
+      "blockers": [],
+      "nextAction": null,
+      "writeScopes": [],
+      "id": "forest-2-stable",
+      "milestone": "6D-3C-2C-6",
+      "title": "霧竹林 2.0 正式驗收",
+      "role": "Producer",
+      "priority": 10,
+      "status": "completed",
+      "acceptance": [
+        "正式 Safari 實機驗收 5/5"
+      ],
+      "history": [
+        {
+          "status": "completed",
+          "at": "2026-11-28T02:57:02.569Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "commit:62e590f665781822ac48bf691e6507f920bf6b68",
+            "label": "遠端 main 的 PR #39 合併提交已用 Git 核對"
+          }
+        }
+      ]
+    },
+    {
+      "dependencies": [
+        "forest-2-stable"
+      ],
+      "stream": "production",
+      "sourceBranch": "feat/ai-mission-control-v2-foundation",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "製作人需親自核准發布，GitHub 狀態取決於快照是否可讀"
+      ],
+      "blockers": [],
+      "nextAction": {
+        "role": "Producer",
+        "label": "審閱 7A-1 交付分支",
+        "prompt": "請 Work 核對任務控制台 7A-1 的交付分支、提交與品質檢查，回報本次可審閱內容。等待我的合併及部署授權。"
+      },
+      "writeScopes": [
+        "mission-control",
+        "scripts/sync-mission-control.mjs",
+        "docs/ai-mission-control.md",
+        "vite.config.ts",
+        ".github/workflows/deploy.yml"
+      ],
+      "id": "mission-control-foundation",
+      "milestone": "7A-1",
+      "title": "任務控制台基礎",
+      "role": "Codex",
+      "priority": 1,
+      "status": "awaiting_review",
+      "acceptance": [
+        "審閱唯讀狀態、重複回報防護及手機儀表板"
+      ],
+      "history": [
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T02:57:02.569Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "dependencies": [
+        "mission-control-foundation"
+      ],
+      "stream": "release_qa",
+      "sourceBranch": null,
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [],
+      "blockers": [],
+      "nextAction": {
+        "role": "Producer",
+        "label": "驗收手機儀表板",
+        "prompt": "請核對手機上的任務狀態、GitHub 資料時間，以及可複製的交接提示。"
+      },
+      "writeScopes": [],
+      "id": "mission-control-mobile-acceptance",
+      "milestone": "7A-1",
+      "title": "製作人手機驗收",
+      "role": "Producer",
+      "priority": 2,
+      "status": "pending",
+      "acceptance": [
+        "以 iPhone 直向及 iPad 核對下一步、複製及資料時間"
+      ],
+      "history": [
+        {
+          "status": "pending",
+          "at": "2026-11-28T02:57:02.569Z",
+          "evidence": null
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "id": "pr24-verification",
+      "task": "pr24-release-verification",
+      "attempt": 1,
+      "revision": 1,
+      "commit": null,
+      "pr": 24,
+      "scope": "已合併 PR 的 Work 發布驗證",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/development-metrics.md",
+        "label": "製作人提供的 PR #24 發布驗證紀錄"
+      },
+      "metrics": {
+        "totalSeconds": null,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": 104,
+        "deploymentSeconds": 36
+      },
+      "quality": null
+    },
+    {
+      "id": "batch-a-transfer",
+      "task": "forest-batch-a-handoff",
+      "attempt": 1,
+      "revision": 1,
+      "commit": null,
+      "pr": null,
+      "scope": "單次素材傳輸",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/ai-development-pipeline.md",
+        "label": "Batch A 素材傳輸實測紀錄"
+      },
+      "metrics": {
+        "totalSeconds": 158,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr39-device-acceptance",
+      "task": "forest-2-stable",
+      "attempt": 1,
+      "revision": 1,
+      "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
+      "pr": 39,
+      "scope": "正式版 Safari 實機驗收",
+      "evidence": {
+        "kind": "reported",
+        "ref": "pr:39",
+        "label": "製作人 Safari 實機 5/5 通過"
+      },
+      "metrics": {
+        "totalSeconds": null,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": null,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": "pass"
+    },
+    {
+      "id": "pr39-local-quality",
+      "task": "forest-2-stable",
+      "attempt": 2,
+      "revision": 1,
+      "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
+      "pr": 39,
+      "scope": "從取得基準至本機品質檢查完成",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v2-production-promotion.md",
+        "label": "PR #39 升版文件記錄的本機品質與耗時"
+      },
+      "metrics": {
+        "totalSeconds": 2270,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": "pass"
+    }
+  ]
+}
