@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "batch": "002",
+  "stage": "master",
+  "status": "pending",
+  "assetId": "hayate",
+  "source": {
+    "provider": null,
+    "libraryItemOrVerifiedFile": null,
+    "author": null,
+    "toolVersion": null,
+    "rightsEvidence": null,
+    "promptVersion": null,
+    "costAuthorization": null,
+    "privateRepository": "hotblakt/three-realms-art-assets",
+    "commit": null,
+    "archivePath": null,
+    "archiveBytes": null,
+    "archiveSha256": null
+  },
+  "derivedFrom": {
+    "approvedMasterSha256": null,
+    "approvedDirectionSha256": null,
+    "recipeVersion": null
+  },
+  "review": {
+    "reviewer": null,
+    "dateUtc": null,
+    "evidence": null,
+    "decisionReason": null
+  },
+  "files": [
+    {
+      "path": "hayate-master-south-v001.png",
+      "archiveMember": null,
+      "role": "master",
+      "direction": "south",
+      "width": null,
+      "height": null,
+      "bytes": null,
+      "sha256": null
+    }
+  ],
+  "atlasPages": [],
+  "clips": []
+}

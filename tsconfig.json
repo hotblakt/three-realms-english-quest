@@ -10,5 +10,5 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },
-  "include": ["src", "forest-preview", "forest-diagnostics", "forest-batch-b-preview", "forest-batch-c-preview"]
+  "include": ["src", "forest-preview", "forest-diagnostics", "forest-batch-b-preview", "forest-batch-c-preview", "forest-v3-preview"]
 }

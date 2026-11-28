@@ -5,7 +5,7 @@ import { makeObjectiveMarker } from '../src/art/windEffects';
 import { Sword } from '../src/combat/Sword';
 import { Player } from '../src/entities/Player';
 import { Controls } from '../src/input/Controls';
-import assetCatalog from '../docs/misty-forest-runtime-assets.json';
+import assetCatalog from '../docs/misty-forest-runtime-assets.json' with { type: 'json' };
 import { chooseCastTiming, facingDirection, forwardDistance, selectDirectionalAction } from './directionalActions';
 import { EastActions } from './eastActions';
 import { AnimationClip } from './animationClip';
@@ -24,18 +24,18 @@ const font = '"PingFang TC", "Noto Sans CJK TC", "Microsoft JhengHei", sans-seri
 const intro = '沿石路走到溪邊，找木橋過溪。';
 
 export class ForestScene extends Phaser.Scene {
-  private player!: Player;
+  protected player!: Player;
   private readonly composition = compositionPanel();
   private settings = this.composition.read();
   private readonly eastActions = new EastActions();
   private castRequested = false;
-  private castKey!: Phaser.Input.Keyboard.Key;
+  protected castKey!: Phaser.Input.Keyboard.Key;
   private footMarker!: Phaser.GameObjects.Graphics;
   private readonly anchorSetting = document.querySelector<HTMLInputElement>('#ground-anchor')!;
   private readonly runs = Object.fromEntries(
     Object.entries(runSources).map(([key, manifest]) => [key, new AnimationClip(manifest, 'eiku-run')]),
   ) as Record<keyof typeof runSources, AnimationClip>;
-  private controlsReady = false;
+  protected controlsReady = false;
   private movementResolution = this.settings.resolution;
   private previousX = entrance.x;
   private previousY = entrance.y;
@@ -45,10 +45,10 @@ export class ForestScene extends Phaser.Scene {
   private candidate!: Phaser.GameObjects.Image;
   private originalScale = 1;
   private environmentLights: Phaser.GameObjects.Image[] = [];
-  private controls!: Controls;
+  protected controls!: Controls;
   private sword!: Sword;
   private obstacles!: Phaser.Physics.Arcade.StaticGroup;
-  private chestArt!: Phaser.GameObjects.Image;
+  protected chestArt!: Phaser.GameObjects.Image;
   private canopy: Phaser.GameObjects.Image[] = [];
   private opened = false;
   private visitedSpirit = false;
@@ -234,6 +234,14 @@ export class ForestScene extends Phaser.Scene {
     makeObjectiveMarker(this).setPosition(spirit.x, spirit.y - 13).setDepth(spirit.y);
   }
 
+  protected moveForestPlayer(direction: Phaser.Math.Vector2, now: number): boolean {
+    return this.player.move(direction, now, this.controls.consume('dodge'));
+  }
+
+  protected get usesForestDemoActions(): boolean { return true; }
+
+  protected forestInteraction(_pressed: boolean): string | undefined { return undefined; }
+
   update(now: number, delta: number): void {
     if (!this.controlsReady) return;
     if (this.settings.resolution !== this.movementResolution && this.movementReady(this.settings.resolution)) {
@@ -242,13 +250,13 @@ export class ForestScene extends Phaser.Scene {
     }
     const direction = this.controls.direction();
     this.player.look(direction, now);
-    if (this.player.move(direction, now, this.controls.consume('dodge'))) {
+    if (this.moveForestPlayer(direction, now)) {
       this.dodgeEnd = now + 160;
       this.eastActions.start('dash', now);
     }
     this.player.syncView();
     const { x, y } = this.player.body.center;
-    if (this.controls.consume('attack')
+    if (this.usesForestDemoActions && this.controls.consume('attack')
       && this.sword.swing(now, this.player.body.center, this.player.facing, this.player.body.center)) {
       this.eastActions.start('attack', now);
     }
@@ -258,7 +266,7 @@ export class ForestScene extends Phaser.Scene {
     const automatic = candidate && source === 'framesprite' && motion !== 'review' && !paused;
     const resolution = automatic ? this.movementResolution : this.settings.resolution;
     const hasInput = Boolean(direction.lengthSq());
-    const cast = automatic ? selectDirectionalAction(this.runs, facingKey, {
+    const cast = automatic && this.usesForestDemoActions ? selectDirectionalAction(this.runs, facingKey, {
       casting: true, busy: false, moving: false, hasInput,
     }) : undefined;
     this.castRequested ||= Phaser.Input.Keyboard.JustDown(this.castKey);
@@ -316,6 +324,11 @@ export class ForestScene extends Phaser.Scene {
       canopy.setAlpha(this.vegetationOpacity(canopy, x, y, size));
     }
     const interact = this.controls.consume('interact');
+    const customHint = this.forestInteraction(interact);
+    if (customHint !== undefined) {
+      if (this.message.textContent !== customHint) this.message.textContent = customHint;
+      return;
+    }
     const near = (point: { x: number; y: number }) => Phaser.Math.Distance.Between(x, y, point.x, point.y) < 53;
     let hint = this.notice;
     if (near(chest) && !this.opened) {

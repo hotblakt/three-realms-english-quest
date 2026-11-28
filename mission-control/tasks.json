@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repository": "hotblakt/three-realms-english-quest",
-  "updatedAt": "2026-11-28T05:00:27.846Z",
+  "updatedAt": "2026-11-28T06:14:20.886Z",
   "stable": {
     "label": "霧竹林 2.0",
     "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
@@ -509,15 +509,19 @@
       "milestone": "7A-5",
       "role": "Codex",
       "stream": "production",
-      "sourceCommit": null,
-      "pr": null,
+      "sourceCommit": "9721c466691c33de53a03d653b1673b50ed002c4",
+      "pr": 42,
       "deployment": null,
-      "evidence": [],
-      "limitations": [
-        "僅規劃與設計，等待製作人手動交接"
+      "evidence": [
+        {
+          "kind": "reported",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "7D-1 製作人核准整合契約與隔離試玩"
+        }
       ],
+      "limitations": [],
       "blockers": [],
-      "status": "pending",
+      "status": "completed",
       "dependencies": [
         "forest-v3-world-design",
         "hayate-companion-design",
@@ -528,9 +532,9 @@
       "id": "production-integration-gate",
       "title": "跨系統整合契約核准",
       "priority": 5,
-      "sourceBranch": "feat/production-integration-gate",
+      "sourceBranch": "feat/forest-v3-integration-contract",
       "writeScopes": [
-        "docs/production/integration-contracts.md"
+        "docs/production/forest-v3-integration-contract.md"
       ],
       "acceptance": [
         "確認區域 ID、事件、存檔與單一整合分支所有權"
@@ -541,6 +545,24 @@
           "status": "pending",
           "at": "2026-11-28T04:05:20.846Z",
           "evidence": null
+        },
+        {
+          "status": "awaiting_producer_acceptance",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "7D-1 製作人核准整合契約與隔離試玩"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "7D-1 製作人核准整合契約與隔離試玩"
+          }
         }
       ]
     },
@@ -551,12 +573,18 @@
       "sourceCommit": null,
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "reported",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "7D-1 製作人核准整合契約與隔離試玩"
+        }
+      ],
       "limitations": [
-        "僅規劃與設計，等待製作人手動交接"
+        "僅授權獨立試玩分支"
       ],
       "blockers": [],
-      "status": "pending",
+      "status": "completed",
       "dependencies": [
         "production-integration-gate"
       ],
@@ -574,31 +602,48 @@
           "status": "pending",
           "at": "2026-11-28T04:05:20.846Z",
           "evidence": null
+        },
+        {
+          "status": "awaiting_producer_acceptance",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "7D-1 製作人核准整合契約與隔離試玩"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "7D-1 製作人核准整合契約與隔離試玩"
+          }
         }
       ]
     },
     {
       "milestone": "7B-1",
-      "sourceCommit": null,
-      "pr": null,
+      "sourceCommit": "9721c466691c33de53a03d653b1673b50ed002c4",
+      "pr": 42,
       "deployment": null,
       "evidence": [
         {
           "kind": "reported",
           "ref": "docs/forest-v3-production-plan.md",
           "label": "四份交付已獨立核對與交叉審閱"
+        },
+        {
+          "kind": "reported",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "7D-1 製作人核准整合契約與隔離試玩"
         }
       ],
       "blockers": [],
-      "nextAction": {
-        "role": "Producer",
-        "label": "審閱並核准霧竹林 3.0 整合契約",
-        "prompt": "請審閱整合契約與四份交付，確認展示風刃來源、雙向重訪是否納入、最弱裝置及品檢門檻。核准前不派實作或付費生成。"
-      },
-      "limitations": [
-        "已技術審閱，需製作人決定"
-      ],
-      "status": "awaiting_review",
+      "nextAction": null,
+      "limitations": [],
+      "status": "completed",
       "id": "batch001-producer-review",
       "title": "審閱並核准整合契約",
       "role": "Producer",
@@ -622,22 +667,36 @@
             "ref": "docs/forest-v3-production-plan.md",
             "label": "四份交付已獨立核對與交叉審閱"
           }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "7D-1 製作人核准整合契約與隔離試玩"
+          }
         }
       ]
     },
     {
       "milestone": "7B-1",
-      "sourceCommit": null,
+      "sourceCommit": "bae638347cbc9a73e754980a828da69d27d87c12",
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "世界幾何已整合，真機路線驗收待辦"
+        }
+      ],
       "blockers": [],
       "nextAction": null,
       "limitations": [
-        "尚未交接或取得實作授權",
-        "角色主圖需製作人批准，未獲預算授權不得發送付費生成"
+        "世界幾何已整合，真機路線驗收待辦"
       ],
-      "status": "pending",
+      "status": "completed",
       "id": "forest-v3-world-geometry",
       "title": "A 世界與探索幾何",
       "role": "Codex",
@@ -658,22 +717,54 @@
           "status": "pending",
           "at": "2026-11-28T05:00:27.846Z",
           "evidence": null
+        },
+        {
+          "status": "ready",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "世界幾何已整合，真機路線驗收待辦"
+          }
+        },
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "世界幾何已整合，真機路線驗收待辦"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "世界幾何已整合，真機路線驗收待辦"
+          }
         }
       ]
     },
     {
       "milestone": "7B-1",
-      "sourceCommit": null,
+      "sourceCommit": "bffbc8a8781698ae419fdc7d0b89a75b2bf9e4e7",
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "規格已核對。製作人核准疾風造型與第四張方向圖，執行期四方向靜態衍生圖已驗證，實機美術驗收待辦"
+        }
+      ],
       "blockers": [],
       "nextAction": null,
       "limitations": [
-        "尚未交接或取得實作授權",
-        "角色主圖需製作人批准，未獲預算授權不得發送付費生成"
+        "規格已核對。製作人核准疾風造型與第四張方向圖，執行期四方向靜態衍生圖已驗證，實機美術驗收待辦"
       ],
-      "status": "pending",
+      "status": "completed",
       "id": "forest-v3-character-art",
       "title": "B 角色與敵人美術驗收",
       "role": "ChatGPT Images",
@@ -694,22 +785,54 @@
           "status": "pending",
           "at": "2026-11-28T05:00:27.846Z",
           "evidence": null
+        },
+        {
+          "status": "ready",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "規格已核對。製作人核准疾風造型與第四張方向圖，執行期四方向靜態衍生圖已驗證，實機美術驗收待辦"
+          }
+        },
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "規格已核對。製作人核准疾風造型與第四張方向圖，執行期四方向靜態衍生圖已驗證，實機美術驗收待辦"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "規格已核對。製作人核准疾風造型與第四張方向圖，執行期四方向靜態衍生圖已驗證，實機美術驗收待辦"
+          }
         }
       ]
     },
     {
       "milestone": "7B-1",
-      "sourceCommit": null,
+      "sourceCommit": "acd0bbf98093721ec5cfb96b605187dd450e017e",
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "領域引擎已整合，實機戰鬥與操作驗收待辦"
+        }
+      ],
       "blockers": [],
       "nextAction": null,
       "limitations": [
-        "尚未交接或取得實作授權",
-        "角色主圖需製作人批准，未獲預算授權不得發送付費生成"
+        "領域引擎已整合，實機戰鬥與操作驗收待辦"
       ],
-      "status": "pending",
+      "status": "completed",
       "id": "forest-v3-domain",
       "title": "C 戰鬥與靈伴領域",
       "role": "Codex",
@@ -730,22 +853,54 @@
           "status": "pending",
           "at": "2026-11-28T05:00:27.846Z",
           "evidence": null
+        },
+        {
+          "status": "ready",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "領域引擎已整合，實機戰鬥與操作驗收待辦"
+          }
+        },
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "領域引擎已整合，實機戰鬥與操作驗收待辦"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "領域引擎已整合，實機戰鬥與操作驗收待辦"
+          }
         }
       ]
     },
     {
       "milestone": "7B-1",
-      "sourceCommit": null,
+      "sourceCommit": "62e494e60a937368c7eb315171fb4b6cbb6bc0cd",
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "已匯入 QA 的 20 案框架，完整實機驗收尚未開始"
+        }
+      ],
       "blockers": [],
       "nextAction": null,
       "limitations": [
-        "尚未交接或取得實作授權",
-        "角色主圖需製作人批准，未獲預算授權不得發送付費生成"
+        "已匯入 QA 的 20 案框架，完整實機驗收尚未開始"
       ],
-      "status": "pending",
+      "status": "completed",
       "id": "forest-v3-qa",
       "title": "QA 獨立基準與測例",
       "role": "Work",
@@ -766,22 +921,58 @@
           "status": "pending",
           "at": "2026-11-28T05:00:27.846Z",
           "evidence": null
+        },
+        {
+          "status": "ready",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "已匯入 QA 的 20 案框架，完整實機驗收尚未開始"
+          }
+        },
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "已匯入 QA 的 20 案框架，完整實機驗收尚未開始"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "已匯入 QA 的 20 案框架，完整實機驗收尚未開始"
+          }
         }
       ]
     },
     {
-      "milestone": "7B-1",
+      "milestone": "7D-1",
       "sourceCommit": null,
       "pr": null,
       "deployment": null,
-      "evidence": [],
-      "blockers": [],
-      "nextAction": null,
-      "limitations": [
-        "尚未交接或取得實作授權",
-        "角色主圖需製作人批准，未獲預算授權不得發送付費生成"
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "已整合 Alpha，測試範圍與限制見交接紀錄"
+        }
       ],
-      "status": "pending",
+      "blockers": [],
+      "nextAction": {
+        "role": "Producer",
+        "label": "驗收霧竹林 Alpha 的 iPhone Safari 基本流程",
+        "prompt": "請在 Work 提供的同一候選版本依交接表，用 iPhone Safari 驗證進場、過橋、拒絕麥克風後招募與安全撤退。回填實際結果與候選 SHA。"
+      },
+      "limitations": [
+        "未部署，真機 Safari/PWA、完整 QA 驗收與正式美術待辦"
+      ],
+      "status": "awaiting_review",
       "id": "forest-v3-scene-integration",
       "title": "共用場景與持久化整合",
       "role": "Codex",
@@ -795,10 +986,15 @@
       ],
       "sourceBranch": "feat/forest-v3-scene-integration",
       "writeScopes": [
-        "forest-preview",
-        "forest-batch-b-preview",
-        "src/save",
-        "vite.config.ts"
+        "forest-v3-preview",
+        "forest-preview/ForestScene.ts",
+        "forest-batch-b-preview/boot.ts",
+        "src/forest-v3",
+        "tests/forest-v3",
+        "vite.config.ts",
+        "tsconfig.json",
+        "mission-control/tasks.json",
+        "docs/production/forest-v3-alpha-handoff.md"
       ],
       "acceptance": [
         "只修改隔離範圍並交付可重複驗證的證據"
@@ -808,6 +1004,24 @@
           "status": "pending",
           "at": "2026-11-28T05:00:27.846Z",
           "evidence": null
+        },
+        {
+          "status": "ready",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "已整合 Alpha，測試範圍與限制見交接紀錄"
+          }
+        },
+        {
+          "status": "awaiting_review",
+          "at": "2026-11-28T06:14:20.886Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "已整合 Alpha，測試範圍與限制見交接紀錄"
+          }
         }
       ]
     }
@@ -1185,6 +1399,70 @@
         "waitingSeconds": null,
         "retrySeconds": null,
         "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr42-release",
+      "task": "production-integration-gate",
+      "attempt": 1,
+      "revision": 1,
+      "commit": "9721c466691c33de53a03d653b1673b50ed002c4",
+      "pr": 42,
+      "scope": "PR #42 發布",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "製作人提供的 7D-1 交接時間"
+      },
+      "metrics": {
+        "totalSeconds": 246,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": null,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr42-contract-integration",
+      "task": "batch001-producer-review",
+      "attempt": 1,
+      "revision": 1,
+      "commit": "9721c466691c33de53a03d653b1673b50ed002c4",
+      "pr": 42,
+      "scope": "7B-1 契約整合",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "製作人提供的 7D-1 交接時間"
+      },
+      "metrics": {
+        "totalSeconds": 309,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": null,
         "paidCredits": null,
         "costUsd": null,
         "assetAccepted": null,

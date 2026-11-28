@@ -1,0 +1,61 @@
+{
+  "chromium": "156.0.8078.79",
+  "renderer": "Canvas",
+  "viewport": "852×393, simulated mobile coarse input",
+  "checks": [
+    {
+      "baseline": "PR #39",
+      "case": "batch-b-404",
+      "state": "2.30 秒｜已繪製｜使用原竹林｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #39",
+      "case": "batch-c-404",
+      "state": "1.17 秒｜已繪製｜竹林生態已啟用｜使用原地標"
+    },
+    {
+      "baseline": "PR #39",
+      "case": "necessary-run-404",
+      "failure": "1.30 秒｜必要動畫未就緒｜eiku-north-run-256",
+      "recovered": "1.35 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #39",
+      "case": "necessary-run-stalled",
+      "failure": "20.00 秒｜啟動逾時｜載入必要資產｜四向 Run／Idle",
+      "recovered": "1.15 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #39",
+      "case": "simulated-rotation-and-input",
+      "state": "rotation gate, reduced-motion media query, simultaneous touch and release observed"
+    },
+    {
+      "baseline": "PR #42",
+      "case": "batch-b-404",
+      "state": "2.00 秒｜已繪製｜使用原竹林｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #42",
+      "case": "batch-c-404",
+      "state": "2.32 秒｜已繪製｜竹林生態已啟用｜使用原地標"
+    },
+    {
+      "baseline": "PR #42",
+      "case": "necessary-run-404",
+      "failure": "2.21 秒｜必要動畫未就緒｜eiku-north-run-256",
+      "recovered": "2.05 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #42",
+      "case": "necessary-run-stalled",
+      "failure": "20.00 秒｜啟動逾時｜載入必要資產｜四向 Run／Idle",
+      "recovered": "2.54 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+    },
+    {
+      "baseline": "PR #42",
+      "case": "simulated-rotation-and-input",
+      "state": "rotation gate, reduced-motion media query, simultaneous touch and release observed"
+    }
+  ]
+}

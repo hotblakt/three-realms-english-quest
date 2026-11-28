@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import assetCatalog from '../../docs/misty-forest-runtime-assets.json';
+import assetCatalog from '../../docs/misty-forest-runtime-assets.json' with { type: 'json' };
 import { bridge, chest, spirit, width } from '../layout';
 
 export type ForestTexture = keyof typeof assetCatalog.textures;

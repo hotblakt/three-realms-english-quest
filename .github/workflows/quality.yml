@@ -28,7 +28,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: node --test tests/*.test.mjs
+      - run: node --test tests/*.test.mjs tests/forest-v3/*.test.mjs src/forest-v3/world/*.test.mjs src/forest-v3/domain/*.test.mjs
 
   python:
     name: Python regression tests
