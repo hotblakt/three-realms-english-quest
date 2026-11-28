@@ -1,0 +1,1638 @@
+{
+  "url": "http://127.0.0.1:4173/three-realms-english-quest/forest-preview/?renderer=canvas",
+  "renderer": "canvas",
+  "mode": "phone",
+  "viewport": {
+    "width": 852,
+    "height": 393
+  },
+  "deviceScaleFactor": 1,
+  "browser": "156.0.8078.79",
+  "softwareWebGL": false,
+  "network": "local HTTP loopback, unthrottled",
+  "hardware": {
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "kernel": "6.18.57",
+    "logicalCpus": 5,
+    "cpuQuota": "400000 100000",
+    "memoryLimitBytes": "17179869184"
+  },
+  "cache": "3 isolated contexts, each with one first navigation and one reload; service workers blocked; server and OS caches uncontrolled",
+  "observations": [
+    {
+      "pair": 1,
+      "cache": "cold",
+      "firstRenderMs": 1294.3999999999069,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.09 秒｜載入 Phaser 與霧竹林模組",
+        "0.57 秒｜初始化 Phaser 渲染器",
+        "0.70 秒｜載入必要資產｜四向 Run／Idle",
+        "0.73 秒｜Phaser 已初始化｜Canvas",
+        "0.80 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.88 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.91 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.92 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.93 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.94 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.95 秒｜選用圖集解碼完成｜768×384",
+        "0.95 秒｜註冊選用竹林圖集",
+        "0.95 秒｜確認選用地標圖集",
+        "0.95 秒｜Batch C｜地標紋理已註冊",
+        "0.95 秒｜建立霧竹林場景",
+        "1.06 秒｜場景已建立｜等待首次繪製",
+        "1.11 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 1404,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 496
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 1011
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 3267
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 3221
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 1031
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 1818
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 3257
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 9638
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 332710
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 2954
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 1208
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 2661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 2421
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 1350
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 1746
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 1288
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 2916
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 895
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 1715
+        },
+        {
+          "path": "/favicon.ico",
+          "transferBytes": 452
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 1018
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 1149
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 2835
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 730
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 1063
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 3639
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 176124
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 211772
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 282000
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 234816
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 407946
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 401232
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 313218
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 493308
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 58922
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 52726
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 41118
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 46774
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 180364
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 109160
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 68152
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 127674
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 119090
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 67744
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 29036
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 77074
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 25360
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 9306
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 25328
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 19996
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 148278
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 78468
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 13482
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 15020
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 25392
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 260362
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 585
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 191510
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 228490
+        }
+      ],
+      "heapIndicatorBytes": 16610803
+    },
+    {
+      "pair": 1,
+      "cache": "warm reload",
+      "firstRenderMs": 840.7999999998137,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.02 秒｜載入 Phaser 與霧竹林模組",
+        "0.49 秒｜初始化 Phaser 渲染器",
+        "0.51 秒｜載入必要資產｜四向 Run／Idle",
+        "0.52 秒｜Phaser 已初始化｜Canvas",
+        "0.54 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.65 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.65 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.66 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.66 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.67 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.68 秒｜選用圖集解碼完成｜768×384",
+        "0.68 秒｜註冊選用竹林圖集",
+        "0.68 秒｜確認選用地標圖集",
+        "0.69 秒｜Batch C｜地標紋理已註冊",
+        "0.69 秒｜建立霧竹林場景",
+        "0.74 秒｜場景已建立｜等待首次繪製",
+        "0.77 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 907.6999999997206,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 300
+        }
+      ],
+      "heapIndicatorBytes": 27473834
+    },
+    {
+      "pair": 2,
+      "cache": "cold",
+      "firstRenderMs": 1037.5,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.01 秒｜載入 Phaser 與霧竹林模組",
+        "0.43 秒｜初始化 Phaser 渲染器",
+        "0.48 秒｜載入必要資產｜四向 Run／Idle",
+        "0.50 秒｜Phaser 已初始化｜Canvas",
+        "0.54 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.68 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.69 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.69 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.70 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.72 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.72 秒｜選用圖集解碼完成｜768×384",
+        "0.72 秒｜註冊選用竹林圖集",
+        "0.72 秒｜確認選用地標圖集",
+        "0.72 秒｜Batch C｜地標紋理已註冊",
+        "0.73 秒｜建立霧竹林場景",
+        "0.83 秒｜場景已建立｜等待首次繪製",
+        "0.88 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 1142.5,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 496
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 1011
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 3267
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 3221
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 1818
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 1031
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 3257
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 9638
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 332710
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 2954
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 1208
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 2661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 2421
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 1350
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 1746
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 1288
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 2916
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 895
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 1715
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 1018
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 1149
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 2835
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 730
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 1063
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 3639
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 176124
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 211772
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 282000
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 234816
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 407946
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 401232
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 313218
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 493308
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 58922
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 52726
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 41118
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 46774
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 180364
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 109160
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 68152
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 127674
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 119090
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 67744
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 29036
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 77074
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 25360
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 9306
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 25328
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 19996
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 148278
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 78468
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 13482
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 15020
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 25392
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 260362
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 585
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 191510
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 228490
+        }
+      ],
+      "heapIndicatorBytes": 16671630
+    },
+    {
+      "pair": 2,
+      "cache": "warm reload",
+      "firstRenderMs": 785.6000000000931,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.00 秒｜載入 Phaser 與霧竹林模組",
+        "0.43 秒｜初始化 Phaser 渲染器",
+        "0.45 秒｜載入必要資產｜四向 Run／Idle",
+        "0.47 秒｜Phaser 已初始化｜Canvas",
+        "0.49 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.59 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.59 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.60 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.60 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.62 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.63 秒｜選用圖集解碼完成｜768×384",
+        "0.63 秒｜註冊選用竹林圖集",
+        "0.63 秒｜確認選用地標圖集",
+        "0.63 秒｜Batch C｜地標紋理已註冊",
+        "0.63 秒｜建立霧竹林場景",
+        "0.69 秒｜場景已建立｜等待首次繪製",
+        "0.73 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 886.3999999999069,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 300
+        }
+      ],
+      "heapIndicatorBytes": 27479019
+    },
+    {
+      "pair": 3,
+      "cache": "cold",
+      "firstRenderMs": 1071.8999999999069,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.04 秒｜載入 Phaser 與霧竹林模組",
+        "0.43 秒｜初始化 Phaser 渲染器",
+        "0.49 秒｜載入必要資產｜四向 Run／Idle",
+        "0.51 秒｜Phaser 已初始化｜Canvas",
+        "0.55 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.71 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.75 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.77 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.78 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.79 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.80 秒｜選用圖集解碼完成｜768×384",
+        "0.80 秒｜註冊選用竹林圖集",
+        "0.80 秒｜確認選用地標圖集",
+        "0.81 秒｜Batch C｜地標紋理已註冊",
+        "0.81 秒｜建立霧竹林場景",
+        "0.93 秒｜場景已建立｜等待首次繪製",
+        "0.98 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 1166.6000000000931,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 496
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 1011
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 3267
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 3221
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 1818
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 3257
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 1031
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 9638
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 332710
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 2954
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 1208
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 2661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 2421
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 1350
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 1746
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 1288
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 2916
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 661
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 895
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 1715
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 1018
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 1149
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 2835
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 730
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 1063
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 3639
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 176124
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 211772
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 282000
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 234816
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 407946
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 401232
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 313218
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 493308
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 58922
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 52726
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 41118
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 46774
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 180364
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 109160
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 68152
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 127674
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 119090
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 67744
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 29036
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 77074
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 25360
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 9306
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 25328
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 19996
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 148278
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 78468
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 13482
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 15020
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 25392
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 260362
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 585
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 191510
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 228490
+        }
+      ],
+      "heapIndicatorBytes": 16659461
+    },
+    {
+      "pair": 3,
+      "cache": "warm reload",
+      "firstRenderMs": 915.4000000003725,
+      "startupLog": [
+        "0.00 秒｜等待入口模組",
+        "0.01 秒｜載入 Phaser 與霧竹林模組",
+        "0.49 秒｜初始化 Phaser 渲染器",
+        "0.53 秒｜載入必要資產｜四向 Run／Idle",
+        "0.54 秒｜Phaser 已初始化｜Canvas",
+        "0.58 秒｜Batch C｜選用圖集請求｜forest-landmarks.webp",
+        "0.68 秒｜選用圖集請求｜forest-batch-b.webp",
+        "0.68 秒｜四向動作就緒｜確認選用竹林圖集",
+        "0.69 秒｜Batch C｜選用圖集已下載，開始解碼｜forest-landmarks.webp",
+        "0.69 秒｜選用圖集已下載，開始解碼｜forest-batch-b.webp",
+        "0.71 秒｜Batch C｜選用圖集解碼完成｜640×336",
+        "0.71 秒｜選用圖集解碼完成｜768×384",
+        "0.71 秒｜註冊選用竹林圖集",
+        "0.71 秒｜確認選用地標圖集",
+        "0.72 秒｜Batch C｜地標紋理已註冊",
+        "0.72 秒｜建立霧竹林場景",
+        "0.78 秒｜場景已建立｜等待首次繪製",
+        "0.82 秒｜已繪製｜竹林生態已啟用｜風靈地標已啟用"
+      ],
+      "readyAndUnlockedMs": 1007.8000000002794,
+      "resources": [
+        {
+          "path": "/three-realms-english-quest/assets/forestPreview-Dcc8QDa5.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/modulepreload-polyfill-B5Qt9EMX.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-DYFVC7u2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/boot-DDuDSpfA.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/loadLandmarks-BznQmfRJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/preview-Dveb4uf7.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/style-DY0Z0-ux.css",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ForestScene-B3VoGS9z.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/phaser-BzgIAAyK.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eikuSprite-D4LNg3S9.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/villageAtmosphere-D35-zA3W.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/Controls-CMC3RRbB.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/placement-eGIGnN_f.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/layout-CBGnvn7s.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/composition-B5pjNUge.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/scalePanel-JYHQ1jpI.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/runSources-CsT4BMXh.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/movementReadiness-Bky_GbOx.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landscapeLayout-BGmuOfSJ.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/eastReview-BU-XImRR.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/batchBVegetation-DUzgDQf4.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/ecology-CoKRO1f-.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/forest-batch-b-provenance-BSfP6NIn.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/startup-CJyaaaA2.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/prepareAtlas-DrTLwZZ3.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/landmarks-CmkYv77T.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/east-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-run-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-east-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-north-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-west-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-run/eiku-south-idle-256.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/south.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/north.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/west.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/eiku-composition/east.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-bank.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-shoal.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-a/batch-falls.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/dense.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/sparse.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/underbrush.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/stone.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-large.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/rock-small.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/spirit-mist.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/bridge.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/torii.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-closed.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/chest-open.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/water.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-preview-textures/ground.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/assets/canopy-7BSxSxXl.js",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-c/forest-landmarks.webp",
+          "transferBytes": 300
+        },
+        {
+          "path": "/three-realms-english-quest/forest-batch-b/forest-batch-b.webp",
+          "transferBytes": 300
+        }
+      ],
+      "heapIndicatorBytes": 27322343
+    }
+  ],
+  "failures": [],
+  "stability": {
+    "elapsedMs": 31757,
+    "cycles": 11,
+    "bins": {
+      "50": 2,
+      "16.7": 1071,
+      "33.3": 6,
+      "16.6": 701,
+      "16.8": 95,
+      "16.5": 17,
+      "33.4": 2
+    },
+    "stalls": [],
+    "frames": 1894,
+    "focusLoss": 0,
+    "firstRender": 915.4000000003725,
+    "record": false,
+    "p95Ms": 16.8,
+    "finalHeapIndicatorBytes": 17119391
+  }
+}

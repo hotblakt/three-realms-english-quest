@@ -1,0 +1,1915 @@
+{
+  "browser": "156.0.8078.79",
+  "renderer": "canvas",
+  "viewport": {
+    "width": 852,
+    "height": 393
+  },
+  "cases": {
+    "stable": {
+      "pixels": {
+        "entrance": {
+          "changed": 3550,
+          "maxChannelDelta": 195,
+          "pixels": 334836
+        },
+        "shrine-behind": {
+          "changed": 3506,
+          "maxChannelDelta": 154,
+          "pixels": 334836
+        },
+        "shrineIdle30s": {
+          "changed": 3535,
+          "maxChannelDelta": 156,
+          "pixels": 334836
+        }
+      },
+      "inputMs": [
+        {
+          "direction": "north",
+          "ms": 3.2000000001862645
+        },
+        {
+          "direction": "north",
+          "ms": 4.400000000372529
+        },
+        {
+          "direction": "north",
+          "ms": 6.900000000372529
+        },
+        {
+          "direction": "north",
+          "ms": 6.5
+        },
+        {
+          "direction": "north",
+          "ms": 6
+        },
+        {
+          "direction": "south",
+          "ms": 3.5
+        },
+        {
+          "direction": "south",
+          "ms": 3.2000000001862645
+        },
+        {
+          "direction": "south",
+          "ms": 7.099999999627471
+        },
+        {
+          "direction": "south",
+          "ms": 5.7000000001862645
+        },
+        {
+          "direction": "south",
+          "ms": 5.900000000372529
+        },
+        {
+          "direction": "east",
+          "ms": 1.8999999994412065
+        },
+        {
+          "direction": "east",
+          "ms": 7.6000000005587935
+        },
+        {
+          "direction": "east",
+          "ms": 5.5
+        },
+        {
+          "direction": "east",
+          "ms": 4
+        },
+        {
+          "direction": "east",
+          "ms": 6.7999999998137355
+        },
+        {
+          "direction": "west",
+          "ms": 5.6000000005587935
+        },
+        {
+          "direction": "west",
+          "ms": 7.2999999998137355
+        },
+        {
+          "direction": "west",
+          "ms": 4.7999999998137355
+        },
+        {
+          "direction": "west",
+          "ms": 7.2000000001862645
+        },
+        {
+          "direction": "west",
+          "ms": 6.7999999998137355
+        }
+      ],
+      "p95InputMs": 7.2999999998137355,
+      "visits": [
+        {
+          "visit": 1,
+          "heap": {
+            "usedSize": 25628592,
+            "totalSize": 86765568,
+            "embedderHeapUsedSize": 35935928,
+            "backingStorageSize": 14140561
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "d4927d8c-fed5-4962-9254-ab2a05601e12",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "6d23c909-ee48-4710-b65d-0df091b5d772",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        },
+        {
+          "visit": 2,
+          "heap": {
+            "usedSize": 24901900,
+            "totalSize": 86765568,
+            "embedderHeapUsedSize": 32599200,
+            "backingStorageSize": 14140561
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "d4927d8c-fed5-4962-9254-ab2a05601e12",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "6d23c909-ee48-4710-b65d-0df091b5d772",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        },
+        {
+          "visit": 3,
+          "heap": {
+            "usedSize": 25775524,
+            "totalSize": 86765568,
+            "embedderHeapUsedSize": 36482264,
+            "backingStorageSize": 14140561
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "d4927d8c-fed5-4962-9254-ab2a05601e12",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "6d23c909-ee48-4710-b65d-0df091b5d772",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "pixels": {
+        "entrance": {
+          "changed": 3550,
+          "maxChannelDelta": 195,
+          "pixels": 334836
+        },
+        "shrine-behind": {
+          "changed": 3506,
+          "maxChannelDelta": 154,
+          "pixels": 334836
+        },
+        "entrance-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "canopy-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "bridge-water-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "west-treasure-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "shrine-front-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "shrine-behind-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "east-return-diff": {
+          "changed": 0,
+          "maxChannelDelta": 0,
+          "pixels": 334836
+        },
+        "shrineIdle30s": {
+          "changed": 3585,
+          "maxChannelDelta": 156,
+          "pixels": 334836
+        }
+      },
+      "inputMs": [
+        {
+          "direction": "north",
+          "ms": 2.8999999994412065
+        },
+        {
+          "direction": "north",
+          "ms": 1.800000000745058
+        },
+        {
+          "direction": "north",
+          "ms": 52.60000000055879
+        },
+        {
+          "direction": "north",
+          "ms": 2.300000000745058
+        },
+        {
+          "direction": "north",
+          "ms": 2.1000000005587935
+        },
+        {
+          "direction": "south",
+          "ms": 1.8999999994412065
+        },
+        {
+          "direction": "south",
+          "ms": 2
+        },
+        {
+          "direction": "south",
+          "ms": 3.2000000001862645
+        },
+        {
+          "direction": "south",
+          "ms": 3.300000000745058
+        },
+        {
+          "direction": "south",
+          "ms": 1.599999999627471
+        },
+        {
+          "direction": "east",
+          "ms": 2
+        },
+        {
+          "direction": "east",
+          "ms": 1.699999999254942
+        },
+        {
+          "direction": "east",
+          "ms": 4.5
+        },
+        {
+          "direction": "east",
+          "ms": 2.7999999998137355
+        },
+        {
+          "direction": "east",
+          "ms": 1.900000000372529
+        },
+        {
+          "direction": "west",
+          "ms": 3.400000000372529
+        },
+        {
+          "direction": "west",
+          "ms": 4
+        },
+        {
+          "direction": "west",
+          "ms": 2.300000000745058
+        },
+        {
+          "direction": "west",
+          "ms": 1.5
+        },
+        {
+          "direction": "west",
+          "ms": 1.900000000372529
+        }
+      ],
+      "p95InputMs": 4.5,
+      "visits": [
+        {
+          "visit": 1,
+          "heap": {
+            "usedSize": 52578832,
+            "totalSize": 102998016,
+            "embedderHeapUsedSize": 84883272,
+            "backingStorageSize": 14140637
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "055a3303-e900-4345-a68c-d8382379aa2e",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "ee0c8538-1fe9-4e93-a7cf-91e6914e3876",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        },
+        {
+          "visit": 2,
+          "heap": {
+            "usedSize": 56146772,
+            "totalSize": 102998016,
+            "embedderHeapUsedSize": 99888744,
+            "backingStorageSize": 14140637
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "055a3303-e900-4345-a68c-d8382379aa2e",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "ee0c8538-1fe9-4e93-a7cf-91e6914e3876",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        },
+        {
+          "visit": 3,
+          "heap": {
+            "usedSize": 50598472,
+            "totalSize": 103260160,
+            "embedderHeapUsedSize": 74173544,
+            "backingStorageSize": 14140637
+          },
+          "textureCount": 44,
+          "rgbaBytes": 54345520,
+          "textures": [
+            {
+              "key": "eiku-east-run-256",
+              "width": 768,
+              "height": 512,
+              "rgbaBytes": 1572864
+            },
+            {
+              "key": "eiku-west-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-west-run-256",
+              "width": 1024,
+              "height": 768,
+              "rgbaBytes": 3145728
+            },
+            {
+              "key": "eiku-south-run-256",
+              "width": 768,
+              "height": 768,
+              "rgbaBytes": 2359296
+            },
+            {
+              "key": "eiku-east-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-north-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-idle-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-concept-south-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-north-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-west-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "eiku-concept-east-384",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "batch-water",
+              "width": 512,
+              "height": 256,
+              "rgbaBytes": 524288
+            },
+            {
+              "key": "batch-bank",
+              "width": 320,
+              "height": 208,
+              "rgbaBytes": 266240
+            },
+            {
+              "key": "batch-shoal",
+              "width": 224,
+              "height": 161,
+              "rgbaBytes": 144256
+            },
+            {
+              "key": "batch-falls",
+              "width": 288,
+              "height": 264,
+              "rgbaBytes": 304128
+            },
+            {
+              "key": "dense",
+              "width": 260,
+              "height": 269,
+              "rgbaBytes": 279760
+            },
+            {
+              "key": "sparse",
+              "width": 182,
+              "height": 208,
+              "rgbaBytes": 151424
+            },
+            {
+              "key": "underbrush",
+              "width": 174,
+              "height": 86,
+              "rgbaBytes": 59856
+            },
+            {
+              "key": "stone",
+              "width": 286,
+              "height": 197,
+              "rgbaBytes": 225368
+            },
+            {
+              "key": "rock-large",
+              "width": 163,
+              "height": 87,
+              "rgbaBytes": 56724
+            },
+            {
+              "key": "rock-small",
+              "width": 86,
+              "height": 54,
+              "rgbaBytes": 18576
+            },
+            {
+              "key": "mist",
+              "width": 296,
+              "height": 73,
+              "rgbaBytes": 86432
+            },
+            {
+              "key": "spirit-mist",
+              "width": 160,
+              "height": 116,
+              "rgbaBytes": 74240
+            },
+            {
+              "key": "bridge",
+              "width": 400,
+              "height": 267,
+              "rgbaBytes": 427200
+            },
+            {
+              "key": "torii",
+              "width": 290,
+              "height": 211,
+              "rgbaBytes": 244760
+            },
+            {
+              "key": "chest-closed",
+              "width": 86,
+              "height": 70,
+              "rgbaBytes": 24080
+            },
+            {
+              "key": "ground",
+              "width": 384,
+              "height": 384,
+              "rgbaBytes": 589824
+            },
+            {
+              "key": "chest-open",
+              "width": 86,
+              "height": 84,
+              "rgbaBytes": 28896
+            },
+            {
+              "key": "water",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "forest-batch-b",
+              "width": 768,
+              "height": 384,
+              "rgbaBytes": 1179648
+            },
+            {
+              "key": "forest-batch-c",
+              "width": 640,
+              "height": 336,
+              "rgbaBytes": 860160
+            },
+            {
+              "key": "village-contact-shadow",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "eiku-wind",
+              "width": 336,
+              "height": 224,
+              "rgbaBytes": 301056
+            },
+            {
+              "key": "055a3303-e900-4345-a68c-d8382379aa2e",
+              "width": 1220,
+              "height": 890,
+              "rgbaBytes": 4343200
+            },
+            {
+              "key": "forest-ground-patina",
+              "width": 610,
+              "height": 445,
+              "rgbaBytes": 1085800
+            },
+            {
+              "key": "forest-stream-bed",
+              "width": 360,
+              "height": 668,
+              "rgbaBytes": 961920
+            },
+            {
+              "key": "forest-flow",
+              "width": 10,
+              "height": 20,
+              "rgbaBytes": 800
+            },
+            {
+              "key": "village-lantern-soft-light",
+              "width": 64,
+              "height": 64,
+              "rgbaBytes": 16384
+            },
+            {
+              "key": "ee0c8538-1fe9-4e93-a7cf-91e6914e3876",
+              "width": 1,
+              "height": 1,
+              "rgbaBytes": 4
+            },
+            {
+              "key": "forest-filtered-light",
+              "width": 128,
+              "height": 128,
+              "rgbaBytes": 65536
+            },
+            {
+              "key": "eiku-east-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-south-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            },
+            {
+              "key": "eiku-west-cast-256",
+              "width": 1024,
+              "height": 1024,
+              "rgbaBytes": 4194304
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
