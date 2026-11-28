@@ -9,6 +9,8 @@ const browser = await chromium.launch({
 });
 const base = process.argv[2] ?? 'http://localhost:5173';
 const renderer = process.argv[3] ?? 'canvas';
+const production = process.argv.includes('--production');
+const route = production ? 'forest-preview' : 'forest-batch-c-preview';
 const output = process.env.FOREST_PIXEL_OUTPUT;
 const page = await browser.newPage({ viewport: { width: 852, height: 393 }, isMobile: true, hasTouch: true,
   reducedMotion: 'reduce' });
@@ -23,7 +25,7 @@ try {
     assert.notEqual(instrumented, original);
     await route.fulfill({ response, body: instrumented });
   });
-  await page.goto(`${base}/forest-batch-c-preview/?renderer=${renderer}`);
+  await page.goto(`${base}/${route}/?renderer=${renderer}`);
   await page.waitForFunction(() => document.querySelector('#startup-state')?.textContent.includes('風靈地標已啟用'));
   const canvas = page.locator('#game canvas');
 
@@ -83,6 +85,45 @@ try {
   await checkFrame('shrine-front-south', 920, 137, 's', 'south');
   await checkFrame('shrine-behind-south', 920, 101, 's', 'south');
   await checkFrame('shrine-behind-west', 920, 75, 'a', 'west');
+
+  if (production) {
+    async function fixedViews() {
+      const frames = [];
+      for (const [x, y, expectedOpacity] of [[502, 638, 1], [675, 451, 1], [920, 137, 1], [920, 101, .28], [920, 137, 1]]) {
+        await page.evaluate(([x, y]) => {
+          const scene = window.__forestRenderTest.scene.getScene('misty-forest');
+          document.querySelector('#diagnostics').style.visibility = 'hidden';
+          scene.player.body.reset(x, y);
+          scene.player.syncView();
+          scene.player.facing.set(0, 1);
+          scene.cameras.main.stopFollow().centerOn(x, y - 18);
+        }, [x, y]);
+        await page.waitForFunction(([y, expectedOpacity]) => {
+          const scene = window.__forestRenderTest.scene.getScene('misty-forest');
+          const shrine = scene.children.list.find(image => image.frame?.name === 'shrine-body');
+          return scene.candidate.y === y && Math.abs(shrine.alpha - expectedOpacity) < .001;
+        }, [y, expectedOpacity]);
+        await page.evaluate(() => {
+          const scene = window.__forestRenderTest.scene.getScene('misty-forest');
+          scene.scene.pause();
+          scene.runs['south-idle'].draw(scene.candidate, 256, 0, 44 * 207 / 100);
+        });
+        frames.push(await canvas.screenshot());
+        await page.evaluate(() => window.__forestRenderTest.scene.getScene('misty-forest').scene.resume());
+      }
+      return frames;
+    }
+    assert.equal(await page.locator('#observe-idle').count(), 0);
+    const promoted = await fixedViews();
+    await page.goto(`${base}/forest-batch-c-preview/?renderer=${renderer}`);
+    await page.waitForFunction(() => document.querySelector('#startup-state')?.textContent.includes('風靈地標已啟用'));
+    assert.equal(await page.locator('#observe-idle').count(), 1);
+    const accepted = await fixedViews();
+    for (const [index, frame] of accepted.entries()) {
+      assert.ok(frame.equals(promoted[index]), `${renderer} fixed view ${index + 1} differs between entries`);
+    }
+    console.log(renderer, 'production and candidate fixed views match', accepted.length);
+  }
 } finally {
   await browser.close();
 }
