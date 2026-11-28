@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repository": "hotblakt/three-realms-english-quest",
-  "updatedAt": "2026-11-28T02:57:02.569Z",
+  "updatedAt": "2026-11-28T03:18:23Z",
   "stable": {
     "label": "霧竹林 2.0",
     "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
@@ -162,16 +162,22 @@
       "stream": "production",
       "sourceBranch": "feat/ai-mission-control-v2-foundation",
       "sourceCommit": null,
-      "pr": null,
+      "pr": 40,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "repository",
+          "ref": "pr:40",
+          "label": "PR #40 的 Git head 已與交付分支核對"
+        }
+      ],
       "limitations": [
         "製作人需親自核准發布，GitHub 狀態取決於快照是否可讀"
       ],
       "blockers": [],
       "nextAction": {
         "role": "Producer",
-        "label": "審閱 7A-1 交付分支",
+        "label": "審閱 PR #40 的 7A-1 交付分支",
         "prompt": "請 Work 核對任務控制台 7A-1 的交付分支、提交與品質檢查，回報本次可審閱內容。等待我的合併及部署授權。"
       },
       "writeScopes": [

@@ -59,6 +59,7 @@ export async function collectGitHubStatus(registry, fetcher = fetch, token = '',
       const [branchSha, raw] = await Promise.all([task.sourceBranch ? ref(task.sourceBranch) : null,
         task.pr ? read(`pulls/${task.pr}`) : null]);
       const pr = raw?.number === task.pr && raw?.head?.repo?.full_name === repository && raw?.base?.ref === 'main'
+        && (!task.sourceBranch || raw.head.ref === task.sourceBranch)
         ? { number: raw.number, state: raw.merged ? 'merged' : raw.state, headSha: raw.head.sha,
             mergeSha: raw.merged ? raw.merge_commit_sha : null } : null;
       const [gate, deployment] = await Promise.all([pr ? quality(pr) : null, pr ? pages(pr.mergeSha) : null]);

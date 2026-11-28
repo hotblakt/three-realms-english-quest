@@ -39,3 +39,13 @@
 目前自動化涵蓋資料驗證、去重、依賴和並行建議、下一步選擇及唯讀快照。AI 派工、支出核准、裝置驗收、合併及發布仍由人工交接。未假定 ChatGPT、Codex 或 Work 可透過 API 相互派工。後續須有可驗證的 API、授權與稽核才評估整合。[發布協定](release-management.md)
 
 使用外部 Playwright 執行 `node scripts/check-mission-control-mobile.mjs` 可回歸手機排版、複製、過期及資料清理。以 `PLAYWRIGHT_MODULE` 和 `CHROMIUM_PATH` 指定本機工具，無需更改遊戲依賴。
+
+## 7A-3｜PR #40 發布門檻修正
+
+製作人授權 **Pages 建置工作**的短期 `GITHUB_TOKEN` 使用 `contents: read`、`actions: read`、`pull-requests: read`。快照收集步驟只對固定公開遊戲庫發出 REST GET。部署工作仍只有 `pages: write` 與 `id-token: write`，用途為既有 Pages 發布。儲存庫設定與保護規則照舊，權杖內容不進入日誌或公開產物。
+
+原始重現是在兩個分支同時排入 `mission-control/main.mjs` 與 `mission-control//main.mjs`，兩者均被接受。登錄與排程現在使用同一個路徑比較鍵。支援儲存庫相對路徑，以 ASCII 英文字母、數字、點、底線、連字號及正斜線組成。重複及尾端斜線會合併，單獨的 `.` 段落會移除。保留 `.github` 等隱藏目錄。拒絕所有 `..` 段落、絕對／磁碟路徑、反斜線、萬用字元、空白、空範圍和尾端點號。所有大小寫變體視為同一位置，目錄與子項也會衝突。比較鍵僅用於排程，實際檔名仍以 Git 為準。符號連結或外部工作區別名需在交接時另行核對。
+
+7A-1 登錄既有 **PR #40** 及來源分支 `feat/ai-mission-control-v2-foundation`，保留待審閱。收集器核對 PR 編號、來源庫、來源分支與目的分支。未合併的 PR 不採用預先產生的測試合併 SHA，也不判定已部署。
+
+公開快照只會在下一次獲授權的 `main` Pages 建置生成並隨該次產物發布，包括現有的手動工作流程觸發方式。可在本機執行收集器核對輸出，這不會更新 Pages。同一輪部署的完成結果可能不在自己的快照中。超過 24 小時顯示過期，無資料或讀取受限時顯示未知。這次沿用建置時同步，沒有新增輪詢或定期發布。此環境的 API 讀取仍受限，真實 Actions 端到端更新待授權發布確認。

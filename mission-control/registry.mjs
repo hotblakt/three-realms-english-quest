@@ -34,6 +34,18 @@ const evidence = value => record(value, ['kind', 'ref', 'label'])
   && oneOf(value.kind, ['reported', 'repository'])
   && /^(?:docs\/[a-z0-9-]+\.md|pr:\d+|commit:[a-f0-9]{40})$/.test(value.ref) && text(value.label);
 
+// This key is for comparing write scopes, never for opening or modifying files.
+export function canonicalWriteScope(scope) {
+  must(typeof scope === 'string' && scope.length <= 1024 && /^[A-Za-z0-9._/-]+$/.test(scope)
+    && !scope.startsWith('/'), 'Invalid write scope');
+  const parts = scope.split('/').filter(segment => segment && segment !== '.');
+  must(parts.length > 0 && parts.every(segment => segment !== '..' && !segment.endsWith('.')),
+    'Invalid write scope segment');
+  const canonical = parts.join('/').toLowerCase();
+  must(!privateText.test(canonical), 'Invalid private write scope');
+  return canonical;
+}
+
 export function assertTransition(from, to) {
   must(transitions[from]?.includes(to), `Invalid status transition: ${from} → ${to}`);
 }
@@ -109,9 +121,10 @@ export function validateRegistry(data) {
       && nullable(t.deployment, x => oneOf(x, ['pending', 'deployed', 'failed']))
       && list(t.acceptance, text) && t.acceptance.length > 0 && list(t.evidence, evidence)
       && list(t.limitations, text) && list(t.blockers, text)
-      && list(t.writeScopes, x => typeof x === 'string' && /^[\w./-]+$/.test(x) && !x.includes('..') && !x.startsWith('/') && !privateText.test(x))
+      && Array.isArray(t.writeScopes)
       && nullable(t.nextAction, a => record(a, ['role', 'label', 'prompt']) && roles.includes(a.role) && text(a.label) && text(a.prompt)),
     `Invalid task: ${t.id}`);
+    t.writeScopes.forEach(canonicalWriteScope);
     if (t.status === 'blocked') must(t.blockers.length > 0, `Missing blocker: ${t.id}`);
     if (t.status === 'completed') must(t.evidence.length > 0, `Missing completion evidence: ${t.id}`);
     if ((t.role === 'Codex' || t.writeScopes.length > 0) && ['dispatched', 'running'].includes(t.status)) {
@@ -146,11 +159,12 @@ export function validateRegistry(data) {
   }
   byId.forEach((_, id) => visit(id));
   const occupied = data.tasks.filter(active);
+  const scopes = new Map(occupied.map(task => [task, canonicalScopes(task)]));
   must(occupied.filter(task => task.stream === 'production').length <= 3
     && occupied.filter(task => task.stream === 'release_qa').length <= 1, 'Workstream capacity exceeded');
   for (const [index, task] of occupied.entries()) {
     must(task.dependencies.every(id => byId.get(id).status === 'completed'), `Unmet active dependency: ${task.id}`);
-    must(!occupied.slice(index + 1).some(other => conflicts(task, other)), `Active write conflict: ${task.id}`);
+    must(!occupied.slice(index + 1).some(other => tasksConflict(task, other, scopes)), `Active write conflict: ${task.id}`);
   }
   data.reports.forEach(r => validateReport(r, byId));
   uniqueReports(data.reports);
@@ -159,12 +173,13 @@ export function validateRegistry(data) {
 
 const order = (a, b) => a.priority - b.priority || a.id.localeCompare(b.id);
 const active = task => ['dispatched', 'running'].includes(task.status);
-const normalizedScope = scope => scope.replace(/^\.\//, '').replace(/\/$/, '');
-const conflicts = (a, b) => (a.sourceBranch && a.sourceBranch === b.sourceBranch)
-  || a.writeScopes.map(normalizedScope).some(x => b.writeScopes.map(normalizedScope)
-    .some(y => x === y || x.startsWith(y + '/') || y.startsWith(x + '/')));
+const scopesOverlap = (left, right) => left === right || left.startsWith(right + '/') || right.startsWith(left + '/');
+const canonicalScopes = task => task.writeScopes.map(canonicalWriteScope);
+const tasksConflict = (a, b, scopes) => (a.sourceBranch && a.sourceBranch.toLowerCase() === b.sourceBranch?.toLowerCase())
+  || scopes.get(a).some(x => scopes.get(b).some(y => scopesOverlap(x, y)));
 
 export function parallelReady(tasks) {
+  const scopes = new Map(tasks.map(task => [task, canonicalScopes(task)]));
   const occupied = tasks.filter(active);
   const finished = new Set(tasks.filter(t => t.status === 'completed').map(t => t.id));
   const selected = [];
@@ -173,7 +188,7 @@ export function parallelReady(tasks) {
     const reserved = [...occupied, ...selected];
     if (reserved.filter(t => t.stream === task.stream).length >= (task.stream === 'production' ? 3 : 1)) continue;
     if ((task.role === 'Codex' || task.writeScopes.length > 0) && (!task.sourceBranch || task.sourceBranch === 'main' || !task.writeScopes.length)) continue;
-    if (!reserved.some(t => conflicts(task, t))) selected.push(task);
+    if (!reserved.some(t => tasksConflict(task, t, scopes))) selected.push(task);
   }
   return selected;
 }

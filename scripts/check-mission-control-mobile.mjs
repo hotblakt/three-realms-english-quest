@@ -21,7 +21,7 @@ try {
     const action = page.locator('#next h3');
     await action.waitFor();
     assert.equal(await action.count(), 1);
-    assert.match(await action.innerText(), /審閱 7A-1/);
+    assert.match(await action.innerText(), /審閱 PR #40.*7A-1/);
     await page.getByText('快照已超過 24 小時').waitFor();
     assert.doesNotMatch(await page.locator('body').innerText(), /PRIVATE-TEST-CONTENT/);
     assert.equal(await page.locator('a[href*="example.invalid"]').count(), 0);

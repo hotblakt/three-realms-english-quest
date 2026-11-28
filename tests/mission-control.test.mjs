@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { assertTransition, freshness, nextProducerAction, parallelReady, repository, uniqueReports, validateRegistry }
+import { assertTransition, canonicalWriteScope, freshness, nextProducerAction, parallelReady, repository, uniqueReports, validateRegistry }
   from '../mission-control/registry.mjs';
 import { publicSnapshot } from '../mission-control/snapshot.mjs';
 import { collectGitHubStatus } from '../scripts/sync-mission-control.mjs';
@@ -137,4 +137,64 @@ test('read-only synchronization binds job evidence to workflow, PR and SHA and d
   const denied = await collectGitHubStatus(data, async () => ({ ok: false, status: 403 }));
   assert.equal(denied.observedAt, null);
   assert.equal(denied.stablePages, null);
+});
+
+
+test('Release Manager reproduction reserves equivalent file paths across branches', () => {
+  const base = { ...fix(), status: 'ready', dependencies: [] };
+  const a = { ...base, id: 'a', sourceBranch: 'feat/a', writeScopes: ['mission-control/main.mjs'] };
+  const b = { ...base, id: 'b', sourceBranch: 'feat/b', writeScopes: ['mission-control//main.mjs'] };
+  assert.deepEqual(parallelReady([a, b]).map(t => t.id), ['a']);
+  for (const alias of ['././mission-control/main.mjs/', 'Mission-Control/MAIN.MJS', 'mission-control/./main.mjs',
+    'mission-control///']) {
+    assert.deepEqual(parallelReady([a, { ...b, writeScopes: [alias] }]).map(t => t.id), ['a'], alias);
+  }
+  assert.deepEqual(parallelReady([a, { ...b, writeScopes: ['mission-control/main2.mjs'] }]).map(t => t.id), ['a', 'b']);
+  assert.deepEqual(parallelReady([a, { ...b, sourceBranch: 'feat/a', writeScopes: ['docs/update.md'] }]).map(t => t.id), ['a']);
+});
+
+test('write scopes canonicalize only unambiguous dot and slash segments and reject other syntax', () => {
+  assert.equal(canonicalWriteScope('./.github//workflows/./deploy.yml/'), '.github/workflows/deploy.yml');
+  for (const scope of ['', '.', '././', '../a', 'docs/../src', 'a/..', 'a///../b',
+    '/repo/file', '//server/share', 'C:/repo/file', String.raw`docs\file`, '*', 'docs/**', 'doc?.md',
+    'docs/a[1]', 'docs/a.', 'docs/a ', 'docs/檔案', 'docs/%2e%2e', 'incoming//master.png', null]) {
+    assert.throws(() => canonicalWriteScope(scope), /write scope/, String(scope));
+  }
+  const data = registry();
+  data.tasks.find(t => t.id === fix().id).writeScopes = ['a/../b'];
+  assert.throws(() => validateRegistry(data), /write scope segment/);
+  assert.throws(() => parallelReady([{ ...fix(), writeScopes: ['docs/*.md'], status: 'ready' }]), /write scope/);
+});
+
+test('active scope conflicts use the same key as ready scheduling', () => {
+  const data = registry();
+  for (const [i, scope] of ['mission-control/main.mjs', 'Mission-Control//./main.mjs/'].entries()) {
+    data.tasks.push({ ...fix(), id: 'active-' + i, sourceBranch: 'feat/active-' + i, pr: null,
+      status: 'running', writeScopes: [scope],
+      history: [{ status: 'running', at: data.updatedAt, evidence: data.stable.evidence[0] }],
+    });
+  }
+  assert.throws(() => validateRegistry(data), /Active write conflict/);
+});
+
+test('PR 40 tracking requires matching the existing source branch and keeps merge and deployment unknown', async () => {
+  const data = registry();
+  const task = data.tasks.find(t => t.id === 'mission-control-foundation');
+  const head = 'db0c7c9136f24af6418b42916e622c9e42e22d37';
+  assert.equal(task.pr, 40);
+  assert.equal(task.status, 'awaiting_review');
+  assert.equal(task.deployment, null);
+  const mock = branch => async url => {
+    if (url.endsWith('/pulls/40')) return {ok: true, json: async () => ({
+      number: 40, state: 'open', head: { ref: branch, sha: head, repo: { full_name: repository } },
+      base: { ref: 'main' }, merge_commit_sha: 'c'.repeat(40),
+    })};
+    if (url.endsWith('/heads/' + task.sourceBranch)) return {ok: true, json: async () => ({ object: { sha: head } })};
+    return {ok: false};
+  };
+  const matching = (await collectGitHubStatus(data, mock(task.sourceBranch))).tasks[task.id];
+  assert.equal(matching.branchSha, head);
+  assert.deepEqual(matching.pr, {number: 40, state: 'open', headSha: head, mergeSha: null});
+  assert.equal(matching.pages, null);
+  assert.equal((await collectGitHubStatus(data, mock('feat/unrelated'))).tasks[task.id].pr, null);
 });
