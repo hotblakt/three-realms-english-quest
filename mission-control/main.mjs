@@ -129,7 +129,7 @@ function renderTasks(observations) {
     task.blockers.forEach(blocker => paragraph(detail, `阻礙｜${blocker}`));
     task.limitations.forEach(limit => paragraph(detail, limit, true));
     showEvidence(detail, task.evidence);
-    if (task.nextAction && task !== next) prompt(detail, task.nextAction);
+    if (task.nextAction && task !== next && !['completed', 'cancelled'].includes(task.status)) prompt(detail, task.nextAction);
   }
 }
 

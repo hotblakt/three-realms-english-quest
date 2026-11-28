@@ -69,16 +69,43 @@ test('planner reserves distinct branches and overlapping write scopes under 3+1 
   assert.throws(() => validateRegistry(data), /Active write conflict/);
 });
 
-test('next action is a single explicit producer handoff, with dependencies and priorities respected', () => {
-  const tasks = registry().tasks;
-  assert.equal(nextProducerAction(tasks).id, 'mission-control-foundation');
-  const waiting = tasks.find(t => t.id === 'mission-control-mobile-acceptance');
-  waiting.status = 'awaiting_producer_acceptance';
-  waiting.priority = 1;
-  assert.equal(nextProducerAction(tasks).id, 'mission-control-foundation');
-  const earlier = tasks.find(t => t.id === 'mission-control-foundation');
-  earlier.status = 'completed';
-  assert.equal(nextProducerAction(tasks).id, waiting.id);
+test('closeout removes obsolete prompts and exposes the next eligible producer handoff', () => {
+  const data = validateRegistry(registry());
+  const closed = data.tasks.filter(task => task.id.startsWith('mission-control-'));
+  assert.ok(closed.every(task => task.status === 'completed' && task.nextAction === null));
+  assert.equal(nextProducerAction(data.tasks).id, 'forest-v3-world-design');
+  const invalid = { ...data.tasks.find(t => t.id === 'mission-control-foundation'),
+    nextAction: { role: 'Producer', label: 'Obsolete review', prompt: 'Old review' } };
+  assert.equal(nextProducerAction([invalid]), null);
+  data.tasks.splice(data.tasks.findIndex(t => t.id === invalid.id), 1, invalid);
+  assert.throws(() => validateRegistry(data), /Obsolete action/);
+});
+
+test('actual launch tasks fit three independent design scopes and one QA slot', () => {
+  const data = registry();
+  const expected = ['forest-v3-world-design', 'hayate-companion-design', 'combat-v1-design', 'demo-qa-plan'];
+  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), expected);
+  assert.deepEqual(data.tasks.find(t => t.id === 'production-integration-gate').dependencies, expected);
+  assert.equal(data.tasks.find(t => t.id === 'demo-implementation-authorization').status, 'pending');
+  const first = data.tasks.find(t => t.id === expected[0]);
+  const second = data.tasks.find(t => t.id === expected[1]);
+  second.writeScopes = [first.writeScopes[0].replace('production/', 'production//./')];
+  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), [expected[0],expected[2],expected[3]]);
+  first.status = 'dispatched';
+  assert.notEqual(nextProducerAction(data.tasks)?.id, first.id);
+  first.status = 'ready';
+  data.tasks.find(t => t.id === 'mission-control-foundation').status = 'awaiting_review';
+  assert.deepEqual(parallelReady(data.tasks), []);
+});
+
+test('PR 40 closeout preserves four disjoint reported scopes and unknown manual time', () => {
+  const data = registry();
+  const reports = data.reports.filter(r => r.task === 'mission-control-foundation');
+  const rows = uniqueReports([...reports, ...reports]);
+  assert.deepEqual(rows.map(r => r.metrics.totalSeconds), [593, 292, 141, 286]);
+  assert.equal(rows.reduce((sum, r) => sum + r.metrics.totalSeconds, 0), 1312);
+  assert.ok(rows.every(r => r.metrics.humanSeconds === 0 && r.evidence.kind === 'reported'));
+  assert.ok(!data.reports.some(r => r.task === 'mission-control-mobile-acceptance'));
 });
 
 test('freshness rejects missing and future timestamps and marks old snapshots stale', () => {
@@ -182,7 +209,7 @@ test('PR 40 tracking requires matching the existing source branch and keeps merg
   const task = data.tasks.find(t => t.id === 'mission-control-foundation');
   const head = 'db0c7c9136f24af6418b42916e622c9e42e22d37';
   assert.equal(task.pr, 40);
-  assert.equal(task.status, 'awaiting_review');
+  assert.equal(task.status, 'completed');
   assert.equal(task.deployment, null);
   const mock = branch => async url => {
     if (url.endsWith('/pulls/40')) return {ok: true, json: async () => ({
@@ -197,4 +224,40 @@ test('PR 40 tracking requires matching the existing source branch and keeps merg
   assert.deepEqual(matching.pr, {number: 40, state: 'open', headSha: head, mergeSha: null});
   assert.equal(matching.pages, null);
   assert.equal((await collectGitHubStatus(data, mock('feat/unrelated'))).tasks[task.id].pr, null);
+});
+
+test('merged PR CI recovery needs independently matching head, workflow and repository evidence', async () => {
+  const data = registry();
+  const task = data.tasks.find(t => t.pr === 40);
+  const mergeSha = '1463e675ed1dba4b822b91216984d4c79b38317a';
+  const candidate = { id: 41, head_sha: task.sourceCommit, head_branch: task.sourceBranch,
+    repository: { full_name: repository }, head_repository: { full_name: repository },
+    workflow_id: 91, event: 'pull_request', pull_requests: [], conclusion: 'failure' };
+  const inspect = async (runChanges = {}, options = {}) => {
+    const fetcher = async url => {
+      let payload;
+      if (url.endsWith('/pulls/40')) payload = {
+        number: 40, merged: true, merge_commit_sha: mergeSha,
+        head: { ref: task.sourceBranch, sha: task.sourceCommit, repo: { full_name: repository } },
+        base: { ref: 'main' },
+      };
+      if (url.includes('quality.yml/runs') && !options.noRuns) payload = { workflow_runs: [{ ...candidate, ...runChanges }] };
+      if (url.endsWith('/actions/workflows/quality.yml') && !options.noWorkflow) payload = { id: 91, path: '.github/workflows/quality.yml' };
+      if (url.includes('/runs/41/jobs')) payload = options.noGate ? { jobs: [] }
+        : { jobs: [{ name: 'PR quality gate', conclusion: 'failure' }] };
+      return payload ? { ok: true, json: async () => payload } : { ok: false };
+    };
+    return (await collectGitHubStatus(data, fetcher)).tasks[task.id];
+  };
+  const confirmed = await inspect();
+  assert.equal(confirmed.pr.state, 'merged');
+  assert.equal(confirmed.ci.status, 'failure');
+  assert.equal(confirmed.quality.status, 'failure');
+  assert.equal((await inspect({}, { noGate: true })).quality.status, null);
+  assert.equal((await inspect({}, { noRuns: true })).quality, null);
+  assert.equal((await inspect({}, { noWorkflow: true })).quality, null);
+  for (const mismatch of [{ head_sha: mergeSha }, { workflow_id: 90 }, { head_branch: 'feat/other' },
+    { head_repository: { full_name: 'other/repo' } }, { event: 'push' }, { pull_requests: [{ number: 41 }] }]) {
+    assert.equal((await inspect(mismatch)).quality, null);
+  }
 });
