@@ -3,7 +3,7 @@ export const roles = ['Producer', 'ChatGPT', 'Codex', 'Work', 'ChatGPT Images', 
 export const states = ['pending', 'ready', 'dispatched', 'running', 'awaiting_review',
   'awaiting_producer_acceptance', 'completed', 'blocked', 'cancelled'];
 const transitions = {
-  pending: ['ready', 'blocked', 'cancelled'],
+  pending: ['ready', 'awaiting_producer_acceptance', 'blocked', 'cancelled'],
   ready: ['pending', 'dispatched', 'blocked', 'cancelled'],
   dispatched: ['ready', 'running', 'blocked', 'cancelled'],
   running: ['awaiting_review', 'awaiting_producer_acceptance', 'blocked', 'cancelled'],
@@ -127,6 +127,7 @@ export function validateRegistry(data) {
     t.writeScopes.forEach(canonicalWriteScope);
     if (t.status === 'blocked') must(t.blockers.length > 0, `Missing blocker: ${t.id}`);
     if (t.status === 'completed') must(t.evidence.length > 0, `Missing completion evidence: ${t.id}`);
+    if (['completed', 'cancelled'].includes(t.status)) must(t.nextAction === null, `Obsolete action: ${t.id}`);
     if ((t.role === 'Codex' || t.writeScopes.length > 0) && ['dispatched', 'running'].includes(t.status)) {
       must(t.sourceBranch && t.sourceBranch !== 'main' && t.writeScopes.length, `Missing isolated work scope: ${t.id}`);
     }
@@ -134,7 +135,8 @@ export function validateRegistry(data) {
     let prior;
     for (const entry of t.history) {
       must(record(entry, ['status', 'at', 'evidence']) && states.includes(entry.status) && date(entry.at)
-        && nullable(entry.evidence, evidence) && (entry.status !== 'running' || entry.evidence !== null),
+        && nullable(entry.evidence, evidence) && (entry.status !== 'running' || entry.evidence !== null)
+        && (prior?.status !== 'pending' || entry.status !== 'awaiting_producer_acceptance' || entry.evidence !== null),
       `Invalid lifecycle evidence: ${t.id}`);
       if (prior) {
         must(Date.parse(entry.at) >= Date.parse(prior.at), `History order: ${t.id}`);

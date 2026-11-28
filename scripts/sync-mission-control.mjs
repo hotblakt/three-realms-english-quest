@@ -41,11 +41,26 @@ export async function collectGitHubStatus(registry, fetcher = fetch, token = '',
     }
     return pagesCache.get(sha);
   }
-  async function quality(pr) {
+  let qualityWorkflow;
+  async function quality(pr, task) {
     if (!validSha(pr.headSha)) return null;
     const runs = await read(`actions/workflows/quality.yml/runs?event=pull_request&head_sha=${pr.headSha}&per_page=10`);
-    const match = runs?.workflow_runs?.find(r => r.head_sha === pr.headSha
-      && r.pull_requests?.some(p => p.number === pr.number));
+    const exact = (runs?.workflow_runs ?? []).filter(run => run.head_sha === pr.headSha);
+    let match = exact.find(run => run.pull_requests?.some(p => p.number === pr.number));
+    // Merged PRs can lose pull_requests associations on historical runs. Recover only
+    // for a pinned PR head, with the same repository, branch, event and workflow ID.
+    if (!match && pr.state === 'merged' && task.sourceCommit === pr.headSha && task.sourceBranch) {
+      const matchingHead = exact.filter(run => Array.isArray(run.pull_requests) && run.pull_requests.length === 0
+        && run.event === 'pull_request' && run.head_branch === task.sourceBranch
+        && run.repository?.full_name === repository && run.head_repository?.full_name === repository);
+      if (matchingHead.length) {
+        qualityWorkflow ??= read('actions/workflows/quality.yml');
+        const workflow = await qualityWorkflow;
+        if (workflow?.path === '.github/workflows/quality.yml' && Number.isSafeInteger(workflow.id)) {
+          match = matchingHead.find(run => run.workflow_id === workflow.id);
+        }
+      }
+    }
     if (!Number.isSafeInteger(match?.id) || match.id <= 0) return null;
     const jobs = await read(`actions/runs/${match.id}/jobs?per_page=100`);
     return {
@@ -62,7 +77,7 @@ export async function collectGitHubStatus(registry, fetcher = fetch, token = '',
         && (!task.sourceBranch || raw.head.ref === task.sourceBranch)
         ? { number: raw.number, state: raw.merged ? 'merged' : raw.state, headSha: raw.head.sha,
             mergeSha: raw.merged ? raw.merge_commit_sha : null } : null;
-      const [gate, deployment] = await Promise.all([pr ? quality(pr) : null, pr ? pages(pr.mergeSha) : null]);
+      const [gate, deployment] = await Promise.all([pr ? quality(pr, task) : null, pr ? pages(pr.mergeSha) : null]);
       return [task.id, { branchSha, pr, ci: gate?.ci, quality: gate?.gate, pages: deployment }];
     })),
   ]);

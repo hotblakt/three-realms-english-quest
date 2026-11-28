@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repository": "hotblakt/three-realms-english-quest",
-  "updatedAt": "2026-11-28T03:18:23Z",
+  "updatedAt": "2026-11-28T04:05:20.846Z",
   "stable": {
     "label": "霧竹林 2.0",
     "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
@@ -161,7 +161,7 @@
       ],
       "stream": "production",
       "sourceBranch": "feat/ai-mission-control-v2-foundation",
-      "sourceCommit": null,
+      "sourceCommit": "6c281f7d7ea6dbd4709808f8a5d01ae30d513e2d",
       "pr": 40,
       "deployment": null,
       "evidence": [
@@ -169,17 +169,23 @@
           "kind": "repository",
           "ref": "pr:40",
           "label": "PR #40 的 Git head 已與交付分支核對"
+        },
+        {
+          "kind": "repository",
+          "ref": "commit:1463e675ed1dba4b822b91216984d4c79b38317a",
+          "label": "PR #40 合併提交與第二父提交已用 Git 核對"
+        },
+        {
+          "kind": "reported",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "製作人提報 PR #40 iPhone Safari 6/6 通過"
         }
       ],
       "limitations": [
         "製作人需親自核准發布，GitHub 狀態取決於快照是否可讀"
       ],
       "blockers": [],
-      "nextAction": {
-        "role": "Producer",
-        "label": "審閱 PR #40 的 7A-1 交付分支",
-        "prompt": "請 Work 核對任務控制台 7A-1 的交付分支、提交與品質檢查，回報本次可審閱內容。等待我的合併及部署授權。"
-      },
+      "nextAction": null,
       "writeScopes": [
         "mission-control",
         "scripts/sync-mission-control.mjs",
@@ -192,7 +198,7 @@
       "title": "任務控制台基礎",
       "role": "Codex",
       "priority": 1,
-      "status": "awaiting_review",
+      "status": "completed",
       "acceptance": [
         "審閱唯讀狀態、重複回報防護及手機儀表板"
       ],
@@ -201,6 +207,15 @@
           "status": "awaiting_review",
           "at": "2026-11-28T02:57:02.569Z",
           "evidence": null
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "製作人提報 PR #40 iPhone Safari 6/6 通過"
+          }
         }
       ]
     },
@@ -213,28 +228,282 @@
       "sourceCommit": null,
       "pr": null,
       "deployment": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "reported",
+          "ref": "docs/forest-v3-production-plan.md",
+          "label": "製作人提報 PR #40 iPhone Safari 6/6 通過"
+        }
+      ],
       "limitations": [],
       "blockers": [],
-      "nextAction": {
-        "role": "Producer",
-        "label": "驗收手機儀表板",
-        "prompt": "請核對手機上的任務狀態、GitHub 資料時間，以及可複製的交接提示。"
-      },
+      "nextAction": null,
       "writeScopes": [],
       "id": "mission-control-mobile-acceptance",
       "milestone": "7A-1",
       "title": "製作人手機驗收",
       "role": "Producer",
       "priority": 2,
-      "status": "pending",
+      "status": "completed",
       "acceptance": [
-        "以 iPhone 直向及 iPad 核對下一步、複製及資料時間"
+        "製作人回報 iPhone Safari 六項可用性驗收"
       ],
       "history": [
         {
           "status": "pending",
           "at": "2026-11-28T02:57:02.569Z",
+          "evidence": null
+        },
+        {
+          "status": "awaiting_producer_acceptance",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": {
+            "kind": "repository",
+            "ref": "commit:1463e675ed1dba4b822b91216984d4c79b38317a",
+            "label": "PR #40 合併提交與第二父提交已用 Git 核對"
+          }
+        },
+        {
+          "status": "completed",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": {
+            "kind": "reported",
+            "ref": "docs/forest-v3-production-plan.md",
+            "label": "製作人提報 PR #40 iPhone Safari 6/6 通過"
+          }
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Codex",
+      "stream": "production",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "ready",
+      "dependencies": [
+        "forest-2-stable",
+        "mission-control-foundation",
+        "mission-control-mobile-acceptance"
+      ],
+      "id": "forest-v3-world-design",
+      "title": "森林 3.0 世界設計",
+      "priority": 1,
+      "sourceBranch": "feat/forest-v3-world-design",
+      "writeScopes": [
+        "docs/production/forest-world-design.md"
+      ],
+      "acceptance": [
+        "交付可行走路線圖與地標表",
+        "標示隱藏瀑布、靈伴棲地、寶藏、捷徑與守護者位置"
+      ],
+      "nextAction": {
+        "role": "Producer",
+        "label": "交接森林 3.0 世界設計",
+        "prompt": "三界英語冒險・7A-5｜森林 3.0 世界設計。以 Forest 2.0 為基準，在 feat/forest-v3-world-design 只寫 docs/production/forest-world-design.md。交付兩條有不同回報的探索路線，加入環境敘事、可讀的通行帶及返回路徑，標示區域 ID、進出點與碰撞責任。交付後回報分支、提交、決策及未解風險，待製作人審閱。不要修改共用場景、玩法、資產、部署或付費生成"
+      },
+      "history": [
+        {
+          "status": "ready",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Codex",
+      "stream": "production",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "ready",
+      "dependencies": [
+        "forest-2-stable",
+        "mission-control-foundation",
+        "mission-control-mobile-acceptance"
+      ],
+      "id": "hayate-companion-design",
+      "title": "疾風靈伴設計",
+      "priority": 2,
+      "sourceBranch": "feat/hayate-companion-design",
+      "writeScopes": [
+        "docs/production/hayate-companion-design.md"
+      ],
+      "acceptance": [
+        "交付疾風的造型與四向動畫規格",
+        "定義遇見、收集、跟隨與成長"
+      ],
+      "nextAction": {
+        "role": "Producer",
+        "label": "交接疾風靈伴設計",
+        "prompt": "三界英語冒險・7A-5｜疾風靈伴設計。以 Forest 2.0 為基準，在 feat/hayate-companion-design 只寫 docs/production/hayate-companion-design.md。為風靈狐疾風整理原創造型，列出需製作人核准的參考、方向、動作與足點，定義行為、收集與成長規格，將未核准美術標明。交付後回報分支、提交、決策及未解風險，待製作人審閱。不要修改共用場景、玩法、資產、部署或付費生成"
+      },
+      "history": [
+        {
+          "status": "ready",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Codex",
+      "stream": "production",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "ready",
+      "dependencies": [
+        "forest-2-stable",
+        "mission-control-foundation",
+        "mission-control-mobile-acceptance"
+      ],
+      "id": "combat-v1-design",
+      "title": "戰鬥 1.0 設計",
+      "priority": 3,
+      "sourceBranch": "feat/combat-v1-design",
+      "writeScopes": [
+        "docs/production/combat-system-design.md"
+      ],
+      "acceptance": [
+        "交付敵人行為與戰鬥事件契約",
+        "定義閃避、反擊、風刃、回饋、獎勵與失敗恢復"
+      ],
+      "nextAction": {
+        "role": "Producer",
+        "label": "交接戰鬥 1.0 設計",
+        "prompt": "三界英語冒險・7A-5｜戰鬥 1.0 設計。以 Forest 2.0 為基準，在 feat/combat-v1-design 只寫 docs/production/combat-system-design.md。定義敵人預警、攻擊命中事件、閃避反擊、風刃與獎勵，交付狀態圖、事件責任及可重跑的驗收條件。交付後回報分支、提交、決策及未解風險，待製作人審閱。不要修改共用場景、玩法、資產、部署或付費生成"
+      },
+      "history": [
+        {
+          "status": "ready",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Work",
+      "stream": "release_qa",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "ready",
+      "dependencies": [
+        "forest-2-stable",
+        "mission-control-foundation",
+        "mission-control-mobile-acceptance"
+      ],
+      "id": "demo-qa-plan",
+      "title": "展示品檢計畫",
+      "priority": 4,
+      "sourceBranch": "feat/demo-qa-plan",
+      "writeScopes": [
+        "docs/production/demo-acceptance-plan.md"
+      ],
+      "acceptance": [
+        "規劃實機、畫面與流程驗收"
+      ],
+      "nextAction": null,
+      "history": [
+        {
+          "status": "ready",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Codex",
+      "stream": "production",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "pending",
+      "dependencies": [
+        "forest-v3-world-design",
+        "hayate-companion-design",
+        "combat-v1-design",
+        "demo-qa-plan"
+      ],
+      "id": "production-integration-gate",
+      "title": "跨系統整合契約核准",
+      "priority": 5,
+      "sourceBranch": "feat/production-integration-gate",
+      "writeScopes": [
+        "docs/production/integration-contracts.md"
+      ],
+      "acceptance": [
+        "確認區域 ID、事件、存檔與單一整合分支所有權"
+      ],
+      "nextAction": null,
+      "history": [
+        {
+          "status": "pending",
+          "at": "2026-11-28T04:05:20.846Z",
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "milestone": "7A-5",
+      "role": "Producer",
+      "stream": "production",
+      "sourceCommit": null,
+      "pr": null,
+      "deployment": null,
+      "evidence": [],
+      "limitations": [
+        "僅規劃與設計，等待製作人手動交接"
+      ],
+      "blockers": [],
+      "status": "pending",
+      "dependencies": [
+        "production-integration-gate"
+      ],
+      "id": "demo-implementation-authorization",
+      "title": "展示實作授權",
+      "priority": 6,
+      "sourceBranch": null,
+      "writeScopes": [],
+      "acceptance": [
+        "製作人核准整合契約與實作範圍"
+      ],
+      "nextAction": null,
+      "history": [
+        {
+          "status": "pending",
+          "at": "2026-11-28T04:05:20.846Z",
           "evidence": null
         }
       ]
@@ -368,6 +637,134 @@
         "deploymentSeconds": null
       },
       "quality": "pass"
+    },
+    {
+      "id": "pr40-foundation-engineering",
+      "task": "mission-control-foundation",
+      "attempt": 1,
+      "revision": 1,
+      "commit": "db0c7c9136f24af6418b42916e622c9e42e22d37",
+      "pr": 40,
+      "scope": "基礎工程（核對至推送）",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "7A-5 提供的 基礎工程（核對至推送） 量測"
+      },
+      "metrics": {
+        "totalSeconds": 593,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr40-initial-release-review",
+      "task": "mission-control-foundation",
+      "attempt": 2,
+      "revision": 1,
+      "commit": "db0c7c9136f24af6418b42916e622c9e42e22d37",
+      "pr": 40,
+      "scope": "首次發布審查",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "7A-5 提供的 首次發布審查 量測"
+      },
+      "metrics": {
+        "totalSeconds": 292,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr40-corrective-engineering",
+      "task": "mission-control-foundation",
+      "attempt": 3,
+      "revision": 1,
+      "commit": "6c281f7d7ea6dbd4709808f8a5d01ae30d513e2d",
+      "pr": 40,
+      "scope": "發布門檻修正（重現至推送）",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "7A-5 提供的 發布門檻修正（重現至推送） 量測"
+      },
+      "metrics": {
+        "totalSeconds": 141,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
+    },
+    {
+      "id": "pr40-final-release",
+      "task": "mission-control-foundation",
+      "attempt": 4,
+      "revision": 1,
+      "commit": "1463e675ed1dba4b822b91216984d4c79b38317a",
+      "pr": 40,
+      "scope": "最終發布",
+      "evidence": {
+        "kind": "reported",
+        "ref": "docs/forest-v3-production-plan.md",
+        "label": "7A-5 提供的 最終發布 量測"
+      },
+      "metrics": {
+        "totalSeconds": 286,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": 0,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": null
     }
   ]
 }
