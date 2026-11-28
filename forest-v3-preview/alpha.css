@@ -16,3 +16,4 @@ body.forest-alpha .forest-panel:not([open]) { display: none; }
 body.forest-alpha .forest-tools { display: none; }
 body.forest-alpha:not(:has(#startup-retry:not([hidden]))) #diagnostics { display: none; }
 body.forest-alpha .forest-hud { max-width: min(50vw, 32rem); }
+#alpha-hud .alpha-action-status { border-inline-end: 2px solid #bdeeda; }
