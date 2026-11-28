@@ -73,7 +73,7 @@ test('closeout removes obsolete prompts and exposes the next eligible producer h
   const data = validateRegistry(registry());
   const closed = data.tasks.filter(task => task.id.startsWith('mission-control-'));
   assert.ok(closed.every(task => task.status === 'completed' && task.nextAction === null));
-  assert.equal(nextProducerAction(data.tasks).id, 'forest-v3-world-design');
+  assert.equal(nextProducerAction(data.tasks).id, 'batch001-producer-review');
   const invalid = { ...data.tasks.find(t => t.id === 'mission-control-foundation'),
     nextAction: { role: 'Producer', label: 'Obsolete review', prompt: 'Old review' } };
   assert.equal(nextProducerAction([invalid]), null);
@@ -81,21 +81,35 @@ test('closeout removes obsolete prompts and exposes the next eligible producer h
   assert.throws(() => validateRegistry(data), /Obsolete action/);
 });
 
-test('actual launch tasks fit three independent design scopes and one QA slot', () => {
-  const data = registry();
-  const expected = ['forest-v3-world-design', 'hayate-companion-design', 'combat-v1-design', 'demo-qa-plan'];
-  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), expected);
-  assert.deepEqual(data.tasks.find(t => t.id === 'production-integration-gate').dependencies, expected);
-  assert.equal(data.tasks.find(t => t.id === 'demo-implementation-authorization').status, 'pending');
-  const first = data.tasks.find(t => t.id === expected[0]);
-  const second = data.tasks.find(t => t.id === expected[1]);
-  second.writeScopes = [first.writeScopes[0].replace('production/', 'production//./')];
-  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), [expected[0],expected[2],expected[3]]);
-  first.status = 'dispatched';
-  assert.notEqual(nextProducerAction(data.tasks)?.id, first.id);
-  first.status = 'ready';
-  data.tasks.find(t => t.id === 'mission-control-foundation').status = 'awaiting_review';
+test('Batch 001 is delivered with pinned sources, and the next batch is gated before 3+1 scheduling', () => {
+  const data = validateRegistry(registry());
+  const tasks = new Map(data.tasks.map(task => [task.id, task]));
+  const delivered = ['forest-v3-world-design', 'hayate-companion-design', 'combat-v1-design', 'demo-qa-plan'];
+  const batch = ['forest-v3-world-geometry', 'forest-v3-character-art', 'forest-v3-domain', 'forest-v3-qa'];
+  assert.equal(delivered.every(id => tasks.get(id).status === 'awaiting_review'
+    && /^[a-f0-9]{40}$/.test(tasks.get(id).sourceCommit)), true);
+  assert.deepEqual(tasks.get('production-integration-gate').dependencies, [...delivered, 'batch001-producer-review']);
+  assert.deepEqual(tasks.get('forest-v3-scene-integration').dependencies, batch);
   assert.deepEqual(parallelReady(data.tasks), []);
+  for (const id of batch) tasks.get(id).status = 'ready';
+  assert.deepEqual(parallelReady(data.tasks), []);
+  tasks.get('production-integration-gate').status = 'completed';
+  assert.deepEqual(parallelReady(data.tasks).map(task => task.id), ['forest-v3-qa']);
+  tasks.get('demo-implementation-authorization').status = 'completed';
+  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), batch);
+  tasks.get(batch[1]).writeScopes = ['src//forest-v3/world/population.mjs'];
+  assert.deepEqual(parallelReady(data.tasks).map(t => t.id), [batch[0],batch[2],batch[3]]);
+});
+
+test('design delivery preserves unknown A metrics and the reported 611 second subtotal', () => {
+  const data = registry();
+  const reports = data.reports.filter(report => report.id.startsWith('batch001-'));
+  assert.deepEqual(uniqueReports([...reports, ...reports]).map(r => [r.metrics.totalSeconds, r.metrics.humanSeconds]),
+    [[null,null],[226,0],[211,0],[174,0]]);
+  assert.equal(reports.reduce((sum, r) => sum + (r.metrics.totalSeconds ?? 0), 0), 611);
+  const task = data.tasks.find(t => t.id === 'forest-v3-world-design');
+  task.history.at(-1).evidence = null;
+  assert.throws(() => validateRegistry(data), /lifecycle evidence/);
 });
 
 test('PR 40 closeout preserves four disjoint reported scopes and unknown manual time', () => {

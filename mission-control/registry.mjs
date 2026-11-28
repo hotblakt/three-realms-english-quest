@@ -4,7 +4,7 @@ export const states = ['pending', 'ready', 'dispatched', 'running', 'awaiting_re
   'awaiting_producer_acceptance', 'completed', 'blocked', 'cancelled'];
 const transitions = {
   pending: ['ready', 'awaiting_producer_acceptance', 'blocked', 'cancelled'],
-  ready: ['pending', 'dispatched', 'blocked', 'cancelled'],
+  ready: ['pending', 'dispatched', 'awaiting_review', 'blocked', 'cancelled'],
   dispatched: ['ready', 'running', 'blocked', 'cancelled'],
   running: ['awaiting_review', 'awaiting_producer_acceptance', 'blocked', 'cancelled'],
   awaiting_review: ['ready', 'awaiting_producer_acceptance', 'completed', 'blocked', 'cancelled'],
@@ -136,7 +136,8 @@ export function validateRegistry(data) {
     for (const entry of t.history) {
       must(record(entry, ['status', 'at', 'evidence']) && states.includes(entry.status) && date(entry.at)
         && nullable(entry.evidence, evidence) && (entry.status !== 'running' || entry.evidence !== null)
-        && (prior?.status !== 'pending' || entry.status !== 'awaiting_producer_acceptance' || entry.evidence !== null),
+        && (prior?.status !== 'pending' || entry.status !== 'awaiting_producer_acceptance' || entry.evidence !== null)
+        && (prior?.status !== 'ready' || entry.status !== 'awaiting_review' || entry.evidence !== null),
       `Invalid lifecycle evidence: ${t.id}`);
       if (prior) {
         must(Date.parse(entry.at) >= Date.parse(prior.at), `History order: ${t.id}`);
