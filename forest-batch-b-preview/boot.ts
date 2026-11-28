@@ -17,11 +17,13 @@ declare global {
 
 const { note, fail, failed, complete } = window.forestCandidate;
 
-export type ForestDecoration = (scene: PhaserType.Scene) => PhaserType.GameObjects.Image[];
+type ForestAvatar = () => PhaserType.GameObjects.Image;
+export type ForestDecoration = (scene: PhaserType.Scene, avatar: ForestAvatar) => PhaserType.GameObjects.Image[];
+export type ObserveForest = (scene: PhaserType.Scene, avatar: ForestAvatar) => void;
 export type PrepareForestDecoration = (signal: AbortSignal, log: typeof note) =>
   Promise<(scene: PhaserType.Scene) => ForestDecoration | undefined>;
 
-async function start(prepareDecoration?: PrepareForestDecoration): Promise<void> {
+async function start(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest): Promise<void> {
   note('載入 Phaser 與霧竹林模組');
   const parsed = new DOMParser().parseFromString(template, 'text/html');
   parsed.body.querySelectorAll('script').forEach(script => script.remove());
@@ -135,6 +137,7 @@ async function start(prepareDecoration?: PrepareForestDecoration): Promise<void>
           fail('霧竹林場景未通過就緒檢查');
           return;
         }
+        observe?.(this, () => this.forestAvatar);
         note('場景已建立｜等待首次繪製');
         this.game.events.once(Phaser.Core.Events.POST_RENDER, () => {
           const ecology = this.ecology ? '竹林生態已啟用' : '使用原竹林';
@@ -147,7 +150,7 @@ async function start(prepareDecoration?: PrepareForestDecoration): Promise<void>
     }
 
     protected override drawForestDecoration() {
-      return this.decorate?.(this) ?? super.drawForestDecoration();
+      return this.decorate?.(this, () => this.forestAvatar) ?? super.drawForestDecoration();
     }
 
     protected override drawForestVegetation(block: (x: number, y: number, w: number, h: number) => void) {
@@ -177,6 +180,6 @@ async function start(prepareDecoration?: PrepareForestDecoration): Promise<void>
     } },
   });
 }
-export function launchForest(prepareDecoration?: PrepareForestDecoration): void {
-  start(prepareDecoration).catch(error => fail(`模組或渲染器初始化失敗｜${errorDescription(error)}`));
+export function launchForest(prepareDecoration?: PrepareForestDecoration, observe?: ObserveForest): void {
+  start(prepareDecoration, observe).catch(error => fail(`模組或渲染器初始化失敗｜${errorDescription(error)}`));
 }

@@ -81,6 +81,10 @@ export class ForestScene extends Phaser.Scene {
     return movementAtlasesReady(key => this.runs[key].ready(this, size));
   }
 
+  protected get forestAvatar(): Phaser.GameObjects.Image {
+    return this.settings.candidate ? this.candidate : this.player.view;
+  }
+
   protected drawForestDecoration(): Phaser.GameObjects.Image[] {
     return [];
   }
