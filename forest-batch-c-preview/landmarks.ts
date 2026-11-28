@@ -2,7 +2,8 @@ import type Phaser from 'phaser';
 import provenance from '../docs/forest-batch-c-provenance.json';
 import { prepareVerifiedAtlas } from '../forest-batch-b-preview/prepareAtlas';
 import { registerOptionalAtlas } from '../forest-batch-b-preview/atlas';
-import type { PrepareForestDecoration } from '../forest-batch-b-preview/boot';
+import type { ForestDecoration, PrepareForestDecoration } from '../forest-batch-b-preview/boot';
+import { shrineOpacity } from './shrineOcclusion';
 import { spirit } from '../forest-preview/layout';
 import { addLanternLight, addSoftShadow } from '../src/art/villageAtmosphere';
 
@@ -21,10 +22,17 @@ function image(scene: Phaser.Scene, frame: Module, x: number, y: number, width: 
   return art.setScale(width / art.width).setTint(0xe0dfbd);
 }
 
-function drawLandmarks(scene: Phaser.Scene): Phaser.GameObjects.Image[] {
+const drawLandmarks: ForestDecoration = (scene, avatar) => {
   const lights: Phaser.GameObjects.Image[] = [];
   addSoftShadow(scene, shrine.x, shrine.y - 2, 112, 29, .81);
-  image(scene, 'shrine-body', shrine.x, shrine.y, 119).setOrigin(.5, .98).setDepth(shrine.y);
+  const shrineArt = image(scene, 'shrine-body', shrine.x, shrine.y, 119).setOrigin(.5, .98).setDepth(shrine.y);
+  const shrineBounds = shrineArt.getBounds();
+  const keepAvatarVisible = () => {
+    const sprite = avatar();
+    shrineArt.setAlpha(shrineOpacity(shrineBounds, shrineArt.depth, sprite.x, sprite.y));
+  };
+  scene.events.on('postupdate', keepAvatarVisible);
+  scene.events.once('shutdown', () => scene.events.off('postupdate', keepAvatarVisible));
 
   for (const { frame, x, y, width, glow } of lanterns) {
     addSoftShadow(scene, x, y - 1, width * 1.3, 15, .78);
@@ -44,7 +52,7 @@ function drawLandmarks(scene: Phaser.Scene): Phaser.GameObjects.Image[] {
       alpha: .32, duration: 2350, yoyo: true, repeat: -1, ease: 'Sine.inOut' });
   }
   return [...lights, ring, arc, vortex, butterfly];
-}
+};
 
 export const prepareLandmarks: PrepareForestDecoration = async (signal, note) => {
   const prefix = (message: string) => note(`Batch C｜${message}`, false);
