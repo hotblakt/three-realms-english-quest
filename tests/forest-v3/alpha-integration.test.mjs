@@ -14,8 +14,10 @@ const player = (x,y) => ({ id:'player', radius:9, halfHeight:8, position:at(x,y)
 test('signed-off bridge is traversable and creek blocks movement and projectiles', () => {
   const world = forestGeometry(() => undefined, () => true);
   assert.deepEqual(world.move(player(622,451),at(728,451),forestRegionId),at(728,451));
-  assert.deepEqual(world.move(player(622,481),at(744,481),forestRegionId),at(622,481));
-  const terrain = world.sweep(at(622,481),at(744,481),4,[player(742,481)],forestRegionId);
+  assert.equal(world.walkable(at(622,481),player(622,481),forestRegionId),false, 'old browser start was embedded');
+  assert.equal(world.walkable(at(590,481),player(590,481),forestRegionId),true);
+  assert.deepEqual(world.move(player(590,481),at(744,481),forestRegionId),at(590,481));
+  const terrain = world.sweep(at(590,481),at(744,481),4,[player(742,481)],forestRegionId);
   assert.ok(terrain?.fraction > 0);
   assert.equal(terrain.targetId,undefined);
   const target = world.sweep(at(622,451),at(744,451),4,[player(728,451)],forestRegionId);

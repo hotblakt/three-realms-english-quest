@@ -12,6 +12,7 @@ for(const [name, viewport, renderer, mobile] of [
 ]){
  const context=await browser.newContext({viewport,isMobile:mobile,hasTouch:mobile,reducedMotion:'reduce'});
  const page=await context.newPage();
+ const interact=()=>mobile ? page.locator('#actions [data-action=interact]').tap() : page.keyboard.press('e',{delay:180});
  await page.addInitScript(({deny}) => {
    window.SpeechRecognition=class extends EventTarget {
      start() {
@@ -60,7 +61,47 @@ for(const [name, viewport, renderer, mobile] of [
    if(path.includes('v3')) await page.waitForFunction(()=>window.__alphaTestGame?.scene.getScene('misty-forest')?.loaded);
    return Math.round(performance.now()-start);
  };
+ const position=()=>page.evaluate(()=>{
+   const body=window.__alphaTestGame.scene.getScene('misty-forest').player.body;
+   return { x:body.center.x, y:body.center.y, blocked:body.blocked.right };
+ });
+ const walk=async(key,fn)=>{
+   await page.keyboard.down(key);
+   try { await page.waitForFunction(fn,undefined,{timeout:8000}); }
+   finally { await page.keyboard.up(key); }
+ };
+ const checkCreek=async()=>{
+   await set(622,451);
+   await walk('ArrowRight',()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.center.x>=728);
+   await set(728,451);
+   await walk('ArrowLeft',()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.center.x<=622);
+   const stops=[];
+   for(const dodging of [false,true]){
+     await set(590,481);
+     assert.equal(await page.evaluate(()=>{
+       const {player,obstacles}=window.__alphaTestGame.scene.getScene('misty-forest');
+       const a=player.body;
+       return obstacles.getChildren().some(({body:b})=>a.x<b.right&&a.right>b.x&&a.y<b.bottom&&a.bottom>b.y);
+     }),false);
+     await page.keyboard.down('ArrowRight');
+     try {
+       if(dodging) {
+         await page.keyboard.down('Space');
+         try {
+           await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.velocity.x>200);
+         } finally { await page.keyboard.up('Space'); }
+       }
+       await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.blocked.right);
+       const stop=await position();
+       assert.ok(Math.abs(stop.x-612.34)<.1 && Math.abs(stop.y-481)<.1,JSON.stringify(stop));
+       stops.push(stop.x);
+     } finally { await page.keyboard.up('ArrowRight'); }
+     if(dodging) await page.waitForTimeout(180);
+   }
+   return stops;
+ };
  const base=await ready('/forest-preview/');
+ const stableCreek=await checkCreek();
  const alpha=await ready('/forest-v3-preview/');
  const warm=await ready('/forest-v3-preview/');
  assert.equal(await page.locator('.forest-tools').isVisible(),false);
@@ -75,17 +116,14 @@ for(const [name, viewport, renderer, mobile] of [
    await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
    assert((await state()).x>480,JSON.stringify(await state()));
  }
- const walk=async(key,fn)=>{await page.keyboard.down(key);try{await page.waitForFunction(fn,{}, {timeout:5000});}finally{await page.keyboard.up(key);}};
- await set(622,451);
- await walk('ArrowRight',()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.center.x>=728);
- await set(622,481);
- await page.keyboard.down('ArrowRight');await page.waitForTimeout(800);await page.keyboard.up('ArrowRight');
- assert((await state()).x<660, JSON.stringify(await state()));
+ const alphaCreek=await checkCreek();
+ console.error(name, renderer, 'creek:', stableCreek, alphaCreek);
  await set(197,440);
- await page.keyboard.press('e',{delay:90});
+ await interact();
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').progress.treasures.includes('west-chest'));
  await set(920,145);
- await page.keyboard.press('e',{delay:90});
+ await page.waitForFunction(() => document.querySelector('#forest-message')?.textContent.includes('神社旁有腳步聲'));
+ await interact();
  const dialog=page.getByRole('dialog');
  await dialog.waitFor();
  await dialog.getByRole('button',{name:'開啟麥克風'}).click();
@@ -97,12 +135,19 @@ for(const [name, viewport, renderer, mobile] of [
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').progress.companion.collected);
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').companion?.visible);
  await capture('shrine');
+ await set(622,451);
+ await page.evaluate(()=>{
+   const scene=window.__alphaTestGame.scene.getScene('misty-forest');
+   scene.paws={x:604,y:451};
+   scene.trail=[];
+ });
+ await walk('ArrowRight',()=>window.__alphaTestGame.scene.getScene('misty-forest').player.body.center.x>=750);
+ await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').paws.x>675);
  await set(812,470);
  await page.waitForFunction(() => document.querySelector('#forest-message')?.textContent.includes('橋東試煉・竹芽'));
- if (mobile) await page.locator('#actions [data-action="interact"]').tap();
- else await page.keyboard.press('e',{delay:180});
+ await interact();
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').active==='east-wind-pair');
- await page.keyboard.down('ArrowDown');await page.waitForTimeout(260);await page.keyboard.up('ArrowDown');
+ await walk('ArrowDown',()=>window.__alphaTestGame.scene.getScene('misty-forest').encounter.playerPosition.y>=496);
  for(let tries=0;tries<8&&(await state()).enemies[0].health===3;tries++){
   const player=await state(), foe=player.enemies[0];
   const dx=foe.position.x-player.x,dy=foe.position.y-player.y;
@@ -119,8 +164,7 @@ for(const [name, viewport, renderer, mobile] of [
  await page.waitForFunction(()=>!window.__alphaTestGame.scene.getScene('misty-forest').active);
  await set(1085,260);
  await page.waitForFunction(() => document.querySelector('#forest-message')?.textContent.includes('原有捷徑'));
- if (mobile) await page.locator('#actions [data-action="interact"]').tap();
- else await page.keyboard.press('e',{delay:180});
+ await interact();
  await page.waitForFunction(() => {
   const point = window.__alphaTestGame.scene.getScene('misty-forest').player.body.center;
   return Math.hypot(point.x - 477, point.y - 766) < 3;
@@ -134,7 +178,7 @@ for(const [name, viewport, renderer, mobile] of [
  assert.equal(save.checkpoint,'south-entry');
  assert.equal(save.progress.rewardReceipts.filter(r=>r.rewardId==='recruit').length,1);
  assert.equal(errors.length,0);
- cases.push({name,renderer,base,alpha,warm,combat,screenshotErrors,treasure:save.progress.treasures,recruitment:save.english});
+ cases.push({name,renderer,base,alpha,warm,stableCreek,alphaCreek,combat,screenshotErrors,treasure:save.progress.treasures,recruitment:save.english});
  await context.close();
 }
 console.log(JSON.stringify(cases,null,2));

@@ -64,3 +64,13 @@ Node 跑完既有及 A／C／QA 套件與 Alpha 介接測試。20 個 QA 完整�
 正式子路徑另外注入一個必要 Idle 圖集失敗。頁面停在就緒檢查，重試後可繪製。封鎖四張疾風衍生圖時，森林仍可啟動並顯示素材備援訊息。已通過 142 項 Node 斷言與 10 項 Python 迴歸，20 項完整驗收案例保留略過。A 的額外穩定版 Python 瀏覽器腳本在 Canvas 核對 91 個碰撞器、雙向橋與捷徑。WebGL 的橋移動等待曾逾時，與 Alpha 自己的軟體 WebGL 通過紀錄分開看待。
 
 交付複測在桌面 Canvas 模擬成功辨識，在 iPhone Canvas 與 iPad 軟體 WebGL 模擬拒麥後輔助招募。三組均通過招募模式重載、戰鬥命中及撤退回程。另以正式子路徑確認主遊戲畫布、穩定森林、Batch B／C 候選及美術工作台可開啟。
+
+## 7D-2A 發布阻擋修正
+
+PR #43 的來源為 `2da91bca8b571b34a74f752a880f0803d4a5956a`，對照 main 為 PR #42。Git ref 已確認 PR #43 指向指定來源，公開的 [run 46120010597](https://github.com/hotblakt/three-realms-english-quest/actions/runs/46120010597) 頁面確認 Node 工作失敗。GitHub API 對工作紀錄與 PR 留言回傳 `Forbidden`，無法獨立取得 Release Manager 原始瀏覽器紀錄。溪岸對照使用固定候選、既有探針座標和本機 Chromium。
+
+- **CI。** 以 `git clone --depth 1 file://...` 對指定候選建置歷史測試，重現 `git ls-tree: not a tree object` 與 `git merge-base: Not a valid commit name`。用 `git fetch --unshallow` 後，`git cat-file -t` 證實 PR #39 與 #42 都可讀為 commit，原有兩個歷史測試通過。修正僅替 Node checkout 設 `fetch-depth: 0`，保留既有測試、權限與品質閘門。
+- **溪岸。** 既有檢查把角色中心設在 `(622,481)`。當時 18×16 的玩家碰撞體已和溪岸矩形 `[621.34,474,696.34,497]` 相交。穩定森林與 Alpha 在 Canvas 和軟體 WebGL 都能重現從嵌入位置往右移動，這組初始化無法代表玩家走到溪岸的行為。實際探索由共用 Phaser Arcade 碰撞負責；Alpha 的領域引擎只在遭遇戰持有玩家位置，透過相同尺寸的幾何檢查辨識通行與阻擋。保留原有溪岸、橋範圍、移速及閃避程式。
+- **新斷言。** 先驗證起點 `(590,481)` 在乾地且沒有重疊，再用鍵盤步行及閃避朝溪岸移動。測試要求 Arcade 右向阻擋旗標成立，且中心停在約 `(612.34,481)`，亦即角色右緣貼住溪岸。相同矩陣檢查穩定版與 Alpha 的雙向過橋。領域整合斷言同樣先確認合法乾地起點，才檢查水道阻擋移動和投射物。
+
+`npm ci`、正式建置、Actions 語法、142 項 Node 與 10 項 Python 迴歸皆在本機通過。完整 QA 框架的 20 項仍待驗收。Chromium 的獨立存檔探針也確認雙分頁只發一枚風印和一張收據，交易中斷不留下部分進度，未知與損壞資料原樣保留。Git 比對確認原有 56 個公開檔案及四張疾風衍生圖均未改動。
