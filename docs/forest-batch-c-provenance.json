@@ -1,0 +1,556 @@
+{
+  "sourceCommit": "471479f70e2d8e67d3a9a7d184ad2c71c5eda3e3",
+  "archiveBytes": 8154989,
+  "archiveSha256": "efe6af5c53a2afe34fccb5d4b52c8e06e8024188d2ab226b1cc407feecd6cb20",
+  "sourceChecksums": {
+    "README.md": "ed23ff98edcdd96a373fec651ccc699e7b6fd5769bfed7039f2dd93ca2937004",
+    "modules/bridge-deck.png": "0051d98b37d055aa0315f4119872d7681fb897f50cb937b81371b1c71c10631d",
+    "modules/bridge-front-rail.png": "2792d648e6d67075c1fb8a63a4233465be34e1f4fa9f40e328c8e5b89193598a",
+    "modules/bridge-rear-rail.png": "5e493668cee8651c3152dd901916002fdb1b34729629e778d2a8082e24b9ae28",
+    "modules/lantern-a.png": "5a0fcb8fe64aa323271bddecf6df5ab7d1c4cff54f1b171683571f1d21cea815",
+    "modules/lantern-b.png": "36906102fb793021b856568c96d02fd4d3b7c2c348853f8e7d9fc41ea44f4108",
+    "modules/lantern-c.png": "11343a8e53db054b410ed80c41bcc6c6447549e140cc1d948749c2154c797867",
+    "modules/shrine-body.png": "a1ace4d75d10c3128218cbc8e9813aa7a694b32085c439b0a6d9880fb5ef20c5",
+    "modules/shrine-entrance.png": "7bd52c9e1673e886513f29b2de0ab37fe7bd93c6d6a52ffe1c981e72d5836dca",
+    "modules/wind-arc.png": "9b3b2d69115bcb903c5e1966f0ae983a3384ecf8e0d3bd32b46a517e5ce1e93c",
+    "modules/wind-butterfly.png": "d28fdacae992169c8223976e4a9bb6436a839bda05445fdb7b9fa5f873aaf90d",
+    "modules/wind-circle.png": "0d717d136e72728889d715b61de601c67eeccf878258262bad7744c31049f791",
+    "modules/wind-vortex.png": "cf5c5e4eec6785ad771b6a1140bb04f39d6b72683cb847fd37afb07cf3422dea",
+    "originals/landmarks-source-1.png": "d46a719ec00d62ca915661c03f1631b189acb4667d8f85efe95412fd8d925285",
+    "originals/landmarks-source-2.png": "b8f9c61cfdd2a7b72a521bd266351b19b64c2f05a0d70b918e64d976c607e3d0",
+    "preview.jpg": "b357e9ab065d4fbb9681cfe045e0943e71fdfb8d2f1eb19cfeb51af6aa73b0ac",
+    "runtime/landmarks.json": "95d80655ecd7dc79f419df5c08aaac830a0652ce0fe38a63da695ffe2db8708f",
+    "runtime/landmarks.webp": "5740c70c02aa514f7b108a67a95477642997e814629b5aade5d243ef5df64256"
+  },
+  "sourceImages": {
+    "modules/bridge-deck.png": {
+      "size": [
+        811,
+        257
+      ],
+      "mode": "RGBA",
+      "bytes": 397026,
+      "sha256": "0051d98b37d055aa0315f4119872d7681fb897f50cb937b81371b1c71c10631d",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "modules/bridge-front-rail.png": {
+      "size": [
+        672,
+        172
+      ],
+      "mode": "RGBA",
+      "bytes": 170867,
+      "sha256": "2792d648e6d67075c1fb8a63a4233465be34e1f4fa9f40e328c8e5b89193598a",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "modules/bridge-rear-rail.png": {
+      "size": [
+        634,
+        143
+      ],
+      "mode": "RGBA",
+      "bytes": 129826,
+      "sha256": "5e493668cee8651c3152dd901916002fdb1b34729629e778d2a8082e24b9ae28",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "modules/lantern-a.png": {
+      "size": [
+        229,
+        297
+      ],
+      "mode": "RGBA",
+      "bytes": 107986,
+      "sha256": "5a0fcb8fe64aa323271bddecf6df5ab7d1c4cff54f1b171683571f1d21cea815",
+      "alpha": [
+        0,
+        253
+      ]
+    },
+    "modules/lantern-b.png": {
+      "size": [
+        255,
+        282
+      ],
+      "mode": "RGBA",
+      "bytes": 122918,
+      "sha256": "36906102fb793021b856568c96d02fd4d3b7c2c348853f8e7d9fc41ea44f4108",
+      "alpha": [
+        0,
+        253
+      ]
+    },
+    "modules/lantern-c.png": {
+      "size": [
+        230,
+        301
+      ],
+      "mode": "RGBA",
+      "bytes": 103214,
+      "sha256": "11343a8e53db054b410ed80c41bcc6c6447549e140cc1d948749c2154c797867",
+      "alpha": [
+        0,
+        253
+      ]
+    },
+    "modules/shrine-body.png": {
+      "size": [
+        474,
+        450
+      ],
+      "mode": "RGBA",
+      "bytes": 426173,
+      "sha256": "a1ace4d75d10c3128218cbc8e9813aa7a694b32085c439b0a6d9880fb5ef20c5",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "modules/shrine-entrance.png": {
+      "size": [
+        534,
+        243
+      ],
+      "mode": "RGBA",
+      "bytes": 224627,
+      "sha256": "7bd52c9e1673e886513f29b2de0ab37fe7bd93c6d6a52ffe1c981e72d5836dca",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "modules/wind-arc.png": {
+      "size": [
+        292,
+        143
+      ],
+      "mode": "RGBA",
+      "bytes": 52281,
+      "sha256": "9b3b2d69115bcb903c5e1966f0ae983a3384ecf8e0d3bd32b46a517e5ce1e93c",
+      "alpha": [
+        0,
+        245
+      ]
+    },
+    "modules/wind-butterfly.png": {
+      "size": [
+        140,
+        135
+      ],
+      "mode": "RGBA",
+      "bytes": 29777,
+      "sha256": "d28fdacae992169c8223976e4a9bb6436a839bda05445fdb7b9fa5f873aaf90d",
+      "alpha": [
+        0,
+        252
+      ]
+    },
+    "modules/wind-circle.png": {
+      "size": [
+        283,
+        148
+      ],
+      "mode": "RGBA",
+      "bytes": 72621,
+      "sha256": "0d717d136e72728889d715b61de601c67eeccf878258262bad7744c31049f791",
+      "alpha": [
+        0,
+        252
+      ]
+    },
+    "modules/wind-vortex.png": {
+      "size": [
+        296,
+        145
+      ],
+      "mode": "RGBA",
+      "bytes": 60278,
+      "sha256": "cf5c5e4eec6785ad771b6a1140bb04f39d6b72683cb847fd37afb07cf3422dea",
+      "alpha": [
+        0,
+        251
+      ]
+    },
+    "originals/landmarks-source-1.png": {
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 2781929,
+      "sha256": "d46a719ec00d62ca915661c03f1631b189acb4667d8f85efe95412fd8d925285",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "originals/landmarks-source-2.png": {
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 2972116,
+      "sha256": "b8f9c61cfdd2a7b72a521bd266351b19b64c2f05a0d70b918e64d976c607e3d0",
+      "alpha": [
+        0,
+        254
+      ]
+    },
+    "preview.jpg": {
+      "size": [
+        1024,
+        480
+      ],
+      "mode": "RGB",
+      "bytes": 70630,
+      "sha256": "b357e9ab065d4fbb9681cfe045e0943e71fdfb8d2f1eb19cfeb51af6aa73b0ac",
+      "alpha": null
+    },
+    "runtime/landmarks.webp": {
+      "size": [
+        1024,
+        480
+      ],
+      "mode": "RGBA",
+      "bytes": 455488,
+      "sha256": "5740c70c02aa514f7b108a67a95477642997e814629b5aade5d243ef5df64256",
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  },
+  "sourceAtlas": {
+    "frames": [
+      {
+        "name": "bridge-deck",
+        "source_crop": [
+          0,
+          90,
+          820,
+          368
+        ],
+        "frame": {
+          "x": 4,
+          "y": 10,
+          "w": 392,
+          "h": 124
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "bridge-rear-rail",
+        "source_crop": [
+          80,
+          364,
+          740,
+          510
+        ],
+        "frame": {
+          "x": 18,
+          "y": 149,
+          "w": 364,
+          "h": 82
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "bridge-front-rail",
+        "source_crop": [
+          54,
+          510,
+          746,
+          684
+        ],
+        "frame": {
+          "x": 20,
+          "y": 239,
+          "w": 359,
+          "h": 92
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "shrine-body",
+        "source_crop": [
+          820,
+          0,
+          1294,
+          462
+        ],
+        "frame": {
+          "x": 404,
+          "y": 10,
+          "w": 232,
+          "h": 220
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "shrine-entrance",
+        "source_crop": [
+          772,
+          464,
+          1308,
+          708
+        ],
+        "frame": {
+          "x": 408,
+          "y": 244,
+          "w": 224,
+          "h": 102
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "lantern-a",
+        "source_crop": [
+          0,
+          692,
+          250,
+          1006
+        ],
+        "frame": {
+          "x": 644,
+          "y": 5,
+          "w": 112,
+          "h": 145
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "lantern-b",
+        "source_crop": [
+          256,
+          692,
+          522,
+          1006
+        ],
+        "frame": {
+          "x": 764,
+          "y": 15,
+          "w": 112,
+          "h": 124
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "lantern-c",
+        "source_crop": [
+          524,
+          692,
+          756,
+          1006
+        ],
+        "frame": {
+          "x": 884,
+          "y": 4,
+          "w": 112,
+          "h": 147
+        },
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "wind-arc",
+        "source_crop": [
+          760,
+          720,
+          1052,
+          870
+        ],
+        "frame": {
+          "x": 644,
+          "y": 160,
+          "w": 172,
+          "h": 84
+        },
+        "alpha_extrema": [
+          0,
+          245
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "wind-circle",
+        "source_crop": [
+          760,
+          870,
+          1052,
+          1020
+        ],
+        "frame": {
+          "x": 647,
+          "y": 254,
+          "w": 166,
+          "h": 87
+        },
+        "alpha_extrema": [
+          0,
+          252
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "wind-butterfly",
+        "source_crop": [
+          1214,
+          870,
+          1354,
+          1020
+        ],
+        "frame": {
+          "x": 824,
+          "y": 165,
+          "w": 82,
+          "h": 79
+        },
+        "alpha_extrema": [
+          0,
+          252
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      },
+      {
+        "name": "wind-vortex",
+        "source_crop": [
+          1238,
+          720,
+          1534,
+          870
+        ],
+        "frame": {
+          "x": 824,
+          "y": 260,
+          "w": 172,
+          "h": 84
+        },
+        "alpha_extrema": [
+          0,
+          251
+        ],
+        "anchor": "provisional; calibrate in Phaser"
+      }
+    ],
+    "rgba_bytes": 1966080,
+    "status": "candidate"
+  },
+  "frames": {
+    "shrine-body": {
+      "frame": {
+        "x": 8,
+        "y": 8,
+        "w": 248,
+        "h": 235
+      }
+    },
+    "lantern-a": {
+      "frame": {
+        "x": 272,
+        "y": 8,
+        "w": 80,
+        "h": 104
+      }
+    },
+    "lantern-b": {
+      "frame": {
+        "x": 368,
+        "y": 8,
+        "w": 88,
+        "h": 97
+      }
+    },
+    "lantern-c": {
+      "frame": {
+        "x": 472,
+        "y": 8,
+        "w": 80,
+        "h": 105
+      }
+    },
+    "wind-arc": {
+      "frame": {
+        "x": 8,
+        "y": 259,
+        "w": 128,
+        "h": 63
+      }
+    },
+    "wind-circle": {
+      "frame": {
+        "x": 152,
+        "y": 259,
+        "w": 128,
+        "h": 67
+      }
+    },
+    "wind-butterfly": {
+      "frame": {
+        "x": 296,
+        "y": 259,
+        "w": 60,
+        "h": 58
+      }
+    },
+    "wind-vortex": {
+      "frame": {
+        "x": 372,
+        "y": 259,
+        "w": 128,
+        "h": 63
+      }
+    }
+  },
+  "meta": {
+    "image": "forest-landmarks.webp",
+    "size": {
+      "w": 640,
+      "h": 336
+    },
+    "extrusionPx": 4,
+    "gutterPx": 4,
+    "bytes": 191210,
+    "rgbaBytes": 860160,
+    "sha256": "f5cd72a801cb554046d995cc9fbe99c202033f0e433d0d90c3000a6d922c8e35"
+  }
+}

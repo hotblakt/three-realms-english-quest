@@ -1,10 +1,16 @@
 import provenance from '../docs/forest-batch-b-provenance.json';
 import { loadOptionalImage } from '../forest-preview/startup';
 
-export async function prepareAtlas(signal: AbortSignal, note: (message: string, phase?: boolean) => void) {
-  const { meta } = provenance;
+export function prepareAtlas(signal: AbortSignal, note: (message: string, phase?: boolean) => void) {
+  return prepareVerifiedAtlas('forest-batch-b', provenance.meta, signal, note);
+}
+
+type AtlasMetadata = Pick<typeof provenance.meta, 'image' | 'size' | 'sha256' | 'bytes'>;
+
+export async function prepareVerifiedAtlas(directory: string, meta: AtlasMetadata,
+  signal: AbortSignal, note: (message: string, phase?: boolean) => void) {
   note(`選用圖集請求｜${meta.image}`, false);
-  const response = await fetch(`${import.meta.env.BASE_URL}forest-batch-b/${meta.image}?v=${meta.sha256.slice(0, 16)}`, { signal });
+  const response = await fetch(`${import.meta.env.BASE_URL}${directory}/${meta.image}?v=${meta.sha256.slice(0, 16)}`, { signal });
   if (!response.ok) throw new Error(`圖集 HTTP ${response.status}`);
   const blob = await response.blob();
   if (blob.size !== meta.bytes) throw new Error('圖集大小不符');

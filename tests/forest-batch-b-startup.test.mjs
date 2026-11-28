@@ -35,3 +35,10 @@ test('texture registration rolls back partial or invalid textures', () => {
     { ok: false, reason: 'upload failed' });
   assert.equal(rollbacks, 2);
 });
+
+test('independent Batch B and C atlas deadlines keep normal ecology available during a landmark failure', async () => {
+  const ecology = optionalAtlas(async () => 'ecology', 100);
+  const landmarks = optionalAtlas(() => new Promise(() => {}), 5, '地標圖集逾時');
+  assert.deepEqual(await ecology, { ok: true, value: 'ecology' });
+  assert.deepEqual(await landmarks, { ok: false, reason: '地標圖集逾時' });
+});
