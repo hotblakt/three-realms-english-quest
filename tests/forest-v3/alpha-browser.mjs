@@ -12,13 +12,26 @@ for(const [name, viewport, renderer, mobile] of [
 ]){
  const context=await browser.newContext({viewport,isMobile:mobile,hasTouch:mobile,reducedMotion:'reduce'});
  const page=await context.newPage();
- if(mobile) await page.addInitScript(() => {
+ await page.addInitScript(({deny}) => {
    window.SpeechRecognition=class extends EventTarget {
-     start(){setTimeout(()=>{const e=new Event('error');e.error='not-allowed';this.dispatchEvent(e);},100);}
-     abort(){}
+     start() {
+       setTimeout(() => {
+         if (deny) {
+           const event = new Event('error');
+           event.error = 'not-allowed';
+           this.dispatchEvent(event);
+         } else {
+           const event = new Event('result');
+           event.results = [{isFinal:true,length:1,0:{transcript:'Come with me.'}}];
+           this.dispatchEvent(event);
+           this.dispatchEvent(new Event('end'));
+         }
+       },100);
+     }
+     abort() {}
    };
    window.webkitSpeechRecognition=window.SpeechRecognition;
- });
+ }, {deny:mobile});
  const errors=[];
  const screenshotErrors=[];
  const capture=async label=>{
@@ -75,17 +88,19 @@ for(const [name, viewport, renderer, mobile] of [
  await page.keyboard.press('e',{delay:90});
  const dialog=page.getByRole('dialog');
  await dialog.waitFor();
+ await dialog.getByRole('button',{name:'開啟麥克風'}).click();
  if(mobile){
-  await dialog.getByRole('button',{name:'開啟麥克風'}).click();
   await dialog.getByText('這次無法使用麥克風。可以重試或用輔助練習。').waitFor();
+  await dialog.getByRole('button',{name:'完成輔助練習'}).click();
  }
- await dialog.getByRole('button',{name:'完成輔助練習'}).click();
  await dialog.waitFor({state:'hidden'});
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').progress.companion.collected);
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').companion?.visible);
  await capture('shrine');
  await set(812,470);
- await page.keyboard.press('e',{delay:90});
+ await page.waitForFunction(() => document.querySelector('#forest-message')?.textContent.includes('橋東試煉・竹芽'));
+ if (mobile) await page.locator('#actions [data-action="interact"]').tap();
+ else await page.keyboard.press('e',{delay:180});
  await page.waitForFunction(()=>window.__alphaTestGame.scene.getScene('misty-forest').active==='east-wind-pair');
  await page.keyboard.down('ArrowDown');await page.waitForTimeout(260);await page.keyboard.up('ArrowDown');
  for(let tries=0;tries<8&&(await state()).enemies[0].health===3;tries++){
@@ -93,7 +108,8 @@ for(const [name, viewport, renderer, mobile] of [
   const dx=foe.position.x-player.x,dy=foe.position.y-player.y;
   const key=Math.abs(dx)>Math.abs(dy)?(dx>0?'ArrowRight':'ArrowLeft'):(dy>0?'ArrowDown':'ArrowUp');
   await page.keyboard.press(key,{delay:60});
-  await page.keyboard.press('j',{delay:65});
+  if (mobile) await page.locator('#actions [data-action="attack"]').tap();
+  else await page.keyboard.press('j',{delay:140});
   await page.waitForTimeout(280);
  }
  const combat=await state();
@@ -114,7 +130,7 @@ for(const [name, viewport, renderer, mobile] of [
    const s=window.__alphaTestGame.scene.getScene('misty-forest');
    return await s.save.load();
  });
- assert.equal(save.english,'assisted');
+ assert.equal(save.english,mobile ? 'assisted' : 'recognized');
  assert.equal(save.checkpoint,'south-entry');
  assert.equal(save.progress.rewardReceipts.filter(r=>r.rewardId==='recruit').length,1);
  assert.equal(errors.length,0);
