@@ -1,7 +1,7 @@
 {
   "version": 1,
   "repository": "hotblakt/three-realms-english-quest",
-  "updatedAt": "2026-11-28T06:22:17.281Z",
+  "updatedAt": "2026-11-28T09:29:50.173Z",
   "stable": {
     "label": "霧竹林 2.0",
     "commit": "62e590f665781822ac48bf691e6507f920bf6b68",
@@ -954,7 +954,7 @@
     {
       "milestone": "7D-1",
       "sourceCommit": "823c2f281262268e3b20dd16a29464406313e440",
-      "pr": null,
+      "pr": 43,
       "deployment": null,
       "evidence": [
         {
@@ -966,16 +966,22 @@
           "kind": "repository",
           "ref": "commit:823c2f281262268e3b20dd16a29464406313e440",
           "label": "Alpha 遊戲邏輯與存檔介接提交，等待實機驗收"
+        },
+        {
+          "kind": "reported",
+          "ref": "pr:43",
+          "label": "製作人 iPhone Safari 體驗 3/5，森林移動、過橋、疾風外觀與跟隨、撤退回程通過；揮劍、閃避辨識與遭遇探索待改"
         }
       ],
       "blockers": [],
       "nextAction": {
         "role": "Producer",
-        "label": "驗收霧竹林 Alpha 的 iPhone Safari 基本流程",
-        "prompt": "請在 Work 提供的同一候選版本依交接表，用 iPhone Safari 驗證進場、過橋、拒絕麥克風後招募與安全撤退。回填實際結果與候選 SHA。"
+        "label": "複驗霧竹林戰鬥體驗",
+        "prompt": "請從 7D-3 候選的全新 Alpha 存檔，以 iPhone Safari 走到石燈小徑，確認探索與戰鬥中的揮劍、閃避及竹芽試煉提示。"
       },
       "limitations": [
-        "未部署，真機 Safari/PWA、完整 QA 驗收與正式美術待辦"
+        "揮劍回饋、閃避視覺及遭遇可發現性需以 7D-3 候選複驗",
+        "疾風靜態外觀與比例通過；動畫及 iPhone／iPad 候選驗收仍待辦"
       ],
       "status": "awaiting_review",
       "id": "forest-v3-scene-integration",
@@ -1479,6 +1485,38 @@
         "deploymentSeconds": null
       },
       "quality": null
+    },
+    {
+      "id": "pr43-iphone-combat-feedback",
+      "task": "forest-v3-scene-integration",
+      "attempt": 2,
+      "revision": 1,
+      "commit": "5a78ed54e9ff61cfa40de4a8cc06a8c5322fd635",
+      "pr": 43,
+      "scope": "製作人 iPhone Safari Alpha 戰鬥體驗",
+      "evidence": {
+        "kind": "reported",
+        "ref": "pr:43",
+        "label": "製作人 iPhone Safari 體驗 3/5，森林移動、過橋、疾風外觀與跟隨、撤退回程通過；揮劍、閃避辨識與遭遇探索待改"
+      },
+      "metrics": {
+        "totalSeconds": null,
+        "engineeringSeconds": null,
+        "testingSeconds": null,
+        "waitingSeconds": null,
+        "retrySeconds": null,
+        "humanSeconds": null,
+        "paidCredits": null,
+        "costUsd": null,
+        "assetAccepted": null,
+        "assetReviewed": null,
+        "firstPassAccepted": null,
+        "firstPassReviewed": null,
+        "reworked": null,
+        "verificationSeconds": null,
+        "deploymentSeconds": null
+      },
+      "quality": "fail"
     }
   ]
 }

@@ -1,9 +1,10 @@
+import { CombatFeedback, explorationSwordInterval } from './combatFeedback';
 import type Phaser from 'phaser';
 import { Encounter, type EntryRequest } from '../src/forest-v3/domain/encounter';
 import { Hayate, Recruitment, companionSnapshot, recruitmentPhrase, type EnglishCompletion } from '../src/forest-v3/domain/companion';
 import { distance, scale, unit, sub, type Point, type AttackWindow, type CombatEvent } from '../src/forest-v3/domain/contracts';
 import { initialProgress, proposeWindRune, type RewardProposal } from '../src/forest-v3/domain/progression';
-import { enemies } from '../src/forest-v3/domain/tuning';
+import { enemies, tuning } from '../src/forest-v3/domain/tuning';
 import { encounterAreas, guardianGeometry, type EncounterId } from '../src/forest-v3/world/encounters';
 import { checkpoints, forestRegionId, landmarks, safeAnchors } from '../src/forest-v3/world/world';
 import { getRoutePoints } from '../src/forest-v3/world/routes';
@@ -45,7 +46,16 @@ export function alphaScene(Base: ForestClass): ForestClass {
     private readonly save = new AlphaSave();
     private progress = initialProgress();
     private active?: EncounterId;
-    private enemyPoints: readonly Point[] = [];
+    private combatFeedback!: CombatFeedback;
+    private readonly encounterPreviews = new Map<EncounterId, {
+      sign: Phaser.GameObjects.Text;
+      marker: Phaser.GameObjects.Graphics;
+      figures: Phaser.GameObjects.Container[];
+    }>();
+    private actionStatus!: HTMLOutputElement;
+    private swordReadyAt = 0;
+    private readonly flashAt = new Map<string, number>();
+    private enemyPoints: Point[] = [];
     private readonly geometry = forestGeometry(() => this.active ? encounterAreas[this.active].bounds : undefined,
       p => this.cameras.main.worldView.contains(p.x, p.y));
     private readonly encounter = new Encounter({
@@ -107,6 +117,7 @@ export function alphaScene(Base: ForestClass): ForestClass {
         this.cast = false;
         this.controls.reset();
         this.encounter.pause();
+        this.combatFeedback?.clear();
       };
       const resume = () => this.encounter.resume();
       document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume(), { signal: this.lifecycle.signal });
@@ -122,7 +133,12 @@ export function alphaScene(Base: ForestClass): ForestClass {
         panel.remove();
         this.dialogue?.remove();
       });
+      this.actionStatus = element<HTMLOutputElement>('output', panel);
+      this.actionStatus.hidden = true;
+      this.actionStatus.className = 'alpha-action-status';
+      this.combatFeedback = new CombatFeedback(this);
       this.markRoutes();
+      this.markEncounters();
       try {
         const saved = await this.save.load();
         this.progress = saved.progress;
@@ -181,17 +197,33 @@ export function alphaScene(Base: ForestClass): ForestClass {
           this.result = '先在第一章取得風之刃。';
           this.time.delayedCall(2700, () => { this.result = ''; });
         }
-        return super.moveForestPlayer(direction, now);
+        const dodgeStarted = super.moveForestPlayer(direction, now);
+        if (dodgeStarted) this.combatFeedback.startDodge(this.player.body.center, this.player.facing, now);
+        if (sword && now >= this.swordReadyAt && !dodgeStarted && now >= this.exploreDodgeUntil) {
+          this.swing(this.player.body.center, this.player.facing, now);
+        } else if (sword && now >= this.swordReadyAt) {
+          this.showAction('閃避後可揮劍', now + 240);
+        }
+        if (dodgeStarted) {
+          this.exploreDodgeUntil = now + tuning.dodgeDuration;
+          this.showAction('閃避・回復中', now + tuning.dodgeCooldown);
+        }
+        return dodgeStarted;
       }
       const dodge = this.controls.consume('dodge');
       this.encounter.update({ move: direction, sword, dodge, windBlade: blade });
       this.placePlayer(this.encounter.playerPosition);
       let dodgeStarted = false;
+      let swordStarted = false;
       for (const event of this.encounter.drainEvents()) {
-        this.renderEvent(event);
+        this.renderEvent(event, now);
         if (event.type === 'ActionStarted' && event.action === 'dodge') dodgeStarted = true;
+        if (event.type === 'ActionStarted' && event.action === 'sword') swordStarted = true;
       }
-      this.renderEnemies();
+      if (sword && !swordStarted && this.encounter.hud.phase === 'active' && now >= this.actionUntil) {
+        this.showAction('調整姿勢後再揮劍', now + 260);
+      }
+      this.renderEnemies(now);
       this.renderProjectiles();
       if (this.encounter.hud.phase === 'settlement' && !this.working && !this.settlementAttempted) {
         this.settlementAttempted = true;
@@ -200,13 +232,32 @@ export function alphaScene(Base: ForestClass): ForestClass {
       this.updateHud();
       return dodgeStarted;
     }
+    private exploreDodgeUntil = 0;
+    private actionUntil = 0;
+    private showAction(label: string, until: number) {
+      this.actionUntil = until;
+      this.actionStatus.textContent = label;
+      this.actionStatus.hidden = false;
+    }
+
+    private swing(origin: Point, facing: Point, now: number) {
+      this.combatFeedback.slash(origin, facing, now);
+      this.swordReadyAt = now + explorationSwordInterval;
+      this.showAction('揮劍・收招中', this.swordReadyAt);
+    }
+
     private castHeld = false;
     private settlementAttempted = false;
 
     override update(now: number, delta: number) {
       const before = this.loaded ? this.player.body.center.clone() : undefined;
       super.update(now, delta);
-      if (before && !this.dialogue?.open) this.followCompanion(delta, before);
+      if (before && !this.dialogue?.open) {
+        this.followCompanion(delta, before);
+        this.combatFeedback.update(this.forestAvatar, now);
+        this.updateEncounterPreviews();
+        if (!this.actionStatus.hidden && now >= this.actionUntil) this.actionStatus.hidden = true;
+      }
     }
 
     private placePlayer(p: Point) {
@@ -265,6 +316,7 @@ export function alphaScene(Base: ForestClass): ForestClass {
         return;
       }
       this.active = id;
+      this.flashAt.clear();
       this.settlementAttempted = false;
       this.result = '';
       this.hayate.beginAttempt(this.encounter.currentAttempt);
@@ -284,6 +336,8 @@ export function alphaScene(Base: ForestClass): ForestClass {
       for (const bolt of this.bolts.values()) bolt.destroy();
       this.bolts.clear();
       this.active = undefined;
+      this.combatFeedback.clear();
+      this.flashAt.clear();
       this.result = '';
       this.enemyPoints = [];
       this.hayate.beginAttempt();
@@ -374,7 +428,7 @@ export function alphaScene(Base: ForestClass): ForestClass {
       }
       for (const id of Object.keys(encounterAreas) as EncounterId[]) {
         const area = encounterAreas[id];
-        if (!near(p, landmarks[area.landmarkId].point, id === 'lantern-sprout' ? 25 : 30)) continue;
+        if (!near(p, landmarks[area.landmarkId].point, id === 'lantern-sprout' ? 46 : 36)) continue;
         if (id === 'mosswood-guardian' && !this.progress.cleared.includes('east-wind-pair')) return '先到橋東完成竹芽與風籽的試煉。';
         if (pressed) void this.enter(id);
         return labels[id] + (this.progress.cleared.includes(id) ? '・按「互動」再練習。' : '・按「互動」挑戰。');
@@ -390,7 +444,9 @@ export function alphaScene(Base: ForestClass): ForestClass {
       if (this.progress.badge) return '已取得守衛徽章。可尋寶、再練習，或從東側捷徑返回。';
       if (p.x > 740) return this.progress.cleared.includes('east-wind-pair')
         ? '往北找疾風，或循東側小徑挑戰苔木守衛。' : '沿橋東小徑往南，挑戰竹芽與風籽。';
-      return '岔路向西尋找瀑布寶藏，向北循石燈找木橋。';
+      return this.progress.cleared.includes('lantern-sprout') || p.y < 505
+        ? '往北過木橋，橋東還有一場試煉。'
+        : '往北沿石燈找到竹芽。靠近劍標後按「互動」。';
     }
 
     private async discoverCompanion() {
@@ -546,7 +602,7 @@ export function alphaScene(Base: ForestClass): ForestClass {
       }
     }
 
-    private renderEvent(event: CombatEvent) {
+    private renderEvent(event: CombatEvent, now: number) {
       this.hayate.consume(companionSnapshot(this.progress, Boolean(this.companion)), event);
       if (event.type === 'AttackTelegraphed' || event.type === 'HitWindowOpened') {
         const warning = event.type === 'AttackTelegraphed';
@@ -561,12 +617,16 @@ export function alphaScene(Base: ForestClass): ForestClass {
         const target = event.targetId === 'player' ? this.player.body.center
           : this.encounter.enemyState.find(enemy => enemy.id === event.targetId)?.position;
         if (target) {
+          if (event.targetId !== 'player') this.flashAt.set(event.targetId, now + 120);
           const flash = this.add.circle(target.x, target.y - 14, 11, 0xffeead, .85).setDepth(target.y + 2);
           this.time.delayedCall(95, () => flash.destroy());
         }
-      } else if (event.type === 'ActionStarted' && event.action === 'dodge') {
-        const ring = this.add.ellipse(event.origin.x, event.origin.y - 4, 28, 11, 0xadf0cb, .6).setDepth(event.origin.y);
-        this.time.delayedCall(130, () => ring.destroy());
+      } else if (event.type === 'ActionStarted') {
+        if (event.action === 'sword') this.swing(event.origin, event.facing, now);
+        if (event.action === 'dodge') {
+          this.combatFeedback.startDodge(event.origin, event.facing, now);
+          this.showAction('閃避・回復中', now + tuning.dodgeCooldown);
+        }
       } else if (event.type === 'EncounterCleared' && !event.firstClear) {
         this.result = '練習完成！初次獎勵已領取。';
       }
@@ -579,26 +639,82 @@ export function alphaScene(Base: ForestClass): ForestClass {
       return opacity;
     }
 
-    private renderEnemies() {
-      const enemies = this.encounter.enemyState;
-      this.enemyPoints = enemies.filter(foe => foe.health > 0).map(foe => foe.position);
-      for (const foe of enemies) {
+    private markEncounters() {
+      for (const [id, area] of Object.entries(encounterAreas) as [EncounterId, typeof encounterAreas[EncounterId]][]) {
+        const point = landmarks[area.landmarkId].point;
+        const sign = this.add.text(point.x, point.y - 52, '⚔ ' + labels[id], {
+          fontSize: '15px', color: '#fff0bc', backgroundColor: '#24352e',
+          padding: { x: 6, y: 3 },
+        }).setOrigin(.5, 1).setDepth(1299);
+        const marker = this.add.graphics().setDepth(.1).lineStyle(2, 0xf3cc7e, .8);
+        marker.strokeEllipse(point.x, point.y, 45, 17);
+        const figures = area.spawns.map(({ enemy, point }) => this.enemyFigure(enemy)
+          .setPosition(point.x, point.y).setDepth(point.y));
+        this.encounterPreviews.set(id, { sign, marker, figures });
+        sign.setVisible(false);
+        marker.setVisible(false);
+        figures.forEach(view => view.setVisible(false));
+      }
+    }
+
+    private updateEncounterPreviews() {
+      if (!this.active) this.enemyPoints = [];
+      for (const [id, {sign, marker, figures}] of this.encounterPreviews) {
+        const visible = !this.active && near(this.player.body.center, landmarks[encounterAreas[id].landmarkId].point, 230);
+        sign.setVisible(visible);
+        marker.setVisible(visible);
+        for (const view of figures) {
+          view.setVisible(visible);
+          if (visible) this.enemyPoints.push({ x: view.x, y: view.y });
+        }
+      }
+    }
+
+    private enemyFigure(kind: keyof typeof enemies) {
+      const guardian = kind === 'mosswood-guardian';
+      const wind = kind === 'wind-seed';
+      const name = guardian ? '苔木守衛' : wind ? '風籽' : '竹芽';
+      const radius = guardian ? 22 : 12;
+      const center = guardian ? -29 : -16;
+      const color = guardian ? 0x887652 : wind ? 0x74b9be : 0x779656;
+      const art = this.add.graphics().fillStyle(color).lineStyle(2, 0xeff3bc, .85);
+      if (wind) {
+        art.fillPoints([{ x: 0, y: center - 15 }, { x: 13, y: center }, { x: 0, y: center + 15 }, { x: -13, y: center }], true);
+        art.strokePoints([{ x: 0, y: center - 15 }, { x: 13, y: center }, { x: 0, y: center + 15 }, { x: -13, y: center }], true);
+      } else {
+        art.fillRoundedRect(-radius, center - radius, radius * 2, radius * 2, guardian ? 5 : 8);
+        art.strokeRoundedRect(-radius, center - radius, radius * 2, radius * 2, guardian ? 5 : 8);
+        art.lineBetween(0, center - radius, -5, center - radius - 8);
+        art.lineBetween(0, center - radius, 8, center - radius - 6);
+      }
+      art.fillStyle(0xfff0b0).fillCircle(-4, center, 2).fillCircle(4, center, 2);
+      const caption = this.add.text(0, center - radius - 13, name, { fontSize: '13px',
+        color: '#fff4d2', backgroundColor: '#182f29' }).setOrigin(.5);
+      const health = this.add.rectangle(0, center - radius - 3, radius * 2, 4, 0xe8b772).setOrigin(0, .5).setX(-radius);
+      return this.add.container(0, 0, [
+        this.add.ellipse(0, 0, radius * 2 + 6, 10, 0x102120, .55), art, caption, health,
+      ]).setData('kind', kind).setData('name', name);
+    }
+
+    private renderEnemies(now: number) {
+      const foes = this.encounter.enemyState;
+      if (!foes.length) for (const view of this.enemyViews.values()) view.setVisible(false);
+      this.enemyPoints = foes.filter(foe => foe.health > 0).map(foe => foe.position);
+      for (const foe of foes) {
         let view = this.enemyViews.get(foe.id);
         if (!view) {
-          const guardian = foe.id.startsWith('mosswood');
-          const wind = foe.id.startsWith('wind-seed');
-          view = this.add.container();
-          view.add([
-            this.add.ellipse(0, 0, guardian ? 50 : 24, 11, 0x102120, .55),
-            this.add.circle(0, guardian ? -29 : -15, guardian ? 23 : 12, guardian ? 0x887652 : wind ? 0x74b9be : 0x8fa46e),
-            this.add.text(0, guardian ? -61 : -34, '', { fontSize: '12px', color: '#fff4d2', backgroundColor: '#182f29' }).setOrigin(.5),
-          ]);
-          view.setData('name', guardian ? '苔木守衛' : wind ? '風籽' : '竹芽');
+          view = this.enemyFigure(foe.id.split(':')[0] as keyof typeof enemies);
           this.enemyViews.set(foe.id, view);
         }
         const label = view.getAt(2) as Phaser.GameObjects.Text;
+        const health = view.getAt(3) as Phaser.GameObjects.Rectangle;
+        const kind = view.getData('kind') as keyof typeof enemies;
         const name = `${view.getData('name')}・${foe.health}${foe.phase === 'recovery' ? '　空隙' : ''}`;
         if (label.text !== name) label.setText(name);
+        health.setScale(foe.health / enemies[kind].health, 1);
+        const hit = now < (this.flashAt.get(foe.id) ?? 0);
+        const art = view.getAt(1) as Phaser.GameObjects.Graphics;
+        art.setAlpha(hit ? .47 : 1);
         view.setPosition(foe.position.x, foe.position.y).setDepth(foe.position.y).setVisible(foe.health > 0);
       }
     }
