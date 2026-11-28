@@ -1,5 +1,5 @@
 import type PhaserType from 'phaser';
-import template from '../forest-preview/index.html?raw';
+import template from '../forest-preview/game-shell.html?raw';
 import '../src/style.css';
 import '../forest-preview/preview.css';
 import { errorDescription, optionalAtlas, registerOptionalAtlas } from './atlas';
